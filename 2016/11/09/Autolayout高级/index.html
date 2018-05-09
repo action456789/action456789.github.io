@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/5 | Hexo</title>
+  <title>Autolayout高级 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/index.html">
+  <meta name="description" content="[TOC] intrinsicContentSizeIntrinsic Content Size：固有大小。意思就是说我知道自己的大小，如果你没有为我指定大小，我就按照这个大小来。 比如：大家都知道在使用 AutoLayout 的时候，UILabel 就不用指定尺寸大小，只需指定位置即可，就是因为，只要确定了文字内容，字体等信息，它自己就能计算出大小来。  UILabel，UIImageView，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autolayout高级">
+<meta property="og:url" content="http://yoursite.com/2016/11/09/Autolayout高级/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] intrinsicContentSizeIntrinsic Content Size：固有大小。意思就是说我知道自己的大小，如果你没有为我指定大小，我就按照这个大小来。 比如：大家都知道在使用 AutoLayout 的时候，UILabel 就不用指定尺寸大小，只需指定位置即可，就是因为，只要确定了文字内容，字体等信息，它自己就能计算出大小来。  UILabel，UIImageView，">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-143170678a0a5d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-4bfd008744e885e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-09T07:12:24.519Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Autolayout高级">
+<meta name="twitter:description" content="[TOC] intrinsicContentSizeIntrinsic Content Size：固有大小。意思就是说我知道自己的大小，如果你没有为我指定大小，我就按照这个大小来。 比如：大家都知道在使用 AutoLayout 的时候，UILabel 就不用指定尺寸大小，只需指定位置即可，就是因为，只要确定了文字内容，字体等信息，它自己就能计算出大小来。  UILabel，UIImageView，">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1120923-143170678a0a5d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,49 +157,225 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Autolayout高级" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/09/iOS-SDK-开发/" class="archive-article-date">
-  	<time datetime="2018-05-09T07:07:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/09/iOS-SDK-开发/">iOS SDK 开发</a>
+    <h1 class="article-title" itemprop="name">
+      Autolayout高级
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2016/11/09/Autolayout高级/" class="archive-article-date">
+  	<time datetime="2016-11-09T12:23:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="intrinsicContentSize"><a href="#intrinsicContentSize" class="headerlink" title="intrinsicContentSize"></a>intrinsicContentSize</h1><p><code>Intrinsic Content Size</code>：固有大小。意思就是说我知道自己的大小，如果你没有为我指定大小，我就按照这个大小来。</p>
+<p>比如：大家都知道在使用 AutoLayout 的时候，<code>UILabel</code> 就不用指定尺寸大小，只需指定位置即可，就是因为，只要确定了文字内容，字体等信息，它自己就能计算出大小来。</p>
+<blockquote>
+<p><code>UILabel</code>，<code>UIImageView</code>，<code>UIButton</code> 等组件及某些包含它们的系统组件都有 Intrinsic Content Size 属性。</p>
+</blockquote>
+<h1 id="Content-Hugging-约束（不想变大约束）"><a href="#Content-Hugging-约束（不想变大约束）" class="headerlink" title="Content Hugging 约束（不想变大约束）"></a><code>Content Hugging</code> 约束（不想变大约束）</h1><p>如果组件的此属性优先级比另一个组件此属性优先级高的话，那么这个组件就保持不变，另一个可以在需要拉伸的时候拉伸。</p>
+<h1 id="Content-Compression-Resistance-约束（不想变小约束）"><a href="#Content-Compression-Resistance-约束（不想变小约束）" class="headerlink" title="Content Compression Resistance 约束（不想变小约束）"></a><code>Content Compression Resistance</code> 约束（不想变小约束）</h1><p>如果组件的此属性优先级比另一个组件此属性优先级高的话，那么这个组件就保持不变，另一个可以在需要压缩的时候压缩。</p>
+<p>例如：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-143170678a0a5d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="Top-Layout-Guide"><a href="#Top-Layout-Guide" class="headerlink" title="Top Layout Guide"></a><code>Top Layout Guide</code></h1><p><code>topLayoutGuide</code>属性表示不希望被透明的状态栏或导航栏遮挡的内容范围的最高位置。这个属性的值是它的length属性的值（topLayoutGuide.length）</p>
+<p>这个值可能由当前的ViewController或这个ViewController所属的NavigationController或TabBarController决定，有如下情况：</p>
+<ol>
+<li>一个独立的ViewController，不包含于任何其他的ViewController。如果状态栏可见，topLayoutGuide表示状态栏的底部，否则表示这个ViewController的上边缘。</li>
+<li>包含于其他ViewController的ViewController不对这个属性起决定作用，而是由容器ViewController决定这个属性的含义：</li>
+</ol>
+<blockquote>
+<ol>
+<li>如果导航栏（Navigation Bar）可见，topLayoutGuide表示导航栏的底部。</li>
+<li>如果状态栏可见，topLayoutGuide表示状态栏的底部。</li>
+<li>如果都不可见，表示ViewController的上边缘。</li>
+</ol>
+</blockquote>
+<p>总之是屏幕上方任何遮挡内容的栏的最底部。</p>
+<h1 id="Safe-Area"><a href="#Safe-Area" class="headerlink" title="Safe Area"></a>Safe Area</h1><p>*作用：取代<code>topLayoutGuide</code>和<code>bottomLayoutGuide</code>**</p>
+<p><code>safeArea</code>是描述你的视图部分不被任何内容遮挡的方法。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-4bfd008744e885e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="改变布局的方法"><a href="#改变布局的方法" class="headerlink" title="改变布局的方法"></a>改变布局的方法</h1><h2 id="一、-setNeedsLayout与layoutIfNeeded"><a href="#一、-setNeedsLayout与layoutIfNeeded" class="headerlink" title="一、 setNeedsLayout与layoutIfNeeded"></a>一、 <code>setNeedsLayout</code>与<code>layoutIfNeeded</code></h2><p>更新Autolayout后，如何要立即刷新布局，还要依次调用以下两个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 立即刷新布局（自己和subview的）</span><br><span class="line"></span><br><span class="line">self.view.setNeedsLayout()</span><br><span class="line"></span><br><span class="line">self.view.layoutIfNeeded()</span><br></pre></td></tr></table></figure>
+<p><code>setNeedsLayout</code>给当前 UIView 立一个 flag，以表示后续应该调用 <code>layoutSubviews</code>方法，以调整当前视图及其子视图的布局。</p>
+<p><code>layoutIfNeeded</code>如果有需要刷新的标记，立即调用layoutSubviews进行布局（如果没有标记，不会调用layoutSubviews）</p>
+<h2 id="二、-layoutSubviews"><a href="#二、-layoutSubviews" class="headerlink" title="二、 layoutSubviews"></a>二、 <code>layoutSubviews</code></h2><h3 id="触发时机——Frame改变就会触发，具体如下"><a href="#触发时机——Frame改变就会触发，具体如下" class="headerlink" title="触发时机——Frame改变就会触发，具体如下"></a>触发时机——Frame改变就会触发，具体如下</h3><ol>
+<li><p>初始化不会触发layoutSubviews，但是如果设置了不为CGRectZero的frame的时候就会触发</p>
+</li>
+<li><p>addSubview会触发layoutSubviews</p>
+</li>
+<li><p>设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化</p>
+</li>
+<li><p>滚动一个UIScrollView会触发layoutSubviews</p>
+</li>
+<li><p>旋转Screen会触发父UIView上的layoutSubviews事件</p>
+</li>
+<li><p>改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p>
+</li>
+</ol>
+<h3 id="何时重写-layoutSubviews-方法"><a href="#何时重写-layoutSubviews-方法" class="headerlink" title="何时重写 layoutSubviews 方法"></a>何时重写 <code>layoutSubviews</code> 方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当我们在某个类的内部调整子视图位置时，需要调用；如果你想要在外部设置subviews的位置，就不要重写。</span><br></pre></td></tr></table></figure>
+<h2 id="三、sizeToFit"><a href="#三、sizeToFit" class="headerlink" title="三、sizeToFit"></a>三、<code>sizeToFit</code></h2><p>调用sizeToFit的时候，系统会根据内容的帮我布局一个它认为最合适的大小。</p>
+<p>我们一般在不方便手动布局的时候才调用sizeToFit方法。比如</p>
+<ol>
+<li><p>navigationBar中对navigationItem的设置，（添加两个视图以上的控件到Item）</p>
+</li>
+<li><p>toolBar中的对UIBarButtonItem的设置（一般我们还要添加弹簧控件）</p>
+</li>
+</ol>
+<p>上述两种场合就可以用sizeToFit这个方法，来让系统给我们做自动布局。（注意：如果就添加一个控件的话，我们直接设置fram也是可以的）</p>
+<ol start="3">
+<li><p>在tabBar中我们不能手动的添加的子控件，因为tabBar是根据控制器系统默认自动添加的tabBarItem。（猜想系统可能也会自动调用了这个方法）</p>
+</li>
+<li><p>UILabel中添加文字，然后让调整label的大小来适应文字，我们也调用sizeToFit的方法。</p>
+</li>
+</ol>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/11/09/Autolayout高级/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/03/09/Mac安装MQTT服务器/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Mac安装MQTT服务器
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/10/09/iOS调试内存泄露/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">iOS调试内存泄露</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -215,8 +398,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

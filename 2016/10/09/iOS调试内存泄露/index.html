@@ -6,15 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/5 | Hexo</title>
+  <title>iOS调试内存泄露 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/index.html">
+  <meta name="description" content="[TOC] Xcode8使用Memory Graph 第一步：真机下运行APP后，点击  第二步：查看issue面板，注意选择右边Runtime  第三步：查看可能出现的内存泄露比如上图的 1 instance of __NSMallocBlock_leaked，点击后出现下图原因在于如下代码 12345678910group.didSelectedRowBlock = &amp;#123; [unown">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS调试内存泄露">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/iOS调试内存泄露/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="[TOC] Xcode8使用Memory Graph 第一步：真机下运行APP后，点击  第二步：查看issue面板，注意选择右边Runtime  第三步：查看可能出现的内存泄露比如上图的 1 instance of __NSMallocBlock_leaked，点击后出现下图原因在于如下代码 12345678910group.didSelectedRowBlock = &amp;#123; [unown">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-296131fcf6ffee5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-8ee8fe78474da0d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-7765184c6159e657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-5d076268da519675.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-b7b30c7aedac7d8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-a6440da959e589ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-09T07:11:30.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="iOS调试内存泄露">
+<meta name="twitter:description" content="[TOC] Xcode8使用Memory Graph 第一步：真机下运行APP后，点击  第二步：查看issue面板，注意选择右边Runtime  第三步：查看可能出现的内存泄露比如上图的 1 instance of __NSMallocBlock_leaked，点击后出现下图原因在于如下代码 12345678910group.didSelectedRowBlock = &amp;#123; [unown">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1120923-296131fcf6ffee5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,49 +161,193 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-iOS调试内存泄露" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/09/iOS-SDK-开发/" class="archive-article-date">
-  	<time datetime="2018-05-09T07:07:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/09/iOS-SDK-开发/">iOS SDK 开发</a>
+    <h1 class="article-title" itemprop="name">
+      iOS调试内存泄露
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
+        
+        <a href="/2016/10/09/iOS调试内存泄露/" class="archive-article-date">
+  	<time datetime="2016-10-09T15:11:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>[TOC]</p>
+<h1 id="Xcode8使用Memory-Graph"><a href="#Xcode8使用Memory-Graph" class="headerlink" title="Xcode8使用Memory Graph"></a>Xcode8使用Memory Graph</h1><ul>
+<li><p>第一步：真机下运行APP后，点击<br><img src="https://upload-images.jianshu.io/upload_images/1120923-296131fcf6ffee5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>第二步：查看issue面板，注意选择右边Runtime<br><img src="https://upload-images.jianshu.io/upload_images/1120923-8ee8fe78474da0d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>第三步：查看可能出现的内存泄露<br>比如上图的 <code>1 instance of __NSMallocBlock_leaked</code>，点击后出现下图<br><img src="https://upload-images.jianshu.io/upload_images/1120923-7765184c6159e657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>原因在于如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">group.didSelectedRowBlock = &#123; [unowned self, group] row in</span><br><span class="line">guard let indexPaths = group.selectedIndexPaths else &#123;return&#125;</span><br><span class="line">if indexPaths.count &gt; 0 &#123;</span><br><span class="line">self.shouldAdd = true</span><br><span class="line">let row = (indexPaths.firstObject as! IndexPath).row</span><br><span class="line">self.deviceAttri?.attrValue = String(row)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">self.shouldAdd = false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>group的block中又使用了group，导致了循环引用，虽然使用了[unowned group]，事实证明并没有效果<br>最后的解决办法是修改didSelectedRowBlock的接口，直接将selectedIndexPaths参数传入block参数中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">group.didSelectedRowBlock = &#123; [unowned self] indexPaths in</span><br><span class="line">guard let indexPaths = indexPaths else &#123;return&#125;</span><br><span class="line">if indexPaths.count &gt; 0 &#123;</span><br><span class="line">self.shouldAdd = true</span><br><span class="line">self.deviceAttri?.attrValue = String(indexPaths.first!.row)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">self.shouldAdd = false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>第四步：在 debug 页面查看内存泄露情况<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5d076268da519675.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>有叹号说明需要注意可能存在内存泄露，可以看到 CoreFoundation中也可能存在内存泄露情况</li>
+</ul>
+<h1 id="使用Instruments的Leaks工具"><a href="#使用Instruments的Leaks工具" class="headerlink" title="使用Instruments的Leaks工具"></a>使用Instruments的Leaks工具</h1><h2 id="Time-Profiler"><a href="#Time-Profiler" class="headerlink" title="Time Profiler"></a><code>Time Profiler</code></h2><ul>
+<li>查看多个线程里那些方法费时过多的方法</li>
+<li>Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费时方法排序<br><img src="https://upload-images.jianshu.io/upload_images/1120923-b7b30c7aedac7d8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+</ul>
+<h2 id="Allocations"><a href="#Allocations" class="headerlink" title="Allocations"></a><code>Allocations</code></h2><ul>
+<li>可以对每个动作的前后进行Generations，对比内存的增加，查看使内存增加的具体的方法和代码所在位置</li>
+<li>具体操作</li>
+</ul>
+<ol>
+<li>在右侧Generation Analysis里点击Mark Generation，这样会产生一个Generation，</li>
+<li>切换到其他页面或一段时间产生了另外一个事件时再点Mark Generation来产生一个新的Generation，</li>
+<li>这样反复，生成多个Generation，查看这几个Generation会看到Growth的大小，如果太大可以点进去查看相应占用较大的线程里右侧Heaviest Stack Trace里查看对应的代码块，然后进行相应的处理。</li>
+</ol>
+<h2 id="Leak"><a href="#Leak" class="headerlink" title="Leak"></a>Leak</h2><p>可以在上面区域的Leaks部分看到对应的时间点产生的溢出，选择后在下面区域的<code>Statistics&gt;Allocation Summary</code>能够看到泄漏的对象，同样可以通过Stack Trace查看到具体对应的代码区域。</p>
+<h1 id="其他调试方法"><a href="#其他调试方法" class="headerlink" title="其他调试方法"></a>其他调试方法</h1><h2 id="勾选Address-Sanitizer可以在运行时看到坏内存访问情况"><a href="#勾选Address-Sanitizer可以在运行时看到坏内存访问情况" class="headerlink" title="勾选Address Sanitizer可以在运行时看到坏内存访问情况"></a>勾选<code>Address Sanitizer</code>可以在运行时看到坏内存访问情况</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-a6440da959e589ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2016/10/09/iOS调试内存泄露/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/11/09/Autolayout高级/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Autolayout高级
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2016/10/09/使用WireShark-调试真机网络/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用WireShark 调试真机网络</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -215,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
