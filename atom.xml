@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-05-09T04:03:28.996Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo GitHub博客搭建</title>
+    <link href="http://yoursite.com/2015/05/09/Hexo-GitHub%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>http://yoursite.com/2015/05/09/Hexo-GitHub博客搭建/</id>
+    <published>2015-05-09T04:01:05.000Z</published>
+    <updated>2018-05-09T04:03:28.996Z</updated>
+    
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="相关网站"><a href="#相关网站" class="headerlink" title="相关网站"></a>相关网站</h1><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ol><li><p>安装<code>Node.js</code><br><a href="https://blog.csdn.net/u011619283/article/details/52368759" target="_blank" rel="noopener">https://blog.csdn.net/u011619283/article/details/52368759</a></p></li><li><p>安装hexo<br><code>npm install -g hexo-cli</code></p></li></ol><h1 id="本地站点搭建"><a href="#本地站点搭建" class="headerlink" title="本地站点搭建"></a>本地站点搭建</h1><ul><li><p>1、初始化 Hexo<br>进入自己创建的目录下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure></li><li><p>2、生成静态页面</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure></li><li><p>3、启动服务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure></li><li><p>4、查看效果<br>打开浏览器，输入 <code>http://localhost:4000/</code></p></li></ul><h1 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h1><ul><li><p>1、创建仓库<br>仓库名称固定格式如下：<br><code>yourGitbubUsername.github.io</code><br>注意yourGitbubUsername必须与你的github用户名相同，否则无法部署</p></li><li><p>2、安装github部署器</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git –save</span><br></pre></td></tr></table></figure></li><li><p>3、修改本地配置文件<code>_config.yml</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https://github.com/action456789/action456789.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure></li><li><p>4、部署</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></li><li><p>5、测试<br>部署成功以后，在浏览器中输入 <a href="http://action456789.github.io" target="_blank" rel="noopener">http://action456789.github.io</a> 即可在线浏览自己的博客啦</p></li></ul><h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul><li><p>1、创建新博客</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;test_blog&quot;</span><br></pre></td></tr></table></figure></li><li><p>2、发布新博客</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure></li><li><p>3、一些快捷键</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;相关网站&quot;&gt;&lt;a href=&quot;#相关网站&quot; class=&quot;headerlink&quot; title=&quot;相关网站&quot;&gt;&lt;/a&gt;相关网站&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://hexo.io/zh-cn/docs/&quot; target=&quot;_bl
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
