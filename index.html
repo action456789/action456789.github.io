@@ -470,207 +470,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2018/05/09/KVO深入解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="superkk">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="superkk">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/09/KVO深入解析/" itemprop="url">
-                  KVO深入解析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-05-09 17:18:51 / Modified: 18:25:59" itemprop="dateCreated datePublished" datetime="2018-05-09T17:18:51+08:00">2018-05-09</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2018/05/09/KVO深入解析/" class="leancloud_visitors" data-flag-title="KVO深入解析">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">Views: </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="iOS-中监听某个值的改变有哪些方法？"><a href="#iOS-中监听某个值的改变有哪些方法？" class="headerlink" title="iOS 中监听某个值的改变有哪些方法？"></a>iOS 中监听某个值的改变有哪些方法？</h1><p>在一个复杂的，有状态的系统中，当一个对象的状态发生改变，如何通知系统，并对状态改变做出相应的行为是必需考虑的一个问题，在iOS中为这类问题提供了4种解决方法： </p>
-<ol>
-<li>NSNotifiactaion 和 NSNotificationCenter：通知中心 </li>
-<li>Delegates：代理， </li>
-<li><p>Callback：回调， </p>
-</li>
-<li><p>KVO（Key-Value Observing）：键值观察 </p>
-</li>
-</ol>
-<p>Key-Value Observing (简写为KVO)：当指定的对象的属性被修改了，允许对象接受到通知的机制。每次指定的被观察对象的属性被修改的时候，KVO都会自动的去通知相应的观察者。</p>
-<h1 id="KVO-是什么？"><a href="#KVO-是什么？" class="headerlink" title="KVO 是什么？"></a>KVO 是什么？</h1><blockquote>
-<blockquote>
-<p>Objective-C 中的键(key)-值(value)观察(KVO)并不是什么新鲜事物，它来源于设计模式中的观察者模式，其基本思想就是：<br>一个目标对象管理所有依赖于它的观察者对象，并在它自身的状态改变时主动通知观察者对象。这个主动通知通常是通过调用各观察者对象所提供的接口方法来实现的。观察者模式较完美地将目标对象与观察者对象解耦。</p>
-</blockquote>
-</blockquote>
-<h1 id="KVO-的用法"><a href="#KVO-的用法" class="headerlink" title="KVO 的用法"></a>KVO 的用法</h1><ol>
-<li>如果要监听“对象A”属性值的改变，先要为＂对象A＂的属性注册观察者（假设观察者为“对象B”）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)addObserver:(NSObject * _Nonnull)anObserver</span><br><span class="line">forKeyPath:(NSString * _Nonnull)keyPath</span><br><span class="line">options:(NSKeyValueObservingOptions)options</span><br><span class="line">context:(void * _Nullable)context</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>anObserver</code> : 观察者，注册 KVO 通知的对象. 其必须实现方法 observeValueForKeyPath:ofObject:change:context:.<br><code>keyPath</code> : 被观察的属性，其不能为nil.<br><code>options</code> : 表示要监听那些通知，一般为写 0<br><code>context</code> : 一些其他的需要传递给观察者的上下文信息，通常设置为 nil</p>
-<p><code>options</code> 解释如下：<br><code>NSKeyValueObservingOptionNew</code> : change 字典中包含 key 改变后的新值<br><code>NSKeyValueObservingOptionOld</code> : change 字典中包含 key 改变前的旧值<br><code>NSKeyValueObservingOptionInitial</code> : 在添加观察者的时候立即发送一个通知给观察者,并且是在注册观察者方法返回之前<br><code>NSKeyValueObservingOptionPrior</code> : 如果指定，则在每次修改属性时，会在修改通知被发送之前预先发送一条通知给观察者，这与-willChangeValueForKey:被触发的时间是相对应的。这样，在每次修改属性时，实际上是会发送两条通知。<br>２.　观察者“对象B”实现　<code>observeValueForKeyPath:ofObject:change:context:</code>.　方法<br>３.   “对象A”移除监听者　<code>- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath</code>;<br>另外注意：<code>keyPath</code> 即被观察的属性只能是 <code>NSString</code> 类型</p>
-<ul>
-<li>注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行</li>
-</ul>
-<h1 id="KVO-的实现原理"><a href="#KVO-的实现原理" class="headerlink" title="KVO 的实现原理"></a>KVO 的实现原理</h1><p>键值编码和键值观察是根据 isa-swizzling 技术来实现的，主要依据runtime的强大动态能力。<br>当某个类的对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。派生类在被重写的 setter 方法实现真正的通知机制。<br>同时派生类还重写了 class 方法以“欺骗”外部调用者它就是起初的那个类。然后系统将这个对象的 isa 指针指向这个新诞生的派生类，因此这个对象就成为该派生类的对象了，因而在该对象上对 setter 的调用就会调用重写的 setter，从而激活键值通知机制。此外，派生类还重写了 dealloc 方法来释放资源。</p>
-<ol>
-<li><p>重写新类的 class 方法<br>重写class方法是为了我们调用它的时候返回跟重写继承类之前同样的内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//打印如下内容：</span><br><span class="line">NSLog(@&quot;self-&gt;isa:%@&quot;,self-&gt;isa);</span><br><span class="line">NSLog(@&quot;self class:%@&quot;,[self class]);</span><br><span class="line"></span><br><span class="line">//在建立KVO监听前，打印结果为：</span><br><span class="line">self-&gt;isa:Person</span><br><span class="line">self class:Person</span><br><span class="line"></span><br><span class="line">//在建立KVO监听之后，打印结果为：</span><br><span class="line">self-&gt;isa:NSKVONotifying_Person</span><br><span class="line"></span><br><span class="line">self class:Person</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重写新类的 set 方法<br>新类会重写对应的set方法，是为了在set方法中增加另外两个方法的调用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)didChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
-<p>其中，<code>didChangeValueForKey</code>:方法负责调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">ofObject:(id)object</span><br><span class="line">change:(NSDictionary *)change</span><br><span class="line">context:(void *)context</span><br></pre></td></tr></table></figure></p>
-<p>如果没有 setter 方法，那么 -setValue:forKey 方法会直接调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)didChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
-<p>如果在没有使用键值编码且没有使用适当命名的访问起方法的时候，我们只需要显示调用上述两个方法，同样可以使用KVO！</p>
-<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// 一般如下使用</span><br><span class="line">// [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line">// 在 self 中监听 _baby 的 cry 属性变化</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld| NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionPrior context:@&quot;ssss&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">_baby.cry = @&quot;crying&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// 一般如下使用</span><br><span class="line">// [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line">// 在 self 中监听 _baby 的 cry 属性变化</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld| NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionPrior context:@&quot;ssss&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">_baby.cry = @&quot;crying&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>那么：程序启动时输出：<br><img src="https://upload-images.jianshu.io/upload_images/1120923-cce04359a1bbfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><br></p>
-<p>点击按钮后输出：<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5ded44b80985ff8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6aeaf4e75e531bd372f4a322860cbf07.png"></p>
-<h1 id="KVO与多线程"><a href="#KVO与多线程" class="headerlink" title="KVO与多线程"></a>KVO与多线程</h1><p>注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line">#import &quot;FBKVOController.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">FBKVOController *_observer;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// NSKeyValueObservingOptionNew : change 字典中包含 key 改变后的新值</span><br><span class="line">// NSKeyValueObservingOptionOld : change 字典中包含 key 改变前的旧值</span><br><span class="line">// NSKeyValueObservingOptionInitial : 在添加观察者的时候立即发送一个通知给观察者,并且是在注册观察者方法返回之前</span><br><span class="line">// NSKeyValueObservingOptionPrior : 如果指定，则在每次修改属性时，会在修改通知被发送之前预先发送一条通知给观察者，这与-willChangeValueForKey:被触发的时间是相对应的。这样，在每次修改属性时，实际上是会发送两条通知。</span><br><span class="line"></span><br><span class="line">// 1. 一般用法如下</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line"></span><br><span class="line">//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">//        [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew context:@&quot;ssss&quot;];</span><br><span class="line">//</span><br><span class="line">//    &#125;);</span><br><span class="line"></span><br><span class="line">// 2. 第三方库 FBKVOController 的用法</span><br><span class="line">_observer = [[FBKVOController alloc] initWithObserver:self];</span><br><span class="line">[_observer observe:_baby keyPath:@&quot;cry&quot; options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) &#123;</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;%@, %@&quot;, @&quot;FBKVOController&quot;, change[NSKeyValueChangeNewKey]);</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">//    _baby.cry = @&quot;crying&quot;;</span><br><span class="line"></span><br><span class="line">// 1. 注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">_baby.cry = @&quot;cry again&quot;;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-<p>KVO 监听 NSMutableArray 的内容变化</p>
-<ol>
-<li>将数组封装到一个对象中</li>
-<li>给这个对象添加 KVO 监听</li>
-<li>使用  [self.arrayObject mutableArrayValueForKey:@”array”] 获取数组对象，对数组对象今天添加删除操作，只有这样触发的数组才会触发 kvo<br><img src="https://upload-images.jianshu.io/upload_images/1120923-22f9b36418f98970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="06f37246739a3b062139a12c5070e044.png"></li>
-</ol>
-<p>参考：<a href="http://www.cppblog.com/kesalin/archive/2012/11/17/kvo.html" target="_blank" rel="noopener">http://www.cppblog.com/kesalin/archive/2012/11/17/kvo.html</a><br><a href="http://ningandjiao.iteye.com/blog/2009729" target="_blank" rel="noopener">http://ningandjiao.iteye.com/blog/2009729</a><br><a href="http://www.bkjia.com/IOSjc/993206.html" target="_blank" rel="noopener">http://www.bkjia.com/IOSjc/993206.html</a><br><a href="http://blog.csdn.net/wzzvictory/article/details/9674431" target="_blank" rel="noopener">http://blog.csdn.net/wzzvictory/article/details/9674431</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2017/12/22/iOS11新特性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2340,6 +2139,197 @@
 </ul>
 <h1 id="精简-load-与-initialize-方法"><a href="#精简-load-与-initialize-方法" class="headerlink" title="精简 + load 与 + initialize 方法"></a>精简 + load 与 + initialize 方法</h1><p>它们都是在类载入系统时由运行时系统调用，不能手动调用。</p>
 <p><code>+ load</code> 方法:<br>在类加载时调用。<br>系统会先调用父类的 load 再调用子类的 load，先调用类本身 load，再调用 categery load。<br>在 load 方法中，运行时系统处于脆弱状态，不能确定其他类是否加载完毕。不能在 load 方法中使用其他类对象，因为无法知道这个类是否加载了。<br><code>+ initialize</code> 方法<br><code>+ initialize</code> 方法是惰性加载，使用到类时才会调用。<br><code>+ initialize</code> 方法调用时，系统处于正常状态，可以在 + initialize 方法中使用其他类对象。<br><code>+ initialize</code> 方法一定会在线程安全的环境中执行，那么执行 + initialize 方法时会阻塞其他线程<br>如果子类没有实现 + initialize 方法，而父类实现了，那么会调用夫类的。所以应该这么实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (void)initialize</span><br><span class="line">&#123;</span><br><span class="line">if (self == [KKSlideTabBarView class]) &#123;</span><br><span class="line">// 只有当 KKSlideTabBarView 类载入系统时才执行这里的代码</span><br><span class="line">// 不然的话 KKSlideTabBarView 的父类载入系统也会调用 initialize</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2016/08/02/GCD用法全解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="superkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superkk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/02/GCD用法全解/" itemprop="url">
+                  GCD用法全解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-08-02 17:16:17" itemprop="dateCreated datePublished" datetime="2016-08-02T17:16:17+08:00">2016-08-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 17:45:41" itemprop="dateModified" datetime="2018-05-09T17:45:41+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/08/02/GCD用法全解/" class="leancloud_visitors" data-flag-title="GCD用法全解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="dispatch-time与dispatch-walltime的区别"><a href="#dispatch-time与dispatch-walltime的区别" class="headerlink" title="dispatch_time与dispatch_walltime的区别"></a><code>dispatch_time</code>与<code>dispatch_walltime</code>的区别</h1><p>所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。<br>当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。<br>定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时不会继续。</p>
+<p>如果你使用 dispatch_walltime 函数来设置定时器dispatch source，则定时器会根据挂钟时间来跟踪，<br>这种定时器比较适合触发间隔相对比较大的场合，可以防止定时器触发间隔出现太大的误差。</p>
+<p>区别：</p>
+<ol>
+<li><p><code>dispatch_time_t</code>类型的时间我们可以通过<code>dispatch_time</code>来创建，也可以通过<code>dispatch_walltime</code>来创建。<br><code>dispatch_time</code>创建的时间多以第一个参数为参照物，之后过多久执行任务。<br><code>dispatch_walltime</code>多用于创建绝对时间，如某年某月某日某时某分执行某任务，比如闹钟的设置。</p>
+</li>
+<li><p><code>dispatch_time</code>在计算机睡眠时会停止<br><code>dispatch_walltime</code>不会</p>
+</li>
+</ol>
+<p>例如以下情景</p>
+<p>情景：希望一小时后执行任务，5分钟后计算机进入睡眠<br>操作：50分钟后唤醒计算机<br>实际：使用<code>dispatch_walltime</code>时: 5分钟后开始执行<br>使用<code>dispatch_time</code>: 55分钟后开始执行</p>
+<h1 id="GCD-定时器的使用"><a href="#GCD-定时器的使用" class="headerlink" title="GCD 定时器的使用"></a>GCD 定时器的使用</h1><h2 id="dispatch-source-set-timer-最后一个参数-leeway-详解"><a href="#dispatch-source-set-timer-最后一个参数-leeway-详解" class="headerlink" title="dispatch_source_set_timer 最后一个参数 leeway 详解"></a><code>dispatch_source_set_timer</code> 最后一个参数 <code>leeway</code> 详解</h2><ul>
+<li><code>leeway</code> 这个参数告诉系统我们需要计时器触发的精准程度。所有的计时器都不会保证100%精准，这个参数用来告诉系统你希望系统保证精准的努力程度。如果你希望一个计时器没五秒触发一次，并且越准越好，那么你传递0为参数。</li>
+<li>如果是一个周期性任务，比如检查email，那么你会希望每十分钟检查一次，但是不用那么精准。所以你可以传入60，告诉系统60秒的误差是可接受的。  </li>
+<li>这样有什么意义呢？——降低资源消耗。如果系统可以让cpu休息足够长的时间，并在每次醒来的时候执行一个任务集合，而不是不断的醒来睡去以执行任务，那么系统会更高效。如果传入一个比较大的leeway给你的计时器，意味着你允许系统拖延你的计时器来将计时器任务与其他任务联合起来一起执行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">    NSTimeInterval interval = 1.0f;</span><br><span class="line">    NSTimeInterval delay = 1.0f;</span><br><span class="line">    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, mainQueue);</span><br><span class="line">    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, delay), interval * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;%s&quot;, __func__);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    dispatch_source_cancel(timer);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="测试代码执行效率"><a href="#测试代码执行效率" class="headerlink" title="测试代码执行效率"></a>测试代码执行效率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func testPerformance(closure: ()-&gt;()) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    closure()</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func testFunctionPerformance(selector: Selector) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    self.performSelector(selector)</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-加锁"><a href="#GCD-加锁" class="headerlink" title="GCD 加锁"></a>GCD 加锁</h1><h2 id="GCD-信号量的使用"><a href="#GCD-信号量的使用" class="headerlink" title="GCD 信号量的使用"></a>GCD 信号量的使用</h2><ol>
+<li>设置信号量的个数为1时，可以当锁来使用</li>
+<li>设置信号量的个数与CPU个数相近时（比如CPU个数 * 2），可以用来限制线程个数。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">var semaphore: dispatch_semaphore_t = dispatch_semaphore_create(1)</span><br><span class="line"></span><br><span class="line">//MARK: ------------------- 使用信号量进行加锁操作 --------------------</span><br><span class="line">func test_semaphore() &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_first()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_second()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_third()</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_first() &#123;</span><br><span class="line">    // p操作，进入临界区      dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line"></span><br><span class="line">    print(&quot;First tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;First task is done&quot;)</span><br><span class="line"></span><br><span class="line">    // v操作，离开临界区      dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_second() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Second tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Second task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_third() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Third tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Thrid task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用信号量控制多线程中代码执行顺序"><a href="#使用信号量控制多线程中代码执行顺序" class="headerlink" title="使用信号量控制多线程中代码执行顺序"></a>使用信号量控制多线程中代码执行顺序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)test_dispatch_semaphore_t_0 &#123;</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        [self method1];</span><br><span class="line">        sleep(10);</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">    [self method2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_after 的使用-------------------- func dispatchAfter() &#123;</span><br><span class="line">    let delay: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))</span><br><span class="line">    dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  print(&quot;viewDidLoad()&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># GCD 多任务异步执行与 `dispatch_notify` 的使用</span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行 与 dispatch_group_notify 的使用 -------------------- func dispatchGroup() &#123;</span><br><span class="line">    let group: dispatch_group_t = dispatch_group_create()</span><br><span class="line">    let globalQueueDefault: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 串行队列按照先进先出的顺序执行（FIFO）      </span><br><span class="line">    let userQueueSerie: dispatch_queue_t = dispatch_queue_create(&quot;com.dispatchGroup.demo&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line"></span><br><span class="line">    // 下载任务1     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task1 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务2     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task2 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务3     </span><br><span class="line">    dispatch_group_async(group, globalQueueDefault)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task3 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 监听任务组事件的执行完毕      </span><br><span class="line">    dispatch_group_notify(group, dispatch_get_main_queue())&#123;</span><br><span class="line">        NSLog(&quot;Group tasks are done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置等待时间(即设置超时)，在等待时间结束后，如果还没有执行完任务组，则返回。返回0代表执行成功，非0则执行失败      </span><br><span class="line">    // 等待直到完成      </span><br><span class="line">    let result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    if (result != 0) &#123;</span><br><span class="line">        print(&quot;Now viewDidLoad is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># dispatch_group_apply</span><br><span class="line"></span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行/同步执行 与 dispatch_apply 的使用 -------------------- </span><br><span class="line">func dispatchApply() &#123;</span><br><span class="line">    let iterations: Int = 20 // 迭代次数      </span><br><span class="line">    let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 同步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue) &#123; (index: Int) -&gt; </span><br><span class="line">            Void in  print(index, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    // 异步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue, &#123; (index: Int) -&gt; Void in  </span><br><span class="line">            dispatch_async(globalQueue, &#123; () -&gt; Void in </span><br><span class="line">                 print(index, NSThread.currentThread())</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        for i:Int in 1...iterations &#123;</span><br><span class="line">            print(i, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="dispatch-group-enter-dispatch-group-leave"><a href="#dispatch-group-enter-dispatch-group-leave" class="headerlink" title="dispatch_group_enter / dispatch_group_leave"></a><code>dispatch_group_enter</code> / <code>dispatch_group_leave</code></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_group_enter / dispatch_group_leave -------------------</span><br><span class="line">// 将任务组中的任务未执行完毕的任务数目加减1，这种方式不使用 dispatch_group_async 来提交任务， </span><br><span class="line">// 注意：这两个函数要配合使用，有enter要有leave，这样才能保证功能完整实现。    </span><br><span class="line">// 串行执行三个任务  </span><br><span class="line">func dispatchGroup_EnterAndLeave_Seriel() &#123;</span><br><span class="line">    let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">    for index:UInt32 in 1...3&#123;</span><br><span class="line">        dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">        manualDownLoad(index)&#123;</span><br><span class="line">            print(&quot;Task \(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, block:()-&gt;())&#123;</span><br><span class="line">        print(&quot;Downloading task &quot;, num)</span><br><span class="line">        sleep(num)</span><br><span class="line">        block()</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    // 并行执行三个任务  </span><br><span class="line">    func dispatchGroup_EnterAndLeave_Concurrent() &#123;</span><br><span class="line">        let group = dispatch_group_create()//创建group    </span><br><span class="line">        let globalQueueDefault = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</span><br><span class="line"></span><br><span class="line">        for index:UInt32 in 1...3 &#123;</span><br><span class="line">            dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">            manualDownLoad(index, queue: globalQueueDefault)&#123;</span><br><span class="line">            NSLog(&quot;Task\(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, queue:dispatch_queue_t, block:()-&gt;())&#123;</span><br><span class="line">        dispatch_async(queue)&#123;</span><br><span class="line">            NSLog(&quot;Downloading task\(num)&quot;)</span><br><span class="line">            sleep(num)</span><br><span class="line">            block()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-实战：资源竞争"><a href="#GCD-实战：资源竞争" class="headerlink" title="GCD 实战：资源竞争"></a>GCD 实战：资源竞争</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- 多线程测试：资源竞争 --------------------</span><br><span class="line"> func test_mutiThread() &#123;</span><br><span class="line">        let userSerialQueue = dispatch_queue_create(&quot;com.test.mutiThread.userSerialQueue&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line">        let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line">        let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">        // 当 &quot;Processing data&quot;（CUP处理速度） 速度远小于 &quot;Reading file&quot;（磁盘处理速度） 速度时，线程数占用过多          // 使用信号量来限制同时执行的任务的数量         </span><br><span class="line">        let cupCount = NSProcessInfo.processInfo().processorCount // CPU 数量</span><br><span class="line">        let jobSemaphore = dispatch_semaphore_create(cupCount * 2) // 限制线程个数</span><br><span class="line"></span><br><span class="line">        for i:Int in 1...50 &#123;</span><br><span class="line">            dispatch_semaphore_wait(jobSemaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">            dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;Reading file&quot;, i, NSThread.currentThread())</span><br><span class="line">                // sleep(2)                </span><br><span class="line">                dispatch_group_async(group, globalQueue, &#123; () -&gt; Void in  print(&quot;  Processing data&quot;, i, NSThread.currentThread())</span><br><span class="line">                    sleep(1)</span><br><span class="line"></span><br><span class="line">                    dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;    writing file&quot;, i, NSThread.currentThread())</span><br><span class="line">                        // sleep(2)                        </span><br><span class="line">                        dispatch_semaphore_signal(jobSemaphore);</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.jianshu.com/p/6670cdbb1ebb" target="_blank" rel="noopener">http://www.jianshu.com/p/6670cdbb1ebb</a><br><a href="http://www.dreamingwish.com/article/gcd-practice-io-race.html" target="_blank" rel="noopener">http://www.dreamingwish.com/article/gcd-practice-io-race.html</a></p>
 
           
         
