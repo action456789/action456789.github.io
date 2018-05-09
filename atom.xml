@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>SuperKK</title>
   
-  
+  <subtitle>action456789</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://liumengxia.shop/"/>
   <updated>2018-05-09T07:08:26.614Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://liumengxia.shop/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>SuperKK</name>
     
   </author>
   
@@ -18,8 +18,8 @@
   
   <entry>
     <title>iOS SDK 开发</title>
-    <link href="http://yoursite.com/2018/05/09/iOS-SDK-%E5%BC%80%E5%8F%91/"/>
-    <id>http://yoursite.com/2018/05/09/iOS-SDK-开发/</id>
+    <link href="http://liumengxia.shop/2018/05/09/iOS-SDK-%E5%BC%80%E5%8F%91/"/>
+    <id>http://liumengxia.shop/2018/05/09/iOS-SDK-开发/</id>
     <published>2018-05-09T07:07:25.000Z</published>
     <updated>2018-05-09T07:08:26.614Z</updated>
     
@@ -40,8 +40,8 @@
   
   <entry>
     <title>iOS11新特性</title>
-    <link href="http://yoursite.com/2017/12/22/iOS11%E6%96%B0%E7%89%B9%E6%80%A7/"/>
-    <id>http://yoursite.com/2017/12/22/iOS11新特性/</id>
+    <link href="http://liumengxia.shop/2017/12/22/iOS11%E6%96%B0%E7%89%B9%E6%80%A7/"/>
+    <id>http://liumengxia.shop/2017/12/22/iOS11新特性/</id>
     <published>2017-12-22T15:02:12.000Z</published>
     <updated>2018-05-09T07:13:31.254Z</updated>
     
@@ -62,19 +62,21 @@
   
   <entry>
     <title>Mac安装MQTT服务器</title>
-    <link href="http://yoursite.com/2017/03/09/Mac%E5%AE%89%E8%A3%85MQTT%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
-    <id>http://yoursite.com/2017/03/09/Mac安装MQTT服务器/</id>
+    <link href="http://liumengxia.shop/2017/03/09/Mac%E5%AE%89%E8%A3%85MQTT%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    <id>http://liumengxia.shop/2017/03/09/Mac安装MQTT服务器/</id>
     <published>2017-03-09T07:08:59.000Z</published>
-    <updated>2018-05-09T07:09:20.575Z</updated>
+    <updated>2018-05-09T07:37:03.965Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="emqttd-windows版安装"><a href="#emqttd-windows版安装" class="headerlink" title="emqttd windows版安装"></a>emqttd windows版安装</h1><p>具体以官方文档为主</p><ol><li>下载<a href="http://emqtt.io/docs/v2/install.html#installing-on-windows" target="_blank" rel="noopener">http://emqtt.io/docs/v2/install.html#installing-on-windows</a></li><li>进入下载后的bin目录下<br><code>cd C:\Users\kk\Desktop\emqttd\bin\</code><br>然后执行<br><code>emqttd console</code></li><li>进入Web管理控制台(Dashboard)<br>控制台地址: <a href="http://127.0.0.1:18083" target="_blank" rel="noopener">http://127.0.0.1:18083</a><br>默认用户: admin，密码：public<h1 id="或者使用-mosquitto"><a href="#或者使用-mosquitto" class="headerlink" title="或者使用 mosquitto"></a>或者使用 mosquitto</h1></li><li>安装<br><code>brew install mosquitto</code></li><li>配置服务器<br>进入目录<code>/usr/local/Cellar/mosquitto</code> 进入响应版本下目录，我这里是<code>1.4.11_2</code><br>找到<code>/etc/mosquitto/mosquitto.conf</code>文件，修改<code>mosquitto.conf</code>可以对服务器进行配置</li><li>启动服务器<br>进入sbin目录：<br><code>/usr/local/Cellar/mosquitto/1.4.11_2/sbin</code><br>然后执行：<br><code>./mosquitto -c /usr/local/Cellar/mosquitto/1.4.11_2/etc/mosquitto/mosquitto.conf -d</code></li></ol><p>参考：<a href="http://blog.csdn.net/pz0605/article/details/51970568" target="_blank" rel="noopener">http://blog.csdn.net/pz0605/article/details/51970568</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="emqttd-windows版安装"><a href="#emqttd-windows版安装" class="headerlink" title="emqttd windows版安装"></a>emqttd windows版安装</h1><p>具体以官方文档为主</p><ol><li>下载<a href="http://emqtt.io/docs/v2/install.html#installing-on-windows" target="_blank" rel="noopener">http://emqtt.io/docs/v2/install.html#installing-on-windows</a></li><li>进入下载后的bin目录下<br><code>cd C:\Users\kk\Desktop\emqttd\bin\</code><br>然后执行<br><code>emqttd console</code></li><li>进入Web管理控制台(Dashboard)<br>控制台地址: <a href="http://127.0.0.1:18083" target="_blank" rel="noopener">http://127.0.0.1:18083</a><br>默认用户: admin，密码：public</li></ol><a id="more"></a><h1 id="或者使用-mosquitto"><a href="#或者使用-mosquitto" class="headerlink" title="或者使用 mosquitto"></a>或者使用 mosquitto</h1><ol><li>安装<br><code>brew install mosquitto</code></li><li>配置服务器<br>进入目录<code>/usr/local/Cellar/mosquitto</code> 进入响应版本下目录，我这里是<code>1.4.11_2</code><br>找到<code>/etc/mosquitto/mosquitto.conf</code>文件，修改<code>mosquitto.conf</code>可以对服务器进行配置</li><li>启动服务器<br>进入sbin目录：<br><code>/usr/local/Cellar/mosquitto/1.4.11_2/sbin</code><br>然后执行：<br><code>./mosquitto -c /usr/local/Cellar/mosquitto/1.4.11_2/etc/mosquitto/mosquitto.conf -d</code></li></ol><p>参考：<a href="http://blog.csdn.net/pz0605/article/details/51970568" target="_blank" rel="noopener">http://blog.csdn.net/pz0605/article/details/51970568</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h1 id=&quot;emqttd-windows版安装&quot;&gt;&lt;a href=&quot;#emqttd-windows版安装&quot; class=&quot;headerlink&quot; title=&quot;emqttd windows版安装&quot;&gt;&lt;/a&gt;emqttd windows版安装&lt;/h1&gt;&lt;p&gt;具体以官方文档为主&lt;
-      
+      &lt;h1 id=&quot;emqttd-windows版安装&quot;&gt;&lt;a href=&quot;#emqttd-windows版安装&quot; class=&quot;headerlink&quot; title=&quot;emqttd windows版安装&quot;&gt;&lt;/a&gt;emqttd windows版安装&lt;/h1&gt;&lt;p&gt;具体以官方文档为主&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下载&lt;a href=&quot;http://emqtt.io/docs/v2/install.html#installing-on-windows&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://emqtt.io/docs/v2/install.html#installing-on-windows&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;进入下载后的bin目录下&lt;br&gt;&lt;code&gt;cd C:\Users\kk\Desktop\emqttd\bin\&lt;/code&gt;&lt;br&gt;然后执行&lt;br&gt;&lt;code&gt;emqttd console&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;进入Web管理控制台(Dashboard)&lt;br&gt;控制台地址: &lt;a href=&quot;http://127.0.0.1:18083&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://127.0.0.1:18083&lt;/a&gt;&lt;br&gt;默认用户: admin，密码：public&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -83,8 +85,8 @@
   
   <entry>
     <title>Autolayout高级</title>
-    <link href="http://yoursite.com/2016/11/09/Autolayout%E9%AB%98%E7%BA%A7/"/>
-    <id>http://yoursite.com/2016/11/09/Autolayout高级/</id>
+    <link href="http://liumengxia.shop/2016/11/09/Autolayout%E9%AB%98%E7%BA%A7/"/>
+    <id>http://liumengxia.shop/2016/11/09/Autolayout高级/</id>
     <published>2016-11-09T12:23:21.000Z</published>
     <updated>2018-05-09T07:12:24.519Z</updated>
     
@@ -105,8 +107,8 @@
   
   <entry>
     <title>iOS调试内存泄露</title>
-    <link href="http://yoursite.com/2016/10/09/iOS%E8%B0%83%E8%AF%95%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
-    <id>http://yoursite.com/2016/10/09/iOS调试内存泄露/</id>
+    <link href="http://liumengxia.shop/2016/10/09/iOS%E8%B0%83%E8%AF%95%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
+    <id>http://liumengxia.shop/2016/10/09/iOS调试内存泄露/</id>
     <published>2016-10-09T15:11:07.000Z</published>
     <updated>2018-05-09T07:11:30.298Z</updated>
     
@@ -127,8 +129,8 @@
   
   <entry>
     <title>使用WireShark 调试真机网络</title>
-    <link href="http://yoursite.com/2016/10/09/%E4%BD%BF%E7%94%A8WireShark-%E8%B0%83%E8%AF%95%E7%9C%9F%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    <id>http://yoursite.com/2016/10/09/使用WireShark-调试真机网络/</id>
+    <link href="http://liumengxia.shop/2016/10/09/%E4%BD%BF%E7%94%A8WireShark-%E8%B0%83%E8%AF%95%E7%9C%9F%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    <id>http://liumengxia.shop/2016/10/09/使用WireShark-调试真机网络/</id>
     <published>2016-10-09T07:09:37.000Z</published>
     <updated>2018-05-09T07:10:02.378Z</updated>
     
@@ -148,8 +150,8 @@
   
   <entry>
     <title>如何更新React Native</title>
-    <link href="http://yoursite.com/2016/04/12/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0React-Native/"/>
-    <id>http://yoursite.com/2016/04/12/如何更新React-Native/</id>
+    <link href="http://liumengxia.shop/2016/04/12/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0React-Native/"/>
+    <id>http://liumengxia.shop/2016/04/12/如何更新React-Native/</id>
     <published>2016-04-12T07:32:04.000Z</published>
     <updated>2018-05-09T07:14:41.107Z</updated>
     
@@ -172,8 +174,8 @@
   
   <entry>
     <title>Hexo GitHub博客搭建</title>
-    <link href="http://yoursite.com/2015/09/09/Hexo-GitHub%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    <id>http://yoursite.com/2015/09/09/Hexo-GitHub博客搭建/</id>
+    <link href="http://liumengxia.shop/2015/09/09/Hexo-GitHub%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>http://liumengxia.shop/2015/09/09/Hexo-GitHub博客搭建/</id>
     <published>2015-09-09T04:01:05.000Z</published>
     <updated>2018-05-09T07:06:11.014Z</updated>
     
@@ -194,8 +196,8 @@
   
   <entry>
     <title>iOS中的时间</title>
-    <link href="http://yoursite.com/2015/08/12/iOS%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/"/>
-    <id>http://yoursite.com/2015/08/12/iOS中的时间/</id>
+    <link href="http://liumengxia.shop/2015/08/12/iOS%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/"/>
+    <id>http://liumengxia.shop/2015/08/12/iOS中的时间/</id>
     <published>2015-08-12T14:10:18.000Z</published>
     <updated>2018-05-09T07:10:45.770Z</updated>
     
