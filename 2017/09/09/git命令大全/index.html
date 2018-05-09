@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[TOC]  #基本概念  master指针：指向最新的提交   资料http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008  #全局配置$ git config --global user.name &amp;quot;kk&amp;quot;$ git config --global user.email &amp;quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令大全">
+<meta property="og:url" content="http://liumengxia.shop/2017/09/09/git命令大全/index.html">
+<meta property="og:site_name" content="superkk">
+<meta property="og:description" content="[TOC]  #基本概念  master指针：指向最新的提交   资料http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008  #全局配置$ git config --global user.name &amp;quot;kk&amp;quot;$ git config --global user.email &amp;quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-8af29923ea45d7fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-09T10:10:22.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git命令大全">
+<meta name="twitter:description" content="[TOC]  #基本概念  master指针：指向最新的提交   资料http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008  #全局配置$ git config --global user.name &amp;quot;kk&amp;quot;$ git config --global user.email &amp;quot;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1120923-8af29923ea45d7fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://liumengxia.shop/2017/09/09/git命令大全/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>git命令大全 | superkk</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">superkk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2017/09/09/git命令大全/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="superkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superkk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">git命令大全
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-09-09 21:09:46" itemprop="dateCreated datePublished" datetime="2017-09-09T21:09:46+08:00">2017-09-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 18:10:22" itemprop="dateModified" datetime="2018-05-09T18:10:22+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/09/09/git命令大全/" class="leancloud_visitors" data-flag-title="git命令大全">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC] </p>
+<p>#基本概念</p>
+<ul>
+<li><code>master</code>指针：指向最新的提交</li>
+</ul>
+<hr>
+<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008" target="_blank" rel="noopener">http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008</a></p>
+<hr>
+<p>#全局配置<br><code>$ git config --global user.name &quot;kk&quot;</code><br><code>$ git config --global user.email &quot;superkesen@gmail.com&quot;</code></p>
+<ul>
+<li><p>编辑模式查看全局设置：<br><code>git config --global -e</code></p>
+</li>
+<li><p>列表形式查看全局设置：<br><code>git config --global -l</code></p>
+</li>
+</ul>
+<hr>
+<h1 id="使用GitHub时，在本地创建SSH-Key"><a href="#使用GitHub时，在本地创建SSH-Key" class="headerlink" title="使用GitHub时，在本地创建SSH Key"></a>使用GitHub时，在本地创建SSH Key</h1><p><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code></p>
+<ul>
+<li><p>如果一切顺利的话，可以在用户主目录里（~/.ssh）找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
+</li>
+<li><p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：<br>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容</p>
+</li>
+</ul>
+<hr>
+<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><ul>
+<li>克隆远程仓库到本地<br><code>git clone git@github.com:michaelliao/gitskills.git</code></li>
+<li><p>克隆远程仓库某个分支到本地<br><code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;</code><br>例如： <code>git clone -b 指定的分支名字</code></p>
+</li>
+<li><p>给本地仓库指定远程仓库</p>
+</li>
+</ul>
+<ol>
+<li><p>关联GitHub仓库：<br><code>git remote add origin git@github.com:michaelliao/learngit.git</code></p>
+</li>
+<li><p>显示远程仓库：<br><code>git remote show origin</code><br>第一次推送使用：<br><code>git push -u origin 分支名称</code><br>之后推送使用：<br><code>git push origin maste</code></p>
+</li>
+<li><p>查看远程仓库地址<br><code>git remote -v</code></p>
+</li>
+<li><p>取消关联远程仓库<br><code>git remote rm origin</code></p>
+</li>
+</ol>
+<hr>
+<h1 id="初始化git仓库"><a href="#初始化git仓库" class="headerlink" title="初始化git仓库"></a>初始化git仓库</h1><p><code>git init</code><br><code>git add .</code><br><code>git commit -m “xxxx&quot;</code></p>
+<hr>
+<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><p>删除所有文件<br><code>git rm * -r</code><br>删除文件夹<br><code>git rm filename -r</code><br>忽略无需版本控制的文档<br><code>echo “*.txt” &gt; .gitignore</code></p>
+<hr>
+<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>查看commit日志<br><code>git reflog</code><br>或<br><code>git log</code></p>
+<hr>
+<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><ul>
+<li>查看当前所在分支<br><code>git branch -a</code></li>
+<li>切换到某个分支<br><code>git checkout 分支名字</code></li>
+</ul>
+<hr>
+<ul>
+<li>创建本地分支并切换到创建的分支：<br><code>git checkout -b your_branch</code></li>
+<li>提交该分支到远程仓库<br><code>git push origin dev</code></li>
+</ul>
+<hr>
+<ul>
+<li>追踪远程分支<br><code>git branch --track release_2.3.0 origin/HEAD:refs/for/release_2.3.0</code></li>
+<li>将本地分支push到远程分支，（远程会自动创建your_branch分支），并关联本地分支与远程分支<br><code>git push -u origin your_branch</code></li>
+<li>删除远程分支<br><code>git push origin --delete &lt;branchName&gt;</code></li>
+<li>删除本地分支<br><code>git branch -d your_branch</code></li>
+</ul>
+<hr>
+<h1 id="本地提交回滚"><a href="#本地提交回滚" class="headerlink" title="本地提交回滚"></a>本地提交回滚</h1><ol>
+<li>先重置本地在上次提交之后的修改（如果需要的话）<br><code>git checkout *.m</code></li>
+<li>重置为远程仓库的最新版本<br>soft表示本地的修改还在本地文件中，不加的话那么本地的修改也没了<br><code>git reset HEAD^ --soft</code></li>
+</ol>
+<hr>
+<h1 id="拉取远程代码时冲突"><a href="#拉取远程代码时冲突" class="headerlink" title="拉取远程代码时冲突"></a>拉取远程代码时冲突</h1><ol>
+<li>保存本地修改到暂存区<br><code>git stash</code></li>
+<li>拉取远程代码<br><code>git pull</code></li>
+<li>将暂存区内容恢复到本地，有冲突时先解决冲突<br><code>git stash pop</code></li>
+</ol>
+<hr>
+<h1 id="git-stash-的使用"><a href="#git-stash-的使用" class="headerlink" title="git stash 的使用"></a>git stash 的使用</h1><ul>
+<li>列出所有暂时保存的工作<br><code>git stash list</code></li>
+<li>恢复某个暂时保存的工作</li>
+</ul>
+<p><code>git stash apply stash@{1}</code></p>
+<ul>
+<li><p>保存stash时设置stash名称<br><code>git stash save &quot;my_stash&quot;</code></p>
+</li>
+<li><p>丢弃最近一次stash的文件<br><code>git stash drop</code></p>
+</li>
+</ul>
+<h1 id="合并某次提交-merge-a-specific-commit-in-Git"><a href="#合并某次提交-merge-a-specific-commit-in-Git" class="headerlink" title="合并某次提交 merge a specific commit in Git"></a>合并某次提交 merge a specific commit in Git</h1><p><code>git cherry-pick d42c389f</code></p>
+<hr>
+<h1 id="git-merge-后-push-到-Gerrit-失败，提示-no-new-changes"><a href="#git-merge-后-push-到-Gerrit-失败，提示-no-new-changes" class="headerlink" title="git merge 后 push 到 Gerrit 失败，提示 no new changes"></a>git merge 后 push 到 Gerrit 失败，提示 no new changes</h1><ul>
+<li>在 <code>git merge</code> 的时候，加上 <code>--no-ff</code> 参数，是为了让它生成一个新的 commit，这样就可以提交了~（不过生成的 gerrit change 是看不到改动信息的）</li>
+</ul>
+<h1 id="tag-操作"><a href="#tag-操作" class="headerlink" title="tag 操作"></a>tag 操作</h1><ul>
+<li>查看tag<br><code>git tag</code></li>
+<li>创建 本地 tag<br><code>git tag 1.0.0</code><br>或者<br><code>git tag -m &quot;first release&quot; 0.1.0</code></li>
+<li>推送 本地 tag 到远程服务器<br><code>git push origin 1.0.0</code></li>
+<li>或者推送所有tags到远程服务器<br><code>git push --tags</code> </li>
+<li>删除本地 tag<br><code>git tag -d 1.0.0</code></li>
+<li>删除远程 tag</li>
+</ul>
+<ol>
+<li>先删除本地 tag<br><code>git tag -d 1.0.0</code></li>
+<li>然后push<br><code>git push origin --delete tag 1.0.0</code><h1 id="fatal-remote-origin-already-exists-错误解决"><a href="#fatal-remote-origin-already-exists-错误解决" class="headerlink" title="fatal: remote origin already exists.错误解决"></a><code>fatal: remote origin already exists.</code>错误解决</h1></li>
+<li>先删除远程 Git 仓库</li>
+</ol>
+<p><code>git remote rm origin</code><br>2 再添加远程 Git 仓库</p>
+<p><code>git remote add origin git@github.com:FBing/Java-code-generator</code></p>
+<h1 id="git-ignore"><a href="#git-ignore" class="headerlink" title="git ignore"></a>git ignore</h1><ul>
+<li>创建<code>.gitignore文件</code><br><code>touch .gitignore</code><br>忽略规则示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是注释行，将被忽略</span><br><span class="line">*.a       # 忽略所有以.a为扩展名的文件    </span><br><span class="line">!lib.a    # 但是名为lib.a的文件或目录不要忽略，即使前面设置了对*.a的忽略</span><br><span class="line">/TODO     # 只忽略此目录下的TODO文件，子目录中的TODO文件不忽略</span><br><span class="line">build/    # 忽略所有build目录下的文件，但如果是名为build的文件则不忽略</span><br><span class="line">doc/*.txt # 忽略文件如doc/notes.txt，但是文件如doc/server/arch.txt不忽略</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>例如忽略下图的GPUImage.framework框架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SystemVedio/GPUImage/GPUImage.framework</span><br></pre></td></tr></table></figure></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-8af29923ea45d7fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6218590.png"></p>
+<p>只追踪某几个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#忽略所有文件，注意放在开头</span><br><span class="line">/*</span><br><span class="line">#除src文件夹外</span><br><span class="line">!/src</span><br><span class="line">#除bin文件夹外</span><br><span class="line">!/bin </span><br><span class="line">#总的效果就是git只跟踪src和bin两个文件夹</span><br></pre></td></tr></table></figure></p>
+<h1 id="merge-与-rebase-的区别"><a href="#merge-与-rebase-的区别" class="headerlink" title="merge 与 rebase 的区别"></a>merge 与 rebase 的区别</h1><blockquote>
+<p>作者：王靖轩<br>链接：<a href="https://www.zhihu.com/question/36509119/answer/131513261" target="_blank" rel="noopener">https://www.zhihu.com/question/36509119/answer/131513261</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+</blockquote>
+<p>搞清楚这个问题首先要搞清楚merge和rebase背后的含义。</p>
+<h2 id="merge：会产生一次合并提交"><a href="#merge：会产生一次合并提交" class="headerlink" title="merge：会产生一次合并提交"></a>merge：会产生一次合并提交</h2><p>先看merge，官方文档给的说明是：<br>git-merge - Join two or more development histories together</p>
+<p>顾名思义，当你想要两个分支交汇的时候应该使用merge。<br>根据官方文档给的例子，是master merge topic，如图：<br>A—B—C topic<br>/         \<br>D—E—F—G—H master<br>然而在实践中，在H这个commit上的merge经常会出现merge conflict。为了避免解决冲突的时候引入一些不必要的问题，工程中一般都会规定no conflict merge。比如你在github上发pull request，如果有conflict就会禁止merge。</p>
+<p>所以才会有题主问的问题：在当前的topic分支，想要引入master分支的F、G commit上的内容以避免merge conflict，方便最终合并到master。</p>
+<p>这种情况下用merge当然是一个选项。用merge代表了topic分支与master分支交汇，并解决了所有合并冲突。然而merge的缺点是引入了一次不必要的history join。如图：<br>A–B–C-X topic<br>/       / \<br>D—E—F—G—H master<br>其实仔细想一下就会发现，在引入master分支的F、G commit这个问题上，我们并没有要求两个分支必须进行交汇(join)，我们只是想避免最终的merge conflict而已。</p>
+<h2 id="rebase：将其他分支的内容整合到当前分支，改变当前分支branch-out的位置"><a href="#rebase：将其他分支的内容整合到当前分支，改变当前分支branch-out的位置" class="headerlink" title="rebase：将其他分支的内容整合到当前分支，改变当前分支branch out的位置"></a>rebase：将其他分支的内容整合到当前分支，改变当前分支branch out的位置</h2><p>rebase是另一个选项。rebase的含义是改变当前分支branch out的位置。这个时候进行rebase其实意味着，将topic分支branch out的位置从E改为G，如图：<br>A—B—C topic<br>/<br>D—E—F—G master<br>在这个过程中会解决引入F、G导致的冲突，同时没有多余的history join。但是rebase的缺点是，改变了当前分支branch out的节点。如果这个信息对你很重要的话，那么rebase应该不是你想要的。rebase过程中也会有多次解决同一个地方的冲突的问题，不过可以用squash之类的选项解决。个人并不认为这个是rebase的主要问题。</p>
+<p>综上，其实选用merge还是rebase取决于你到底是以什么意图来避免merge conflict。实践上个人还是偏爱rebase。一个是因为branch out节点不能改变的情况实在太少。另外就是频繁从master merge导致的冗余的history join会提高所有人的认知成本。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/09/Mac安装MQTT服务器/" rel="next" title="Mac安装MQTT服务器">
+                <i class="fa fa-chevron-left"></i> Mac安装MQTT服务器
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/22/iOS11新特性/" rel="prev" title="iOS11新特性">
+                iOS11新特性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="superkk" />
+            
+              <p class="site-author-name" itemprop="name">superkk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#资料"><span class="nav-number">1.</span> <span class="nav-text">资料</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用GitHub时，在本地创建SSH-Key"><span class="nav-number">2.</span> <span class="nav-text">使用GitHub时，在本地创建SSH Key</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#远程仓库"><span class="nav-number">3.</span> <span class="nav-text">远程仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#初始化git仓库"><span class="nav-number">4.</span> <span class="nav-text">初始化git仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件操作"><span class="nav-number">5.</span> <span class="nav-text">文件操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#日志"><span class="nav-number">6.</span> <span class="nav-text">日志</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分支管理"><span class="nav-number">7.</span> <span class="nav-text">分支管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地提交回滚"><span class="nav-number">8.</span> <span class="nav-text">本地提交回滚</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#拉取远程代码时冲突"><span class="nav-number">9.</span> <span class="nav-text">拉取远程代码时冲突</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-stash-的使用"><span class="nav-number">10.</span> <span class="nav-text">git stash 的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合并某次提交-merge-a-specific-commit-in-Git"><span class="nav-number">11.</span> <span class="nav-text">合并某次提交 merge a specific commit in Git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-merge-后-push-到-Gerrit-失败，提示-no-new-changes"><span class="nav-number">12.</span> <span class="nav-text">git merge 后 push 到 Gerrit 失败，提示 no new changes</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tag-操作"><span class="nav-number">13.</span> <span class="nav-text">tag 操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fatal-remote-origin-already-exists-错误解决"><span class="nav-number">14.</span> <span class="nav-text">fatal: remote origin already exists.错误解决</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-ignore"><span class="nav-number">15.</span> <span class="nav-text">git ignore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#merge-与-rebase-的区别"><span class="nav-number">16.</span> <span class="nav-text">merge 与 rebase 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#merge：会产生一次合并提交"><span class="nav-number">16.1.</span> <span class="nav-text">merge：会产生一次合并提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase：将其他分支的内容整合到当前分支，改变当前分支branch-out的位置"><span class="nav-number">16.2.</span> <span class="nav-text">rebase：将其他分支的内容整合到当前分支，改变当前分支branch out的位置</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">superkk</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("FWMDfS9Bw5wt2Q1HeXOvmu4I-gzGzoHsz", "FhgGym8sAYePRhceG5LP3jcl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[TOC] dispatch_time与dispatch_walltime的区别所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD用法全解">
+<meta property="og:url" content="http://liumengxia.shop/2016/08/02/GCD用法全解/index.html">
+<meta property="og:site_name" content="superkk">
+<meta property="og:description" content="[TOC] dispatch_time与dispatch_walltime的区别所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-09T09:45:41.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GCD用法全解">
+<meta name="twitter:description" content="[TOC] dispatch_time与dispatch_walltime的区别所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时">
+
+
+
+
+
+
+  <link rel="canonical" href="http://liumengxia.shop/2016/08/02/GCD用法全解/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>GCD用法全解 | superkk</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">superkk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2016/08/02/GCD用法全解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="superkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superkk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">GCD用法全解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-08-02 17:16:17" itemprop="dateCreated datePublished" datetime="2016-08-02T17:16:17+08:00">2016-08-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 17:45:41" itemprop="dateModified" datetime="2018-05-09T17:45:41+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2016/08/02/GCD用法全解/" class="leancloud_visitors" data-flag-title="GCD用法全解">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="dispatch-time与dispatch-walltime的区别"><a href="#dispatch-time与dispatch-walltime的区别" class="headerlink" title="dispatch_time与dispatch_walltime的区别"></a><code>dispatch_time</code>与<code>dispatch_walltime</code>的区别</h1><p>所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。<br>当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。<br>定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时不会继续。</p>
+<p>如果你使用 dispatch_walltime 函数来设置定时器dispatch source，则定时器会根据挂钟时间来跟踪，<br>这种定时器比较适合触发间隔相对比较大的场合，可以防止定时器触发间隔出现太大的误差。</p>
+<p>区别：</p>
+<ol>
+<li><p><code>dispatch_time_t</code>类型的时间我们可以通过<code>dispatch_time</code>来创建，也可以通过<code>dispatch_walltime</code>来创建。<br><code>dispatch_time</code>创建的时间多以第一个参数为参照物，之后过多久执行任务。<br><code>dispatch_walltime</code>多用于创建绝对时间，如某年某月某日某时某分执行某任务，比如闹钟的设置。</p>
+</li>
+<li><p><code>dispatch_time</code>在计算机睡眠时会停止<br><code>dispatch_walltime</code>不会</p>
+</li>
+</ol>
+<p>例如以下情景</p>
+<p>情景：希望一小时后执行任务，5分钟后计算机进入睡眠<br>操作：50分钟后唤醒计算机<br>实际：使用<code>dispatch_walltime</code>时: 5分钟后开始执行<br>使用<code>dispatch_time</code>: 55分钟后开始执行</p>
+<h1 id="GCD-定时器的使用"><a href="#GCD-定时器的使用" class="headerlink" title="GCD 定时器的使用"></a>GCD 定时器的使用</h1><h2 id="dispatch-source-set-timer-最后一个参数-leeway-详解"><a href="#dispatch-source-set-timer-最后一个参数-leeway-详解" class="headerlink" title="dispatch_source_set_timer 最后一个参数 leeway 详解"></a><code>dispatch_source_set_timer</code> 最后一个参数 <code>leeway</code> 详解</h2><ul>
+<li><code>leeway</code> 这个参数告诉系统我们需要计时器触发的精准程度。所有的计时器都不会保证100%精准，这个参数用来告诉系统你希望系统保证精准的努力程度。如果你希望一个计时器没五秒触发一次，并且越准越好，那么你传递0为参数。</li>
+<li>如果是一个周期性任务，比如检查email，那么你会希望每十分钟检查一次，但是不用那么精准。所以你可以传入60，告诉系统60秒的误差是可接受的。  </li>
+<li>这样有什么意义呢？——降低资源消耗。如果系统可以让cpu休息足够长的时间，并在每次醒来的时候执行一个任务集合，而不是不断的醒来睡去以执行任务，那么系统会更高效。如果传入一个比较大的leeway给你的计时器，意味着你允许系统拖延你的计时器来将计时器任务与其他任务联合起来一起执行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">    NSTimeInterval interval = 1.0f;</span><br><span class="line">    NSTimeInterval delay = 1.0f;</span><br><span class="line">    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, mainQueue);</span><br><span class="line">    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, delay), interval * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;%s&quot;, __func__);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    dispatch_source_cancel(timer);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="测试代码执行效率"><a href="#测试代码执行效率" class="headerlink" title="测试代码执行效率"></a>测试代码执行效率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func testPerformance(closure: ()-&gt;()) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    closure()</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func testFunctionPerformance(selector: Selector) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    self.performSelector(selector)</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-加锁"><a href="#GCD-加锁" class="headerlink" title="GCD 加锁"></a>GCD 加锁</h1><h2 id="GCD-信号量的使用"><a href="#GCD-信号量的使用" class="headerlink" title="GCD 信号量的使用"></a>GCD 信号量的使用</h2><ol>
+<li>设置信号量的个数为1时，可以当锁来使用</li>
+<li>设置信号量的个数与CPU个数相近时（比如CPU个数 * 2），可以用来限制线程个数。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">var semaphore: dispatch_semaphore_t = dispatch_semaphore_create(1)</span><br><span class="line"></span><br><span class="line">//MARK: ------------------- 使用信号量进行加锁操作 --------------------</span><br><span class="line">func test_semaphore() &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_first()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_second()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_third()</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_first() &#123;</span><br><span class="line">    // p操作，进入临界区      dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line"></span><br><span class="line">    print(&quot;First tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;First task is done&quot;)</span><br><span class="line"></span><br><span class="line">    // v操作，离开临界区      dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_second() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Second tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Second task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_third() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Third tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Thrid task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用信号量控制多线程中代码执行顺序"><a href="#使用信号量控制多线程中代码执行顺序" class="headerlink" title="使用信号量控制多线程中代码执行顺序"></a>使用信号量控制多线程中代码执行顺序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)test_dispatch_semaphore_t_0 &#123;</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        [self method1];</span><br><span class="line">        sleep(10);</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">    [self method2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_after 的使用-------------------- func dispatchAfter() &#123;</span><br><span class="line">    let delay: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))</span><br><span class="line">    dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  print(&quot;viewDidLoad()&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># GCD 多任务异步执行与 `dispatch_notify` 的使用</span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行 与 dispatch_group_notify 的使用 -------------------- func dispatchGroup() &#123;</span><br><span class="line">    let group: dispatch_group_t = dispatch_group_create()</span><br><span class="line">    let globalQueueDefault: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 串行队列按照先进先出的顺序执行（FIFO）      </span><br><span class="line">    let userQueueSerie: dispatch_queue_t = dispatch_queue_create(&quot;com.dispatchGroup.demo&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line"></span><br><span class="line">    // 下载任务1     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task1 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务2     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task2 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务3     </span><br><span class="line">    dispatch_group_async(group, globalQueueDefault)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task3 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 监听任务组事件的执行完毕      </span><br><span class="line">    dispatch_group_notify(group, dispatch_get_main_queue())&#123;</span><br><span class="line">        NSLog(&quot;Group tasks are done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置等待时间(即设置超时)，在等待时间结束后，如果还没有执行完任务组，则返回。返回0代表执行成功，非0则执行失败      </span><br><span class="line">    // 等待直到完成      </span><br><span class="line">    let result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    if (result != 0) &#123;</span><br><span class="line">        print(&quot;Now viewDidLoad is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># dispatch_group_apply</span><br><span class="line"></span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行/同步执行 与 dispatch_apply 的使用 -------------------- </span><br><span class="line">func dispatchApply() &#123;</span><br><span class="line">    let iterations: Int = 20 // 迭代次数      </span><br><span class="line">    let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 同步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue) &#123; (index: Int) -&gt; </span><br><span class="line">            Void in  print(index, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    // 异步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue, &#123; (index: Int) -&gt; Void in  </span><br><span class="line">            dispatch_async(globalQueue, &#123; () -&gt; Void in </span><br><span class="line">                 print(index, NSThread.currentThread())</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        for i:Int in 1...iterations &#123;</span><br><span class="line">            print(i, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="dispatch-group-enter-dispatch-group-leave"><a href="#dispatch-group-enter-dispatch-group-leave" class="headerlink" title="dispatch_group_enter / dispatch_group_leave"></a><code>dispatch_group_enter</code> / <code>dispatch_group_leave</code></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_group_enter / dispatch_group_leave -------------------</span><br><span class="line">// 将任务组中的任务未执行完毕的任务数目加减1，这种方式不使用 dispatch_group_async 来提交任务， </span><br><span class="line">// 注意：这两个函数要配合使用，有enter要有leave，这样才能保证功能完整实现。    </span><br><span class="line">// 串行执行三个任务  </span><br><span class="line">func dispatchGroup_EnterAndLeave_Seriel() &#123;</span><br><span class="line">    let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">    for index:UInt32 in 1...3&#123;</span><br><span class="line">        dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">        manualDownLoad(index)&#123;</span><br><span class="line">            print(&quot;Task \(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, block:()-&gt;())&#123;</span><br><span class="line">        print(&quot;Downloading task &quot;, num)</span><br><span class="line">        sleep(num)</span><br><span class="line">        block()</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    // 并行执行三个任务  </span><br><span class="line">    func dispatchGroup_EnterAndLeave_Concurrent() &#123;</span><br><span class="line">        let group = dispatch_group_create()//创建group    </span><br><span class="line">        let globalQueueDefault = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</span><br><span class="line"></span><br><span class="line">        for index:UInt32 in 1...3 &#123;</span><br><span class="line">            dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">            manualDownLoad(index, queue: globalQueueDefault)&#123;</span><br><span class="line">            NSLog(&quot;Task\(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, queue:dispatch_queue_t, block:()-&gt;())&#123;</span><br><span class="line">        dispatch_async(queue)&#123;</span><br><span class="line">            NSLog(&quot;Downloading task\(num)&quot;)</span><br><span class="line">            sleep(num)</span><br><span class="line">            block()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-实战：资源竞争"><a href="#GCD-实战：资源竞争" class="headerlink" title="GCD 实战：资源竞争"></a>GCD 实战：资源竞争</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- 多线程测试：资源竞争 --------------------</span><br><span class="line"> func test_mutiThread() &#123;</span><br><span class="line">        let userSerialQueue = dispatch_queue_create(&quot;com.test.mutiThread.userSerialQueue&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line">        let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line">        let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">        // 当 &quot;Processing data&quot;（CUP处理速度） 速度远小于 &quot;Reading file&quot;（磁盘处理速度） 速度时，线程数占用过多          // 使用信号量来限制同时执行的任务的数量         </span><br><span class="line">        let cupCount = NSProcessInfo.processInfo().processorCount // CPU 数量</span><br><span class="line">        let jobSemaphore = dispatch_semaphore_create(cupCount * 2) // 限制线程个数</span><br><span class="line"></span><br><span class="line">        for i:Int in 1...50 &#123;</span><br><span class="line">            dispatch_semaphore_wait(jobSemaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">            dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;Reading file&quot;, i, NSThread.currentThread())</span><br><span class="line">                // sleep(2)                </span><br><span class="line">                dispatch_group_async(group, globalQueue, &#123; () -&gt; Void in  print(&quot;  Processing data&quot;, i, NSThread.currentThread())</span><br><span class="line">                    sleep(1)</span><br><span class="line"></span><br><span class="line">                    dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;    writing file&quot;, i, NSThread.currentThread())</span><br><span class="line">                        // sleep(2)                        </span><br><span class="line">                        dispatch_semaphore_signal(jobSemaphore);</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.jianshu.com/p/6670cdbb1ebb" target="_blank" rel="noopener">http://www.jianshu.com/p/6670cdbb1ebb</a><br><a href="http://www.dreamingwish.com/article/gcd-practice-io-race.html" target="_blank" rel="noopener">http://www.dreamingwish.com/article/gcd-practice-io-race.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/09/CocoaPods-管理私有库/" rel="next" title="CocoaPods 管理私有库">
+                <i class="fa fa-chevron-left"></i> CocoaPods 管理私有库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/《Effective-Objective-C-2-0》读书笔记/" rel="prev" title="《Effective Objective-C 2.0》读书笔记">
+                《Effective Objective-C 2.0》读书笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="superkk" />
+            
+              <p class="site-author-name" itemprop="name">superkk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dispatch-time与dispatch-walltime的区别"><span class="nav-number">1.</span> <span class="nav-text">dispatch_time与dispatch_walltime的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD-定时器的使用"><span class="nav-number">2.</span> <span class="nav-text">GCD 定时器的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dispatch-source-set-timer-最后一个参数-leeway-详解"><span class="nav-number">2.1.</span> <span class="nav-text">dispatch_source_set_timer 最后一个参数 leeway 详解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试代码执行效率"><span class="nav-number">2.2.</span> <span class="nav-text">测试代码执行效率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD-加锁"><span class="nav-number">3.</span> <span class="nav-text">GCD 加锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD-信号量的使用"><span class="nav-number">3.1.</span> <span class="nav-text">GCD 信号量的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用信号量控制多线程中代码执行顺序"><span class="nav-number">4.</span> <span class="nav-text">使用信号量控制多线程中代码执行顺序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#延时执行"><span class="nav-number">5.</span> <span class="nav-text">延时执行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#dispatch-group-enter-dispatch-group-leave"><span class="nav-number">6.</span> <span class="nav-text">dispatch_group_enter / dispatch_group_leave</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GCD-实战：资源竞争"><span class="nav-number">7.</span> <span class="nav-text">GCD 实战：资源竞争</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">superkk</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("FWMDfS9Bw5wt2Q1HeXOvmu4I-gzGzoHsz", "FhgGym8sAYePRhceG5LP3jcl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

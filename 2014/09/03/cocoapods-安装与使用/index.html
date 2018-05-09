@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="常见命令更新本地索引库需要经常手动进行更新，尤其在苹果有大的版本发布之后，各个第三方库会在随后更新pod repo update 更新cocoapod版本gem install cocoapods --pre 单独更新某个库pod update MJRefresh 安装 1.安装 rvm参考：http://ruby-china.org/wiki/rvm-guide，测试可行 2.安装ruby同样参">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cocoapods 安装与使用">
+<meta property="og:url" content="http://liumengxia.shop/2014/09/03/cocoapods-安装与使用/index.html">
+<meta property="og:site_name" content="superkk">
+<meta property="og:description" content="常见命令更新本地索引库需要经常手动进行更新，尤其在苹果有大的版本发布之后，各个第三方库会在随后更新pod repo update 更新cocoapod版本gem install cocoapods --pre 单独更新某个库pod update MJRefresh 安装 1.安装 rvm参考：http://ruby-china.org/wiki/rvm-guide，测试可行 2.安装ruby同样参">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-09T10:26:28.513Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cocoapods 安装与使用">
+<meta name="twitter:description" content="常见命令更新本地索引库需要经常手动进行更新，尤其在苹果有大的版本发布之后，各个第三方库会在随后更新pod repo update 更新cocoapod版本gem install cocoapods --pre 单独更新某个库pod update MJRefresh 安装 1.安装 rvm参考：http://ruby-china.org/wiki/rvm-guide，测试可行 2.安装ruby同样参">
+
+
+
+
+
+
+  <link rel="canonical" href="http://liumengxia.shop/2014/09/03/cocoapods-安装与使用/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>cocoapods 安装与使用 | superkk</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">superkk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2014/09/03/cocoapods-安装与使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="superkk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="superkk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">cocoapods 安装与使用
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-09-03 09:10:54" itemprop="dateCreated datePublished" datetime="2014-09-03T09:10:54+08:00">2014-09-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 18:26:28" itemprop="dateModified" datetime="2018-05-09T18:26:28+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2014/09/03/cocoapods-安装与使用/" class="leancloud_visitors" data-flag-title="cocoapods 安装与使用">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Views: </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><h2 id="更新本地索引库"><a href="#更新本地索引库" class="headerlink" title="更新本地索引库"></a>更新本地索引库</h2><p>需要经常手动进行更新，尤其在苹果有大的版本发布之后，各个第三方库会在随后更新<br><code>pod repo update</code></p>
+<h2 id="更新cocoapod版本"><a href="#更新cocoapod版本" class="headerlink" title="更新cocoapod版本"></a>更新cocoapod版本</h2><p><code>gem install cocoapods --pre</code></p>
+<h2 id="单独更新某个库"><a href="#单独更新某个库" class="headerlink" title="单独更新某个库"></a>单独更新某个库</h2><p><code>pod update MJRefresh</code></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><hr>
+<h2 id="1-安装-rvm"><a href="#1-安装-rvm" class="headerlink" title="1.安装 rvm"></a>1.安装 rvm</h2><p>参考：<a href="http://ruby-china.org/wiki/rvm-guide，测试可行" target="_blank" rel="noopener">http://ruby-china.org/wiki/rvm-guide，测试可行</a></p>
+<h2 id="2-安装ruby"><a href="#2-安装ruby" class="headerlink" title="2.安装ruby"></a>2.安装ruby</h2><p>同样参考上面的网站</p>
+<h2 id="3-开始安装cocoapods"><a href="#3-开始安装cocoapods" class="headerlink" title="3.开始安装cocoapods"></a>3.开始安装cocoapods</h2><p>升级ruby的gem<br><code>sudo gem update --system</code><br>安装cocoapods<br><code>sudo gem install cocoapods</code><br>还有一点需要注意，pod setup在执行时，会输出Setting up CocoaPods master repo，但是会等待比较久的时间。这步其实是 Cocoapods 在将它的信息下载到 ~/.cocoapods目录下，如果你等太久，可以试着 cd 到那个目录，用du -sh *来查看下载进度。</p>
+<blockquote>
+<p>请参见cocoapods官网 <a href="https://cocoapods.org" target="_blank" rel="noopener">https://cocoapods.org</a></p>
+</blockquote>
+<h2 id="4-更新ruby的源"><a href="#4-更新ruby的源" class="headerlink" title="4.更新ruby的源"></a>4.更新ruby的源</h2><blockquote>
+<p>最新的国内安装源可以在这里看到 <a href="https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.org</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources -a https://ruby.taobao.org/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考唐巧博客：<a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/</a></p>
+</blockquote>
+<h2 id="二、重装"><a href="#二、重装" class="headerlink" title="二、重装"></a>二、重装</h2><hr>
+<p>更新了 <code>Xcode 7</code> 和 <code>OSX 0.11.1</code> 后，<code>install pod</code> 不好使了。试了下重新安装 <code>cocoapods</code>。遇到了一些问题</p>
+<h3 id="1-执行-sudo-gem-install-cocoapods-出现了如下错误："><a href="#1-执行-sudo-gem-install-cocoapods-出现了如下错误：" class="headerlink" title="1. 执行 sudo gem install cocoapods 出现了如下错误："></a>1. 执行 <code>sudo gem install cocoapods</code> 出现了如下错误：</h3><blockquote>
+<p>ERROR:  Could not find a valid gem ‘cocospods’ (&gt;= 0), here is why:<br>Unable to download data from <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a> - bad response Not Found 404 (<a href="http://ruby.taobao.org/latest_specs.4.8.gz" target="_blank" rel="noopener">http://ruby.taobao.org/latest_specs.4.8.gz</a>)</p>
+</blockquote>
+<h3 id="解决办法：将http-替换成-https，具体如下"><a href="#解决办法：将http-替换成-https，具体如下" class="headerlink" title="解决办法：将http 替换成 https，具体如下"></a>解决办法：将http 替换成 https，具体如下</h3><ol>
+<li>gem sources –remove <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a></li>
+<li>gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="noopener">https://ruby.taobao.org/</a></li>
+<li>查看源对不对<br>gem sources -l</li>
+<li>再安装就好了<br>sudo gem install cocoapods</li>
+</ol>
+<h3 id="2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误"><a href="#2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误" class="headerlink" title="2. 然后可以执行 sudo gem install cocoapods 了。但是执行到一半又出现了如下错误"></a>2. 然后可以执行 <code>sudo gem install cocoapods</code> 了。但是执行到一半又出现了如下错误</h3><blockquote>
+<p>While executing gem … (Errno::EPERM)<br>Operation not permitted - /usr/bin/xcodeproj</p>
+</blockquote>
+<h3 id="解决办法：自定义GEM-HOME"><a href="#解决办法：自定义GEM-HOME" class="headerlink" title="解决办法：自定义GEM_HOME"></a>解决办法：自定义GEM_HOME</h3><p>命令行操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p $HOME/Software/ruby</span><br><span class="line">$ export GEM_HOME=$HOME/Software/ruby</span><br><span class="line">$ gem install cocoapods</span><br><span class="line">　　[...]</span><br><span class="line">　　1 gem installed</span><br><span class="line">　　$ export PATH=$PATH:$HOME/Sofware/ruby/bin</span><br><span class="line">　　$ pod --version</span><br><span class="line">　　0.39.0</span><br></pre></td></tr></table></figure></p>
+<p>　　<br>　　然后就顺利安装成功了<br>　　<br>　　## 三、使用 cocoapods<br>　　<br>　　<figure class="highlight plain"><figcaption><span>更换clone github镜像，加快 pod 代码下载速度~~~</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　　</span><br><span class="line">　　```</span><br><span class="line">　　$ cd ~/.cocoapods/repos </span><br><span class="line">　　$ pod repo remove master</span><br><span class="line">　　$ git clone https://git.coding.net/hging/Specs.git master</span><br><span class="line">　　</span><br><span class="line">　　```</span><br><span class="line">　　</span><br><span class="line">　　~~~然后需要在 podfile文件中加入如下代码</span><br></pre></td></tr></table></figure></p>
+<p>　　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　// 如果不加这一句话，它默认还是从github镜像源地址去下载的</span><br><span class="line">　　source &apos;https://git.coding.net/hging/Specs.git&apos;</span><br></pre></td></tr></table></figure></p>
+<p>　　<br>　　<br><br>　　<br>　　<font color="#0099ff" face="黑体">目前没有发现比较好的镜像，上面的镜像pod里库的版本已经很低，不建议使用了，所以暂时无法解决慢的问题。</font><br>　　—-<br>　　<br>　　### 常用命令<br>　　<code>pod search pop</code><br>　　<code>pod init</code><br>　　<code>pod install</code><br>　　<code>pod install --verbose --no-repo-update</code><br>　　<code>pod update</code><br>　　<code>pod update --verbose --no-repo-update</code><br>　　<br>　　### 注意点<br>　　* 如果 import 的时候没有提示 <code>POP.h</code> 的文件，可以在 <code>target-Build Settings</code> 下修改 <code>User Header Search Paths</code> 项，新增 <code>${SRCROOT}</code> 并选择 <code>rcursive</code>，如下图。<br>　　<br>　　<br>　　## 四、参考：<br>　　<a href="http://www.bubuko.com/infodetail-1136466.html" target="_blank" rel="noopener">安装Cocoapods， 更新gem出现的问题</a><br>　　<a href="http://blog.csdn.net/w_x_p/article/details/49151477" target="_blank" rel="noopener">Mac OS X 跟新到10.11后cocoapods安装出现的问题（- bad response Not Found 404 (http://ruby.taobao.org/latest_spe</a><br>　　<a href="http://ryantang.me/blog/2014/01/05/cocoapods/" target="_blank" rel="noopener">使用CocoaPods管理依赖库</a><br>　　<a href="https://www.cnblogs.com/dengchaojie/p/8232555.html" target="_blank" rel="noopener">解决CocoaPods慢的小技巧</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/07/15/《C语言深度剖析》读书笔记/" rel="next" title="《C语言深度剖析》读书笔记">
+                <i class="fa fa-chevron-left"></i> 《C语言深度剖析》读书笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/08/12/iOS中的时间/" rel="prev" title="iOS中的时间">
+                iOS中的时间 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="superkk" />
+            
+              <p class="site-author-name" itemprop="name">superkk</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常见命令"><span class="nav-number">1.</span> <span class="nav-text">常见命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#更新本地索引库"><span class="nav-number">1.1.</span> <span class="nav-text">更新本地索引库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更新cocoapod版本"><span class="nav-number">1.2.</span> <span class="nav-text">更新cocoapod版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单独更新某个库"><span class="nav-number">1.3.</span> <span class="nav-text">单独更新某个库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装-rvm"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装 rvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安装ruby"><span class="nav-number">2.2.</span> <span class="nav-text">2.安装ruby</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-开始安装cocoapods"><span class="nav-number">2.3.</span> <span class="nav-text">3.开始安装cocoapods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-更新ruby的源"><span class="nav-number">2.4.</span> <span class="nav-text">4.更新ruby的源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、重装"><span class="nav-number">2.5.</span> <span class="nav-text">二、重装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-执行-sudo-gem-install-cocoapods-出现了如下错误："><span class="nav-number">2.5.1.</span> <span class="nav-text">1. 执行 sudo gem install cocoapods 出现了如下错误：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法：将http-替换成-https，具体如下"><span class="nav-number">2.5.2.</span> <span class="nav-text">解决办法：将http 替换成 https，具体如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误"><span class="nav-number">2.5.3.</span> <span class="nav-text">2. 然后可以执行 sudo gem install cocoapods 了。但是执行到一半又出现了如下错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法：自定义GEM-HOME"><span class="nav-number">2.5.4.</span> <span class="nav-text">解决办法：自定义GEM_HOME</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">superkk</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("FWMDfS9Bw5wt2Q1HeXOvmu4I-gzGzoHsz", "FhgGym8sAYePRhceG5LP3jcl");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            
+            counter.save(null, {
+              success: function(counter) {
+                
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.get('time'));
+                
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
