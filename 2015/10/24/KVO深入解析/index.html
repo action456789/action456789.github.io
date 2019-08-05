@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[TOC] iOS 中监听某个值的改变有哪些方法？在一个复杂的，有状态的系统中，当一个对象的状态发生改变，如何通知系统，并对状态改变做出相应的行为是必需考虑的一个问题，在iOS中为这类问题提供了4种解决方法：   NSNotifiactaion 和 NSNotificationCenter：通知中心  Delegates：代理，  Callback：回调，   KVO（Key-Value Obse">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVO深入解析">
+<meta property="og:url" content="http://superkk.top/2015/10/24/KVO深入解析/index.html">
+<meta property="og:site_name" content="爱工作·爱生活">
+<meta property="og:description" content="[TOC] iOS 中监听某个值的改变有哪些方法？在一个复杂的，有状态的系统中，当一个对象的状态发生改变，如何通知系统，并对状态改变做出相应的行为是必需考虑的一个问题，在iOS中为这类问题提供了4种解决方法：   NSNotifiactaion 和 NSNotificationCenter：通知中心  Delegates：代理，  Callback：回调，   KVO（Key-Value Obse">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-cce04359a1bbfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-5ded44b80985ff8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-22f9b36418f98970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-05T08:59:21.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVO深入解析">
+<meta name="twitter:description" content="[TOC] iOS 中监听某个值的改变有哪些方法？在一个复杂的，有状态的系统中，当一个对象的状态发生改变，如何通知系统，并对状态改变做出相应的行为是必需考虑的一个问题，在iOS中为这类问题提供了4种解决方法：   NSNotifiactaion 和 NSNotificationCenter：通知中心  Delegates：代理，  Callback：回调，   KVO（Key-Value Obse">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1120923-cce04359a1bbfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://superkk.top/2015/10/24/KVO深入解析/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>KVO深入解析 | 爱工作·爱生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱工作·爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/10/24/KVO深入解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">KVO深入解析
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2015-10-24 17:18:51" itemprop="dateCreated datePublished" datetime="2015-10-24T17:18:51+08:00">2015-10-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="iOS-中监听某个值的改变有哪些方法？"><a href="#iOS-中监听某个值的改变有哪些方法？" class="headerlink" title="iOS 中监听某个值的改变有哪些方法？"></a>iOS 中监听某个值的改变有哪些方法？</h1><p>在一个复杂的，有状态的系统中，当一个对象的状态发生改变，如何通知系统，并对状态改变做出相应的行为是必需考虑的一个问题，在iOS中为这类问题提供了4种解决方法： </p>
+<ol>
+<li>NSNotifiactaion 和 NSNotificationCenter：通知中心 </li>
+<li>Delegates：代理， </li>
+<li><p>Callback：回调， </p>
+</li>
+<li><p>KVO（Key-Value Observing）：键值观察 </p>
+</li>
+</ol>
+<p>Key-Value Observing (简写为KVO)：当指定的对象的属性被修改了，允许对象接受到通知的机制。每次指定的被观察对象的属性被修改的时候，KVO都会自动的去通知相应的观察者。</p>
+<h1 id="KVO-是什么？"><a href="#KVO-是什么？" class="headerlink" title="KVO 是什么？"></a>KVO 是什么？</h1><blockquote>
+<blockquote>
+<p>Objective-C 中的键(key)-值(value)观察(KVO)并不是什么新鲜事物，它来源于设计模式中的观察者模式，其基本思想就是：<br>一个目标对象管理所有依赖于它的观察者对象，并在它自身的状态改变时主动通知观察者对象。这个主动通知通常是通过调用各观察者对象所提供的接口方法来实现的。观察者模式较完美地将目标对象与观察者对象解耦。</p>
+</blockquote>
+</blockquote>
+<h1 id="KVO-的用法"><a href="#KVO-的用法" class="headerlink" title="KVO 的用法"></a>KVO 的用法</h1><ol>
+<li>如果要监听“对象A”属性值的改变，先要为＂对象A＂的属性注册观察者（假设观察者为“对象B”）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)addObserver:(NSObject * _Nonnull)anObserver</span><br><span class="line">forKeyPath:(NSString * _Nonnull)keyPath</span><br><span class="line">options:(NSKeyValueObservingOptions)options</span><br><span class="line">context:(void * _Nullable)context</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>anObserver</code> : 观察者，注册 KVO 通知的对象. 其必须实现方法 observeValueForKeyPath:ofObject:change:context:.<br><code>keyPath</code> : 被观察的属性，其不能为nil.<br><code>options</code> : 表示要监听那些通知，一般为写 0<br><code>context</code> : 一些其他的需要传递给观察者的上下文信息，通常设置为 nil</p>
+<p><code>options</code> 解释如下：<br><code>NSKeyValueObservingOptionNew</code> : change 字典中包含 key 改变后的新值<br><code>NSKeyValueObservingOptionOld</code> : change 字典中包含 key 改变前的旧值<br><code>NSKeyValueObservingOptionInitial</code> : 在添加观察者的时候立即发送一个通知给观察者,并且是在注册观察者方法返回之前<br><code>NSKeyValueObservingOptionPrior</code> : 如果指定，则在每次修改属性时，会在修改通知被发送之前预先发送一条通知给观察者，这与-willChangeValueForKey:被触发的时间是相对应的。这样，在每次修改属性时，实际上是会发送两条通知。<br>２.　观察者“对象B”实现　<code>observeValueForKeyPath:ofObject:change:context:</code>.　方法<br>３.   “对象A”移除监听者　<code>- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath</code>;<br>另外注意：<code>keyPath</code> 即被观察的属性只能是 <code>NSString</code> 类型</p>
+<ul>
+<li>注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行</li>
+</ul>
+<h1 id="KVO-的实现原理"><a href="#KVO-的实现原理" class="headerlink" title="KVO 的实现原理"></a>KVO 的实现原理</h1><p>键值编码和键值观察是根据 isa-swizzling 技术来实现的，主要依据runtime的强大动态能力。<br>当某个类的对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。派生类在被重写的 setter 方法实现真正的通知机制。<br>同时派生类还重写了 class 方法以“欺骗”外部调用者它就是起初的那个类。然后系统将这个对象的 isa 指针指向这个新诞生的派生类，因此这个对象就成为该派生类的对象了，因而在该对象上对 setter 的调用就会调用重写的 setter，从而激活键值通知机制。此外，派生类还重写了 dealloc 方法来释放资源。</p>
+<ol>
+<li><p>重写新类的 class 方法<br>重写class方法是为了我们调用它的时候返回跟重写继承类之前同样的内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//打印如下内容：</span><br><span class="line">NSLog(@&quot;self-&gt;isa:%@&quot;,self-&gt;isa);</span><br><span class="line">NSLog(@&quot;self class:%@&quot;,[self class]);</span><br><span class="line"></span><br><span class="line">//在建立KVO监听前，打印结果为：</span><br><span class="line">self-&gt;isa:Person</span><br><span class="line">self class:Person</span><br><span class="line"></span><br><span class="line">//在建立KVO监听之后，打印结果为：</span><br><span class="line">self-&gt;isa:NSKVONotifying_Person</span><br><span class="line"></span><br><span class="line">self class:Person</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重写新类的 set 方法<br>新类会重写对应的set方法，是为了在set方法中增加另外两个方法的调用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)didChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
+<p>其中，<code>didChangeValueForKey</code>:方法负责调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">ofObject:(id)object</span><br><span class="line">change:(NSDictionary *)change</span><br><span class="line">context:(void *)context</span><br></pre></td></tr></table></figure></p>
+<p>如果没有 setter 方法，那么 -setValue:forKey 方法会直接调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)didChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
+<p>如果在没有使用键值编码且没有使用适当命名的访问起方法的时候，我们只需要显示调用上述两个方法，同样可以使用KVO！</p>
+<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// 一般如下使用</span><br><span class="line">// [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line">// 在 self 中监听 _baby 的 cry 属性变化</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld| NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionPrior context:@&quot;ssss&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">_baby.cry = @&quot;crying&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// 一般如下使用</span><br><span class="line">// [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line">// 在 self 中监听 _baby 的 cry 属性变化</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld| NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionPrior context:@&quot;ssss&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">_baby.cry = @&quot;crying&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>那么：程序启动时输出：<br><img src="https://upload-images.jianshu.io/upload_images/1120923-cce04359a1bbfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><br></p>
+<p>点击按钮后输出：<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5ded44b80985ff8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6aeaf4e75e531bd372f4a322860cbf07.png"></p>
+<h1 id="KVO与多线程"><a href="#KVO与多线程" class="headerlink" title="KVO与多线程"></a>KVO与多线程</h1><p>注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line">#import &quot;FBKVOController.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">FBKVOController *_observer;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// NSKeyValueObservingOptionNew : change 字典中包含 key 改变后的新值</span><br><span class="line">// NSKeyValueObservingOptionOld : change 字典中包含 key 改变前的旧值</span><br><span class="line">// NSKeyValueObservingOptionInitial : 在添加观察者的时候立即发送一个通知给观察者,并且是在注册观察者方法返回之前</span><br><span class="line">// NSKeyValueObservingOptionPrior : 如果指定，则在每次修改属性时，会在修改通知被发送之前预先发送一条通知给观察者，这与-willChangeValueForKey:被触发的时间是相对应的。这样，在每次修改属性时，实际上是会发送两条通知。</span><br><span class="line"></span><br><span class="line">// 1. 一般用法如下</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line"></span><br><span class="line">//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">//        [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew context:@&quot;ssss&quot;];</span><br><span class="line">//</span><br><span class="line">//    &#125;);</span><br><span class="line"></span><br><span class="line">// 2. 第三方库 FBKVOController 的用法</span><br><span class="line">_observer = [[FBKVOController alloc] initWithObserver:self];</span><br><span class="line">[_observer observe:_baby keyPath:@&quot;cry&quot; options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) &#123;</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;%@, %@&quot;, @&quot;FBKVOController&quot;, change[NSKeyValueChangeNewKey]);</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">//    _baby.cry = @&quot;crying&quot;;</span><br><span class="line"></span><br><span class="line">// 1. 注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">_baby.cry = @&quot;cry again&quot;;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
+<p>KVO 监听 NSMutableArray 的内容变化</p>
+<ol>
+<li>将数组封装到一个对象中</li>
+<li>给这个对象添加 KVO 监听</li>
+<li>使用  [self.arrayObject mutableArrayValueForKey:@”array”] 获取数组对象，对数组对象今天添加删除操作，只有这样触发的数组才会触发 kvo<br><img src="https://upload-images.jianshu.io/upload_images/1120923-22f9b36418f98970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="06f37246739a3b062139a12c5070e044.png"></li>
+</ol>
+<p>参考：<a href="http://www.cppblog.com/kesalin/archive/2012/11/17/kvo.html" target="_blank" rel="noopener">http://www.cppblog.com/kesalin/archive/2012/11/17/kvo.html</a><br><a href="http://ningandjiao.iteye.com/blog/2009729" target="_blank" rel="noopener">http://ningandjiao.iteye.com/blog/2009729</a><br><a href="http://www.bkjia.com/IOSjc/993206.html" target="_blank" rel="noopener">http://www.bkjia.com/IOSjc/993206.html</a><br><a href="http://blog.csdn.net/wzzvictory/article/details/9674431" target="_blank" rel="noopener">http://blog.csdn.net/wzzvictory/article/details/9674431</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/09/09/Hexo-GitHub博客搭建/" rel="next" title="Hexo GitHub博客搭建">
+                <i class="fa fa-chevron-left"></i> Hexo GitHub博客搭建
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/06/iOS编译ffmpeg/" rel="prev" title="iOS编译ffmpeg">
+                iOS编译ffmpeg <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="action456789" />
+            
+              <p class="site-author-name" itemprop="name">action456789</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS-中监听某个值的改变有哪些方法？"><span class="nav-number">1.</span> <span class="nav-text">iOS 中监听某个值的改变有哪些方法？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVO-是什么？"><span class="nav-number">2.</span> <span class="nav-text">KVO 是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVO-的用法"><span class="nav-number">3.</span> <span class="nav-text">KVO 的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVO-的实现原理"><span class="nav-number">4.</span> <span class="nav-text">KVO 的实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#例子"><span class="nav-number">5.</span> <span class="nav-text">例子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#KVO与多线程"><span class="nav-number">6.</span> <span class="nav-text">KVO与多线程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">action456789</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="组件化模块间通信方案1、公共模块下沉比如一些公共的基础UI组件应该互相独立，并且可以下沉为一个单独的层（比如通用业务层），供其他业务模块调用。 2、OpenURL统跳协议用一个url表示一个页面（Controller），或者UI控件，或者任意一个类的对象。 需要创建一个字典，key是url，value是相应的对象，这个字典由路由类去管理，典型的方案就是MGJRouter。  优点：能解决组件间的依">
+<meta name="keywords" content="iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="组件化模块间通信方案">
+<meta property="og:url" content="http://superkk.top/2018/08/22/组件化模块间通信方案/index.html">
+<meta property="og:site_name" content="爱工作·爱生活">
+<meta property="og:description" content="组件化模块间通信方案1、公共模块下沉比如一些公共的基础UI组件应该互相独立，并且可以下沉为一个单独的层（比如通用业务层），供其他业务模块调用。 2、OpenURL统跳协议用一个url表示一个页面（Controller），或者UI控件，或者任意一个类的对象。 需要创建一个字典，key是url，value是相应的对象，这个字典由路由类去管理，典型的方案就是MGJRouter。  优点：能解决组件间的依">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-05T08:59:21.909Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="组件化模块间通信方案">
+<meta name="twitter:description" content="组件化模块间通信方案1、公共模块下沉比如一些公共的基础UI组件应该互相独立，并且可以下沉为一个单独的层（比如通用业务层），供其他业务模块调用。 2、OpenURL统跳协议用一个url表示一个页面（Controller），或者UI控件，或者任意一个类的对象。 需要创建一个字典，key是url，value是相应的对象，这个字典由路由类去管理，典型的方案就是MGJRouter。  优点：能解决组件间的依">
+
+
+
+
+
+
+  <link rel="canonical" href="http://superkk.top/2018/08/22/组件化模块间通信方案/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>组件化模块间通信方案 | 爱工作·爱生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱工作·爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/08/22/组件化模块间通信方案/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">组件化模块间通信方案
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-22 01:12:20" itemprop="dateCreated datePublished" datetime="2018-08-22T01:12:20+08:00">2018-08-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="组件化模块间通信方案"><a href="#组件化模块间通信方案" class="headerlink" title="组件化模块间通信方案"></a>组件化模块间通信方案</h1><h3 id="1、公共模块下沉"><a href="#1、公共模块下沉" class="headerlink" title="1、公共模块下沉"></a>1、公共模块下沉</h3><p>比如一些公共的基础UI组件应该互相独立，并且可以下沉为一个单独的层（比如通用业务层），供其他业务模块调用。</p>
+<h3 id="2、OpenURL统跳协议"><a href="#2、OpenURL统跳协议" class="headerlink" title="2、OpenURL统跳协议"></a>2、<code>OpenURL统跳协议</code></h3><p>用一个url表示一个页面（Controller），或者UI控件，或者任意一个类的对象。</p>
+<p>需要创建一个字典，key是url，value是相应的对象，这个字典由路由类去管理，典型的方案就是<code>MGJRouter</code>。</p>
+<ul>
+<li><p>优点：能解决组件间的依赖，并且方案成熟，有很多知名公司都在用这种方案（蘑菇街）；</p>
+</li>
+<li><p>缺点：编译阶段无法发现潜在bug，并且需要去注册&amp;维护路由表。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 注册路由</span><br><span class="line">[[Router sharedInstance] registerURL:@&quot;myapp://good/detail&quot; with:^UIViewController *&#123;</span><br><span class="line">     return [GoodDetailViewController new];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">// 通过url获取</span><br><span class="line">UIViewController *vc = [[Router sharedInstance] openURL:@&quot;myapp://good/detail&quot;]</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.jianshu.com/p/2af9c063fd85" target="_blank" rel="noopener">参考</a></p>
+<h3 id="3、Target-Action-反射"><a href="#3、Target-Action-反射" class="headerlink" title="3、Target-Action(反射)"></a>3、<code>Target-Action</code>(反射)</h3><p>例如从A中push到BViewController，需要在AViewController类文件中import进BViewController，这样二者就会产生耦合<br>现在利用Target-Action机制，我们不再直接import进BViewController，而是利用<code>NSClassFromString(&lt;#NSString * _Nonnull aClassName#&gt;)</code>这个api将BViewController这个字符串反射成BViewController这个类，这样我们就可以根据反射后的类进行实例化，再调用实例化对象的各种方法。</p>
+<ul>
+<li>优点：相比于URL Router，Target-Action也不需要注册和内存占用。</li>
+<li>缺点：编译阶段无法发现潜在的BUG，而且，开发者所创建的类和定义的方法必须要遵守Target-Action的命名规则，调用者可能会因为硬编码问题导致调用失败。</li>
+</ul>
+<p>第三方框架有<code>CTMediator</code>和<code>BeeHive</code>在github</p>
+<h3 id="4、NSNotificationCenter"><a href="#4、NSNotificationCenter" class="headerlink" title="4、NSNotificationCenter"></a>4、<code>NSNotificationCenter</code></h3><ul>
+<li>优点：简单直接。</li>
+<li>缺点：遍地都是通知，如果同事间协调不好会使得代码很混乱。</li>
+</ul>
+<h3 id="5、依赖注入：推荐方法"><a href="#5、依赖注入：推荐方法" class="headerlink" title="5、依赖注入：推荐方法"></a>5、<code>依赖注入</code>：推荐方法</h3><p>比如业务C将自己注入中间层，业务A去中间层去获取依赖的方法和变量。</p>
+<ul>
+<li>实现方式：通过中间层协议实现<br>业务B遵从这个协议，实现协议的代理方法，返回与中间层商量好的一个实际对象。<br>业务A通过中间层的某个方法（与B商量），获取遵从了这个协议的实例B，将其当做一个遵从了这个协议的透明对象来使用。</li>
+<li><p>编程实现：具体运用了java的<code>面向接口编程`</code>Protocol - Class<code>，即iOS的</code>面向协议编程`</p>
+</li>
+<li><p>优点：<br>1、接口类似代码，可以非常灵活的定义函数和回调等。</p>
+</li>
+<li><p>缺点：<br>1、接口定义文件需要放在一个模块以供依赖，但是这个模块不会贡献代码，所以还好。<br>2、使用较为麻烦，每各调用都需要定义一个service，并实现, 对于一些具有普适性规律的场景不太合适，比如页面统一跳转</p>
+</li>
+<li><p>面向接口的调用会产生依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// A 模块</span><br><span class="line">- (void)getSomeDataFromB &#123;</span><br><span class="line">    B.getSomeData();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// B 模块</span><br><span class="line">- (void)getSomeData &#123;</span><br><span class="line">    return self.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例<br><code>ServiceBProtocol</code></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ServiceBProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getSomeDataFromServiceB</span><span class="params">()</span></span> -&gt; <span class="type">String</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>MiddleLayer</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MiddleLayer</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">findServiceB</span>() -&gt; <span class="title">ServiceBProtocol</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ServiceB</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ServiceB</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 模块B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServiceB</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> serviceB_Data = <span class="string">"ServiceB"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ServiceB</span>: <span class="title">ServiceBProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getSomeDataFromServiceB</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.serviceB_Data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>ServiceA</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模块A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServiceA</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getDataFromB</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="type">MiddleLayer</span>.findServiceB().getSomeDataFromServiceB())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/30/ReactiveCocoa冷热信号详解/" rel="next" title="ReactiveCocoa冷热信号详解">
+                <i class="fa fa-chevron-left"></i> ReactiveCocoa冷热信号详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="action456789" />
+            
+              <p class="site-author-name" itemprop="name">action456789</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#组件化模块间通信方案"><span class="nav-number">1.</span> <span class="nav-text">组件化模块间通信方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、公共模块下沉"><span class="nav-number">1.0.1.</span> <span class="nav-text">1、公共模块下沉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、OpenURL统跳协议"><span class="nav-number">1.0.2.</span> <span class="nav-text">2、OpenURL统跳协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Target-Action-反射"><span class="nav-number">1.0.3.</span> <span class="nav-text">3、Target-Action(反射)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、NSNotificationCenter"><span class="nav-number">1.0.4.</span> <span class="nav-text">4、NSNotificationCenter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、依赖注入：推荐方法"><span class="nav-number">1.0.5.</span> <span class="nav-text">5、依赖注入：推荐方法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">action456789</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

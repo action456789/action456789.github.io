@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[TOC] 简介函数响应式编程(Functional Reactive Programming:FRP)，ReactiveCocoa 版本 2.5 冷热信号 冷信号只有当你订阅的时候，它才会发布消息，一对一，当有不同的订阅者，消息是重新完整发送。  热信号尽管你并没有订阅事件，但是它会时刻推送，类似“直播”，错过了就不再处理。可以有多个订阅者，是一对多   RACSignal 与RACSubjec">
+<meta name="keywords" content="技术博客,随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactiveCocoa冷热信号详解">
+<meta property="og:url" content="http://superkk.top/2018/07/30/ReactiveCocoa冷热信号详解/index.html">
+<meta property="og:site_name" content="爱工作·爱生活">
+<meta property="og:description" content="[TOC] 简介函数响应式编程(Functional Reactive Programming:FRP)，ReactiveCocoa 版本 2.5 冷热信号 冷信号只有当你订阅的时候，它才会发布消息，一对一，当有不同的订阅者，消息是重新完整发送。  热信号尽管你并没有订阅事件，但是它会时刻推送，类似“直播”，错过了就不再处理。可以有多个订阅者，是一对多   RACSignal 与RACSubjec">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-cba016d495b9a1b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-5974af889c88a7da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-282c50256b5bae74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-419d5730a235a595.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-5e7083e9f1760611.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-465cde44e32e9612.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-85b4314b53586f26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-4ae4c9e7dbfebe09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-437a9f7928924eaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-e1f4373d8b49a171.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2019-08-05T08:59:21.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ReactiveCocoa冷热信号详解">
+<meta name="twitter:description" content="[TOC] 简介函数响应式编程(Functional Reactive Programming:FRP)，ReactiveCocoa 版本 2.5 冷热信号 冷信号只有当你订阅的时候，它才会发布消息，一对一，当有不同的订阅者，消息是重新完整发送。  热信号尽管你并没有订阅事件，但是它会时刻推送，类似“直播”，错过了就不再处理。可以有多个订阅者，是一对多   RACSignal 与RACSubjec">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1120923-cba016d495b9a1b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+
+
+
+  <link rel="canonical" href="http://superkk.top/2018/07/30/ReactiveCocoa冷热信号详解/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>ReactiveCocoa冷热信号详解 | 爱工作·爱生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱工作·爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/07/30/ReactiveCocoa冷热信号详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ReactiveCocoa冷热信号详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-07-30 20:08:40" itemprop="dateCreated datePublished" datetime="2018-07-30T20:08:40+08:00">2018-07-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>函数响应式编程(Functional Reactive Programming:FRP)，ReactiveCocoa 版本 2.5</p>
+<h1 id="冷热信号"><a href="#冷热信号" class="headerlink" title="冷热信号"></a>冷热信号</h1><ul>
+<li><p>冷信号<br>只有当你订阅的时候，它才会发布消息，<br>一对一，当有不同的订阅者，消息是重新完整发送。</p>
+</li>
+<li><p>热信号<br>尽管你并没有订阅事件，但是它会时刻推送，类似“直播”，错过了就不再处理。<br>可以有多个订阅者，是一对多</p>
+</li>
+</ul>
+<h1 id="RACSignal-与RACSubject-的区别"><a href="#RACSignal-与RACSubject-的区别" class="headerlink" title="RACSignal 与RACSubject 的区别"></a><code>RACSignal</code> 与<code>RACSubject</code> 的区别</h1><ul>
+<li><code>RACSignal</code>是冷信号</li>
+<li><code>RACSubject</code>是热信号</li>
+</ul>
+<p>如下图</p>
+<ul>
+<li><code>signal</code></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-cba016d495b9a1b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li><code>subject</code></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-5974af889c88a7da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li><code>replaySubject</code></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-282c50256b5bae74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<blockquote>
+<p>Subject可以附加行为，例如<code>RACReplaySubject</code>具备为未来订阅者缓冲事件的能力。（这一点与冷信号类似，即使是在数据发送之后才订阅的，依然会收到全部消息）</p>
+</blockquote>
+<h1 id="冷信号示例：延时订阅，依然能收到所有信号数据"><a href="#冷信号示例：延时订阅，依然能收到所有信号数据" class="headerlink" title="冷信号示例：延时订阅，依然能收到所有信号数据"></a>冷信号示例：延时订阅，依然能收到所有信号数据</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (void)test1 &#123;</span><br><span class="line">    RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        [subscriber sendNext:@1];</span><br><span class="line">        [subscriber sendNext:@2];</span><br><span class="line">        [subscriber sendNext:@3];</span><br><span class="line">        [subscriber sendCompleted];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;Signal was created.&quot;);</span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:0.1 schedule:^&#123;</span><br><span class="line">        [signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber1 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:1 schedule:^&#123;</span><br><span class="line">        [signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber2 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-419d5730a235a595.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="热信号示例：错过了订阅时机，就收不到信号数据，类似于直播"><a href="#热信号示例：错过了订阅时机，就收不到信号数据，类似于直播" class="headerlink" title="热信号示例：错过了订阅时机，就收不到信号数据，类似于直播"></a>热信号示例：错过了订阅时机，就收不到信号数据，类似于直播</h1><blockquote>
+<p>冷信号会收到全部的数据，即使是在数据发送之后才订阅的</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)test2 &#123;</span><br><span class="line">    RACMulticastConnection *connection = [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        [[RACScheduler mainThreadScheduler] afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@1];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        [[RACScheduler mainThreadScheduler] afterDelay:2 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@2];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        [[RACScheduler mainThreadScheduler] afterDelay:3 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@3];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        return nil;</span><br><span class="line">    &#125;] publish];</span><br><span class="line"></span><br><span class="line">    [connection connect];</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;Signal was created.&quot;);</span><br><span class="line"></span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:1.1 schedule:^&#123;</span><br><span class="line">        [connection.signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber1 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:2.1 schedule:^&#123;</span><br><span class="line">        [connection.signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber2 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-5e7083e9f1760611.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h1 id="SideEffect示例：多次订阅导致信号block多次执行"><a href="#SideEffect示例：多次订阅导致信号block多次执行" class="headerlink" title="SideEffect示例：多次订阅导致信号block多次执行"></a>SideEffect示例：多次订阅导致信号block多次执行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">- (void)test3 &#123;</span><br><span class="line">    // 多次订阅会多次执行</span><br><span class="line">    RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">        [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 【请求数据次数 +1】</span><br><span class="line">    [requestSignal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 【请求数据次数 +1】</span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 将信号转换为内容为2的信号</span><br><span class="line">    RACSignal *signal1 = [requestSignal flattenMap:^RACStream *(id value) &#123;</span><br><span class="line">        return [RACSignal return:@&quot;2&quot;];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 将signal1信号所有错误信息转换为字符串@&quot;Error&quot;</span><br><span class="line">    [signal1 catchTo:[RACSignal return:@&quot;Error&quot;]];</span><br><span class="line"></span><br><span class="line">    // 在没有获取值之前以字符串@&quot;Loading...&quot;占位</span><br><span class="line">    [signal1 startWith:@&quot;Loading...&quot;];</span><br><span class="line"></span><br><span class="line">    // 将信号进行绑定</span><br><span class="line">    // 【请求数据次数 +1】</span><br><span class="line">    RAC(self.acountField, text) = signal1;</span><br><span class="line"></span><br><span class="line">    // 订阅多个信号的任何错误，并且弹出UIAlertView</span><br><span class="line">    // 【请求数据次数 +2】</span><br><span class="line">    [[RACSignal merge:@[requestSignal, signal1]] subscribeError:^(NSError *error) &#123;</span><br><span class="line">        NSLog(@&quot;发生错误&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-465cde44e32e9612.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="解决方式一：使用-RACMulticastConnection把冷信号转化为热信号"><a href="#解决方式一：使用-RACMulticastConnection把冷信号转化为热信号" class="headerlink" title="解决方式一：使用 RACMulticastConnection把冷信号转化为热信号"></a>解决方式一：使用 <code>RACMulticastConnection</code>把冷信号转化为热信号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (void)test4 &#123;</span><br><span class="line">    RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">        [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    RACMulticastConnection *connection = [requestSignal multicast:[RACSubject subject]];</span><br><span class="line">//    RACMulticastConnection *connection = [requestSignal multicast:[RACReplaySubject subject]];</span><br><span class="line">    [connection connect];</span><br><span class="line"></span><br><span class="line">    [connection.signal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [connection.signal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [RACScheduler.mainThreadScheduler afterDelay:2 schedule:^&#123;</span><br><span class="line">        [connection.signal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">            NSLog(@&quot;订阅者3:%@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用RACSubject时"><a href="#使用RACSubject时" class="headerlink" title="使用RACSubject时"></a>使用<code>RACSubject</code>时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RACMulticastConnection *connection = [requestSignal multicast:[RACSubject subject]];</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-85b4314b53586f26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="使用RACReplaySubject时"><a href="#使用RACReplaySubject时" class="headerlink" title="使用RACReplaySubject时"></a>使用<code>RACReplaySubject</code>时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RACMulticastConnection *connection = [requestSignal multicast:[RACReplaySubject subject]];</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-4ae4c9e7dbfebe09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="解决方式二：使用-replayLazily把冷信号转化为热信号"><a href="#解决方式二：使用-replayLazily把冷信号转化为热信号" class="headerlink" title="解决方式二：使用 replayLazily把冷信号转化为热信号"></a>解决方式二：使用 <code>replayLazily</code>把冷信号转化为热信号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (void)test5 &#123;</span><br><span class="line">    RACSignal *requestSignal = [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">        [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        return nil;</span><br><span class="line"></span><br><span class="line">    &#125;] replayLazily]; // modify here!!</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [RACScheduler.mainThreadScheduler afterDelay:2 schedule:^&#123;</span><br><span class="line">        [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">            NSLog(@&quot;订阅者3:%@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-437a9f7928924eaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="使用RACCommand把冷信号转化为热信号"><a href="#使用RACCommand把冷信号转化为热信号" class="headerlink" title="使用RACCommand把冷信号转化为热信号"></a>使用<code>RACCommand</code>把冷信号转化为热信号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)test6 &#123;</span><br><span class="line">    RACCommand *requestCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) &#123;</span><br><span class="line">        return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">            NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">            [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">                [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">                [subscriber sendCompleted];</span><br><span class="line">            &#125;];</span><br><span class="line"></span><br><span class="line">            return nil;</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    RACSignal *requestSignal = [requestCommand execute:nil];</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [RACScheduler.mainThreadScheduler afterDelay:2 schedule:^&#123;</span><br><span class="line">        [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">            NSLog(@&quot;订阅者3:%@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-e1f4373d8b49a171.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>RACMulticastConnection</code>与<code>RACSubject</code>结合使用时是直播的热信号</p>
+<p><code>RACCommand</code>、<code>replayLazily</code>、<code>RACReplaySubject</code>都是类似于冷信号的情况，不管何时订阅，都会收到所有数据</p>
+<h1 id="ReactiveCocoa中潜在的内存泄漏与解决方案"><a href="#ReactiveCocoa中潜在的内存泄漏与解决方案" class="headerlink" title="ReactiveCocoa中潜在的内存泄漏与解决方案"></a>ReactiveCocoa中潜在的内存泄漏与解决方案</h1><ul>
+<li><p><code>RACObserve</code>中潜在使用了self，要注意循环引用</p>
+</li>
+<li><p><code>RACSubject</code>中如果没有调用<code>sendCompleted</code>，调用map等操作将造成内存泄漏（循环引用）。RACSignal不会有这个问题</p>
+</li>
+</ul>
+<p>代码参见<a href="http://fromwiz.com/share/s/3rEj7C20FAXK2jIwRi1uhc1v0WQKj83L7k142p7dil0ygtoZ" target="_blank" rel="noopener">https://github.com/action456789/ReactiveCocoaDemo</a></p>
+<p>参考：<a href="http://tech.meituan.com/tag/ReactiveCocoa" target="_blank" rel="noopener">http://tech.meituan.com/tag/ReactiveCocoa</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/" rel="next" title="UITableView的`beginUpdates`与`endUpdates`用法详解">
+                <i class="fa fa-chevron-left"></i> UITableView的`beginUpdates`与`endUpdates`用法详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/22/组件化模块间通信方案/" rel="prev" title="组件化模块间通信方案">
+                组件化模块间通信方案 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="action456789" />
+            
+              <p class="site-author-name" itemprop="name">action456789</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#冷热信号"><span class="nav-number">2.</span> <span class="nav-text">冷热信号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RACSignal-与RACSubject-的区别"><span class="nav-number">3.</span> <span class="nav-text">RACSignal 与RACSubject 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#冷信号示例：延时订阅，依然能收到所有信号数据"><span class="nav-number">4.</span> <span class="nav-text">冷信号示例：延时订阅，依然能收到所有信号数据</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#热信号示例：错过了订阅时机，就收不到信号数据，类似于直播"><span class="nav-number">5.</span> <span class="nav-text">热信号示例：错过了订阅时机，就收不到信号数据，类似于直播</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SideEffect示例：多次订阅导致信号block多次执行"><span class="nav-number">6.</span> <span class="nav-text">SideEffect示例：多次订阅导致信号block多次执行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方式一：使用-RACMulticastConnection把冷信号转化为热信号"><span class="nav-number">6.1.</span> <span class="nav-text">解决方式一：使用 RACMulticastConnection把冷信号转化为热信号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RACSubject时"><span class="nav-number">6.1.1.</span> <span class="nav-text">使用RACSubject时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用RACReplaySubject时"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用RACReplaySubject时</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方式二：使用-replayLazily把冷信号转化为热信号"><span class="nav-number">6.2.</span> <span class="nav-text">解决方式二：使用 replayLazily把冷信号转化为热信号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用RACCommand把冷信号转化为热信号"><span class="nav-number">6.3.</span> <span class="nav-text">使用RACCommand把冷信号转化为热信号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ReactiveCocoa中潜在的内存泄漏与解决方案"><span class="nav-number">7.</span> <span class="nav-text">ReactiveCocoa中潜在的内存泄漏与解决方案</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">action456789</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

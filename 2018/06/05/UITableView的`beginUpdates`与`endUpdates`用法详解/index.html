@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="[TOC] UITaUITableView的beginUpdates和endUpdates 这个方法用于在调用插入，删除，选择方法时，同时有动画效果。  用endUpdate能动画改变行高(触发heightForRowAtIndexPath回调)，而无需relaod这个cell。  使用场景一：点击cell，cell的高度就变高Cell点击方法执行 12[tableView beginUpdate">
+<meta name="keywords" content="技术博客,随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableView的`beginUpdates`与`endUpdates`用法详解">
+<meta property="og:url" content="http://superkk.top/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/index.html">
+<meta property="og:site_name" content="爱工作·爱生活">
+<meta property="og:description" content="[TOC] UITaUITableView的beginUpdates和endUpdates 这个方法用于在调用插入，删除，选择方法时，同时有动画效果。  用endUpdate能动画改变行高(触发heightForRowAtIndexPath回调)，而无需relaod这个cell。  使用场景一：点击cell，cell的高度就变高Cell点击方法执行 12[tableView beginUpdate">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-05T08:59:21.908Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableView的`beginUpdates`与`endUpdates`用法详解">
+<meta name="twitter:description" content="[TOC] UITaUITableView的beginUpdates和endUpdates 这个方法用于在调用插入，删除，选择方法时，同时有动画效果。  用endUpdate能动画改变行高(触发heightForRowAtIndexPath回调)，而无需relaod这个cell。  使用场景一：点击cell，cell的高度就变高Cell点击方法执行 12[tableView beginUpdate">
+
+
+
+
+
+
+  <link rel="canonical" href="http://superkk.top/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>UITableView的`beginUpdates`与`endUpdates`用法详解 | 爱工作·爱生活</title>
+  
+
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱工作·爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">UITableView的`beginUpdates`与`endUpdates`用法详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-06-05 02:05:12" itemprop="dateCreated datePublished" datetime="2018-06-05T02:05:12+08:00">2018-06-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<h1 id="UITaUITableView的beginUpdates和endUpdates"><a href="#UITaUITableView的beginUpdates和endUpdates" class="headerlink" title="UITaUITableView的beginUpdates和endUpdates"></a>UITaUITableView的<code>beginUpdates</code>和<code>endUpdates</code></h1><ol>
+<li>这个方法用于在调用插入，删除，选择方法时，同时有动画效果。 </li>
+<li>用endUpdate能动画改变行高(触发<code>heightForRowAtIndexPath</code>回调)，而无需relaod这个cell。</li>
+</ol>
+<h2 id="使用场景一：点击cell，cell的高度就变高"><a href="#使用场景一：点击cell，cell的高度就变高" class="headerlink" title="使用场景一：点击cell，cell的高度就变高"></a>使用场景一：点击cell，cell的高度就变高</h2><p>Cell点击方法执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[tableView beginUpdates];</span><br><span class="line">[tableView endUpdates];</span><br></pre></td></tr></table></figure>
+<p>这两句代码中间没有任何其他部分，但是会触发<code>heightForRowAtIndexPath</code>回调，从而修改cell的高度</p>
+<h2 id="使用场景二：有一个-TableView，现在我希望每按一次-update-按钮，就动态地在下方加两行。"><a href="#使用场景二：有一个-TableView，现在我希望每按一次-update-按钮，就动态地在下方加两行。" class="headerlink" title="使用场景二：有一个 TableView，现在我希望每按一次 update 按钮，就动态地在下方加两行。"></a>使用场景二：有一个 TableView，现在我希望每按一次 update 按钮，就动态地在下方加两行。</h2><ul>
+<li>方法一：简单粗暴的做法 ，更改数据源，然后刷新一下列表</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// tableData = [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;] </span><br><span class="line"></span><br><span class="line">@IBAction func update(_ sender: AnyObject) &#123; </span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;) </span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;) </span><br><span class="line">    tableView.reloadData() </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法二</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// tableData = [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span><br><span class="line"></span><br><span class="line">@IBAction func update(_ sender: AnyObject) &#123;</span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;)</span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;)</span><br><span class="line">    tableView.beginUpdates()</span><br><span class="line"></span><br><span class="line">    let indexPaths = [IndexPath(row: tableData.count-2, section: 0), IndexPath(row: tableData.count-1, section: 0)]</span><br><span class="line"></span><br><span class="line">    tableView.insertRows(at: indexPaths, with: UITableViewRowAnimation.automatic)</span><br><span class="line"></span><br><span class="line">    tableView.endUpdates()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里 beginUpdates 和 endUpdates 方法的作用是，将这两条语句之间的对 tableView 的 insert/delete 操作聚合起来，然后同时更新 UI。</p>
+<h1 id="动态改变tableHeaderView高度"><a href="#动态改变tableHeaderView高度" class="headerlink" title="动态改变tableHeaderView高度"></a>动态改变<code>tableHeaderView</code>高度</h1><p>view 作为 tableView 的 tableHeaderView，单纯的改变 view 的 frame 是无济于事的，tableView 不会时刻适应它的高度，</p>
+<p>所以，如何告诉tableView 它的 tableHeaderView 已经改变了？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">headerView.frame = newFrame;</span><br><span class="line">[self.tableView setTableHeaderView:headerView];</span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[self.tableView beginUpdates];</span><br><span class="line">[self.tableView setTableHeaderView:headerView];</span><br><span class="line">[self.tableView endUpdates];</span><br></pre></td></tr></table></figure>
+<h2 id="如何检测动画在UITableView-beginUpdates-endUpdates上结束"><a href="#如何检测动画在UITableView-beginUpdates-endUpdates上结束" class="headerlink" title="如何检测动画在UITableView beginUpdates / endUpdates上结束"></a>如何检测动画在UITableView beginUpdates / endUpdates上结束</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[CATransaction begin];</span><br><span class="line"></span><br><span class="line">[CATransaction setCompletionBlock:^&#123;</span><br><span class="line">    // animation has finished</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[tableView beginUpdates];</span><br><span class="line">// do some work</span><br><span class="line">[tableView endUpdates];</span><br><span class="line"></span><br><span class="line">[CATransaction commit];</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/21/RxSwift入门：基本概念/" rel="next" title="RxSwift入门：基本概念">
+                <i class="fa fa-chevron-left"></i> RxSwift入门：基本概念
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/30/ReactiveCocoa冷热信号详解/" rel="prev" title="ReactiveCocoa冷热信号详解">
+                ReactiveCocoa冷热信号详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="action456789" />
+            
+              <p class="site-author-name" itemprop="name">action456789</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#UITaUITableView的beginUpdates和endUpdates"><span class="nav-number">1.</span> <span class="nav-text">UITaUITableView的beginUpdates和endUpdates</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景一：点击cell，cell的高度就变高"><span class="nav-number">1.1.</span> <span class="nav-text">使用场景一：点击cell，cell的高度就变高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景二：有一个-TableView，现在我希望每按一次-update-按钮，就动态地在下方加两行。"><span class="nav-number">1.2.</span> <span class="nav-text">使用场景二：有一个 TableView，现在我希望每按一次 update 按钮，就动态地在下方加两行。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态改变tableHeaderView高度"><span class="nav-number">2.</span> <span class="nav-text">动态改变tableHeaderView高度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何检测动画在UITableView-beginUpdates-endUpdates上结束"><span class="nav-number">2.1.</span> <span class="nav-text">如何检测动画在UITableView beginUpdates / endUpdates上结束</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">action456789</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.2.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.2.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

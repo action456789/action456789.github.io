@@ -105,7 +105,7 @@
   <meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
 <meta property="og:title" content="爱工作·爱生活">
-<meta property="og:url" content="http://liumengxia.shop/page/2/index.html">
+<meta property="og:url" content="http://superkk.top/page/2/index.html">
 <meta property="og:site_name" content="爱工作·爱生活">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -116,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="http://liumengxia.shop/page/2/"/>
+  <link rel="canonical" href="http://superkk.top/page/2/"/>
 
 
 
@@ -301,7 +301,614 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2016/06/09/CocoaPods-管理私有库/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/10/09/使用WireShark-调试真机网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/10/09/使用WireShark-调试真机网络/" itemprop="url">
+                  使用WireShark 调试真机网络
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-10-09 15:09:37" itemprop="dateCreated datePublished" datetime="2016-10-09T15:09:37+08:00">2016-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 16:11:44" itemprop="dateModified" datetime="2018-05-09T16:11:44+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="使用WireShark-调试真机网络"><a href="#使用WireShark-调试真机网络" class="headerlink" title="使用WireShark 调试真机网络"></a>使用WireShark 调试真机网络</h1><p>需求：调试UIWebView加载缓慢问题</p>
+<ul>
+<li><ol>
+<li>获取iPhone的UDID<br><img src="https://upload-images.jianshu.io/upload_images/1120923-d7d6872480927c6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+</ol>
+</li>
+<li><p>2：根据获取的 UDID 创建一个虚拟的网卡<br><code>rvictl -s &lt;UDID&gt;</code><br><img src="https://upload-images.jianshu.io/upload_images/1120923-f7f78d28cb94eda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<p>通过 <code>ifconfig</code> 可以看到多了一个 <code>rvi0</code>接口<br>通过 <code>rvictl -l</code> 命令可以列出所有挂接的虚拟接口</p>
+<ul>
+<li>3: 在 Wireshark 首页选择 rvi0，使用默认的 Capture Options 即可开始对 iPhone 进行抓包。<br><img src="https://upload-images.jianshu.io/upload_images/1120923-602c6eb7b8e0f13c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+</ul>
+<p>其中 iPhone 手机连接 WiFi 动态获取的 IP 地址为 192.168.100.1。</p>
+<blockquote>
+<p>黑色的内容表示遇到错误，需要重点关注<br>关闭wifi，可以抓取移动网络数据包</p>
+</blockquote>
+<p>-4 ： 使用<code>rvictl  -x</code>命令删除虚拟接口, 使用 iPhone 的 UDID 作为参数。</p>
+<h1 id="WireShark-抓包技巧"><a href="#WireShark-抓包技巧" class="headerlink" title="WireShark 抓包技巧"></a>WireShark 抓包技巧</h1><ul>
+<li>第一步：找到请求网址的 IP 地址<br>方法一：用ping命令得到对应的IP地址（可能不对，此时要用方法二）<br><img src="https://upload-images.jianshu.io/upload_images/1120923-4ff29746a38a13a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
+</ul>
+<p>方法二：使用DNS包来确定IP地址</p>
+<blockquote>
+<p>注意手机上 DNS 解析的结果并不总是和电脑上的解析结果一致。这种情况下我们可以通过查看 DNS 数据包来确定<br>DNS 是基于 UDP 的协议，不会有 TCP 重传</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-368232f0c1e87923.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<ul>
+<li><p>第二步：过滤 IP 地址<br><img src="https://upload-images.jianshu.io/upload_images/1120923-78b3a639da943708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+<li><p>第三步：确定端口号<br><img src="https://upload-images.jianshu.io/upload_images/1120923-730d2741f957db51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+</li>
+</ul>
+<p>注意红框中的 <strong>SourcePort</strong>，这是客户端端口。我们知道 HTTP 支持并发请求，不同的并发请求肯定是占用不同的端口。所以在图中看到的上下两个数据包，并非一定是请求与响应的关系，他们可能属于两个不同的端口，彼此之间毫无关系，只是恰好在时间上最接近而已。</p>
+<blockquote>
+<p>如果只想显示某个端口的数据，可以使用:</p>
+</blockquote>
+<p><code>ip.addr == 220.194.203.68 and tcp.dstport == 52914</code></p>
+<blockquote>
+<p>如果只想看 HTTP 协议的 GET 请求与响应，可以使用 </p>
+</blockquote>
+<p><code></code>ip.addr == 220.194.203.68 and (http.request.method == “GET” || http.response.code == 200)<code></code>来过滤。</p>
+<blockquote>
+<p>如果想看丢包方面的数据，可以用 </p>
+</blockquote>
+<p><code>ip.addr == 220.194.203.68 and (tcp.analysis.fast_retransmission || tcp.analysis.retransmission)</code></p>
+<p><code># 参考</code></p>
+<p><a href="http://ios.jobbole.com/93159/" target="_blank" rel="noopener">http://ios.jobbole.com/93159/</a></p>
+<p><a href="http://blog.csdn.net/phunxm/article/details/38590561" target="_blank" rel="noopener">http://blog.csdn.net/phunxm/article/details/38590561</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/08/12/《Effective-Objective-C-2-0》读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/12/《Effective-Objective-C-2-0》读书笔记/" itemprop="url">
+                  《Effective Objective-C 2.0》读书笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-08-12 23:05:51" itemprop="dateCreated datePublished" datetime="2016-08-12T23:05:51+08:00">2016-08-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 18:06:26" itemprop="dateModified" datetime="2018-05-09T18:06:26+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="多用类型常量，少用-define"><a href="#多用类型常量，少用-define" class="headerlink" title="多用类型常量，少用 #define"></a>多用类型常量，少用 #define</h1><ol>
+<li>对于局部常量(.m文件中)，</li>
+</ol>
+<ul>
+<li>使用 static 声明表明变量只在本文件中可见，所以无需前缀</li>
+<li>同时使用 static const 关键字与#define 效果相同，好处在于带有类型信息。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static const CGFloat kTopViewHeight = 40;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="2">
+<li>对于全局常量</li>
+</ol>
+<ul>
+<li>由于全局使用，使用类名做前缀</li>
+<li><p>在 .h  文件中使用 extern 声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern NSString * const KKSlideTabBarBgColor;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 .m 文件中定义</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString * const KKSlideTabBarBgColor = @&quot;name&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="NS-ENUM-与-NS-OPTIONS"><a href="#NS-ENUM-与-NS-OPTIONS" class="headerlink" title="NS_ENUM 与 NS_OPTIONS"></a>NS_ENUM 与 NS_OPTIONS</h1><ul>
+<li>使用 <code>NS_ENUM</code> 和 <code>NS_OPTIONS</code> 可以指定底层数据类型，而且可以保证系统兼容</li>
+<li>当多种状态可以互相组合时，使用 <code>NS_OPTIONS</code>，否则使用 <code>NS_ENUM</code></li>
+<li>命名规则：前缀+状态</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUInteger, GDFConnectionState) &#123;</span><br><span class="line">GDFConnectionStateDisconnected,</span><br><span class="line">GDFConnectionStateConnecting,</span><br><span class="line">GDFConnectionStateConnected,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">GDFConnectionStateDisconnected,</span><br><span class="line">GDFConnectionStateConnecting,</span><br><span class="line">GDFConnectionStateConnected,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">typedef NS_OPTIONS(NSUInteger, GDFDirection) &#123;</span><br><span class="line">GDFDirectionUp    = 1 &lt;&lt; 0,</span><br><span class="line">GDFDirectionDown  = 1 &lt;&lt; 1,</span><br><span class="line">GDFDirectionLeft  = 1 &lt;&lt; 2,</span><br><span class="line">GDFDirectionRight = 1 &lt;&lt; 3,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="消息转发-message-forwarding"><a href="#消息转发-message-forwarding" class="headerlink" title="消息转发 message forwarding"></a>消息转发 message forwarding</h1><p><img src="https://upload-images.jianshu.io/upload_images/1120923-6a0d3c614ab51b8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e28856e7825cc2b7113288d11b2f1be6.png"></p>
+<h1 id="动态方法解析-resolve-method"><a href="#动态方法解析-resolve-method" class="headerlink" title="动态方法解析 resolve method"></a>动态方法解析 resolve method</h1><ul>
+<li>动态方法解析是消息转发的第一步，在这里处理，效率最高<br><code>@dynamic</code> 属性   使编译器不自动生成实例变量及存储方法<br>调用的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)selector</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>代码参见：Runtime.md 动态方法解析 resolve method</p>
+<h1 id="方法调配-method-swizzling"><a href="#方法调配-method-swizzling" class="headerlink" title="方法调配 method swizzling"></a>方法调配 method swizzling</h1><ol>
+<li><p>作用1：在运行死交换两个方法的实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 根据方法名找到方法的实现</span><br><span class="line">class_getInstanceMethod(__unsafe_unretained Class cls, SEL name)</span><br><span class="line">// 交换两个方法的实现</span><br><span class="line">method_exchangeImplementations(Method m1, Method m2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>作用2：为既有的方法实现添加新功能——调试黑盒方法，为完全不知道具体实现的方法添加日志功能<br><img src="https://upload-images.jianshu.io/upload_images/1120923-13947b19a51404ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fed427a97a343ee16f2c5edc37065689.png"></p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@implementation NSString (EOC)</span><br><span class="line"></span><br><span class="line">+ (void)load &#123;</span><br><span class="line">Method originalMethod = class_getInstanceMethod([NSString class],</span><br><span class="line">@selector(lowercaseString));</span><br><span class="line">Method swappedMethod = class_getInstanceMethod([NSString class],</span><br><span class="line">@selector(eoc_myLowercaseString));</span><br><span class="line">method_exchangeImplementations(originalMethod, swappedMethod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)eoc_myLowercaseString &#123;</span><br><span class="line">NSString *lowercase = [self eoc_myLowercaseString];</span><br><span class="line">NSLog(@&quot;%@ =&gt; %@&quot;, self, lowercase);</span><br><span class="line">return lowercase;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 对象结构体</span><br><span class="line">// isa 指针指向类对象</span><br><span class="line">struct objc_object &#123;</span><br><span class="line">Class isa;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 类结构体</span><br><span class="line">// 1. 这个结构存放类的元数据，实例中的方法，变量等信息就存储在类对象中</span><br><span class="line">// 2. isa 指针指向元类(metaclass)，元类描述类对象本身所具有的元数据，类方法就存储在元类中</span><br><span class="line">// 3. 每个类只有一个类对象，每个类对象只有一个元类</span><br><span class="line">typedef struct objc_class *Class;</span><br><span class="line">struct objc_class &#123;</span><br><span class="line">Class isa;</span><br><span class="line">Class super_class;</span><br><span class="line">const char *name;</span><br><span class="line">long version;</span><br><span class="line">long info;</span><br><span class="line">long instance_size;</span><br><span class="line">struct objc_ivar_list *ivars;</span><br><span class="line">struct objc_method_list **methodLists;</span><br><span class="line">struct objc_cache *cache;</span><br><span class="line">struct objc_protocol_list *protocols;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/1120923-9a23d372be25f7a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="f81c1ab1af0d8cee47e96db2568859d0.png"></p>
+<h1 id="前缀"><a href="#前缀" class="headerlink" title="前缀"></a>前缀</h1><ol>
+<li>苹果保留了两字符前缀，我们应该使用三字符前缀</li>
+<li>C函数名应该加上前缀</li>
+<li>头文件中的全局变量需要加上前缀</li>
+<li>为私有方法名添加前缀（例如p_），用于区分哪些方法是私有的，哪些是公有的，私有方法可以随意改动，公有方法则要三思而后行。</li>
+<li>为第三方类添加分类时，分类中的方法要增加前缀，可以避免覆盖原有方法。</li>
+</ol>
+<h1 id="使用段位缓存代理能否响应某个方法"><a href="#使用段位缓存代理能否响应某个方法" class="headerlink" title="使用段位缓存代理能否响应某个方法"></a>使用段位缓存代理能否响应某个方法</h1><ul>
+<li><p>段位：结构体可以设置其成员所占的二进制位数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct &#123;</span><br><span class="line">unsigned int fieldA : 8; // fieldA 占 8 个二进制位，即 0 ~ 255</span><br><span class="line">unsigned int fieldB : 4;</span><br><span class="line">unsigned int fieldC : 2;</span><br><span class="line">unsigned int fieldD : 1;&#125;_delegateFlag;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@protocol KKSlideTabBarViewDelegate &lt;NSObject&gt;</span><br><span class="line">@optional;</span><br><span class="line">- (void)slideTabBarView:(KKSlideTabBarView *)tabBar pageChangedFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;</span><br><span class="line">- (void)slideTabBarView:(KKSlideTabBarView *)tabBar itemMoreClicked:(UIButton *)itemMore;</span><br><span class="line">@end</span><br><span class="line">@interface KKSlideTabBarView : UIView</span><br><span class="line">@property (nonatomic,weak) id &lt;KKSlideTabBarViewDelegate&gt; delegate;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@implementation KKSlideTabBarView &#123;   </span><br><span class="line">struct &#123;</span><br><span class="line">unsigned int didPageChangedHandle    : 1;</span><br><span class="line">unsigned int didItemMoreClickdHandle : 1;</span><br><span class="line">&#125;_delegateFlags;</span><br><span class="line">&#125;</span><br><span class="line">- (void)setDelegate:(id&lt;KKSlideTabBarViewDelegate&gt;)delegate &#123;</span><br><span class="line">_delegate = delegate;</span><br><span class="line">_delegateFlags.didPageChangedHandle = [self.delegate respondsToSelector:@selector(slideTabBarView:pageChangedFromIndex:toIndex:)];</span><br><span class="line">_delegateFlags.didItemMoreClickdHandle = [self.delegate respondsToSelector:@selector(itemMoreClicked:)];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)itemMoreClicked:(UIButton *)sender</span><br><span class="line">&#123;</span><br><span class="line">if (_delegateFlags.didItemMoreClickdHandle) &#123;</span><br><span class="line">[self.delegate slideTabBarView:self itemMoreClicked:sender];</span><br><span class="line">&#125;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="NSOperation-与-GCD-优缺点"><a href="#NSOperation-与-GCD-优缺点" class="headerlink" title="NSOperation 与  GCD 优缺点"></a>NSOperation 与  GCD 优缺点</h1><ul>
+<li>GCD 优点：纯 C api，更加轻量级。而operation 是对象，更加重量级</li>
+<li>NSOperation 优点：</li>
+</ul>
+<ol>
+<li>操作加入队列后可以取消（已经启动的任务无法取消）</li>
+<li>可以自动操作之间的依赖关系</li>
+<li>可以使用 KVO 监控 NSOperation 对象的属性，比如通过 isCancelled 判断任务是否取消， isFinished 属性判断任务是否完成</li>
+<li>可以指定每个操作的优先级，而 GCD 只能指定队列的优先级</li>
+<li>可以自定义 operation 对象</li>
+</ol>
+<h1 id="使用-NSCache-和-NSPurgeableData-缓存数据"><a href="#使用-NSCache-和-NSPurgeableData-缓存数据" class="headerlink" title="使用 NSCache 和 NSPurgeableData 缓存数据"></a>使用 NSCache 和 NSPurgeableData 缓存数据</h1><ul>
+<li>只有费时操作才值得放入缓存，比如需要从网络获取的数据、从磁盘读取的数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">@interface KKSlideTabBarViewController ()</span><br><span class="line">&#123;</span><br><span class="line">NSCache *_cache;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">_cache = [NSCache new];</span><br><span class="line">_cache.countLimit = 100;</span><br><span class="line">_cache.totalCostLimit = 5 * 1024 * 1024;</span><br><span class="line"></span><br><span class="line">NSPurgeableData *cacheData = [_cacheobjectForKey:@&quot;url...&quot;];</span><br><span class="line">if (cacheData) &#123;</span><br><span class="line">// stop the data being purged</span><br><span class="line">[cacheData beginContentAccess];</span><br><span class="line"></span><br><span class="line">// 使用数据</span><br><span class="line">// ......</span><br><span class="line"></span><br><span class="line">// Mark that the data may be purged again</span><br><span class="line">[cacheData endContentAccess];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSData *data = [NSData dataWithContentsOfURL:@&quot;xxx&quot;];</span><br><span class="line">NSPurgeableData *purgeableData = [NSPurgeableData dataWithData:data];</span><br><span class="line">[_cache setObject:purgeableData</span><br><span class="line">forKey:@&quot;url...&quot;</span><br><span class="line">cost:data.length];</span><br><span class="line"></span><br><span class="line">// With access already maked</span><br><span class="line"></span><br><span class="line">// user data</span><br><span class="line">// .....</span><br><span class="line"></span><br><span class="line">// Mark that the data may be purged now</span><br><span class="line">[purgeableData endContentAccess];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="精简-load-与-initialize-方法"><a href="#精简-load-与-initialize-方法" class="headerlink" title="精简 + load 与 + initialize 方法"></a>精简 + load 与 + initialize 方法</h1><p>它们都是在类载入系统时由运行时系统调用，不能手动调用。</p>
+<p><code>+ load</code> 方法:<br>在类加载时调用。<br>系统会先调用父类的 load 再调用子类的 load，先调用类本身 load，再调用 categery load。<br>在 load 方法中，运行时系统处于脆弱状态，不能确定其他类是否加载完毕。不能在 load 方法中使用其他类对象，因为无法知道这个类是否加载了。<br><code>+ initialize</code> 方法<br><code>+ initialize</code> 方法是惰性加载，使用到类时才会调用。<br><code>+ initialize</code> 方法调用时，系统处于正常状态，可以在 + initialize 方法中使用其他类对象。<br><code>+ initialize</code> 方法一定会在线程安全的环境中执行，那么执行 + initialize 方法时会阻塞其他线程<br>如果子类没有实现 + initialize 方法，而父类实现了，那么会调用夫类的。所以应该这么实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (void)initialize</span><br><span class="line">&#123;</span><br><span class="line">if (self == [KKSlideTabBarView class]) &#123;</span><br><span class="line">// 只有当 KKSlideTabBarView 类载入系统时才执行这里的代码</span><br><span class="line">// 不然的话 KKSlideTabBarView 的父类载入系统也会调用 initialize</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/08/02/GCD用法全解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/08/02/GCD用法全解/" itemprop="url">
+                  GCD用法全解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2016-08-02 17:16:17" itemprop="dateCreated datePublished" datetime="2016-08-02T17:16:17+08:00">2016-08-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-05-09 17:45:41" itemprop="dateModified" datetime="2018-05-09T17:45:41+08:00">2018-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="dispatch-time与dispatch-walltime的区别"><a href="#dispatch-time与dispatch-walltime的区别" class="headerlink" title="dispatch_time与dispatch_walltime的区别"></a><code>dispatch_time</code>与<code>dispatch_walltime</code>的区别</h1><p>所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。<br>当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。<br>定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时不会继续。</p>
+<p>如果你使用 dispatch_walltime 函数来设置定时器dispatch source，则定时器会根据挂钟时间来跟踪，<br>这种定时器比较适合触发间隔相对比较大的场合，可以防止定时器触发间隔出现太大的误差。</p>
+<p>区别：</p>
+<ol>
+<li><p><code>dispatch_time_t</code>类型的时间我们可以通过<code>dispatch_time</code>来创建，也可以通过<code>dispatch_walltime</code>来创建。<br><code>dispatch_time</code>创建的时间多以第一个参数为参照物，之后过多久执行任务。<br><code>dispatch_walltime</code>多用于创建绝对时间，如某年某月某日某时某分执行某任务，比如闹钟的设置。</p>
+</li>
+<li><p><code>dispatch_time</code>在计算机睡眠时会停止<br><code>dispatch_walltime</code>不会</p>
+</li>
+</ol>
+<p>例如以下情景</p>
+<p>情景：希望一小时后执行任务，5分钟后计算机进入睡眠<br>操作：50分钟后唤醒计算机<br>实际：使用<code>dispatch_walltime</code>时: 5分钟后开始执行<br>使用<code>dispatch_time</code>: 55分钟后开始执行</p>
+<h1 id="GCD-定时器的使用"><a href="#GCD-定时器的使用" class="headerlink" title="GCD 定时器的使用"></a>GCD 定时器的使用</h1><h2 id="dispatch-source-set-timer-最后一个参数-leeway-详解"><a href="#dispatch-source-set-timer-最后一个参数-leeway-详解" class="headerlink" title="dispatch_source_set_timer 最后一个参数 leeway 详解"></a><code>dispatch_source_set_timer</code> 最后一个参数 <code>leeway</code> 详解</h2><ul>
+<li><code>leeway</code> 这个参数告诉系统我们需要计时器触发的精准程度。所有的计时器都不会保证100%精准，这个参数用来告诉系统你希望系统保证精准的努力程度。如果你希望一个计时器没五秒触发一次，并且越准越好，那么你传递0为参数。</li>
+<li>如果是一个周期性任务，比如检查email，那么你会希望每十分钟检查一次，但是不用那么精准。所以你可以传入60，告诉系统60秒的误差是可接受的。  </li>
+<li>这样有什么意义呢？——降低资源消耗。如果系统可以让cpu休息足够长的时间，并在每次醒来的时候执行一个任务集合，而不是不断的醒来睡去以执行任务，那么系统会更高效。如果传入一个比较大的leeway给你的计时器，意味着你允许系统拖延你的计时器来将计时器任务与其他任务联合起来一起执行。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">    NSTimeInterval interval = 1.0f;</span><br><span class="line">    NSTimeInterval delay = 1.0f;</span><br><span class="line">    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, mainQueue);</span><br><span class="line">    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, delay), interval * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;%s&quot;, __func__);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    dispatch_source_cancel(timer);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="测试代码执行效率"><a href="#测试代码执行效率" class="headerlink" title="测试代码执行效率"></a>测试代码执行效率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func testPerformance(closure: ()-&gt;()) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    closure()</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func testFunctionPerformance(selector: Selector) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    self.performSelector(selector)</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-加锁"><a href="#GCD-加锁" class="headerlink" title="GCD 加锁"></a>GCD 加锁</h1><h2 id="GCD-信号量的使用"><a href="#GCD-信号量的使用" class="headerlink" title="GCD 信号量的使用"></a>GCD 信号量的使用</h2><ol>
+<li>设置信号量的个数为1时，可以当锁来使用</li>
+<li>设置信号量的个数与CPU个数相近时（比如CPU个数 * 2），可以用来限制线程个数。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">var semaphore: dispatch_semaphore_t = dispatch_semaphore_create(1)</span><br><span class="line"></span><br><span class="line">//MARK: ------------------- 使用信号量进行加锁操作 --------------------</span><br><span class="line">func test_semaphore() &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_first()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_second()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_third()</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_first() &#123;</span><br><span class="line">    // p操作，进入临界区      dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line"></span><br><span class="line">    print(&quot;First tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;First task is done&quot;)</span><br><span class="line"></span><br><span class="line">    // v操作，离开临界区      dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_second() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Second tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Second task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_third() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Third tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Thrid task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用信号量控制多线程中代码执行顺序"><a href="#使用信号量控制多线程中代码执行顺序" class="headerlink" title="使用信号量控制多线程中代码执行顺序"></a>使用信号量控制多线程中代码执行顺序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)test_dispatch_semaphore_t_0 &#123;</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        [self method1];</span><br><span class="line">        sleep(10);</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">    [self method2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_after 的使用-------------------- func dispatchAfter() &#123;</span><br><span class="line">    let delay: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))</span><br><span class="line">    dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  print(&quot;viewDidLoad()&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># GCD 多任务异步执行与 `dispatch_notify` 的使用</span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行 与 dispatch_group_notify 的使用 -------------------- func dispatchGroup() &#123;</span><br><span class="line">    let group: dispatch_group_t = dispatch_group_create()</span><br><span class="line">    let globalQueueDefault: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 串行队列按照先进先出的顺序执行（FIFO）      </span><br><span class="line">    let userQueueSerie: dispatch_queue_t = dispatch_queue_create(&quot;com.dispatchGroup.demo&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line"></span><br><span class="line">    // 下载任务1     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task1 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务2     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task2 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务3     </span><br><span class="line">    dispatch_group_async(group, globalQueueDefault)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task3 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 监听任务组事件的执行完毕      </span><br><span class="line">    dispatch_group_notify(group, dispatch_get_main_queue())&#123;</span><br><span class="line">        NSLog(&quot;Group tasks are done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置等待时间(即设置超时)，在等待时间结束后，如果还没有执行完任务组，则返回。返回0代表执行成功，非0则执行失败      </span><br><span class="line">    // 等待直到完成      </span><br><span class="line">    let result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    if (result != 0) &#123;</span><br><span class="line">        print(&quot;Now viewDidLoad is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># dispatch_group_apply</span><br><span class="line"></span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行/同步执行 与 dispatch_apply 的使用 -------------------- </span><br><span class="line">func dispatchApply() &#123;</span><br><span class="line">    let iterations: Int = 20 // 迭代次数      </span><br><span class="line">    let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 同步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue) &#123; (index: Int) -&gt; </span><br><span class="line">            Void in  print(index, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    // 异步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue, &#123; (index: Int) -&gt; Void in  </span><br><span class="line">            dispatch_async(globalQueue, &#123; () -&gt; Void in </span><br><span class="line">                 print(index, NSThread.currentThread())</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        for i:Int in 1...iterations &#123;</span><br><span class="line">            print(i, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="dispatch-group-enter-dispatch-group-leave"><a href="#dispatch-group-enter-dispatch-group-leave" class="headerlink" title="dispatch_group_enter / dispatch_group_leave"></a><code>dispatch_group_enter</code> / <code>dispatch_group_leave</code></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_group_enter / dispatch_group_leave -------------------</span><br><span class="line">// 将任务组中的任务未执行完毕的任务数目加减1，这种方式不使用 dispatch_group_async 来提交任务， </span><br><span class="line">// 注意：这两个函数要配合使用，有enter要有leave，这样才能保证功能完整实现。    </span><br><span class="line">// 串行执行三个任务  </span><br><span class="line">func dispatchGroup_EnterAndLeave_Seriel() &#123;</span><br><span class="line">    let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">    for index:UInt32 in 1...3&#123;</span><br><span class="line">        dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">        manualDownLoad(index)&#123;</span><br><span class="line">            print(&quot;Task \(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, block:()-&gt;())&#123;</span><br><span class="line">        print(&quot;Downloading task &quot;, num)</span><br><span class="line">        sleep(num)</span><br><span class="line">        block()</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    // 并行执行三个任务  </span><br><span class="line">    func dispatchGroup_EnterAndLeave_Concurrent() &#123;</span><br><span class="line">        let group = dispatch_group_create()//创建group    </span><br><span class="line">        let globalQueueDefault = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</span><br><span class="line"></span><br><span class="line">        for index:UInt32 in 1...3 &#123;</span><br><span class="line">            dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">            manualDownLoad(index, queue: globalQueueDefault)&#123;</span><br><span class="line">            NSLog(&quot;Task\(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, queue:dispatch_queue_t, block:()-&gt;())&#123;</span><br><span class="line">        dispatch_async(queue)&#123;</span><br><span class="line">            NSLog(&quot;Downloading task\(num)&quot;)</span><br><span class="line">            sleep(num)</span><br><span class="line">            block()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="GCD-实战：资源竞争"><a href="#GCD-实战：资源竞争" class="headerlink" title="GCD 实战：资源竞争"></a>GCD 实战：资源竞争</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- 多线程测试：资源竞争 --------------------</span><br><span class="line"> func test_mutiThread() &#123;</span><br><span class="line">        let userSerialQueue = dispatch_queue_create(&quot;com.test.mutiThread.userSerialQueue&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line">        let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line">        let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">        // 当 &quot;Processing data&quot;（CUP处理速度） 速度远小于 &quot;Reading file&quot;（磁盘处理速度） 速度时，线程数占用过多          // 使用信号量来限制同时执行的任务的数量         </span><br><span class="line">        let cupCount = NSProcessInfo.processInfo().processorCount // CPU 数量</span><br><span class="line">        let jobSemaphore = dispatch_semaphore_create(cupCount * 2) // 限制线程个数</span><br><span class="line"></span><br><span class="line">        for i:Int in 1...50 &#123;</span><br><span class="line">            dispatch_semaphore_wait(jobSemaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">            dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;Reading file&quot;, i, NSThread.currentThread())</span><br><span class="line">                // sleep(2)                </span><br><span class="line">                dispatch_group_async(group, globalQueue, &#123; () -&gt; Void in  print(&quot;  Processing data&quot;, i, NSThread.currentThread())</span><br><span class="line">                    sleep(1)</span><br><span class="line"></span><br><span class="line">                    dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;    writing file&quot;, i, NSThread.currentThread())</span><br><span class="line">                        // sleep(2)                        </span><br><span class="line">                        dispatch_semaphore_signal(jobSemaphore);</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.jianshu.com/p/6670cdbb1ebb" target="_blank" rel="noopener">http://www.jianshu.com/p/6670cdbb1ebb</a><br><a href="http://www.dreamingwish.com/article/gcd-practice-io-race.html" target="_blank" rel="noopener">http://www.dreamingwish.com/article/gcd-practice-io-race.html</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/06/09/CocoaPods-管理私有库/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -485,7 +1092,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2016/04/12/如何更新React-Native/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/04/12/如何更新React-Native/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -668,7 +1275,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2016/01/09/消除编译器警告/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/01/09/消除编译器警告/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -831,7 +1438,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2015/11/06/iOS编译ffmpeg/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/11/06/iOS编译ffmpeg/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -1006,7 +1613,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2015/10/09/KVO深入解析/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/10/24/KVO深入解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -1025,7 +1632,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/10/09/KVO深入解析/" itemprop="url">
+                <a class="post-title-link" href="/2015/10/24/KVO深入解析/" itemprop="url">
                   KVO深入解析
                 </a>
               
@@ -1052,7 +1659,7 @@
                 
               
 
-              <time title="Created: 2015-10-09 17:18:51" itemprop="dateCreated datePublished" datetime="2015-10-09T17:18:51+08:00">2015-10-09</time>
+              <time title="Created: 2015-10-24 17:18:51" itemprop="dateCreated datePublished" datetime="2015-10-24T17:18:51+08:00">2015-10-24</time>
             
 
             
@@ -1069,7 +1676,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-09 21:08:16" itemprop="dateModified" datetime="2018-05-09T21:08:16+08:00">2018-05-09</time>
+                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
               
             
           </span>
@@ -1208,7 +1815,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2015/09/09/Hexo-GitHub博客搭建/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/09/09/Hexo-GitHub博客搭建/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -1421,7 +2028,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2015/08/12/iOS中的时间/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/08/13/iOS中的时间/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -1440,7 +2047,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2015/08/12/iOS中的时间/" itemprop="url">
+                <a class="post-title-link" href="/2015/08/13/iOS中的时间/" itemprop="url">
                   iOS中的时间
                 </a>
               
@@ -1467,7 +2074,7 @@
                 
               
 
-              <time title="Created: 2015-08-12 22:10:18" itemprop="dateCreated datePublished" datetime="2015-08-12T22:10:18+08:00">2015-08-12</time>
+              <time title="Created: 2015-08-13 22:10:18" itemprop="dateCreated datePublished" datetime="2015-08-13T22:10:18+08:00">2015-08-13</time>
             
 
             
@@ -1484,7 +2091,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-09 16:12:16" itemprop="dateModified" datetime="2018-05-09T16:12:16+08:00">2018-05-09</time>
+                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
               
             
           </span>
@@ -1589,753 +2196,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2015/05/09/《黑客与画家》摘录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/05/09/《黑客与画家》摘录/" itemprop="url">
-                  《黑客与画家》摘录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2015-05-09 18:40:00" itemprop="dateCreated datePublished" datetime="2015-05-09T18:40:00+08:00">2015-05-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 20:11:19" itemprop="dateModified" datetime="2018-05-09T20:11:19+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li><p>“表面上这是一个机器的时代，但是实际上机器的设计者决定了我们的时代。程序员的审美决定了你看到的软件界面，程序员的爱好决定了你有什么样的软件可以使用。” ——《黑客与画家》</p>
-</li>
-<li><p>黑客如何才能做自己喜欢的事情？我认为这个问题的解决方法是一个几乎所有创作者都知道的方法：找一份养家糊口的“白天工作”（day job）。这个词是从音乐家身上来的，他们晚上表演音乐，所以白天可以找一份其他工作。更一般地说，“白天工作”的意思是，你有一份为了赚钱的工作，还有一份为了爱好的工作。<br>　　几乎所有的创作者在职业生涯的早期都有一份“白天工作”。画家和作家尤其显著。如果幸运的话，你能找到一份与你的“真正工作”非常相关的“白天工作”。音乐家似乎常常是在唱片行工作。同样地，钻研某种编程语言或操作系统的黑客，很可能会得到一份使用这些工具的“白天工作”。——《黑客与画家》</p>
-</li>
-<li><p>所有学员刚刚来到YC的时候，每人都会拿到一件白色T恤衫，上面写着“Make something people want”，等到他们的项目得到风险投资以后，又会收到一件黑色T恤衫，上面写着“I made something people want” ——《黑客与画家》</p>
-</li>
-<li><p>2014-12-17<br>塞缪尔·约翰逊^说过，人们对一个作家的评价，需要100年才能达成一致^^。你必须先等他的那些有影响力的朋友都死了，然后再等他的追随者都死了，才能对他有一个公正的评价。</p>
-</li>
-<li><p>2014-12-22<br>坚持一丝不苟，就能取得优秀的成果。因为那些看不见的细节累加起来，就变得可见了。</p>
-</li>
-<li><p>2014-12-23<br>要是能坐上时间机器回到过去，不管哪一个年代，有一件事都是不会改变的，那就是“祸从口出”。你一定要小心自己说的话。自以为无害的言论会给你惹来大麻烦。</p>
-</li>
-<li><p>2014-12-23<br>历史的常态似乎就是，任何一个年代的人们，都会对一些荒谬的东西深信不疑。他们的信念还很坚定，只要有人稍微表示一点怀疑，就会惹来大麻烦。</p>
-</li>
-<li><p>2014-12-23<br>如果别人告诉你应该相信什么，你就真的相信了，那么你就会和别人一样犯下同样的错误。如果你是南北战争前的南方庄园主，你会与北方开战；如果你是20世纪30年代的德国人，你会相信希特勒。</p>
-</li>
-<li><p>2015-01-04<br>这时你要明白，自由思考比畅所欲言更重要。如果你感到一定要跟那些人辩个明自，绝不咽下这口气，一定要把话说清楚，结果很可能是从此你再也无法自由理性地思考了。我认为这样傲不可取，更好的方法是在思想和言论之间划一条明确的界线。在心里无所不想，但是不一定要说出来。我就鼓励自己在心里默默思考那些最无法无天的想法。你的思想是一个地下组织，绝不要把那里发生的事情一股脑说给外人听。“格斗俱乐部”的第一条规则，就是不要提到格斗俱乐部^。</p>
-</li>
-<li><p>2015-01-04<br>守口如瓶，笑脸相迎</p>
-</li>
-<li><p>2015-01-08<br>没有盗版是一种“优势”，但也是一个问题。一定数量的盗版对软件公司是有好处的。不管你的软件定价多少，有些用户永远都不会购买。如果这样的用户使用盗版，你并没有任何损失。事实上，你反而赚到了，因为你的软件现在多了一个用户，市场影响力就更大了一些，而这个用户可能毕业以后就会出钱购买你的软件。</p>
-</li>
-<li><p>2015-01-10<br>要致富，你需要两样东西：可测量性和可放大性。你的职位产生的业绩，应该是可测量的，否则你做得再多，也不会得到更多的报酬。此外，你还必须有可放大性，也就是说你做出的决定能够产生巨大的效应。</p>
-</li>
-<li><p>2015-01-10<br>乔布斯曾经说过，创业的成败取决于最早加入公司的那十个人。我基本同意这个观点，虽然我觉得真正决定成败的其实只是前五人。小团队的优势不在于它本身的小，而在于你可以选择成员。我们不需要小村庄的那种“小”，而需要全明星第一阵容的那种“小”。</p>
-</li>
-<li><p>2015-01-10<br>团队越大，每个人的贡献就越接近于整体的平均值。所以，在不考虑其他因素的情况下，一个非常能干的人待在大公司里可能对他本人是一件很糟的事情，因为他的表现被其他不能干的人拖累了</p>
-</li>
-<li><p>2015-01-11<br>「总的来说，这也是很好的处事原则。如果你有两个选择，就选较难的那个。如果你要选择是坐在家里看电视，还是外出跑步，那就出去跑步吧。这个方法有效的原因可能是遇到两个一难一易的选择时，往往出于懒惰的缘故，你会选择较易的那个选项。在意识深处，你其实知道不懒惰的做法会带来更好的结果，这个方法只是迫使你接受这一点。」</p>
-</li>
-<li><p>2015-01-12<br>将公司管理视同软件优化还能帮助你避免VC担心的另一个陷阱——开发某种产品的时间过长。现在，黑客都已经熟知这一点，并总结出一个术语“过早优化”（premature optimization）。尽快拿出1.0版，然后根据用户的反映而不是自己的猜测进行软件优化。</p>
-</li>
-<li><p>2015-01-12<br>你必须时刻牢记的最基本的原则就是，创造人们需要的东西，也就是创造财富。如果你想通过创造财富使得自己致富，那么你必须知道人们需要什么。</p>
-</li>
-<li><p>2015-01-12<br>冷战、第二次世界大战、近代的大多数战争都说明了这个道理。要鼓励大家去创业。只要懂得藏富于民，国家就会变得强大。让书呆子保住他们的血汗钱，你就会无敌于天下。</p>
-</li>
-<li><p>2015-01-12<br>财富与金钱是两个概念。金钱只是用来交易财富的一种手段，财富才是有价值的东西，我们购买的商品和服务都属于财富。</p>
-</li>
-<li><p>2015-01-12<br>我们大多数人都在为其他人创造财富，然后用创造出来的财富交换金钱，再用金钱交换我们需要的另一种财富</p>
-</li>
-<li><p>2015-01-12<br>现代社会的收入差距扩大是一种健康的信号。技术使得生产率的差异加速扩大，如果这种扩大没有反映在收入上面，只有三种可能的解释：（a）技术革新停顿了；（b）那些创造大部分财富的人停止工作了；（c）创造财富的人没有获得报酬。</p>
-</li>
-<li><p>2015-01-13<br>美感是第一道关卡，丑陋的数学在世界上无法生存。</p>
-</li>
-<li><p>2015-01-13<br>喜欢一件东西，却不知道为什么自己喜欢它，原因可能是这件东西是美的，但也可能因为他们的母亲也拥有同样的东西，或者杂志上某个明星使用它，或者仅仅因为它的价格很昂贵。人类的思想就是没有经过整理的无数杂念的混合。<br>注: 因为它的价格很昂贵。人类的思想就是没有经过整理的无数杂念的混合。</p>
-</li>
-<li><p>2015-01-13<br>好设计是简单的设计。</p>
-</li>
-<li><p>2015-01-13<br>好设计是解决主要问题的设计</p>
-</li>
-<li><p>2015-01-13<br>并非所有的痛苦都是有益的。世界上有有益的痛苦，也有无益的痛苦。你需要的是咬牙向前沖刺的痛苦，而不是脚被钉子扎破的痛苦。</p>
-</li>
-<li><p>2015-01-14<br>有一句俗话说，如果你自己做不到，那就去当老师。这在语言设计领域不成立，我认识的一些最出色的黑客就在当教授。但是，当老师的人确实有很多事情不能做。研究性职位给黑客带来了一些限制。在任何学术领域，都有一些题目是可以做的，另一些题目是不可以做的。不幸的是，这两类题目的区别通常取决于它们写成论文后看上去是不是很高深，而不是取决于它们对软件业的发展是否重要。最极端的例子可能就是文学，文学研究者的任何成果几乎对文学创作者都毫无影响。</p>
-</li>
-<li><p>2015-01-14<br>认为所有语言都一样的看法的缺点是自欺欺人，但是优点是可以使许多事情变得很简单。我想这就是为什么它被广泛接受的主要原因。它是一个令人舒服的想法。</p>
-</li>
-<li><p>2015-01-14<br>大家都觉得Java—定有过人之处，因为它是一种很酷的新兴编程语言。但是真的如此吗？如果你站在远处观察编程语言的世界，似乎Java就是最新的东西。（如果你站得足够远，那么你看到的所有东西就是Sun公司出钱制作的大型霓虹广告牌。）但是，如果你靠近观察这个世界，就会发现不同的人对“酷”的理解是不一样的。在黑客圏子里，Perl被公认比Java酷得多。黑客社区网站Slashdot就是用Perl开发的。我估计你不可能看到黑客愿意使用Java的JSP技术开发网站。可是，还有一种更新的语言叫做Python，它的使用者往往看不起Perl。另一些人则认为Ruby语言是取代Python的最佳选择。<br>　　当你按照Java、Perl，Python，Ruby这样的顺序观察这些语言，你会发现一个有趣的结果。至少，如果你是一个Lisp黑客，你就看得出来，排在越后面的语言越像Lisp。Python语言模仿Lisp，甚至把许多Lisp黑客认为属于设计错误的功能也一起模仿了。至于Ruby语言，如果回到1975年，你声称它是一种有着自己句法的Lisp方言，没有人会提出反对意见。编程语言现在的发展不过刚刚赶上1958年Lisp语言的水平。
-　　</p>
-</li>
-<li>2015-01-15<br>　　如果你创业的话，千万不要为了取悦风险投资商或潜在并购方而设计你的产品。让用户感到满意才是你的设计方向。只要赢得用户，其他事情就会接踵而来。
-　　</li>
-<li>2015-01-15<br>　　在大型组织内部，有一个专门的术语描述这种跟随大多数人的选择的做法，叫做“业界最佳实践”。这个词出现的原因其实就是为了让你的经理可以推卸责任。既然我选择的是“业界最佳实践”，如果不成功，项目失败了，那么你也无法指责我，因为做出选择的人不是我，而是整个“业界”。
-　　</li>
-<li>2015-01-15<br>　　第一，不同语言的编程能力不一样。第二，大多数经理故意忽视第一点
-　　</li>
-<li>2015-01-15<br>　　Fortran和Cobol是早期IBM大型机的脚本语言。C是Unix的脚本语言，后来的Perl和Python也是如此。Tel是Tk的脚本语言，Visual Basic是Windows的脚本语言，（某种形式的）Lisp是Emacs的脚本语言，PHP是网络服务器的脚本语言，Java和JavaScript是浏览器的脚本语言。
-　　</li>
-<li>2015-01-15<br>　　有一个笑话说，黑客动手写程序之前，至少会在心里盘算一下哪种语言的打字工作量最小，然后就选择使用该语言。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2014/09/03/cocoapods-安装与使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2014/09/03/cocoapods-安装与使用/" itemprop="url">
-                  cocoapods 安装与使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2014-09-03 09:10:54" itemprop="dateCreated datePublished" datetime="2014-09-03T09:10:54+08:00">2014-09-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 18:26:28" itemprop="dateModified" datetime="2018-05-09T18:26:28+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><h2 id="更新本地索引库"><a href="#更新本地索引库" class="headerlink" title="更新本地索引库"></a>更新本地索引库</h2><p>需要经常手动进行更新，尤其在苹果有大的版本发布之后，各个第三方库会在随后更新<br><code>pod repo update</code></p>
-<h2 id="更新cocoapod版本"><a href="#更新cocoapod版本" class="headerlink" title="更新cocoapod版本"></a>更新cocoapod版本</h2><p><code>gem install cocoapods --pre</code></p>
-<h2 id="单独更新某个库"><a href="#单独更新某个库" class="headerlink" title="单独更新某个库"></a>单独更新某个库</h2><p><code>pod update MJRefresh</code></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><hr>
-<h2 id="1-安装-rvm"><a href="#1-安装-rvm" class="headerlink" title="1.安装 rvm"></a>1.安装 rvm</h2><p>参考：<a href="http://ruby-china.org/wiki/rvm-guide，测试可行" target="_blank" rel="noopener">http://ruby-china.org/wiki/rvm-guide，测试可行</a></p>
-<h2 id="2-安装ruby"><a href="#2-安装ruby" class="headerlink" title="2.安装ruby"></a>2.安装ruby</h2><p>同样参考上面的网站</p>
-<h2 id="3-开始安装cocoapods"><a href="#3-开始安装cocoapods" class="headerlink" title="3.开始安装cocoapods"></a>3.开始安装cocoapods</h2><p>升级ruby的gem<br><code>sudo gem update --system</code><br>安装cocoapods<br><code>sudo gem install cocoapods</code><br>还有一点需要注意，pod setup在执行时，会输出Setting up CocoaPods master repo，但是会等待比较久的时间。这步其实是 Cocoapods 在将它的信息下载到 ~/.cocoapods目录下，如果你等太久，可以试着 cd 到那个目录，用du -sh *来查看下载进度。</p>
-<blockquote>
-<p>请参见cocoapods官网 <a href="https://cocoapods.org" target="_blank" rel="noopener">https://cocoapods.org</a></p>
-</blockquote>
-<h2 id="4-更新ruby的源"><a href="#4-更新ruby的源" class="headerlink" title="4.更新ruby的源"></a>4.更新ruby的源</h2><blockquote>
-<p>最新的国内安装源可以在这里看到 <a href="https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.org</a></p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem sources --remove https://rubygems.org/</span><br><span class="line">gem sources -a https://ruby.taobao.org/</span><br><span class="line">gem sources -l</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>参考唐巧博客：<a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/</a></p>
-</blockquote>
-<h2 id="二、重装"><a href="#二、重装" class="headerlink" title="二、重装"></a>二、重装</h2><hr>
-<p>更新了 <code>Xcode 7</code> 和 <code>OSX 0.11.1</code> 后，<code>install pod</code> 不好使了。试了下重新安装 <code>cocoapods</code>。遇到了一些问题</p>
-<h3 id="1-执行-sudo-gem-install-cocoapods-出现了如下错误："><a href="#1-执行-sudo-gem-install-cocoapods-出现了如下错误：" class="headerlink" title="1. 执行 sudo gem install cocoapods 出现了如下错误："></a>1. 执行 <code>sudo gem install cocoapods</code> 出现了如下错误：</h3><blockquote>
-<p>ERROR:  Could not find a valid gem ‘cocospods’ (&gt;= 0), here is why:<br>Unable to download data from <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a> - bad response Not Found 404 (<a href="http://ruby.taobao.org/latest_specs.4.8.gz" target="_blank" rel="noopener">http://ruby.taobao.org/latest_specs.4.8.gz</a>)</p>
-</blockquote>
-<h3 id="解决办法：将http-替换成-https，具体如下"><a href="#解决办法：将http-替换成-https，具体如下" class="headerlink" title="解决办法：将http 替换成 https，具体如下"></a>解决办法：将http 替换成 https，具体如下</h3><ol>
-<li>gem sources –remove <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a></li>
-<li>gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="noopener">https://ruby.taobao.org/</a></li>
-<li>查看源对不对<br>gem sources -l</li>
-<li>再安装就好了<br>sudo gem install cocoapods</li>
-</ol>
-<h3 id="2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误"><a href="#2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误" class="headerlink" title="2. 然后可以执行 sudo gem install cocoapods 了。但是执行到一半又出现了如下错误"></a>2. 然后可以执行 <code>sudo gem install cocoapods</code> 了。但是执行到一半又出现了如下错误</h3><blockquote>
-<p>While executing gem … (Errno::EPERM)<br>Operation not permitted - /usr/bin/xcodeproj</p>
-</blockquote>
-<h3 id="解决办法：自定义GEM-HOME"><a href="#解决办法：自定义GEM-HOME" class="headerlink" title="解决办法：自定义GEM_HOME"></a>解决办法：自定义GEM_HOME</h3><p>命令行操作：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p $HOME/Software/ruby</span><br><span class="line">$ export GEM_HOME=$HOME/Software/ruby</span><br><span class="line">$ gem install cocoapods</span><br><span class="line">　　[...]</span><br><span class="line">　　1 gem installed</span><br><span class="line">　　$ export PATH=$PATH:$HOME/Sofware/ruby/bin</span><br><span class="line">　　$ pod --version</span><br><span class="line">　　0.39.0</span><br></pre></td></tr></table></figure></p>
-<p>　　<br>　　然后就顺利安装成功了<br>　　<br>　　## 三、使用 cocoapods<br>　　<br>　　<figure class="highlight plain"><figcaption><span>更换clone github镜像，加快 pod 代码下载速度~~~</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">　　</span><br><span class="line">　　```</span><br><span class="line">　　$ cd ~/.cocoapods/repos </span><br><span class="line">　　$ pod repo remove master</span><br><span class="line">　　$ git clone https://git.coding.net/hging/Specs.git master</span><br><span class="line">　　</span><br><span class="line">　　```</span><br><span class="line">　　</span><br><span class="line">　　~~~然后需要在 podfile文件中加入如下代码</span><br></pre></td></tr></table></figure></p>
-<p>　　<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">　　// 如果不加这一句话，它默认还是从github镜像源地址去下载的</span><br><span class="line">　　source &apos;https://git.coding.net/hging/Specs.git&apos;</span><br></pre></td></tr></table></figure></p>
-<p>　　<br>　　<br><br>　　<br>　　<font color="#0099ff" face="黑体">目前没有发现比较好的镜像，上面的镜像pod里库的版本已经很低，不建议使用了，所以暂时无法解决慢的问题。</font><br>　　—-<br>　　<br>　　### 常用命令<br>　　<code>pod search pop</code><br>　　<code>pod init</code><br>　　<code>pod install</code><br>　　<code>pod install --verbose --no-repo-update</code><br>　　<code>pod update</code><br>　　<code>pod update --verbose --no-repo-update</code><br>　　<br>　　### 注意点<br>　　* 如果 import 的时候没有提示 <code>POP.h</code> 的文件，可以在 <code>target-Build Settings</code> 下修改 <code>User Header Search Paths</code> 项，新增 <code>${SRCROOT}</code> 并选择 <code>rcursive</code>，如下图。<br>　　<br>　　<br>　　## 四、参考：<br>　　<a href="http://www.bubuko.com/infodetail-1136466.html" target="_blank" rel="noopener">安装Cocoapods， 更新gem出现的问题</a><br>　　<a href="http://blog.csdn.net/w_x_p/article/details/49151477" target="_blank" rel="noopener">Mac OS X 跟新到10.11后cocoapods安装出现的问题（- bad response Not Found 404 (http://ruby.taobao.org/latest_spe</a><br>　　<a href="http://ryantang.me/blog/2014/01/05/cocoapods/" target="_blank" rel="noopener">使用CocoaPods管理依赖库</a><br>　　<a href="https://www.cnblogs.com/dengchaojie/p/8232555.html" target="_blank" rel="noopener">解决CocoaPods慢的小技巧</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://liumengxia.shop/2013/12/30/读闲书 摘录一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2013/12/30/读闲书 摘录一/" itemprop="url">
-                  2013读书摘录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2013-12-30 18:52:43" itemprop="dateCreated datePublished" datetime="2013-12-30T18:52:43+08:00">2013-12-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 20:38:13" itemprop="dateModified" datetime="2018-05-09T20:38:13+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="《月亮和六便士》"><a href="#《月亮和六便士》" class="headerlink" title="《月亮和六便士》"></a>《月亮和六便士》</h1><ul>
-<li>人们在仰望月亮时常常忘了脚下的六便士——月亮与六便士</li>
-<li><img src="https://upload-images.jianshu.io/upload_images/1120923-2c4720d657226555.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8e8166c087f4c7b10d227d7570eedef0.png"></li>
-</ul>
-<h1 id="《且听风吟》"><a href="#《且听风吟》" class="headerlink" title="《且听风吟》"></a>《且听风吟》</h1><ul>
-<li><p>于是我一只手拿尺，开始惶惶不安地张望周围的世界。那年大概是肯尼迪总统惨死的那年，距今已有15年之久。这15年里我的确扔掉了很多很多东西。就像发动机出了故障的飞机为减轻重量而甩掉货物、甩掉座椅、最后连可怜的男乘务员也甩掉一样。十五年里我舍弃了一切，身上几乎一无所有。至于这样做是否正确，我无从断定。心情变得痛快这点倒是确确实实的。然而每当我想起临终时身上将剩何物，我便觉得格外恐惧。一旦付诸火炬，想必连一截残骨也断难剩下。死去的祖母常说，“心情抑郁的人只能做抑郁的梦，要是更加抑郁，连梦都不做的。”——《且听风吟》</p>
-</li>
-<li><p>“不存在十全十美的文章，如同不存在彻头彻尾的绝望。”或者说 “不存在十全十美的人物，如同不存在彻头彻尾的绝望。——《且听风吟》</p>
-</li>
-</ul>
-<h1 id="《了不起的盖茨比》"><a href="#《了不起的盖茨比》" class="headerlink" title="《了不起的盖茨比》"></a>《了不起的盖茨比》</h1><ul>
-<li><p>“每当你要批评别人，要记住，世上不是每个人都有你这么好的条件。”</p>
-</li>
-<li><p>“在大都市迷人的黄昏时刻，我有时感到一种难以排遣的寂寞，同时也觉得别人有同感——那些在橱窗面前踯躅的穷困的青年小职员，等到了时候独个儿上小饭馆去吃一顿晚饭——黄昏中的青年小职员，虚度着夜晚和生活中最令人陶醉的时光。” </p>
-</li>
-<li><p>“盖茨比深切地体会到财富怎样禁甸和保存青春与神秘，体会到一套套衣装怎样使人保持清析，体会到黛西像白银一样皎皎发光，安然高踞于穷苦人激烈的生存斗争之上。”</p>
-</li>
-<li><p>“不是因为时间令我遗忘当时的心情，而是在时间中希望又失望又希望，循环往复，终于证明快乐的确不用发觉，是正觉，“原来”两个字，提醒了我，所谓感觉，是随心境而生灭，并无绝对的真相或事实的概念.</p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-3f7f980047226f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="c5fb575293c19238d890b0c3f569ea7d.png"></p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-3f7f980047226f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="c5fb575293c19238d890b0c3f569ea7d.png"></p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-061acbfd64e7bb89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="- "></p>
-</li>
-</ul>
-<h1 id="《原来你并非不快乐》"><a href="#《原来你并非不快乐》" class="headerlink" title="《原来你并非不快乐》"></a>《原来你并非不快乐》</h1><ul>
-<li><p>“钱可以帮你，贪心的话，钱便可以主宰你。够好心钱更可以救助天地，但愿别为钱而忧，亦别独独为钱而喜，足够，便足以忘记。</p>
-</li>
-<li><p>“假如买不起一个高清电视弥补失恋之苦，不如买本《庄子》看一下更能放下前度的阴影，假如去不其欧洲奖励自己半年无休的辛劳，去一次郊区观鸟，更会发现钱除了买到享受，最重要是买到将来选择的自由”</p>
-</li>
-<li><p>旅游，不是太早，就是太迟。</p>
-</li>
-<li><p>不是因为时间令我遗忘当时的心情，而是在时间中希望又失望又希望，循环往复，终于证明快乐的确不用发觉，是正觉，“原来”两个字，提醒了我，所谓感觉，是随心境而生灭，并无绝对的真相或事实的概念</p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-946deaec2ec6a4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="a753e4b21ed84b75da113e2235986b1b.png"></p>
-</li>
-</ul>
-<h1 id="《登天的感觉，我在哈佛大学做心理咨询》"><a href="#《登天的感觉，我在哈佛大学做心理咨询》" class="headerlink" title="《登天的感觉，我在哈佛大学做心理咨询》"></a>《登天的感觉，我在哈佛大学做心理咨询》</h1><ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/1120923-778c2757812283ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="778fda349df5e4a2b31f19d8a287cb7f.png"></li>
-</ul>
-<h1 id="《鲁迅经典全集》"><a href="#《鲁迅经典全集》" class="headerlink" title="《鲁迅经典全集》"></a>《鲁迅经典全集》</h1><ul>
-<li><p>其实人禽之辨，本不必这样严。在动物界，虽然并不如古人所幻想的那样舒适自由，可是噜苏做作的事总比人间少。它们适性任情，对就对，错就错，不说一句分辩话。虫蛆也许是不干净的，但它们并没有自命清高；鸷禽猛兽以较弱的动物为饵，不妨说是凶残的罢，但它们从来就没有竖过 “ 公理 ”“ 正义 ” 的旗子，使牺牲者直到被吃的时候为止，还是一味佩服赞叹它们。人呢，能直立了，自然是一大进步；能说话了，自然又是一大进步；能写字作文了，自然又是一大进步。然而也就堕落，因为那时也开始了说空话。说空话尚无不可，甚至于连自己也不知道说着违心之论，则对于只能嗥叫的动物，实在免不得 “ 颜厚有忸怩 ”。假使真有一位一视同仁的造物主，高高在上，那么，对于人类的这些小聪明，也许倒以为多事，正如我们在万生园里，看见猴子翻筋斗，母象请安，虽然往往破颜一笑，但同时也觉得不舒服，甚至于感到悲哀，以为这些多余的聪明，倒不如没有的好罢。然而，既经为人，便也只好“ 党同伐异 ” ，学着人们的说话，随俗来谈一谈，辩一辩了。《朝花夕拾》</p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-ceb85b5bfdb8cd46.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4c96d3f5830beaed37473d162910fa95.png"></p>
-</li>
-</ul>
-<h1 id="《独自上场》"><a href="#《独自上场》" class="headerlink" title="《独自上场》"></a>《独自上场》</h1><ul>
-<li><p>你不可能从现在这个点上看到将来；只有回头看时，才会发现它们之间的关系。所以你必须相信，那些点点滴滴，会在你未来的生命里，以某种方式串联起来。”——李娜《独自上场》</p>
-</li>
-<li><p>愤怒比悲伤更有力，愤怒不会让一个人垮掉。——李娜《独自上场》</p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-0a06bd817940075c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="817e3b298d4339d845309c889cc5edb1.png"></p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-b2e1ce30c6328e5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9c305f985d283d54d6c10b543843c820.png"></p>
-</li>
-</ul>
-<h1 id="杨绛《我两的故事》"><a href="#杨绛《我两的故事》" class="headerlink" title="杨绛《我两的故事》"></a>杨绛《我两的故事》</h1><ul>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-62d408e807407b7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="24059d08bdb154129e416ef2a7bc1f70.png"></p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-28d8684745f066ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="b39c594256e4be67ff53d7d4e1ccd699.png"></p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-b8d7ad3a545bf79a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e711ffc9bb4aaf9a42931cf6fe3d4b1f.png"></p>
-</li>
-<li><p>见她之前，从未想结婚；娶她之后，从未后悔娶她。</p>
-</li>
-</ul>
-<h1 id="《文化苦旅》"><a href="#《文化苦旅》" class="headerlink" title="《文化苦旅》"></a>《文化苦旅》</h1><ul>
-<li><img src="https://upload-images.jianshu.io/upload_images/1120923-b471d9fb26be798b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="10c4a2219cddd9eb8a79c98462b0d328.png"></li>
-</ul>
-<h1 id="《沉默的大多数》"><a href="#《沉默的大多数》" class="headerlink" title="《沉默的大多数》"></a>《沉默的大多数》</h1><ul>
-<li><p>此人之肉，彼人之毒；一件对此人有利的事，难免会伤害另一个人。真正的君子知道，自己的见解受所处环境左右，未必是公平的；——《沉默的大多数》</p>
-</li>
-<li><p>话语有一个神圣的使命，就是想要证明说话者本身与众不同，是芸芸众生中的娇娇者。假设这些都是实情，我们不妨把这些保藏在内心处不说，“闷兹蜜”。——《沉默的大多数》原来王小波先生也是”闷骚”型。其实这个世界不缺沉默。</p>
-</li>
-</ul>
-<h1 id="《突然就走到西藏》"><a href="#《突然就走到西藏》" class="headerlink" title="《突然就走到西藏》"></a>《突然就走到西藏》</h1><ul>
-<li><p>亲友或爱人之间争吵，有时候争得面红耳赤不如一个拥抱来得温暖直接。——《突然就走到了西藏 纯文字》</p>
-</li>
-<li><p>感谢那个残酷对你的人——《突然就走到了西藏 纯文字》，否则你会沉浸于梦境中，梦总有会醒的时候。</p>
-</li>
-<li><p>自卑常常以骄傲的面目出现。人的自傲与自卑是一对孪生兄弟，有时候过于自傲反倒说明你是自卑的。——《突然就走到了西藏 纯文字》</p>
-</li>
-</ul>
-<h1 id="《生命不能承受之轻》"><a href="#《生命不能承受之轻》" class="headerlink" title="《生命不能承受之轻》"></a>《生命不能承受之轻》</h1><ul>
-<li><p>人的生命只有一次，我们既不能把它与我们以前的生活相此较，也无法使其完美之后再来度过。——《生命中不能承受之轻》</p>
-</li>
-<li><p>也许最沉重的负担同时也是一种生活最为充实的象征，负担越沉，我们的生活也就越贴近大地，越趋近真切和实在。——《生命中不能承受之轻》</p>
-</li>
-</ul>
-<h1 id="《张爱玲文集》"><a href="#《张爱玲文集》" class="headerlink" title="《张爱玲文集》"></a>《张爱玲文集》</h1><ul>
-<li><p>如果你不调戏女人，她说你不是一个男人，如果你调戏她，她说你不是一个上等人。——《张爱玲文集(全5卷)》</p>
-</li>
-<li><p>用别人的钱，即使是父母的遗产，也不如用自己赚来的钱来得自由自在，良心上痛快。可是用丈夫的钱，如果爱他的话，那却是一种快乐，愿意想自己是吃他的饭，穿他的衣服。那是女人的传统的权利，即使女人现在有了职业，还是舍不得放弃的。——《张爱玲文集(全5卷)》</p>
-</li>
-</ul>
-<h1 id="王朔《过把瘾就死》"><a href="#王朔《过把瘾就死》" class="headerlink" title="王朔《过把瘾就死》"></a>王朔《过把瘾就死》</h1><ul>
-<li>“就像童话中两个贪心人挖地下的财宝，结果挖出一个人的骸骨，虽然迅速埋上了，甚至在上面种了树，栽了花，但都清楚地知道底下埋的是什么。看见树，看见花，想的却是地下的那具骸骨。” ——王朔《过把瘾就死》</li>
-</ul>
-<h1 id="路遥《人生》"><a href="#路遥《人生》" class="headerlink" title="路遥《人生》"></a>路遥《人生》</h1><ul>
-<li><p>我们当今的现实生活中有马占胜和高明楼这样的人。他们为了个人的利益。有时毫不顾忌地给这些徘徊在生活十字路口的人当头一棒，使他们对生活更加悲观；有时，还是出于个人目的，他们又一下子把这些人推到生活的顺风船上。——《人生》看到这里，生活不过如此了</p>
-</li>
-<li><p>劳动啊，它是艰苦的，但也有它本身的欢乐！《人生》</p>
-</li>
-<li><p>生活的变化真如同春夏秋冬，一寒一暑，差别甚远！三年前，这样的夜晚，他此刻或者在明亮温馨的教室里读书；或者在电影院散场的人群里，和同学们说说笑笑走向学校.　　现在，他却拉着茅粪桶，东避西躲，鬼鬼祟祟，像一个夜游鬼一样。——《人生》</p>
-</li>
-<li><p>现在他一屁股坐下来，浑身骨头似乎全掉了，两只手像抓着两把葛针，疼得万箭钻心！　　不过，他也感到了一种无法言语的愉快。他让所有的庄稼人看见：他们衡量一个优秀庄稼人最重在的品质――吃苦精神，他高加林也具备。从性格上说，他的确是个强者；而这个优点在某些情况下又使他犯错误。——《人生》</p>
-</li>
-<li><p>爱情就像一条河，我们都是瞎子，谁不是摸着石头过河。</p>
-</li>
-</ul>
-<h1 id="柴静《看见》"><a href="#柴静《看见》" class="headerlink" title="柴静《看见》"></a>柴静《看见》</h1><ul>
-<li><p>“但痛苦也是一种清洗，是对牺牲的人的告慰。”——《看见》</p>
-</li>
-<li><p>当一个人关心别人的时候，才会忘记自己。——《看见》</p>
-</li>
-<li><p>我知道自己身上已经开始散发失败者的味儿，再这样下去谁都会闻出来了–在动物界，你知道，只要你散发出那样的气味，几乎就意味着没有指望了，很快，很快，就会被盯上，毫不留情地被扑倒在地，同伴会四奔逃散，甚至顾不上看你一眼。——《看见》</p>
-</li>
-<li><p>“人们声称的最美好的岁月其实都是最痛苦的，只是事后回忆起来的时候才那么幸福。”——《看见》</p>
-</li>
-</ul>
-<h1 id="《牧羊少年的奇幻之旅》"><a href="#《牧羊少年的奇幻之旅》" class="headerlink" title="《牧羊少年的奇幻之旅》"></a>《牧羊少年的奇幻之旅》</h1><ul>
-<li><p>“我就像大多数人一样－－只肯相信自己要相信的，不肯去看清事情究竟真正是怎么一回事。”——《牧羊少年奇幻之旅》</p>
-</li>
-<li><p>幸福的秘密就是去欣赏世界上所有的奇妙景观，但不要忘了汤匙里的油。’——《牧羊少年奇幻之旅》</p>
-</li>
-</ul>
-<h1 id="《雪国》"><a href="#《雪国》" class="headerlink" title="《雪国》"></a>《雪国》</h1><ul>
-<li><p>“山头上罩满了月色，这是原野尽头惟一的景色，月色虽以淡淡消去，但余韵无穷，不禁使人产生冬夜寥峭的感觉。”“盈盈皓月，深深地射了进来，照亮得连驹子的耳朵的凹凸线条都清晰地浮现出来。”——《雪国》</p>
-</li>
-<li><p>诗句不都是句句真言吗？像一道彩虹悬挂在虚空，瞬间出现五彩缤纷像。当白日空中辉照时，虚无又明亮起来了。然而虚空本来无光，也是无色可装点的。我也在这如虚空般的心上，着上种种情趣盎然的色彩，但没有留下一丝踪迹——《雪国》现实的事物遮住了眼睛，充斥了双耳，而诗歌呢，就如虚空中的彩虹一样。</p>
-</li>
-<li><p>以前觉得“感冒一直纠缠不休，鼻子堵塞”。当一到雪国这清冷的环境中，“这时一下子通了气，穿到头顶心。”——《雪国》</p>
-</li>
-<li><p>弗洛伊德说：“女人越是轻浮放荡，就越使男人爱得发狂。同这种女人相爱，往往使他们魂销骨酥，不能自拔。……但一旦爱上之后，又要求她们对自己忠实。”《雪国》序</p>
-</li>
-</ul>
-<h1 id="《目送》"><a href="#《目送》" class="headerlink" title="《目送》"></a>《目送》</h1><ul>
-<li><p>我慢慢地、慢慢地了解到，所谓父女母子一场，只不过意味着，你和他的缘分就是今生今世不断地在目送他的背影渐行渐远。你站立在小路的这一端，看着他逐渐消失在小路转弯的地方，而且，他用背影默默告诉你：不必追。——《目送》</p>
-</li>
-<li><p>只有一个人能听的音乐，是一扇紧闭的门。——《目送》</p>
-</li>
-<li><p>一件事情的毕业，永远是另一件事情的开启。——《目送》</p>
-</li>
-</ul>
-<h1 id="《乡关何处》"><a href="#《乡关何处》" class="headerlink" title="《乡关何处》"></a>《乡关何处》</h1><ul>
-<li><p>我们不是我们污脏的外表，我们的心中一直盛开着一朵圣洁的向日葵。——《乡关何处》</p>
-</li>
-<li><p>命运未卜，何敢触碰爱情这种高贵的话题。即便心中藏有一个重洋，流出来也只是两颗泪珠。——《乡关何处》</p>
-</li>
-<li><p>最美的生活是善良、平等和文明，最好的工作是为未来做几件切实有益的事情，最甜的笑由于淡淡的幽默。人们不以权势扰乱平静无辜的心灵的时代，才是人性真正解放的时代。——《乡关何处》</p>
-</li>
-<li><p>一个人滥情是罪过，但一个人独身也同样难容于大众。一个人因为穷或残障而不能成婚，已多蒙歧视，如果他健康且尚可谋生而不婚，则难逃物议。——《乡关何处》</p>
-</li>
-<li><p>雪夜访戴，兴至而往，兴尽而归，何必见戴。——《乡关何处》</p>
-</li>
-<li><p>当“访旧半为鬼”时，当“故人日以稀”时，当在暮烟的幻象中遥见你曾朝夕与共甚或唇齿相依的大队面容时，你何曾有一丝幸存者的窃喜。就像此夜，当我枯坐于天涯客馆，燃一炬烟，吞吐几十年的往事时，我恍若一个同谋共犯——他们去了，我却苟活于斯——我怎堪独自直面这残酷的余生。——《乡关何处》</p>
-</li>
-<li><p>死亡，在许多时候，真是一件近乎日常的琐事。你买菜的路上，邂逅车轮下的一摊血；你拎着一堆肉食回来，看见邻居的一张讣告——在你行经的地方，人们竞相奔赴道路的尽头。你才发现，生命竟然确实薄如蝉翼。——《乡关何处》</p>
-</li>
-<li><p>可是好人却无好命，这几乎已经是这个世界的潜规则。这些好人来到这个世界，就是来承担磨难的；他们像一粒糖抛进大海，永远无法改变那深重的苦涩，也许只有经过的鱼才会知道那一丝稀有的甜蜜。——《乡关何处》</p>
-</li>
-<li><p>即使在此过程中已经深知这一结局的无法回避，但一个活生生的人真正在你手里呼出最后一口气时，你依然难以接受——你在那一刻无法不痛感人的弱小和不堪一击。我们有谁能与死神相争呢？——《乡关何处》</p>
-</li>
-</ul>
-<h1 id="巴金《家》"><a href="#巴金《家》" class="headerlink" title="巴金《家》"></a>巴金《家》</h1><ul>
-<li><p>顺受的，毫不抱怨，毫不诉苦的。像大海一样，它接受了一切，吞下了一切，可是它连一点吼声也没有。——《家》鸣凤的对待不公的表情</p>
-</li>
-<li><p>有人说过，路本没有，因为走的人多了，便成了一条路。又有人说路是有的，正因为有了路才有许多人走。谁是谁非，我不想判断。我还年轻，我还要活下去，我还要征服生活。我知道生活的激流是不会停止的，且看它把我载到什么地方去！——《家》</p>
-</li>
-<li><p>黑暗到了尽头，黎明就出现了。——《家》</p>
-</li>
-<li><p>几年前我流着眼泪读完托尔斯泰的小说《复活》，曾经在扉页上写了一句话：“生活本身就是一个悲剧。”　　事实并不是这样。生活并不是悲剧。它是一场“搏斗”。我们生活来做什么？或者说我们为什么要有这生命？罗曼罗兰的回答是“为的是来征服它”。《家》巴金</p>
-</li>
-</ul>
-<h1 id="《傲慢与偏见》"><a href="#《傲慢与偏见》" class="headerlink" title="《傲慢与偏见》"></a>《傲慢与偏见》</h1><ul>
-<li><p>大凡一个人爱上一个人，都是因为先有了感激之心，器重之意。《傲慢与偏见》</p>
-</li>
-<li><p>虚荣与骄傲是截然不同的两件事，尽管字面上常常当作同义词用，一个人可以骄傲而不虚荣。骄傲多半不外乎我们对我们自己的估价，虚荣却牵涉到我们希望别人对我们的看法。——《傲慢与偏见》</p>
-</li>
-</ul>
-<h1 id="《潜规则》"><a href="#《潜规则》" class="headerlink" title="《潜规则》"></a>《潜规则》</h1><ul>
-<li><p>合法伤害权是很值钱的。有了这种权力，没有钱可以有钱，没有敛钱的规矩可以创造出规矩。用古汉语一个简洁贴切的词来表达，这叫势所必至。势之所至，潜规则生焉。即使这规则不合法，也可以转弯抹角将它装扮起来–广大群众爱护人民警察，凑点钱表达他们的感激之情，这难道有什么不对吗？——《潜规则》</p>
-</li>
-<li><p>合法地祸害别人的能力，乃是官吏们的看家本领。这是一门真正的艺术，种种资源和财富正要据此分肥并重新调整。——《潜规则》</p>
-</li>
-<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-7eb5255c46eeae00.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="685926ffc7f7a3e369358a5bb2e33fdc.jpg"></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2387,7 +2247,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
