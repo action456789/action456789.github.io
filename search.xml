@@ -6,7 +6,7 @@
       <title></title>
       <link href="/2019/08/29/hexo/"/>
       <url>/2019/08/29/hexo/</url>
-      <content type="html"><![CDATA[<h1 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h1><ul><li><p>启动本地服务器<br><code>hexo server</code><br><a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">官方链接</a></p></li><li><p>生成部署文件<br><code>hexo -d</code></p></li><li><p>部署<br><code>hexo -g</code></p></li><li><p>自动监视文件变化<br><code>hexo generate --watch</code></p></li></ul>]]></content>
+      <content type="html"><![CDATA[<h1 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h1><ul><li><p>启动本地服务器<br><code>hexo server</code><br><a href="https://hexo.io/docs/commands" target="_blank" rel="noopener">官方链接</a></p></li><li><p>生成部署文件<br><code>hexo -d</code></p></li><li><p>部署<br><code>hexo -g</code></p></li><li><p>以上两个命名可以用一个命名表示<br><code>hexo g -d</code></p></li><li><p>自动监视文件变化<br><code>hexo generate --watch</code></p></li></ul>]]></content>
       
       
     </entry>
