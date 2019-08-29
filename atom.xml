@@ -94,6 +94,31 @@
   </entry>
   
   <entry>
+    <title>TextInput</title>
+    <link href="http://superkk.top/2018/05/21/TextInput/"/>
+    <id>http://superkk.top/2018/05/21/TextInput/</id>
+    <published>2018-05-21T10:01:12.000Z</published>
+    <updated>2019-08-29T13:11:48.965Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="通用属性-Android-amp-iOS"><a href="#通用属性-Android-amp-iOS" class="headerlink" title="通用属性(Android &amp; iOS)"></a>通用属性(Android &amp; iOS)</h1><ul><li>(1)支持View的相关属性</li><li><p>(2)<code>autoCapitalize</code>:控制输入的字符进行切换成大写(参数:’none’,’sentences’,’words’,’characters’)<br><code>none</code>: 不自动切换任何字符大写<br><code>sentences</code>: 默认每个句子的首字母大写<br><code>words</code>:每个单词的首字母变成大写<br><code>characters</code>:每个字母全部变成大写</p></li><li><p>(3)<code>autoCorrect(bool)</code>:设置瓶邪自动修正功能,默认开启(true)</p></li><li><p>(4)<code>autoFocus(bool)</code>:设置是否默认获取到焦点,默认为关闭(false).需要comonentDidMount方法调用之后才会获取焦点(componentDidMount是React组件被渲染之后React主动回调的方法)</p></li><li><p>(5)<code>defaultValue(string)</code>:给文本框输入一个默认初始值.</p></li><li><p>(6)<code>editable(bool)</code>:设置文本框是否可以编辑,默认为true,可以进行编辑</p></li><li><p>(7)<code>keyboardType</code>:<br>键盘类型(可选参数:”default”, ‘email-address’, ‘numeric’, ‘phone-pad’, “ascii-capable”, ‘numbers-and-punctuation’, ‘url’, ‘number-pad’, ‘name-phone-pad’, ‘decimal-pad’, ‘twitter’, ‘web-search’) 该用来选择默认弹出键盘的类型例如我们甚至numeric就是弹出数字键盘。鉴于平台的原因如下的值是所有平台都可以进行通用的</p></li><li><p>(8)<code>maxLength(number)</code>:可以限制文本输入框最大的输入字符长度</p></li><li><p>(9)<code>multiline (bool)</code> : 设置可以输入多行文字，默认为false(表示无论文本输入多少，都是单行显示)</p></li><li>(10)<code>onBlur (function)</code>: 监听方法，文本框失去焦点回调方法</li><li>(11)<code>onChange (function)</code>: 监听方法,文本框内容发生改变回调方法</li><li>(12)<code>onChangeText (function)</code>:监听方法，文本框内容发生改变回调方法，该方法会进行传递文本内容</li><li>(13)<code>onEndEditing (function)</code>:监听方法，当文本结束文本输入回调方法</li><li>(14)<code>onFocus (function)</code> :监听方法 文本框获取到焦点回调方法</li><li>(15)<code>onLayout (function)</code>:监听方法 组价布局发生变化的时候调用，调用方法参数为 {x,y,width,height}</li><li>(16)<code>onSubmitEditing (function)</code>:监听方法，当编辑提交的时候回调方法。不过如果multiline={true}的时候，该属性就不生效</li><li>(17)<code>placeholder (string</code>) :当文本输入框还没有任何输入的时候，默认显示信息，当有输入的时候该值会被清除</li><li>(18)<code>placeholderText Color (string)</code>: 设置默认信息颜色(placeholer)</li><li>(19)<code>secureTextEntry (bool)</code>: 设置是否为密码安全输入框 ，默认为false</li><li>(20)<code>style</code> 风格属性 可以参考Text组件风格</li><li>(21)<code>value ( string )</code>:输入框中的内容值</li><li>(22)<code>returnKeyType</code>:决定“确定”按钮显示的内容。<br>done<br>go<br>next<br>search<br>send</li></ul><h1 id="Android-平台属性"><a href="#Android-平台属性" class="headerlink" title="Android 平台属性"></a>Android 平台属性</h1><ul><li>(22)<code>numberOfLines (number)</code>:设置文本输入框行数，该需要首先设置multiline为true,设置TextInput为多行文本。</li><li>(23)<code>textAlign</code> 设置文本横向布局方式 可选参数(‘start’, ‘center’, ‘end’)</li><li>(24)<code>textAlignVertical</code>: 设置文本垂直方向布局方式 可选参数(‘top’, ‘center’, ‘bottom’)</li><li>(25)<code>underlineColorAndroid</code>: 设置文本输入框下划线的颜色</li></ul><h1 id="长按出现菜单键为英文，如何改为中文"><a href="#长按出现菜单键为英文，如何改为中文" class="headerlink" title="长按出现菜单键为英文，如何改为中文"></a>长按出现菜单键为英文，如何改为中文</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210921.png" alt=""><br>在Xcode中，TARGETS—你的项目名—info，选择Localization native development region，选择China，这样文字都会变成中文啦，包括时间选择器等也会变成中文。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210959.png" alt=""></p><h1 id="键盘处理"><a href="#键盘处理" class="headerlink" title="键盘处理"></a>键盘处理</h1><p><a href="https://facebook.github.io/react-native/docs/inputaccessoryview#docsNav" target="_blank" rel="noopener">参考</a><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211043.png" alt=""></p><pre><code class="javascript">    const inputAccessoryViewID = &quot;inputAccessoryViewID&quot;;    _renderLeaveWordInput() {         return &lt;View style={{height: 60}}&gt;                &lt;TextInput style={{                    fontSize: 13,                    textAlignVertical: 'top',                    autoCapitalize: 'none',                    autoCorrect: false                 }}                   multiline={true}                   maxLength={50}                   onChangeText={this._onInputCommentsChange}                   value={this.state.comments}                   inputAccessoryViewID={inputAccessoryViewID}                   ref={&#39;LeaveWordTextInput&#39;}                   placeholder={&#39;请输入留言&#39;}/&gt;                &lt;InputAccessoryView nativeID={inputAccessoryViewID}&gt;                    &lt;View style={{flexDirection:'row-reverse'}}&gt;                        &lt;Button onPress={() =&gt; {this.refs.LeaveWordTextInput.blur();}}                                title=&quot;完成&quot;                                color=&quot;red&quot;                        /&gt;                    &lt;/View&gt;                &lt;/InputAccessoryView&gt;            &lt;/View&gt;    }</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;通用属性-Android-amp-iOS&quot;&gt;&lt;a href=&quot;#通用属性-Android-amp-iOS&quot; class=&quot;headerlink&quot; title=&quot;通用属性(Android &amp;amp; iOS)&quot;&gt;&lt;/a&gt;通用属性(Android &amp;amp; iOS)
+      
+    
+    </summary>
+    
+      <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="React-Native" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/React-Native/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>RxSwift入门：基本概念</title>
     <link href="http://superkk.top/2018/05/21/RxSwift%E5%85%A5%E9%97%A8%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
     <id>http://superkk.top/2018/05/21/RxSwift入门：基本概念/</id>
@@ -514,33 +539,6 @@
     
       <category term="工具" scheme="http://superkk.top/categories/%E5%B7%A5%E5%85%B7/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>iOS中的时间</title>
-    <link href="http://superkk.top/2015/08/13/iOS%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/"/>
-    <id>http://superkk.top/2015/08/13/iOS中的时间/</id>
-    <published>2015-08-13T14:10:18.000Z</published>
-    <updated>2019-08-29T09:07:04.731Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="设备开机后的时间"><a href="#设备开机后的时间" class="headerlink" title="设备开机后的时间"></a>设备开机后的时间</h1><ul><li><code>CACurrentMediaTime()</code></li></ul><p>设备从开机时起到现在的时间，设备重启会重置，单位为秒</p><ul><li><code>[[NSProcessInfo processInfo] systemUptime]</code> </li></ul><p>与<code>CACurrentMediaTime()</code>等价</p><h1 id="相对某个参考系的时间"><a href="#相对某个参考系的时间" class="headerlink" title="相对某个参考系的时间"></a>相对某个参考系的时间</h1><ul><li><code>Date().timeIntervalSince1970</code> </li></ul><p>1970年1月1日凌晨为参考系，到现在的时间，一般用于表示时间戳</p><p><br></p><ul><li><code>Date().timeIntervalSinceReferenceDate</code></li></ul><p>世界时间（UTC）2001年1月1日凌晨到现在经过的时间，单位为秒</p><p><br></p><ul><li><code>CFAbsoluteTimeGetCurrent()</code></li></ul><p>与<code>Date().timeIntervalSinceReferenceDate</code>等价</p><p><br></p><blockquote><p>当用户手动改变了设备上的系统时间后，基于系统时钟的上述方法返回的结果也会一同改变</p></blockquote><pre><code class="Swift">print(CACurrentMediaTime()) // 设备刚重启print(Date().timeIntervalSince1970)print(Date().timeIntervalSinceReferenceDate)print(CFAbsoluteTimeGetCurrent())</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/1120923-1bb36e607297d7c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h1 id="必要时，从服务器上获取时间"><a href="#必要时，从服务器上获取时间" class="headerlink" title="必要时，从服务器上获取时间"></a>必要时，从服务器上获取时间</h1><p>如果App本身对获取的时间精度要求很高，还是直接通过网络从服务器获取时间戳会比较保险。</p><p>当网络可用时，直接从服务器获取；</p><p>网络不可用时，且设备没有被重启过，可以根据上一次获取服务器时间戳的时刻到此时的时间差来推算出正确的时间</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;设备开机后的时间&quot;&gt;&lt;a href=&quot;#设备开机后的时间&quot; class=&quot;headerlink&quot; title=&quot;设备开机后的时间&quot;&gt;&lt;/a&gt;设备开机后的时间&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;CACurrentMediaTime()&lt;
-      
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://superkk.top/categories/iOS/"/>
-    
-    
-      <category term="iOS" scheme="http://superkk.top/tags/iOS/"/>
     
   </entry>
   
