@@ -1,2491 +1,801 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '6.2.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="keywords" content="技术博客,随笔">
+  <meta charset="utf-8">
+  <title>爱工作·爱生活</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="爱工作·爱生活">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
-<meta property="og:title" content="爱工作·爱生活">
-<meta property="og:url" content="http://superkk.top/page/2/index.html">
+<meta property="og:title" content="C&#x2F;C++">
+<meta property="og:url" content="http://superkk.top/C-C/index.html">
 <meta property="og:site_name" content="爱工作·爱生活">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-09T08:06:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="爱工作·爱生活">
+<meta name="twitter:title" content="C&#x2F;C++">
 
 
+<link rel="icon" href="/img/avatar.jpg">
 
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
 
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="http://superkk.top/page/2/"/>
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
 
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
 
-  <title>爱工作·爱生活</title>
-  
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 </head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>action456789</span>
+</div>
 
-  
-  
+<div class="icon">
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
     
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">爱工作·爱生活</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">action456789</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
 </div>
 
 
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
+<ul>
+    <li><div class="all active">全部文章<small>(25)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/10/09/使用WireShark-调试真机网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/09/使用WireShark-调试真机网络/" itemprop="url">
-                  使用WireShark 调试真机网络
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-10-09 15:09:37" itemprop="dateCreated datePublished" datetime="2016-10-09T15:09:37+08:00">2016-10-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 16:11:44" itemprop="dateModified" datetime="2018-05-09T16:11:44+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="使用WireShark-调试真机网络"><a href="#使用WireShark-调试真机网络" class="headerlink" title="使用WireShark 调试真机网络"></a>使用WireShark 调试真机网络</h1><p>需求：调试UIWebView加载缓慢问题</p>
-<ul>
-<li><ol>
-<li>获取iPhone的UDID<br><img src="https://upload-images.jianshu.io/upload_images/1120923-d7d6872480927c6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
-</ol>
-</li>
-<li><p>2：根据获取的 UDID 创建一个虚拟的网卡<br><code>rvictl -s &lt;UDID&gt;</code><br><img src="https://upload-images.jianshu.io/upload_images/1120923-f7f78d28cb94eda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</li>
-</ul>
-<p>通过 <code>ifconfig</code> 可以看到多了一个 <code>rvi0</code>接口<br>通过 <code>rvictl -l</code> 命令可以列出所有挂接的虚拟接口</p>
-<ul>
-<li>3: 在 Wireshark 首页选择 rvi0，使用默认的 Capture Options 即可开始对 iPhone 进行抓包。<br><img src="https://upload-images.jianshu.io/upload_images/1120923-602c6eb7b8e0f13c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
-</ul>
-<p>其中 iPhone 手机连接 WiFi 动态获取的 IP 地址为 192.168.100.1。</p>
-<blockquote>
-<p>黑色的内容表示遇到错误，需要重点关注<br>关闭wifi，可以抓取移动网络数据包</p>
-</blockquote>
-<p>-4 ： 使用<code>rvictl  -x</code>命令删除虚拟接口, 使用 iPhone 的 UDID 作为参数。</p>
-<h1 id="WireShark-抓包技巧"><a href="#WireShark-抓包技巧" class="headerlink" title="WireShark 抓包技巧"></a>WireShark 抓包技巧</h1><ul>
-<li>第一步：找到请求网址的 IP 地址<br>方法一：用ping命令得到对应的IP地址（可能不对，此时要用方法二）<br><img src="https://upload-images.jianshu.io/upload_images/1120923-4ff29746a38a13a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
-</ul>
-<p>方法二：使用DNS包来确定IP地址</p>
-<blockquote>
-<p>注意手机上 DNS 解析的结果并不总是和电脑上的解析结果一致。这种情况下我们可以通过查看 DNS 数据包来确定<br>DNS 是基于 UDP 的协议，不会有 TCP 重传</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-368232f0c1e87923.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<ul>
-<li><p>第二步：过滤 IP 地址<br><img src="https://upload-images.jianshu.io/upload_images/1120923-78b3a639da943708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</li>
-<li><p>第三步：确定端口号<br><img src="https://upload-images.jianshu.io/upload_images/1120923-730d2741f957db51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</li>
-</ul>
-<p>注意红框中的 <strong>SourcePort</strong>，这是客户端端口。我们知道 HTTP 支持并发请求，不同的并发请求肯定是占用不同的端口。所以在图中看到的上下两个数据包，并非一定是请求与响应的关系，他们可能属于两个不同的端口，彼此之间毫无关系，只是恰好在时间上最接近而已。</p>
-<blockquote>
-<p>如果只想显示某个端口的数据，可以使用:</p>
-</blockquote>
-<p><code>ip.addr == 220.194.203.68 and tcp.dstport == 52914</code></p>
-<blockquote>
-<p>如果只想看 HTTP 协议的 GET 请求与响应，可以使用 </p>
-</blockquote>
-<p><code></code>ip.addr == 220.194.203.68 and (http.request.method == “GET” || http.response.code == 200)<code></code>来过滤。</p>
-<blockquote>
-<p>如果想看丢包方面的数据，可以用 </p>
-</blockquote>
-<p><code>ip.addr == 220.194.203.68 and (tcp.analysis.fast_retransmission || tcp.analysis.retransmission)</code></p>
-<p><code># 参考</code></p>
-<p><a href="http://ios.jobbole.com/93159/" target="_blank" rel="noopener">http://ios.jobbole.com/93159/</a></p>
-<p><a href="http://blog.csdn.net/phunxm/article/details/38590561" target="_blank" rel="noopener">http://blog.csdn.net/phunxm/article/details/38590561</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/08/12/《Effective-Objective-C-2-0》读书笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/12/《Effective-Objective-C-2-0》读书笔记/" itemprop="url">
-                  《Effective Objective-C 2.0》读书笔记
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-08-12 23:05:51" itemprop="dateCreated datePublished" datetime="2016-08-12T23:05:51+08:00">2016-08-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 18:06:26" itemprop="dateModified" datetime="2018-05-09T18:06:26+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="多用类型常量，少用-define"><a href="#多用类型常量，少用-define" class="headerlink" title="多用类型常量，少用 #define"></a>多用类型常量，少用 #define</h1><ol>
-<li>对于局部常量(.m文件中)，</li>
-</ol>
-<ul>
-<li>使用 static 声明表明变量只在本文件中可见，所以无需前缀</li>
-<li>同时使用 static const 关键字与#define 效果相同，好处在于带有类型信息。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static const CGFloat kTopViewHeight = 40;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol start="2">
-<li>对于全局常量</li>
-</ol>
-<ul>
-<li>由于全局使用，使用类名做前缀</li>
-<li><p>在 .h  文件中使用 extern 声明</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extern NSString * const KKSlideTabBarBgColor;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在 .m 文件中定义</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString * const KKSlideTabBarBgColor = @&quot;name&quot;;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="NS-ENUM-与-NS-OPTIONS"><a href="#NS-ENUM-与-NS-OPTIONS" class="headerlink" title="NS_ENUM 与 NS_OPTIONS"></a>NS_ENUM 与 NS_OPTIONS</h1><ul>
-<li>使用 <code>NS_ENUM</code> 和 <code>NS_OPTIONS</code> 可以指定底层数据类型，而且可以保证系统兼容</li>
-<li>当多种状态可以互相组合时，使用 <code>NS_OPTIONS</code>，否则使用 <code>NS_ENUM</code></li>
-<li>命名规则：前缀+状态</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">typedef NS_ENUM(NSUInteger, GDFConnectionState) &#123;</span><br><span class="line">GDFConnectionStateDisconnected,</span><br><span class="line">GDFConnectionStateConnecting,</span><br><span class="line">GDFConnectionStateConnected,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">GDFConnectionStateDisconnected,</span><br><span class="line">GDFConnectionStateConnecting,</span><br><span class="line">GDFConnectionStateConnected,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">typedef NS_OPTIONS(NSUInteger, GDFDirection) &#123;</span><br><span class="line">GDFDirectionUp    = 1 &lt;&lt; 0,</span><br><span class="line">GDFDirectionDown  = 1 &lt;&lt; 1,</span><br><span class="line">GDFDirectionLeft  = 1 &lt;&lt; 2,</span><br><span class="line">GDFDirectionRight = 1 &lt;&lt; 3,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="消息转发-message-forwarding"><a href="#消息转发-message-forwarding" class="headerlink" title="消息转发 message forwarding"></a>消息转发 message forwarding</h1><p><img src="https://upload-images.jianshu.io/upload_images/1120923-6a0d3c614ab51b8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e28856e7825cc2b7113288d11b2f1be6.png"></p>
-<h1 id="动态方法解析-resolve-method"><a href="#动态方法解析-resolve-method" class="headerlink" title="动态方法解析 resolve method"></a>动态方法解析 resolve method</h1><ul>
-<li>动态方法解析是消息转发的第一步，在这里处理，效率最高<br><code>@dynamic</code> 属性   使编译器不自动生成实例变量及存储方法<br>调用的方法：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (BOOL)resolveInstanceMethod:(SEL)selector</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>代码参见：Runtime.md 动态方法解析 resolve method</p>
-<h1 id="方法调配-method-swizzling"><a href="#方法调配-method-swizzling" class="headerlink" title="方法调配 method swizzling"></a>方法调配 method swizzling</h1><ol>
-<li><p>作用1：在运行死交换两个方法的实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 根据方法名找到方法的实现</span><br><span class="line">class_getInstanceMethod(__unsafe_unretained Class cls, SEL name)</span><br><span class="line">// 交换两个方法的实现</span><br><span class="line">method_exchangeImplementations(Method m1, Method m2)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>作用2：为既有的方法实现添加新功能——调试黑盒方法，为完全不知道具体实现的方法添加日志功能<br><img src="https://upload-images.jianshu.io/upload_images/1120923-13947b19a51404ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="fed427a97a343ee16f2c5edc37065689.png"></p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@implementation NSString (EOC)</span><br><span class="line"></span><br><span class="line">+ (void)load &#123;</span><br><span class="line">Method originalMethod = class_getInstanceMethod([NSString class],</span><br><span class="line">@selector(lowercaseString));</span><br><span class="line">Method swappedMethod = class_getInstanceMethod([NSString class],</span><br><span class="line">@selector(eoc_myLowercaseString));</span><br><span class="line">method_exchangeImplementations(originalMethod, swappedMethod);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (NSString *)eoc_myLowercaseString &#123;</span><br><span class="line">NSString *lowercase = [self eoc_myLowercaseString];</span><br><span class="line">NSLog(@&quot;%@ =&gt; %@&quot;, self, lowercase);</span><br><span class="line">return lowercase;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="类对象"><a href="#类对象" class="headerlink" title="类对象"></a>类对象</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 对象结构体</span><br><span class="line">// isa 指针指向类对象</span><br><span class="line">struct objc_object &#123;</span><br><span class="line">Class isa;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 类结构体</span><br><span class="line">// 1. 这个结构存放类的元数据，实例中的方法，变量等信息就存储在类对象中</span><br><span class="line">// 2. isa 指针指向元类(metaclass)，元类描述类对象本身所具有的元数据，类方法就存储在元类中</span><br><span class="line">// 3. 每个类只有一个类对象，每个类对象只有一个元类</span><br><span class="line">typedef struct objc_class *Class;</span><br><span class="line">struct objc_class &#123;</span><br><span class="line">Class isa;</span><br><span class="line">Class super_class;</span><br><span class="line">const char *name;</span><br><span class="line">long version;</span><br><span class="line">long info;</span><br><span class="line">long instance_size;</span><br><span class="line">struct objc_ivar_list *ivars;</span><br><span class="line">struct objc_method_list **methodLists;</span><br><span class="line">struct objc_cache *cache;</span><br><span class="line">struct objc_protocol_list *protocols;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-9a23d372be25f7a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="f81c1ab1af0d8cee47e96db2568859d0.png"></p>
-<h1 id="前缀"><a href="#前缀" class="headerlink" title="前缀"></a>前缀</h1><ol>
-<li>苹果保留了两字符前缀，我们应该使用三字符前缀</li>
-<li>C函数名应该加上前缀</li>
-<li>头文件中的全局变量需要加上前缀</li>
-<li>为私有方法名添加前缀（例如p_），用于区分哪些方法是私有的，哪些是公有的，私有方法可以随意改动，公有方法则要三思而后行。</li>
-<li>为第三方类添加分类时，分类中的方法要增加前缀，可以避免覆盖原有方法。</li>
-</ol>
-<h1 id="使用段位缓存代理能否响应某个方法"><a href="#使用段位缓存代理能否响应某个方法" class="headerlink" title="使用段位缓存代理能否响应某个方法"></a>使用段位缓存代理能否响应某个方法</h1><ul>
-<li><p>段位：结构体可以设置其成员所占的二进制位数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct &#123;</span><br><span class="line">unsigned int fieldA : 8; // fieldA 占 8 个二进制位，即 0 ~ 255</span><br><span class="line">unsigned int fieldB : 4;</span><br><span class="line">unsigned int fieldC : 2;</span><br><span class="line">unsigned int fieldD : 1;&#125;_delegateFlag;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@protocol KKSlideTabBarViewDelegate &lt;NSObject&gt;</span><br><span class="line">@optional;</span><br><span class="line">- (void)slideTabBarView:(KKSlideTabBarView *)tabBar pageChangedFromIndex:(NSUInteger)from toIndex:(NSUInteger)to;</span><br><span class="line">- (void)slideTabBarView:(KKSlideTabBarView *)tabBar itemMoreClicked:(UIButton *)itemMore;</span><br><span class="line">@end</span><br><span class="line">@interface KKSlideTabBarView : UIView</span><br><span class="line">@property (nonatomic,weak) id &lt;KKSlideTabBarViewDelegate&gt; delegate;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@implementation KKSlideTabBarView &#123;   </span><br><span class="line">struct &#123;</span><br><span class="line">unsigned int didPageChangedHandle    : 1;</span><br><span class="line">unsigned int didItemMoreClickdHandle : 1;</span><br><span class="line">&#125;_delegateFlags;</span><br><span class="line">&#125;</span><br><span class="line">- (void)setDelegate:(id&lt;KKSlideTabBarViewDelegate&gt;)delegate &#123;</span><br><span class="line">_delegate = delegate;</span><br><span class="line">_delegateFlags.didPageChangedHandle = [self.delegate respondsToSelector:@selector(slideTabBarView:pageChangedFromIndex:toIndex:)];</span><br><span class="line">_delegateFlags.didItemMoreClickdHandle = [self.delegate respondsToSelector:@selector(itemMoreClicked:)];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (void)itemMoreClicked:(UIButton *)sender</span><br><span class="line">&#123;</span><br><span class="line">if (_delegateFlags.didItemMoreClickdHandle) &#123;</span><br><span class="line">[self.delegate slideTabBarView:self itemMoreClicked:sender];</span><br><span class="line">&#125;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="NSOperation-与-GCD-优缺点"><a href="#NSOperation-与-GCD-优缺点" class="headerlink" title="NSOperation 与  GCD 优缺点"></a>NSOperation 与  GCD 优缺点</h1><ul>
-<li>GCD 优点：纯 C api，更加轻量级。而operation 是对象，更加重量级</li>
-<li>NSOperation 优点：</li>
-</ul>
-<ol>
-<li>操作加入队列后可以取消（已经启动的任务无法取消）</li>
-<li>可以自动操作之间的依赖关系</li>
-<li>可以使用 KVO 监控 NSOperation 对象的属性，比如通过 isCancelled 判断任务是否取消， isFinished 属性判断任务是否完成</li>
-<li>可以指定每个操作的优先级，而 GCD 只能指定队列的优先级</li>
-<li>可以自定义 operation 对象</li>
-</ol>
-<h1 id="使用-NSCache-和-NSPurgeableData-缓存数据"><a href="#使用-NSCache-和-NSPurgeableData-缓存数据" class="headerlink" title="使用 NSCache 和 NSPurgeableData 缓存数据"></a>使用 NSCache 和 NSPurgeableData 缓存数据</h1><ul>
-<li>只有费时操作才值得放入缓存，比如需要从网络获取的数据、从磁盘读取的数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">@interface KKSlideTabBarViewController ()</span><br><span class="line">&#123;</span><br><span class="line">NSCache *_cache;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">_cache = [NSCache new];</span><br><span class="line">_cache.countLimit = 100;</span><br><span class="line">_cache.totalCostLimit = 5 * 1024 * 1024;</span><br><span class="line"></span><br><span class="line">NSPurgeableData *cacheData = [_cacheobjectForKey:@&quot;url...&quot;];</span><br><span class="line">if (cacheData) &#123;</span><br><span class="line">// stop the data being purged</span><br><span class="line">[cacheData beginContentAccess];</span><br><span class="line"></span><br><span class="line">// 使用数据</span><br><span class="line">// ......</span><br><span class="line"></span><br><span class="line">// Mark that the data may be purged again</span><br><span class="line">[cacheData endContentAccess];</span><br><span class="line">&#125; else &#123;</span><br><span class="line">NSData *data = [NSData dataWithContentsOfURL:@&quot;xxx&quot;];</span><br><span class="line">NSPurgeableData *purgeableData = [NSPurgeableData dataWithData:data];</span><br><span class="line">[_cache setObject:purgeableData</span><br><span class="line">forKey:@&quot;url...&quot;</span><br><span class="line">cost:data.length];</span><br><span class="line"></span><br><span class="line">// With access already maked</span><br><span class="line"></span><br><span class="line">// user data</span><br><span class="line">// .....</span><br><span class="line"></span><br><span class="line">// Mark that the data may be purged now</span><br><span class="line">[purgeableData endContentAccess];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="精简-load-与-initialize-方法"><a href="#精简-load-与-initialize-方法" class="headerlink" title="精简 + load 与 + initialize 方法"></a>精简 + load 与 + initialize 方法</h1><p>它们都是在类载入系统时由运行时系统调用，不能手动调用。</p>
-<p><code>+ load</code> 方法:<br>在类加载时调用。<br>系统会先调用父类的 load 再调用子类的 load，先调用类本身 load，再调用 categery load。<br>在 load 方法中，运行时系统处于脆弱状态，不能确定其他类是否加载完毕。不能在 load 方法中使用其他类对象，因为无法知道这个类是否加载了。<br><code>+ initialize</code> 方法<br><code>+ initialize</code> 方法是惰性加载，使用到类时才会调用。<br><code>+ initialize</code> 方法调用时，系统处于正常状态，可以在 + initialize 方法中使用其他类对象。<br><code>+ initialize</code> 方法一定会在线程安全的环境中执行，那么执行 + initialize 方法时会阻塞其他线程<br>如果子类没有实现 + initialize 方法，而父类实现了，那么会调用夫类的。所以应该这么实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+ (void)initialize</span><br><span class="line">&#123;</span><br><span class="line">if (self == [KKSlideTabBarView class]) &#123;</span><br><span class="line">// 只有当 KKSlideTabBarView 类载入系统时才执行这里的代码</span><br><span class="line">// 不然的话 KKSlideTabBarView 的父类载入系统也会调用 initialize</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/08/02/GCD用法全解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/08/02/GCD用法全解/" itemprop="url">
-                  GCD用法全解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-08-02 17:16:17" itemprop="dateCreated datePublished" datetime="2016-08-02T17:16:17+08:00">2016-08-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 17:45:41" itemprop="dateModified" datetime="2018-05-09T17:45:41+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="dispatch-time与dispatch-walltime的区别"><a href="#dispatch-time与dispatch-walltime的区别" class="headerlink" title="dispatch_time与dispatch_walltime的区别"></a><code>dispatch_time</code>与<code>dispatch_walltime</code>的区别</h1><p>所有定时器dispatch source都是间隔定时器，一旦创建，会按你指定的间隔定期递送事件。<br>当计算机睡眠时，定时器dispatch source会被挂起，稍后系统唤醒时，定时器dispatch source也会自动唤醒。<br>定时器dispatch source会使用系统默认时钟来确定何时触发，但是默认时钟在计算机睡眠时不会继续。</p>
-<p>如果你使用 dispatch_walltime 函数来设置定时器dispatch source，则定时器会根据挂钟时间来跟踪，<br>这种定时器比较适合触发间隔相对比较大的场合，可以防止定时器触发间隔出现太大的误差。</p>
-<p>区别：</p>
-<ol>
-<li><p><code>dispatch_time_t</code>类型的时间我们可以通过<code>dispatch_time</code>来创建，也可以通过<code>dispatch_walltime</code>来创建。<br><code>dispatch_time</code>创建的时间多以第一个参数为参照物，之后过多久执行任务。<br><code>dispatch_walltime</code>多用于创建绝对时间，如某年某月某日某时某分执行某任务，比如闹钟的设置。</p>
-</li>
-<li><p><code>dispatch_time</code>在计算机睡眠时会停止<br><code>dispatch_walltime</code>不会</p>
-</li>
-</ol>
-<p>例如以下情景</p>
-<p>情景：希望一小时后执行任务，5分钟后计算机进入睡眠<br>操作：50分钟后唤醒计算机<br>实际：使用<code>dispatch_walltime</code>时: 5分钟后开始执行<br>使用<code>dispatch_time</code>: 55分钟后开始执行</p>
-<h1 id="GCD-定时器的使用"><a href="#GCD-定时器的使用" class="headerlink" title="GCD 定时器的使用"></a>GCD 定时器的使用</h1><h2 id="dispatch-source-set-timer-最后一个参数-leeway-详解"><a href="#dispatch-source-set-timer-最后一个参数-leeway-详解" class="headerlink" title="dispatch_source_set_timer 最后一个参数 leeway 详解"></a><code>dispatch_source_set_timer</code> 最后一个参数 <code>leeway</code> 详解</h2><ul>
-<li><code>leeway</code> 这个参数告诉系统我们需要计时器触发的精准程度。所有的计时器都不会保证100%精准，这个参数用来告诉系统你希望系统保证精准的努力程度。如果你希望一个计时器没五秒触发一次，并且越准越好，那么你传递0为参数。</li>
-<li>如果是一个周期性任务，比如检查email，那么你会希望每十分钟检查一次，但是不用那么精准。所以你可以传入60，告诉系统60秒的误差是可接受的。  </li>
-<li>这样有什么意义呢？——降低资源消耗。如果系统可以让cpu休息足够长的时间，并在每次醒来的时候执行一个任务集合，而不是不断的醒来睡去以执行任务，那么系统会更高效。如果传入一个比较大的leeway给你的计时器，意味着你允许系统拖延你的计时器来将计时器任务与其他任务联合起来一起执行。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">    dispatch_queue_t mainQueue = dispatch_get_main_queue();</span><br><span class="line">    NSTimeInterval interval = 1.0f;</span><br><span class="line">    NSTimeInterval delay = 1.0f;</span><br><span class="line">    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, mainQueue);</span><br><span class="line">    dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, delay), interval * NSEC_PER_SEC, 1.0 * NSEC_PER_SEC);</span><br><span class="line">    dispatch_source_set_event_handler(timer, ^&#123;</span><br><span class="line">        NSLog(@&quot;%s&quot;, __func__);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_resume(timer);</span><br><span class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(6 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</span><br><span class="line">    dispatch_source_cancel(timer);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="测试代码执行效率"><a href="#测试代码执行效率" class="headerlink" title="测试代码执行效率"></a>测试代码执行效率</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func testPerformance(closure: ()-&gt;()) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    closure()</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func testFunctionPerformance(selector: Selector) &#123;</span><br><span class="line">    let startTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    self.performSelector(selector)</span><br><span class="line">    let endTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, 0)</span><br><span class="line">    print(endTime - startTime)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="GCD-加锁"><a href="#GCD-加锁" class="headerlink" title="GCD 加锁"></a>GCD 加锁</h1><h2 id="GCD-信号量的使用"><a href="#GCD-信号量的使用" class="headerlink" title="GCD 信号量的使用"></a>GCD 信号量的使用</h2><ol>
-<li>设置信号量的个数为1时，可以当锁来使用</li>
-<li>设置信号量的个数与CPU个数相近时（比如CPU个数 * 2），可以用来限制线程个数。</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">var semaphore: dispatch_semaphore_t = dispatch_semaphore_create(1)</span><br><span class="line"></span><br><span class="line">//MARK: ------------------- 使用信号量进行加锁操作 --------------------</span><br><span class="line">func test_semaphore() &#123;</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_first()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_second()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  self.tast_third()</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_first() &#123;</span><br><span class="line">    // p操作，进入临界区      dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line"></span><br><span class="line">    print(&quot;First tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;First task is done&quot;)</span><br><span class="line"></span><br><span class="line">    // v操作，离开临界区      dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_second() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Second tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Second task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">func tast_third() &#123;</span><br><span class="line">    dispatch_semaphore_wait(self.semaphore, DISPATCH_TIME_FOREVER)</span><br><span class="line">    print(&quot;Third tast starting&quot;)</span><br><span class="line">    sleep(1)</span><br><span class="line">    NSLog(&quot;%@&quot;, &quot;Thrid task is done&quot;)</span><br><span class="line">    dispatch_semaphore_signal(self.semaphore)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="使用信号量控制多线程中代码执行顺序"><a href="#使用信号量控制多线程中代码执行顺序" class="headerlink" title="使用信号量控制多线程中代码执行顺序"></a>使用信号量控制多线程中代码执行顺序</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)test_dispatch_semaphore_t_0 &#123;</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);</span><br><span class="line">    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">        [self method1];</span><br><span class="line">        sleep(10);</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">    [self method2];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_after 的使用-------------------- func dispatchAfter() &#123;</span><br><span class="line">    let delay: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))</span><br><span class="line">    dispatch_after(delay, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) &#123; () -&gt; Void in  print(&quot;viewDidLoad()&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"># GCD 多任务异步执行与 `dispatch_notify` 的使用</span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行 与 dispatch_group_notify 的使用 -------------------- func dispatchGroup() &#123;</span><br><span class="line">    let group: dispatch_group_t = dispatch_group_create()</span><br><span class="line">    let globalQueueDefault: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 串行队列按照先进先出的顺序执行（FIFO）      </span><br><span class="line">    let userQueueSerie: dispatch_queue_t = dispatch_queue_create(&quot;com.dispatchGroup.demo&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line"></span><br><span class="line">    // 下载任务1     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task1 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务2     </span><br><span class="line">    dispatch_group_async(group, userQueueSerie)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task2 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 下载任务3     </span><br><span class="line">    dispatch_group_async(group, globalQueueDefault)&#123;</span><br><span class="line">        sleep(3)</span><br><span class="line">        NSLog(&quot;Task3 is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 监听任务组事件的执行完毕      </span><br><span class="line">    dispatch_group_notify(group, dispatch_get_main_queue())&#123;</span><br><span class="line">        NSLog(&quot;Group tasks are done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 设置等待时间(即设置超时)，在等待时间结束后，如果还没有执行完任务组，则返回。返回0代表执行成功，非0则执行失败      </span><br><span class="line">    // 等待直到完成      </span><br><span class="line">    let result = dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    if (result != 0) &#123;</span><br><span class="line">        print(&quot;Now viewDidLoad is done&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># dispatch_group_apply</span><br><span class="line"></span><br><span class="line">```Objective-C</span><br><span class="line">//MARK: ------------------- 多任务异步执行/同步执行 与 dispatch_apply 的使用 -------------------- </span><br><span class="line">func dispatchApply() &#123;</span><br><span class="line">    let iterations: Int = 20 // 迭代次数      </span><br><span class="line">    let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line"></span><br><span class="line">    // 同步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue) &#123; (index: Int) -&gt; </span><br><span class="line">            Void in  print(index, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    // 异步执行      </span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        dispatch_apply(iterations, globalQueue, &#123; (index: Int) -&gt; Void in  </span><br><span class="line">            dispatch_async(globalQueue, &#123; () -&gt; Void in </span><br><span class="line">                 print(index, NSThread.currentThread())</span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">        NSLog(&quot;iterations is over&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    print(&quot;------------------------------------&quot;)</span><br><span class="line"></span><br><span class="line">    self.testPerformance &#123; () -&gt; () in  </span><br><span class="line">        for i:Int in 1...iterations &#123;</span><br><span class="line">            print(i, NSThread.currentThread())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="dispatch-group-enter-dispatch-group-leave"><a href="#dispatch-group-enter-dispatch-group-leave" class="headerlink" title="dispatch_group_enter / dispatch_group_leave"></a><code>dispatch_group_enter</code> / <code>dispatch_group_leave</code></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- dispatch_group_enter / dispatch_group_leave -------------------</span><br><span class="line">// 将任务组中的任务未执行完毕的任务数目加减1，这种方式不使用 dispatch_group_async 来提交任务， </span><br><span class="line">// 注意：这两个函数要配合使用，有enter要有leave，这样才能保证功能完整实现。    </span><br><span class="line">// 串行执行三个任务  </span><br><span class="line">func dispatchGroup_EnterAndLeave_Seriel() &#123;</span><br><span class="line">    let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">    for index:UInt32 in 1...3&#123;</span><br><span class="line">        dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">        manualDownLoad(index)&#123;</span><br><span class="line">            print(&quot;Task \(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, block:()-&gt;())&#123;</span><br><span class="line">        print(&quot;Downloading task &quot;, num)</span><br><span class="line">        sleep(num)</span><br><span class="line">        block()</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    // 并行执行三个任务  </span><br><span class="line">    func dispatchGroup_EnterAndLeave_Concurrent() &#123;</span><br><span class="line">        let group = dispatch_group_create()//创建group    </span><br><span class="line">        let globalQueueDefault = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0)</span><br><span class="line"></span><br><span class="line">        for index:UInt32 in 1...3 &#123;</span><br><span class="line">            dispatch_group_enter(group)//提交了一个任务，任务数目加1        </span><br><span class="line">            manualDownLoad(index, queue: globalQueueDefault)&#123;</span><br><span class="line">            NSLog(&quot;Task\(index) is done&quot;)</span><br><span class="line"></span><br><span class="line">            dispatch_group_leave(group)//完成一个任务，任务数目减1 &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    func manualDownLoad(num: UInt32, queue:dispatch_queue_t, block:()-&gt;())&#123;</span><br><span class="line">        dispatch_async(queue)&#123;</span><br><span class="line">            NSLog(&quot;Downloading task\(num)&quot;)</span><br><span class="line">            sleep(num)</span><br><span class="line">            block()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="GCD-实战：资源竞争"><a href="#GCD-实战：资源竞争" class="headerlink" title="GCD 实战：资源竞争"></a>GCD 实战：资源竞争</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">//MARK: ------------------- 多线程测试：资源竞争 --------------------</span><br><span class="line"> func test_mutiThread() &#123;</span><br><span class="line">        let userSerialQueue = dispatch_queue_create(&quot;com.test.mutiThread.userSerialQueue&quot;, DISPATCH_QUEUE_SERIAL)</span><br><span class="line">        let globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)</span><br><span class="line">        let group = dispatch_group_create()</span><br><span class="line"></span><br><span class="line">        // 当 &quot;Processing data&quot;（CUP处理速度） 速度远小于 &quot;Reading file&quot;（磁盘处理速度） 速度时，线程数占用过多          // 使用信号量来限制同时执行的任务的数量         </span><br><span class="line">        let cupCount = NSProcessInfo.processInfo().processorCount // CPU 数量</span><br><span class="line">        let jobSemaphore = dispatch_semaphore_create(cupCount * 2) // 限制线程个数</span><br><span class="line"></span><br><span class="line">        for i:Int in 1...50 &#123;</span><br><span class="line">            dispatch_semaphore_wait(jobSemaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">            dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;Reading file&quot;, i, NSThread.currentThread())</span><br><span class="line">                // sleep(2)                </span><br><span class="line">                dispatch_group_async(group, globalQueue, &#123; () -&gt; Void in  print(&quot;  Processing data&quot;, i, NSThread.currentThread())</span><br><span class="line">                    sleep(1)</span><br><span class="line"></span><br><span class="line">                    dispatch_group_async(group, userSerialQueue, &#123; () -&gt; Void in  print(&quot;    writing file&quot;, i, NSThread.currentThread())</span><br><span class="line">                        // sleep(2)                        </span><br><span class="line">                        dispatch_semaphore_signal(jobSemaphore);</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;)</span><br><span class="line"></span><br><span class="line">            &#125;)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        dispatch_group_wait(group, DISPATCH_TIME_FOREVER)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.jianshu.com/p/6670cdbb1ebb" target="_blank" rel="noopener">http://www.jianshu.com/p/6670cdbb1ebb</a><br><a href="http://www.dreamingwish.com/article/gcd-practice-io-race.html" target="_blank" rel="noopener">http://www.dreamingwish.com/article/gcd-practice-io-race.html</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/06/09/CocoaPods-管理私有库/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/09/CocoaPods-管理私有库/" itemprop="url">
-                  CocoaPods 管理私有库
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-06-09 18:02:18" itemprop="dateCreated datePublished" datetime="2016-06-09T18:02:18+08:00">2016-06-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 18:02:51" itemprop="dateModified" datetime="2018-05-09T18:02:51+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[toc]</p>
-<h1 id="一、创建私有-Cocoapod-Spec-Repo-仓库"><a href="#一、创建私有-Cocoapod-Spec-Repo-仓库" class="headerlink" title="一、创建私有 Cocoapod Spec Repo 仓库"></a>一、创建私有 <code>Cocoapod Spec Repo</code> 仓库</h1><p><code>Spec Repo</code> 是所有 pod 的索引，自己创建的私有 pod 库都将放在这里</p>
-<ol>
-<li>创建一个空的私有 <code>Cocoapod Spec Repo</code> 的远程 git 仓库</li>
-<li>执行命令<br><code>pod repo add KSSpecPods https://coding.net/u/action456789/p/KSSpecPods.git</code></li>
-<li>查看是否创建成功<br>进入到<code>~/.cocoapods/repos</code>目录下，如果看到 <code>KSSpecPods</code> ，说明创建成功</li>
-</ol>
-<h1 id="二、创建需要放入-Cocoapod-Spec-Repo-仓库进行管理的私有库"><a href="#二、创建需要放入-Cocoapod-Spec-Repo-仓库进行管理的私有库" class="headerlink" title="二、创建需要放入 Cocoapod Spec Repo 仓库进行管理的私有库"></a>二、创建需要放入 Cocoapod Spec Repo 仓库进行管理的私有库</h1><h2 id="创建全新的私有库时"><a href="#创建全新的私有库时" class="headerlink" title="创建全新的私有库时"></a>创建全新的私有库时</h2><ol>
-<li><p>创建私有库的远程 git 仓库</p>
-</li>
-<li><p>创建本地私有库<br><code>pod lib create podTestLibrary</code></p>
-</li>
-<li><p>关联本地私有库与远程仓库，并打上版本号，然后推送到远程 git 仓库<br><code>git tag -m &quot;first release&quot; 0.1.0</code><br><code>git push --tags     #推送tag到远端仓库</code></p>
-</li>
-<li><p>编辑<code>podspec</code>文件<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |s|</span><br><span class="line">s.name             = &apos;TAFNetwork&apos;</span><br><span class="line">s.version          = &apos;0.1.0&apos;</span><br><span class="line">s.summary          = &apos;Just Testing.&apos;</span><br><span class="line"></span><br><span class="line">s.description      = &lt;&lt;-DESC</span><br><span class="line">Testing Private Podspec.</span><br><span class="line"></span><br><span class="line">* Markdown format.</span><br><span class="line">* Don&apos;t worry about the indent, we strip it!</span><br><span class="line">DESC</span><br><span class="line"></span><br><span class="line">s.homepage         = &apos;https://github.com/action456789/CocoapodsPrivateLibTest&apos;                           #主页,这里要填写可以访问到的地址，不然验证不通过</span><br><span class="line"># s.screenshots     = &apos;www.example.com/screenshots_1&apos;, &apos;www.example.com/screenshots_2&apos;      #截图</span><br><span class="line">s.license          = &apos;MIT&apos;                                                                  #开源协议</span><br><span class="line">s.author           = &#123; &apos;kesen&apos; =&gt; &apos;317331820@qq.com&apos; &#125;</span><br><span class="line"></span><br><span class="line">s.source           = &#123; :git =&gt; &apos;https://github.com/action456789/CocoapodsPrivateLibTest.git&apos;, :tag =&gt; s.version&#125;   #项目地址，这里不支持ssh的地址，验证不通过，只支持HTTP和HTTPS，最好使用HTTPS</span><br><span class="line"></span><br><span class="line"># s.social_media_url = &apos;https://twitter.com/&lt;TWITTER_USERNAME&gt;&apos;                             #多媒体介绍地址</span><br><span class="line"></span><br><span class="line">s.platform     = :ios, &apos;7.0&apos;                  #支持的平台及版本</span><br><span class="line">s.requires_arc = true                         #是否使用ARC，如果指定具体文件，则具体的问题使用ARC</span><br><span class="line"></span><br><span class="line">s.source_files = &apos;TAFNetwork/Classes/**/*&apos;    #代码源文件地址，**/*表示Classes目录及其子目录下所有文件，</span><br><span class="line"></span><br><span class="line">#    s.resource_bundles = &#123;                                      #资源文件地址</span><br><span class="line">#        &apos;TAFNetwork&apos; =&gt; [&apos;TAFNetwork/Assets/*.png&apos;]</span><br><span class="line">#    &#125;</span><br><span class="line"></span><br><span class="line">s.public_header_files = &apos;TAFNetwork/Classes/**/*.h&apos;          #NAME_OF_POD/Classes/**/*&apos;，公开头文件地址</span><br><span class="line">s.frameworks = &apos;UIKit&apos;                                       #所需的framework，多个用逗号隔开</span><br><span class="line"></span><br><span class="line">#    s.dependency &apos;CocoaAsyncSocket&apos;, &apos;~&gt; 7.5.0&apos;</span><br><span class="line">#    s.dependency &apos;FMDB&apos;, &apos;~&gt; 2.5&apos;</span><br><span class="line">#    s.dependency &apos;Reachability&apos;, &apos;~&gt; 3.2&apos;</span><br><span class="line">#    s.dependency &apos;SAMKeychain&apos;, &apos;~&gt; 1.5.2&apos;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>验证<code>podspec</code><br>执行<br><code>pod lib lint</code></p>
-</li>
-</ol>
-<h2 id="私有库项目已经存在时"><a href="#私有库项目已经存在时" class="headerlink" title="私有库项目已经存在时"></a>私有库项目已经存在时</h2><ol>
-<li>创建 <code>podspec</code> 文件<br><code>pod spec create PodTestLibrary git@coding.net:wtlucky/podTestLibrary.git</code></li>
-<li>验证<code>podspec</code><br>执行<br><code>pod lib lint</code></li>
-</ol>
-<h1 id="三、本地测试podspec文件"><a href="#三、本地测试podspec文件" class="headerlink" title="三、本地测试podspec文件"></a>三、本地测试podspec文件</h1><p>1）新建一个项目，在这个项目的Podfile文件中直接指定刚才创建编辑好的podspec文件，看是否可用。 在Podfile中我们可以这样编辑，有两种方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;podTestLibrary&apos;, :podspec =&gt; &apos;/Users/kesen/Desktop/Repository/KSSpecPods/podTestLibrary/podTestLibrary.podspec&apos;  # 指定podspec文件</span><br><span class="line"># pod &apos;podTestLibrary&apos;, :path =&gt; &apos;/Users/kesen/Desktop/Repository/KSSpecPods&apos;      # 指定路径</span><br></pre></td></tr></table></figure></p>
-<p>2）安装依赖<br><code>pod install</code></p>
-<h1 id="四、提交私有库到私有-Cocoapod-Spec-Repo-仓库"><a href="#四、提交私有库到私有-Cocoapod-Spec-Repo-仓库" class="headerlink" title="四、提交私有库到私有 Cocoapod Spec Repo 仓库"></a>四、提交私有库到私有 <code>Cocoapod Spec Repo</code> 仓库</h1><ol>
-<li>进入私有库目录，执行<br><code>pod repo push KSSpecPods podTestLibrary.podspec</code></li>
-<li>进入<code>/Users/kesen/.cocoapods/KSSpecPods</code>查看是否提交成功</li>
-</ol>
-<h1 id="五、私有制作好的私有库"><a href="#五、私有制作好的私有库" class="headerlink" title="五、私有制作好的私有库"></a>五、私有制作好的私有库</h1><p>1）在 podfile 文件中加入代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &apos;PodTestLibrary&apos;, &apos;~&gt; 0.1.0&apos;</span><br></pre></td></tr></table></figure></p>
-<p>2）执行 <code>pod update</code><br>然后打开项目可以看到，我们自己的库文件已经出现在Pods子项目中的Pods子目录下了</p>
-<h1 id="六、更新私有库"><a href="#六、更新私有库" class="headerlink" title="六、更新私有库"></a>六、更新私有库</h1><p>参考<br><a href="http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/" target="_blank" rel="noopener">http://blog.wtlucky.com/blog/2015/02/26/create-private-podspec/</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/04/12/如何更新React-Native/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/04/12/如何更新React-Native/" itemprop="url">
-                  如何更新React Native
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-04-12 15:32:04" itemprop="dateCreated datePublished" datetime="2016-04-12T15:32:04+08:00">2016-04-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-20 18:48:28" itemprop="dateModified" datetime="2019-08-20T18:48:28+08:00">2019-08-20</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>最新的React Native已经更新到了0.33.0，如何更新自己已经搭建好的React Native开发环境呢，我按照以下步骤完成了更新，现记录下来，供有需要的人参考。</p>
-</blockquote>
-<h2 id="1-查看-react-native-的最新版本。"><a href="#1-查看-react-native-的最新版本。" class="headerlink" title="1.查看 react native 的最新版本。"></a>1.查看 react native 的最新版本。</h2><p>进入项目根目录，命令行执行<br><code>npm info react-native</code></p>
-<p>查看当前版本<code>react-native --version</code></p>
-<h2 id="2-在项目目录下修改package-json文件，将下列代码中的-react-native-改为最新版本"><a href="#2-在项目目录下修改package-json文件，将下列代码中的-react-native-改为最新版本" class="headerlink" title="2.在项目目录下修改package.json文件，将下列代码中的 react-native 改为最新版本"></a>2.在项目目录下修改<code>package.json</code>文件，将下列代码中的 react-native 改为最新版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line">      &quot;react&quot;: &quot;^0.14.8&quot;,</span><br><span class="line">      &quot;react-native&quot;: &quot;^0.33.0&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-命令行执行"><a href="#3-命令行执行" class="headerlink" title="3. 命令行执行"></a>3. 命令行执行</h2><p><code>npm install --save react-native@0.33.0</code><br>如果升级后出现类似于<br><a href="mailto:`react-native@0.33.0" target="_blank" rel="noopener">`react-native@0.33.0</a> requires a peer of react@~15.3.1 but none was installed.`</p>
-<p>执行<br><code>npm install --save react@~15.3.1</code></p>
-<h2 id="4-运行程序"><a href="#4-运行程序" class="headerlink" title="4. 运行程序"></a>4. 运行程序</h2><p>如果更新后执行react-native run-android不能正确运行，而是出现类似：<br><code>Could not find com.facebook.react:react-native:0.23.0.</code><br>错误，或者在Android Studio中直接运行app时报错：<br><code>Android Studio failed to resolve com.facebook.react:react-native:0.23.0</code><br>那么可以按照下列命令修复，首先在命令行中执行：<br><code>npm i</code><br>执行完毕且不报错后，执行下面的命令，<strong>注意，在执行命令之后，某些文件可能会产生冲突，请确保你的本地文件记录可以恢复</strong>（在Android Studio中可以查看历史记录来恢复文件）<br><code>react-native upgrade</code><br>执行上面的命令可能会提示你是否覆盖文件。在解决冲突之后重新运行App即可。</p>
-<h2 id="如果还有问题，可以更新一下npm和Node-js再试"><a href="#如果还有问题，可以更新一下npm和Node-js再试" class="headerlink" title="如果还有问题，可以更新一下npm和Node.js再试"></a>如果还有问题，可以更新一下npm和Node.js再试</h2><ul>
-<li>如何更新npm<br><code>npm install -g npm</code></li>
-<li>如何更新Node.js<br><code>npm update node.js</code></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/01/09/消除编译器警告/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/01/09/消除编译器警告/" itemprop="url">
-                  消除编译器警告
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-01-09 17:54:41" itemprop="dateCreated datePublished" datetime="2016-01-09T17:54:41+08:00">2016-01-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 17:56:09" itemprop="dateModified" datetime="2018-05-09T17:56:09+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="关闭-deprecated-declarations-警告"><a href="#关闭-deprecated-declarations-警告" class="headerlink" title="关闭 deprecated-declarations 警告."></a>关闭 <code>deprecated-declarations</code> 警告.</h1><h2 id="基本流程"><a href="#基本流程" class="headerlink" title="基本流程:"></a>基本流程:</h2><ol>
-<li>push 当前警告入栈</li>
-<li>忽略我们要消除的警告</li>
-<li>执行会产生警告的代码</li>
-<li>pop 警告出栈——恢复之前的状态<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Wdeprecated-declarations&quot;</span><br><span class="line">/*</span><br><span class="line">要屏蔽掉deprecated警告的代码</span><br><span class="line">*/</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h1 id="关闭-XCode8-Convenience-initializer-missing-a-self-call-to-警告"><a href="#关闭-XCode8-Convenience-initializer-missing-a-self-call-to-警告" class="headerlink" title="关闭 XCode8 Convenience initializer missing a self call to.... 警告"></a>关闭 XCode8 <code>Convenience initializer missing a self call to....</code> 警告</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line">#pragma clang diagnostic ignored &quot;-Wobjc-designated-initializers&quot;</span><br><span class="line">/*</span><br><span class="line">要屏蔽掉deprecated警告的代码</span><br><span class="line">*/</span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
-<h1 id="undeclared-selector警告"><a href="#undeclared-selector警告" class="headerlink" title="undeclared selector警告"></a><code>undeclared selector</code>警告</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#pragma clang diagnostic push</span><br><span class="line"></span><br><span class="line">#pragma clang diagnostic ignored&quot;-Wundeclared-selector&quot;</span><br><span class="line"></span><br><span class="line">//......</span><br><span class="line"></span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
-<h1 id="Category-is-implementing-a-method-which-will-also-be-implemented-by-its-primary-class"><a href="#Category-is-implementing-a-method-which-will-also-be-implemented-by-its-primary-class" class="headerlink" title="Category is implementing a method which will also be implemented by its primary class"></a><code>Category is implementing a method which will also be implemented by its primary class</code></h1><p>当category重写类已有的方法时会出现此警告。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#pragma clang diagnostic push</span><br><span class="line"></span><br><span class="line">#pragma clang diagnostic ignored &quot;-Wobjc-protocol-method-implementation”</span><br><span class="line"></span><br><span class="line">//.....</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#pragma clang diagnostic pop</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/11/06/iOS编译ffmpeg/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/11/06/iOS编译ffmpeg/" itemprop="url">
-                  iOS编译ffmpeg
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2015-11-06 10:59:45" itemprop="dateCreated datePublished" datetime="2015-11-06T10:59:45+08:00">2015-11-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 18:00:27" itemprop="dateModified" datetime="2018-05-09T18:00:27+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="iOS编译ffmpeg"><a href="#iOS编译ffmpeg" class="headerlink" title="iOS编译ffmpeg"></a>iOS编译ffmpeg</h1><p>参考<a href="http://www.jianshu.com/p/08107176d5bb" target="_blank" rel="noopener">http://www.jianshu.com/p/08107176d5bb</a></p>
-<h2 id="1）-下载”一键编译”脚本"><a href="#1）-下载”一键编译”脚本" class="headerlink" title="1） 下载”一键编译”脚本"></a>1） 下载”一键编译”脚本</h2><p><a href="https://github.com/kewlbear/FFmpeg-iOS-build-script" target="_blank" rel="noopener">https://github.com/kewlbear/FFmpeg-iOS-build-script</a></p>
-<h2 id="2）编译能在iOS下使用的FFMPEG-library库"><a href="#2）编译能在iOS下使用的FFMPEG-library库" class="headerlink" title="2）编译能在iOS下使用的FFMPEG library库"></a>2）编译能在iOS下使用的FFMPEG library库</h2><p>进入脚本目录，执行<br><code>./build-ffmpeg.sh</code></p>
-<h2 id="3）在xcode中引入FFMPEG-library库"><a href="#3）在xcode中引入FFMPEG-library库" class="headerlink" title="3）在xcode中引入FFMPEG library库"></a>3）在xcode中引入FFMPEG library库</h2><p>新建工程，把上面编译好的FFmpeg-iOS拖到xcode工程中</p>
-<p>编译后的文件夹中<br><code>ffmpeg-2.5.3</code> 是源码<br><code>FFmpeg-iOS</code> 是编译出来的库，里面有我们需要的.a静态库，一共有7个</p>
-<p>执行<code>lipo -info libavcodec.a</code>，查看.a包支持的架构，这几个包都支持了<code>armv7 armv7s i386 x86_64 arm64</code>这几个架构，这个脚本果真是业界良心啊～～～</p>
-<h2 id="4）加入依赖库"><a href="#4）加入依赖库" class="headerlink" title="4）加入依赖库"></a>4）加入依赖库</h2><p><code>libz.tbd</code> <code>libbz2.tbd</code> <code>libiconv.tbd</code>等<br><img src="https://upload-images.jianshu.io/upload_images/1120923-bccdc2e6176cb125.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="78559964.png"></p>
-<h2 id="5）为TARGETS-添加-search-paths"><a href="#5）为TARGETS-添加-search-paths" class="headerlink" title="5）为TARGETS 添加 search paths"></a>5）为TARGETS 添加 search paths</h2><p>项目根目录用 <code>$(SRCROOT)</code> 表示</p>
-<ul>
-<li>添加 Header Search Paths<br><code>$(inherited)</code><br><code>$(SRCROOT)/FfmpegDemo/FFmpeg-iOS/lib</code><br><img src="https://upload-images.jianshu.io/upload_images/1120923-8ee9a3eeed2d3909.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="72612549.png"></li>
-</ul>
-<ul>
-<li>添加 Library Search Paths （系统可能已经添加）<br><code>$(inherited)</code><br>`$(SRCROOT)/FfmpegDemo/FFmpeg-iOS/include<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5217e7cf6a5fd309.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="72413903.png"></li>
-</ul>
-<blockquote>
-<p>如果编译不过（如缺少文件）一般都是search paths路径没写对</p>
-</blockquote>
-<h2 id="5）修改某个-m文件为-mm"><a href="#5）修改某个-m文件为-mm" class="headerlink" title="5）修改某个.m文件为.mm"></a>5）修改某个.m文件为.mm</h2><p>注意，不能是引入FFmpeg库的文件，否则编译不过</p>
-<h2 id="6）引入头文件"><a href="#6）引入头文件" class="headerlink" title="6）引入头文件"></a>6）引入头文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;avformat.h&quot;</span><br></pre></td></tr></table></figure>
-<p>如果编译成功，说明 search patchs 设置成功</p>
-<h2 id="7）添加代码"><a href="#7）添加代码" class="headerlink" title="7）添加代码"></a>7）添加代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &quot;avutil.h&quot;</span><br><span class="line"></span><br><span class="line">av_register_all();</span><br><span class="line">// 获取 ffmpeg 版本号</span><br><span class="line">const char *version = av_version_info();</span><br><span class="line">NSLog(@&quot;version: %s&quot;, version);</span><br></pre></td></tr></table></figure>
-<p>执行成功说明集成成功</p>
-<h1 id="各个CPU构架支持的设备"><a href="#各个CPU构架支持的设备" class="headerlink" title="各个CPU构架支持的设备"></a>各个CPU构架支持的设备</h1><p><img src="https://upload-images.jianshu.io/upload_images/1120923-5a4d76d47a24e554.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="68265767.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/10/24/KVO深入解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/10/24/KVO深入解析/" itemprop="url">
-                  KVO深入解析
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2015-10-24 17:18:51" itemprop="dateCreated datePublished" datetime="2015-10-24T17:18:51+08:00">2015-10-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="iOS-中监听某个值的改变有哪些方法？"><a href="#iOS-中监听某个值的改变有哪些方法？" class="headerlink" title="iOS 中监听某个值的改变有哪些方法？"></a>iOS 中监听某个值的改变有哪些方法？</h1><p>在一个复杂的，有状态的系统中，当一个对象的状态发生改变，如何通知系统，并对状态改变做出相应的行为是必需考虑的一个问题，在iOS中为这类问题提供了4种解决方法： </p>
-<ol>
-<li>NSNotifiactaion 和 NSNotificationCenter：通知中心 </li>
-<li>Delegates：代理， </li>
-<li><p>Callback：回调， </p>
-</li>
-<li><p>KVO（Key-Value Observing）：键值观察 </p>
-</li>
-</ol>
-<p>Key-Value Observing (简写为KVO)：当指定的对象的属性被修改了，允许对象接受到通知的机制。每次指定的被观察对象的属性被修改的时候，KVO都会自动的去通知相应的观察者。</p>
-<h1 id="KVO-是什么？"><a href="#KVO-是什么？" class="headerlink" title="KVO 是什么？"></a>KVO 是什么？</h1><blockquote>
-<blockquote>
-<p>Objective-C 中的键(key)-值(value)观察(KVO)并不是什么新鲜事物，它来源于设计模式中的观察者模式，其基本思想就是：<br>一个目标对象管理所有依赖于它的观察者对象，并在它自身的状态改变时主动通知观察者对象。这个主动通知通常是通过调用各观察者对象所提供的接口方法来实现的。观察者模式较完美地将目标对象与观察者对象解耦。</p>
-</blockquote>
-</blockquote>
-<h1 id="KVO-的用法"><a href="#KVO-的用法" class="headerlink" title="KVO 的用法"></a>KVO 的用法</h1><ol>
-<li>如果要监听“对象A”属性值的改变，先要为＂对象A＂的属性注册观察者（假设观察者为“对象B”）。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)addObserver:(NSObject * _Nonnull)anObserver</span><br><span class="line">forKeyPath:(NSString * _Nonnull)keyPath</span><br><span class="line">options:(NSKeyValueObservingOptions)options</span><br><span class="line">context:(void * _Nullable)context</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><code>anObserver</code> : 观察者，注册 KVO 通知的对象. 其必须实现方法 observeValueForKeyPath:ofObject:change:context:.<br><code>keyPath</code> : 被观察的属性，其不能为nil.<br><code>options</code> : 表示要监听那些通知，一般为写 0<br><code>context</code> : 一些其他的需要传递给观察者的上下文信息，通常设置为 nil</p>
-<p><code>options</code> 解释如下：<br><code>NSKeyValueObservingOptionNew</code> : change 字典中包含 key 改变后的新值<br><code>NSKeyValueObservingOptionOld</code> : change 字典中包含 key 改变前的旧值<br><code>NSKeyValueObservingOptionInitial</code> : 在添加观察者的时候立即发送一个通知给观察者,并且是在注册观察者方法返回之前<br><code>NSKeyValueObservingOptionPrior</code> : 如果指定，则在每次修改属性时，会在修改通知被发送之前预先发送一条通知给观察者，这与-willChangeValueForKey:被触发的时间是相对应的。这样，在每次修改属性时，实际上是会发送两条通知。<br>２.　观察者“对象B”实现　<code>observeValueForKeyPath:ofObject:change:context:</code>.　方法<br>３.   “对象A”移除监听者　<code>- (void)removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath</code>;<br>另外注意：<code>keyPath</code> 即被观察的属性只能是 <code>NSString</code> 类型</p>
-<ul>
-<li>注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行</li>
-</ul>
-<h1 id="KVO-的实现原理"><a href="#KVO-的实现原理" class="headerlink" title="KVO 的实现原理"></a>KVO 的实现原理</h1><p>键值编码和键值观察是根据 isa-swizzling 技术来实现的，主要依据runtime的强大动态能力。<br>当某个类的对象第一次被观察时，系统就会在运行期动态地创建该类的一个派生类，在这个派生类中重写基类中任何被观察属性的 setter 方法。派生类在被重写的 setter 方法实现真正的通知机制。<br>同时派生类还重写了 class 方法以“欺骗”外部调用者它就是起初的那个类。然后系统将这个对象的 isa 指针指向这个新诞生的派生类，因此这个对象就成为该派生类的对象了，因而在该对象上对 setter 的调用就会调用重写的 setter，从而激活键值通知机制。此外，派生类还重写了 dealloc 方法来释放资源。</p>
-<ol>
-<li><p>重写新类的 class 方法<br>重写class方法是为了我们调用它的时候返回跟重写继承类之前同样的内容。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//打印如下内容：</span><br><span class="line">NSLog(@&quot;self-&gt;isa:%@&quot;,self-&gt;isa);</span><br><span class="line">NSLog(@&quot;self class:%@&quot;,[self class]);</span><br><span class="line"></span><br><span class="line">//在建立KVO监听前，打印结果为：</span><br><span class="line">self-&gt;isa:Person</span><br><span class="line">self class:Person</span><br><span class="line"></span><br><span class="line">//在建立KVO监听之后，打印结果为：</span><br><span class="line">self-&gt;isa:NSKVONotifying_Person</span><br><span class="line"></span><br><span class="line">self class:Person</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重写新类的 set 方法<br>新类会重写对应的set方法，是为了在set方法中增加另外两个方法的调用：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)didChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
-<p>其中，<code>didChangeValueForKey</code>:方法负责调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath</span><br><span class="line">ofObject:(id)object</span><br><span class="line">change:(NSDictionary *)change</span><br><span class="line">context:(void *)context</span><br></pre></td></tr></table></figure></p>
-<p>如果没有 setter 方法，那么 -setValue:forKey 方法会直接调用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)willChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (void)didChangeValueForKey:(NSString *)key</span><br></pre></td></tr></table></figure>
-<p>如果在没有使用键值编码且没有使用适当命名的访问起方法的时候，我们只需要显示调用上述两个方法，同样可以使用KVO！</p>
-<h1 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// 一般如下使用</span><br><span class="line">// [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line">// 在 self 中监听 _baby 的 cry 属性变化</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld| NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionPrior context:@&quot;ssss&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">_baby.cry = @&quot;crying&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// 一般如下使用</span><br><span class="line">// [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line">// 在 self 中监听 _baby 的 cry 属性变化</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld| NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionPrior context:@&quot;ssss&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">_baby.cry = @&quot;crying&quot;;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-<p>那么：程序启动时输出：<br><img src="https://upload-images.jianshu.io/upload_images/1120923-cce04359a1bbfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><br></p>
-<p>点击按钮后输出：<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5ded44b80985ff8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6aeaf4e75e531bd372f4a322860cbf07.png"></p>
-<h1 id="KVO与多线程"><a href="#KVO与多线程" class="headerlink" title="KVO与多线程"></a>KVO与多线程</h1><p>注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">//</span><br><span class="line">//  ViewController.m</span><br><span class="line">//  KVO test</span><br><span class="line">//</span><br><span class="line">//  Created by KeSen on 15/9/1.</span><br><span class="line">//  Copyright (c) 2015年 KeSen. All rights reserved.</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">#import &quot;ViewController.h&quot;</span><br><span class="line">#import &quot;KSBaby.h&quot;</span><br><span class="line">#import &quot;FBKVOController.h&quot;</span><br><span class="line"></span><br><span class="line">@interface ViewController ()</span><br><span class="line">&#123;</span><br><span class="line">KSBaby *_baby;</span><br><span class="line">FBKVOController *_observer;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation ViewController</span><br><span class="line"></span><br><span class="line">- (void)viewDidLoad &#123;</span><br><span class="line">[super viewDidLoad];</span><br><span class="line">// Do any additional setup after loading the view, typically from a nib.</span><br><span class="line"></span><br><span class="line">KSBaby *baby = [[KSBaby alloc] initWithHungry:@&quot;cryed&quot; thirst:NO];</span><br><span class="line">_baby = baby;</span><br><span class="line"></span><br><span class="line">// NSKeyValueObservingOptionNew : change 字典中包含 key 改变后的新值</span><br><span class="line">// NSKeyValueObservingOptionOld : change 字典中包含 key 改变前的旧值</span><br><span class="line">// NSKeyValueObservingOptionInitial : 在添加观察者的时候立即发送一个通知给观察者,并且是在注册观察者方法返回之前</span><br><span class="line">// NSKeyValueObservingOptionPrior : 如果指定，则在每次修改属性时，会在修改通知被发送之前预先发送一条通知给观察者，这与-willChangeValueForKey:被触发的时间是相对应的。这样，在每次修改属性时，实际上是会发送两条通知。</span><br><span class="line"></span><br><span class="line">// 1. 一般用法如下</span><br><span class="line">[_baby addObserver:self forKeyPath:@&quot;cry&quot; options: 0 context: nil];</span><br><span class="line"></span><br><span class="line">//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">//        [_baby addObserver:self forKeyPath:@&quot;cry&quot; options: NSKeyValueObservingOptionNew context:@&quot;ssss&quot;];</span><br><span class="line">//</span><br><span class="line">//    &#125;);</span><br><span class="line"></span><br><span class="line">// 2. 第三方库 FBKVOController 的用法</span><br><span class="line">_observer = [[FBKVOController alloc] initWithObserver:self];</span><br><span class="line">[_observer observe:_baby keyPath:@&quot;cry&quot; options:NSKeyValueObservingOptionNew block:^(id observer, id object, NSDictionary *change) &#123;</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;%@, %@&quot;, @&quot;FBKVOController&quot;, change[NSKeyValueChangeNewKey]);</span><br><span class="line">&#125;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)dealloc &#123;</span><br><span class="line">[_baby removeObserver:self forKeyPath:@&quot;cry&quot;];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context &#123;</span><br><span class="line">NSLog(@&quot;%@&quot;, [NSThread currentThread]);</span><br><span class="line">NSLog(@&quot;keyPath: %@\n change: %@\n context: %@\n&quot;, keyPath, change, context);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (IBAction)click:(UIButton *)sender &#123;</span><br><span class="line">//    _baby.cry = @&quot;crying&quot;;</span><br><span class="line"></span><br><span class="line">// 1. 注意点：在哪个线程触发监听（修改了值），监听方法就会在哪个线程中执行</span><br><span class="line">dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^&#123;</span><br><span class="line">_baby.cry = @&quot;cry again&quot;;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-<p>KVO 监听 NSMutableArray 的内容变化</p>
-<ol>
-<li>将数组封装到一个对象中</li>
-<li>给这个对象添加 KVO 监听</li>
-<li>使用  [self.arrayObject mutableArrayValueForKey:@”array”] 获取数组对象，对数组对象今天添加删除操作，只有这样触发的数组才会触发 kvo<br><img src="https://upload-images.jianshu.io/upload_images/1120923-22f9b36418f98970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="06f37246739a3b062139a12c5070e044.png"></li>
-</ol>
-<p>参考：<a href="http://www.cppblog.com/kesalin/archive/2012/11/17/kvo.html" target="_blank" rel="noopener">http://www.cppblog.com/kesalin/archive/2012/11/17/kvo.html</a><br><a href="http://ningandjiao.iteye.com/blog/2009729" target="_blank" rel="noopener">http://ningandjiao.iteye.com/blog/2009729</a><br><a href="http://www.bkjia.com/IOSjc/993206.html" target="_blank" rel="noopener">http://www.bkjia.com/IOSjc/993206.html</a><br><a href="http://blog.csdn.net/wzzvictory/article/details/9674431" target="_blank" rel="noopener">http://blog.csdn.net/wzzvictory/article/details/9674431</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/09/09/Hexo-GitHub博客搭建/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/09/09/Hexo-GitHub博客搭建/" itemprop="url">
-                  Hexo GitHub博客搭建
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2015-09-09 12:01:05" itemprop="dateCreated datePublished" datetime="2015-09-09T12:01:05+08:00">2015-09-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-15 22:12:55" itemprop="dateModified" datetime="2018-05-15T22:12:55+08:00">2018-05-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="相关网站"><a href="#相关网站" class="headerlink" title="相关网站"></a>相关网站</h1><p><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a></p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
-<li><p>1、安装<code>Node.js</code><br><a href="https://blog.csdn.net/u011619283/article/details/52368759" target="_blank" rel="noopener">https://blog.csdn.net/u011619283/article/details/52368759</a></p>
-</li>
-<li><p>2、安装hexo<br><code>npm install -g hexo-cli</code></p>
-</li>
-</ul>
-<h1 id="本地站点搭建"><a href="#本地站点搭建" class="headerlink" title="本地站点搭建"></a>本地站点搭建</h1><ul>
-<li><p>1、初始化 Hexo<br>进入自己创建的目录下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>2、生成静态页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3、启动服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>4、查看效果<br>打开浏览器，输入 <code>http://localhost:4000/</code></p>
-</li>
-</ul>
-<h1 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h1><ul>
-<li><p>1、创建仓库<br>仓库名称固定格式如下：<br><code>yourGitbubUsername.github.io</code><br>注意yourGitbubUsername必须与你的github用户名相同，否则无法部署</p>
-</li>
-<li><p>2、安装github部署器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git –save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3、修改本地配置文件<code>_config.yml</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: https://github.com/action456789/action456789.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>4、部署</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>5、测试<br>部署成功以后，在浏览器中输入 <a href="http://action456789.github.io" target="_blank" rel="noopener">http://action456789.github.io</a> 即可在线浏览自己的博客啦</p>
-</li>
-</ul>
-<h1 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h1><p><a href="https://www.cnblogs.com/penglei-it/p/hexo_domain_name.html（亲测可行）" target="_blank" rel="noopener">https://www.cnblogs.com/penglei-it/p/hexo_domain_name.html（亲测可行）</a></p>
-<blockquote>
-<p>一定要创建CNAME文件，并且由于这种方式只支持单域名访问，CNAME文件中只有第一个域名会生效。</p>
-</blockquote>
-<h1 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h1><ul>
-<li><p>直接去查找最流行的主题，github上有安装说明，这个是最靠谱的安装方法。</p>
-</li>
-<li><p>安装完成之后：<br>输入<code>hexo s --debug</code>进行测试</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo generate </span><br><span class="line">hexo server (若是想本地预览和执行该命令预览) </span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="NexT主题官方文档"><a href="#NexT主题官方文档" class="headerlink" title="NexT主题官方文档"></a>NexT主题官方文档</h2><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">http://theme-next.iissnan.com/getting-started.html</a></p>
-<h1 id="添加tag"><a href="#添加tag" class="headerlink" title="添加tag"></a>添加<code>tag</code></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page &quot;tags&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="博客的创建、修改与删除"><a href="#博客的创建、修改与删除" class="headerlink" title="博客的创建、修改与删除"></a>博客的创建、修改与删除</h1><ul>
-<li><p>1、创建新博客</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;test_blog&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除博客<br>删除博客文件后重新发布更新即可<br>可能需要等几分钟才有效果</p>
-</li>
-<li><p>2、发布更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>3、一些快捷键</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo g == hexo generate</span><br><span class="line">hexo d == hexo deploy</span><br><span class="line">hexo s == hexo server</span><br><span class="line">hexo n == hexo new</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2015/08/13/iOS中的时间/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/08/13/iOS中的时间/" itemprop="url">
-                  iOS中的时间
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2015-08-13 22:10:18" itemprop="dateCreated datePublished" datetime="2015-08-13T22:10:18+08:00">2015-08-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="设备开机后的时间"><a href="#设备开机后的时间" class="headerlink" title="设备开机后的时间"></a>设备开机后的时间</h1><ul>
-<li><code>CACurrentMediaTime()</code></li>
-</ul>
-<p>设备从开机时起到现在的时间，设备重启会重置，单位为秒</p>
-<ul>
-<li><code>[[NSProcessInfo processInfo] systemUptime]</code> </li>
-</ul>
-<p>与<code>CACurrentMediaTime()</code>等价</p>
-<h1 id="相对某个参考系的时间"><a href="#相对某个参考系的时间" class="headerlink" title="相对某个参考系的时间"></a>相对某个参考系的时间</h1><ul>
-<li><code>Date().timeIntervalSince1970</code> </li>
-</ul>
-<p>1970年1月1日凌晨为参考系，到现在的时间，一般用于表示时间戳</p>
-<p><br></p>
-<ul>
-<li><code>Date().timeIntervalSinceReferenceDate</code></li>
-</ul>
-<p>世界时间（UTC）2001年1月1日凌晨到现在经过的时间，单位为秒</p>
-<p><br></p>
-<ul>
-<li><code>CFAbsoluteTimeGetCurrent()</code></li>
-</ul>
-<p>与<code>Date().timeIntervalSinceReferenceDate</code>等价</p>
-<p><br></p>
-<blockquote>
-<p>当用户手动改变了设备上的系统时间后，基于系统时钟的上述方法返回的结果也会一同改变</p>
-</blockquote>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">CACurrentMediaTime</span>()) <span class="comment">// 设备刚重启</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Date</span>().timeIntervalSince1970)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">Date</span>().timeIntervalSinceReferenceDate)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="type">CFAbsoluteTimeGetCurrent</span>())</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-1bb36e607297d7c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="必要时，从服务器上获取时间"><a href="#必要时，从服务器上获取时间" class="headerlink" title="必要时，从服务器上获取时间"></a>必要时，从服务器上获取时间</h1><p>如果App本身对获取的时间精度要求很高，还是直接通过网络从服务器获取时间戳会比较保险。</p>
-<p>当网络可用时，直接从服务器获取；</p>
-<p>网络不可用时，且设备没有被重启过，可以根据上一次获取服务器时间戳的时刻到此时的时间差来推算出正确的时间</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/img/default_avatar.jpg"
-                alt="action456789" />
-            
-              <p class="site-author-name" itemprop="name">action456789</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">tags</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">action456789</span>
-
-  
-
-  
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
 </div>
 
-
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">iOS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">C/C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Boardland C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">读书</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+    <nav id="title-list-nav">
         
-      </div>
+        <a  class=""
+           href="/2016/11/09/Autolayout高级/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="Autolayout高级">Autolayout高级</span>
+            <span class="post-date" title="2016-11-09 20:23:21">2016/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/06/09/CocoaPods-管理私有库/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="CocoaPods 管理私有库">CocoaPods 管理私有库</span>
+            <span class="post-date" title="2016-06-09 18:02:18">2016/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/09/09/Hexo-GitHub博客搭建/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="Hexo GitHub博客搭建">Hexo GitHub博客搭建</span>
+            <span class="post-date" title="2015-09-09 12:01:05">2015/09/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/03/03/Mac安装MQTT服务器/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="Mac安装MQTT服务器">Mac安装MQTT服务器</span>
+            <span class="post-date" title="2017-03-03 15:08:59">2017/03/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/05/21/RxSwift入门：基本概念/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxSwift入门：基本概念">RxSwift入门：基本概念</span>
+            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2014/09/03/cocoapods-安装与使用/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="cocoapods 安装与使用">cocoapods 安装与使用</span>
+            <span class="post-date" title="2014-09-03 09:10:54">2014/09/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="UITableView的`beginUpdates`与`endUpdates`用法详解">UITableView的`beginUpdates`与`endUpdates`用法详解</span>
+            <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/08/13/iOS中的时间/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS中的时间">iOS中的时间</span>
+            <span class="post-date" title="2015-08-13 22:10:18">2015/08/13</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/09/09/git命令大全/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git命令大全">git命令大全</span>
+            <span class="post-date" title="2017-09-09 21:09:46">2017/09/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/12/22/iOS11新特性/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS11新特性">iOS11新特性</span>
+            <span class="post-date" title="2017-12-22 23:02:12">2017/12/22</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/11/06/iOS编译ffmpeg/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iOS编译ffmpeg">iOS编译ffmpeg</span>
+            <span class="post-date" title="2015-11-06 10:59:45">2015/11/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/10/18/iOS调试内存泄露/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS调试内存泄露">iOS调试内存泄露</span>
+            <span class="post-date" title="2016-10-18 23:11:07">2016/10/18</span>
+        </a>
+        
+        <a  class=""
+           href="/2013/07/15/《C语言深度剖析》读书笔记/"
+           data-tag="C/C++"
+           data-author="" >
+            <span class="post-title" title="《C语言深度剖析》读书笔记">《C语言深度剖析》读书笔记</span>
+            <span class="post-date" title="2013-07-15 14:19:07">2013/07/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/10/09/使用WireShark-调试真机网络/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="使用WireShark 调试真机网络">使用WireShark 调试真机网络</span>
+            <span class="post-date" title="2016-10-09 15:09:37">2016/10/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/01/09/消除编译器警告/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消除编译器警告">消除编译器警告</span>
+            <span class="post-date" title="2016-01-09 17:54:41">2016/01/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2013/12/17/让StringGrid控件显示下拉菜单/"
+           data-tag="Boardland C++"
+           data-author="" >
+            <span class="post-title" title="让StringGrid控件显示下拉菜单">让StringGrid控件显示下拉菜单</span>
+            <span class="post-date" title="2013-12-17 18:13:51">2013/12/17</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/08/22/组件化模块间通信方案/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="组件化模块间通信方案">组件化模块间通信方案</span>
+            <span class="post-date" title="2018-08-22 01:12:20">2018/08/22</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/04/12/如何更新React-Native/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="如何更新React Native">如何更新React Native</span>
+            <span class="post-date" title="2016-04-12 15:32:04">2016/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/08/02/GCD用法全解/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="GCD用法全解">GCD用法全解</span>
+            <span class="post-date" title="2016-08-02 17:16:17">2016/08/02</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/10/24/KVO深入解析/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="KVO深入解析">KVO深入解析</span>
+            <span class="post-date" title="2015-10-24 17:18:51">2015/10/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/07/30/ReactiveCocoa冷热信号详解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ReactiveCocoa冷热信号详解">ReactiveCocoa冷热信号详解</span>
+            <span class="post-date" title="2018-07-30 20:08:40">2018/07/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/12/09/iOS-SDK-开发/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS SDK 开发">iOS SDK 开发</span>
+            <span class="post-date" title="2017-12-09 15:07:25">2017/12/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/08/12/《Effective-Objective-C-2-0》读书笔记/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="《Effective Objective-C 2.0》读书笔记">《Effective Objective-C 2.0》读书笔记</span>
+            <span class="post-date" title="2016-08-12 23:05:51">2016/08/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/05/09/《黑客与画家》摘录/"
+           data-tag="读书"
+           data-author="" >
+            <span class="post-title" title="《黑客与画家》摘录">《黑客与画家》摘录</span>
+            <span class="post-date" title="2015-05-09 18:40:00">2015/05/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2013/12/30/读闲书 摘录一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2013读书摘录">2013读书摘录</span>
+            <span class="post-date" title="2013-12-30 18:52:43">2013/12/30</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
     
-
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于叶落阁"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
     
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+</blockquote>
+<blockquote>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+</blockquote>
+<blockquote>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
+<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阿杰（杨玉杰）的个人站。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
+<ul>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+</ul>
+
+        </article>
+        
+        <p>
+            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
 
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
-
-
-
-  
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
+<script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#iOS','#C/C++','#Boardland C++','#读书',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>

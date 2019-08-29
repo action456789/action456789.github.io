@@ -1,2549 +1,801 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html>
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '6.2.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="keywords" content="技术博客,随笔">
+  <meta charset="utf-8">
+  <title>爱工作·爱生活</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="爱工作·爱生活">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
-<meta property="og:title" content="爱工作·爱生活">
-<meta property="og:url" content="http://superkk.top/index.html">
+<meta property="og:title" content="C&#x2F;C++">
+<meta property="og:url" content="http://superkk.top/C-C/index.html">
 <meta property="og:site_name" content="爱工作·爱生活">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-09T08:06:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="爱工作·爱生活">
+<meta name="twitter:title" content="C&#x2F;C++">
 
 
+<link rel="icon" href="/img/avatar.jpg">
 
+<link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
+<link href="/css/hl_theme/atom-light.css?v=1.0.1" rel="stylesheet">
 
+<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="http://superkk.top/"/>
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
 
-
-
-<script type="text/javascript" id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
 
-  <title>爱工作·爱生活</title>
-  
+<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
 
 
 
+<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-  <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
-
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
-
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
-  </style>
-</noscript>
+<script src="/js/iconfont.js?v=1.0.1" ></script>
 
 </head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="false">
+  <input class="theme_blog_path" value="">
+</div>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body>
+<aside class="nav mobile">
+    <div class="nav-left">
+        <a href="/" class="avatar_target">
+    <img class="avatar" src="/img/avatar.jpg" />
+</a>
+<div class="author">
+    <span>action456789</span>
+</div>
 
-  
-  
+<div class="icon">
     
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+        
+        <a title="rss" href="/atom.xml" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-rss"></use>
+                </svg>
+            
+        </a>
+        
     
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">爱工作·爱生活</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">action456789</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+        
+        <a title="github" href="https://github.com/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-github"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-facebook"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+    
+        
+        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-instagram"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-reddit"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-weibo"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-jianshu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-zhihu"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-oschina"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+    
+        
+        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-email"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-qq"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="kugou" href="https://www.kugou.com/" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-kugou"></use>
+                </svg>
+            
+        </a>
+        
+    
+        
+        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
+            
+                <svg class="iconfont-svg" aria-hidden="true">
+                    <use xlink:href="#icon-neteasemusic"></use>
+                </svg>
+            
+        </a>
+        
+    
 </div>
 
 
 
 
-<nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home menu-item-active">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-    <a href="/categories/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
-  </li>
-
-      
-      
-    </ul>
-  
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
+<ul>
+    <li><div class="all active">全部文章<small>(25)</small></div></li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+    
+    
+    
+    
+    </div>
+    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-    </header>
-
-    
-
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-            
-
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/08/22/组件化模块间通信方案/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/22/组件化模块间通信方案/" itemprop="url">
-                  组件化模块间通信方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-08-22 01:12:20" itemprop="dateCreated datePublished" datetime="2018-08-22T01:12:20+08:00">2018-08-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="组件化模块间通信方案"><a href="#组件化模块间通信方案" class="headerlink" title="组件化模块间通信方案"></a>组件化模块间通信方案</h1><h3 id="1、公共模块下沉"><a href="#1、公共模块下沉" class="headerlink" title="1、公共模块下沉"></a>1、公共模块下沉</h3><p>比如一些公共的基础UI组件应该互相独立，并且可以下沉为一个单独的层（比如通用业务层），供其他业务模块调用。</p>
-<h3 id="2、OpenURL统跳协议"><a href="#2、OpenURL统跳协议" class="headerlink" title="2、OpenURL统跳协议"></a>2、<code>OpenURL统跳协议</code></h3><p>用一个url表示一个页面（Controller），或者UI控件，或者任意一个类的对象。</p>
-<p>需要创建一个字典，key是url，value是相应的对象，这个字典由路由类去管理，典型的方案就是<code>MGJRouter</code>。</p>
-<ul>
-<li><p>优点：能解决组件间的依赖，并且方案成熟，有很多知名公司都在用这种方案（蘑菇街）；</p>
-</li>
-<li><p>缺点：编译阶段无法发现潜在bug，并且需要去注册&amp;维护路由表。</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 注册路由</span><br><span class="line">[[Router sharedInstance] registerURL:@&quot;myapp://good/detail&quot; with:^UIViewController *&#123;</span><br><span class="line">     return [GoodDetailViewController new];</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">// 通过url获取</span><br><span class="line">UIViewController *vc = [[Router sharedInstance] openURL:@&quot;myapp://good/detail&quot;]</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.jianshu.com/p/2af9c063fd85" target="_blank" rel="noopener">参考</a></p>
-<h3 id="3、Target-Action-反射"><a href="#3、Target-Action-反射" class="headerlink" title="3、Target-Action(反射)"></a>3、<code>Target-Action</code>(反射)</h3><p>例如从A中push到BViewController，需要在AViewController类文件中import进BViewController，这样二者就会产生耦合<br>现在利用Target-Action机制，我们不再直接import进BViewController，而是利用<code>NSClassFromString(&lt;#NSString * _Nonnull aClassName#&gt;)</code>这个api将BViewController这个字符串反射成BViewController这个类，这样我们就可以根据反射后的类进行实例化，再调用实例化对象的各种方法。</p>
-<ul>
-<li>优点：相比于URL Router，Target-Action也不需要注册和内存占用。</li>
-<li>缺点：编译阶段无法发现潜在的BUG，而且，开发者所创建的类和定义的方法必须要遵守Target-Action的命名规则，调用者可能会因为硬编码问题导致调用失败。</li>
-</ul>
-<p>第三方框架有<code>CTMediator</code>和<code>BeeHive</code>在github</p>
-<h3 id="4、NSNotificationCenter"><a href="#4、NSNotificationCenter" class="headerlink" title="4、NSNotificationCenter"></a>4、<code>NSNotificationCenter</code></h3><ul>
-<li>优点：简单直接。</li>
-<li>缺点：遍地都是通知，如果同事间协调不好会使得代码很混乱。</li>
-</ul>
-<h3 id="5、依赖注入：推荐方法"><a href="#5、依赖注入：推荐方法" class="headerlink" title="5、依赖注入：推荐方法"></a>5、<code>依赖注入</code>：推荐方法</h3><p>比如业务C将自己注入中间层，业务A去中间层去获取依赖的方法和变量。</p>
-<ul>
-<li>实现方式：通过中间层协议实现<br>业务B遵从这个协议，实现协议的代理方法，返回与中间层商量好的一个实际对象。<br>业务A通过中间层的某个方法（与B商量），获取遵从了这个协议的实例B，将其当做一个遵从了这个协议的透明对象来使用。</li>
-<li><p>编程实现：具体运用了java的<code>面向接口编程`</code>Protocol - Class<code>，即iOS的</code>面向协议编程`</p>
-</li>
-<li><p>优点：<br>1、接口类似代码，可以非常灵活的定义函数和回调等。</p>
-</li>
-<li><p>缺点：<br>1、接口定义文件需要放在一个模块以供依赖，但是这个模块不会贡献代码，所以还好。<br>2、使用较为麻烦，每各调用都需要定义一个service，并实现, 对于一些具有普适性规律的场景不太合适，比如页面统一跳转</p>
-</li>
-<li><p>面向接口的调用会产生依赖</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// A 模块</span><br><span class="line">- (void)getSomeDataFromB &#123;</span><br><span class="line">    B.getSomeData();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// B 模块</span><br><span class="line">- (void)getSomeData &#123;</span><br><span class="line">    return self.data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>示例<br><code>ServiceBProtocol</code></p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ServiceBProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getSomeDataFromServiceB</span><span class="params">()</span></span> -&gt; <span class="type">String</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><code>MiddleLayer</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MiddleLayer</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">findServiceB</span>() -&gt; <span class="title">ServiceBProtocol</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="type">ServiceB</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>ServiceB</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 模块B</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServiceB</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> serviceB_Data = <span class="string">"ServiceB"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ServiceB</span>: <span class="title">ServiceBProtocol</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getSomeDataFromServiceB</span><span class="params">()</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.serviceB_Data</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>ServiceA</code><br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模块A</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ServiceA</span>: <span class="title">NSObject</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getDataFromB</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="type">MiddleLayer</span>.findServiceB().getSomeDataFromServiceB())</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/07/30/ReactiveCocoa冷热信号详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/07/30/ReactiveCocoa冷热信号详解/" itemprop="url">
-                  ReactiveCocoa冷热信号详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-07-30 20:08:40" itemprop="dateCreated datePublished" datetime="2018-07-30T20:08:40+08:00">2018-07-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>函数响应式编程(Functional Reactive Programming:FRP)，ReactiveCocoa 版本 2.5</p>
-<h1 id="冷热信号"><a href="#冷热信号" class="headerlink" title="冷热信号"></a>冷热信号</h1><ul>
-<li><p>冷信号<br>只有当你订阅的时候，它才会发布消息，<br>一对一，当有不同的订阅者，消息是重新完整发送。</p>
-</li>
-<li><p>热信号<br>尽管你并没有订阅事件，但是它会时刻推送，类似“直播”，错过了就不再处理。<br>可以有多个订阅者，是一对多</p>
-</li>
-</ul>
-<h1 id="RACSignal-与RACSubject-的区别"><a href="#RACSignal-与RACSubject-的区别" class="headerlink" title="RACSignal 与RACSubject 的区别"></a><code>RACSignal</code> 与<code>RACSubject</code> 的区别</h1><ul>
-<li><code>RACSignal</code>是冷信号</li>
-<li><code>RACSubject</code>是热信号</li>
-</ul>
-<p>如下图</p>
-<ul>
-<li><code>signal</code></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-cba016d495b9a1b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<ul>
-<li><code>subject</code></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-5974af889c88a7da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<ul>
-<li><code>replaySubject</code></li>
-</ul>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-282c50256b5bae74.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<blockquote>
-<p>Subject可以附加行为，例如<code>RACReplaySubject</code>具备为未来订阅者缓冲事件的能力。（这一点与冷信号类似，即使是在数据发送之后才订阅的，依然会收到全部消息）</p>
-</blockquote>
-<h1 id="冷信号示例：延时订阅，依然能收到所有信号数据"><a href="#冷信号示例：延时订阅，依然能收到所有信号数据" class="headerlink" title="冷信号示例：延时订阅，依然能收到所有信号数据"></a>冷信号示例：延时订阅，依然能收到所有信号数据</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">- (void)test1 &#123;</span><br><span class="line">    RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        [subscriber sendNext:@1];</span><br><span class="line">        [subscriber sendNext:@2];</span><br><span class="line">        [subscriber sendNext:@3];</span><br><span class="line">        [subscriber sendCompleted];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;Signal was created.&quot;);</span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:0.1 schedule:^&#123;</span><br><span class="line">        [signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber1 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:1 schedule:^&#123;</span><br><span class="line">        [signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber2 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-419d5730a235a595.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="热信号示例：错过了订阅时机，就收不到信号数据，类似于直播"><a href="#热信号示例：错过了订阅时机，就收不到信号数据，类似于直播" class="headerlink" title="热信号示例：错过了订阅时机，就收不到信号数据，类似于直播"></a>热信号示例：错过了订阅时机，就收不到信号数据，类似于直播</h1><blockquote>
-<p>冷信号会收到全部的数据，即使是在数据发送之后才订阅的</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)test2 &#123;</span><br><span class="line">    RACMulticastConnection *connection = [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        [[RACScheduler mainThreadScheduler] afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@1];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        [[RACScheduler mainThreadScheduler] afterDelay:2 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@2];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        [[RACScheduler mainThreadScheduler] afterDelay:3 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@3];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        return nil;</span><br><span class="line">    &#125;] publish];</span><br><span class="line"></span><br><span class="line">    [connection connect];</span><br><span class="line"></span><br><span class="line">    NSLog(@&quot;Signal was created.&quot;);</span><br><span class="line"></span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:1.1 schedule:^&#123;</span><br><span class="line">        [connection.signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber1 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [[RACScheduler mainThreadScheduler] afterDelay:2.1 schedule:^&#123;</span><br><span class="line">        [connection.signal subscribeNext:^(id x) &#123;</span><br><span class="line">            NSLog(@&quot;Subscriber2 recveive: %@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-5e7083e9f1760611.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="SideEffect示例：多次订阅导致信号block多次执行"><a href="#SideEffect示例：多次订阅导致信号block多次执行" class="headerlink" title="SideEffect示例：多次订阅导致信号block多次执行"></a>SideEffect示例：多次订阅导致信号block多次执行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">- (void)test3 &#123;</span><br><span class="line">    // 多次订阅会多次执行</span><br><span class="line">    RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">        [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 【请求数据次数 +1】</span><br><span class="line">    [requestSignal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 【请求数据次数 +1】</span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 将信号转换为内容为2的信号</span><br><span class="line">    RACSignal *signal1 = [requestSignal flattenMap:^RACStream *(id value) &#123;</span><br><span class="line">        return [RACSignal return:@&quot;2&quot;];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    // 将signal1信号所有错误信息转换为字符串@&quot;Error&quot;</span><br><span class="line">    [signal1 catchTo:[RACSignal return:@&quot;Error&quot;]];</span><br><span class="line"></span><br><span class="line">    // 在没有获取值之前以字符串@&quot;Loading...&quot;占位</span><br><span class="line">    [signal1 startWith:@&quot;Loading...&quot;];</span><br><span class="line"></span><br><span class="line">    // 将信号进行绑定</span><br><span class="line">    // 【请求数据次数 +1】</span><br><span class="line">    RAC(self.acountField, text) = signal1;</span><br><span class="line"></span><br><span class="line">    // 订阅多个信号的任何错误，并且弹出UIAlertView</span><br><span class="line">    // 【请求数据次数 +2】</span><br><span class="line">    [[RACSignal merge:@[requestSignal, signal1]] subscribeError:^(NSError *error) &#123;</span><br><span class="line">        NSLog(@&quot;发生错误&quot;);</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-465cde44e32e9612.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="解决方式一：使用-RACMulticastConnection把冷信号转化为热信号"><a href="#解决方式一：使用-RACMulticastConnection把冷信号转化为热信号" class="headerlink" title="解决方式一：使用 RACMulticastConnection把冷信号转化为热信号"></a>解决方式一：使用 <code>RACMulticastConnection</code>把冷信号转化为热信号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">- (void)test4 &#123;</span><br><span class="line">    RACSignal *requestSignal = [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">        [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;];</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    RACMulticastConnection *connection = [requestSignal multicast:[RACSubject subject]];</span><br><span class="line">//    RACMulticastConnection *connection = [requestSignal multicast:[RACReplaySubject subject]];</span><br><span class="line">    [connection connect];</span><br><span class="line"></span><br><span class="line">    [connection.signal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [connection.signal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [RACScheduler.mainThreadScheduler afterDelay:2 schedule:^&#123;</span><br><span class="line">        [connection.signal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">            NSLog(@&quot;订阅者3:%@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用RACSubject时"><a href="#使用RACSubject时" class="headerlink" title="使用RACSubject时"></a>使用<code>RACSubject</code>时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RACMulticastConnection *connection = [requestSignal multicast:[RACSubject subject]];</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-85b4314b53586f26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h3 id="使用RACReplaySubject时"><a href="#使用RACReplaySubject时" class="headerlink" title="使用RACReplaySubject时"></a>使用<code>RACReplaySubject</code>时</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RACMulticastConnection *connection = [requestSignal multicast:[RACReplaySubject subject]];</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-4ae4c9e7dbfebe09.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="解决方式二：使用-replayLazily把冷信号转化为热信号"><a href="#解决方式二：使用-replayLazily把冷信号转化为热信号" class="headerlink" title="解决方式二：使用 replayLazily把冷信号转化为热信号"></a>解决方式二：使用 <code>replayLazily</code>把冷信号转化为热信号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (void)test5 &#123;</span><br><span class="line">    RACSignal *requestSignal = [[RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">        NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">        [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">            [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">            [subscriber sendCompleted];</span><br><span class="line">        &#125;];</span><br><span class="line"></span><br><span class="line">        return nil;</span><br><span class="line"></span><br><span class="line">    &#125;] replayLazily]; // modify here!!</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(id x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [RACScheduler.mainThreadScheduler afterDelay:2 schedule:^&#123;</span><br><span class="line">        [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">            NSLog(@&quot;订阅者3:%@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-437a9f7928924eaa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="使用RACCommand把冷信号转化为热信号"><a href="#使用RACCommand把冷信号转化为热信号" class="headerlink" title="使用RACCommand把冷信号转化为热信号"></a>使用<code>RACCommand</code>把冷信号转化为热信号</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (void)test6 &#123;</span><br><span class="line">    RACCommand *requestCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) &#123;</span><br><span class="line">        return [RACSignal createSignal:^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">            NSLog(@&quot;开始请求网络数据&quot;);</span><br><span class="line">            [RACScheduler.mainThreadScheduler afterDelay:1 schedule:^&#123;</span><br><span class="line">                [subscriber sendNext:@&quot;1&quot;];</span><br><span class="line">                [subscriber sendCompleted];</span><br><span class="line">            &#125;];</span><br><span class="line"></span><br><span class="line">            return nil;</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    RACSignal *requestSignal = [requestCommand execute:nil];</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者1:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">        NSLog(@&quot;订阅者2:%@&quot;, x);</span><br><span class="line">    &#125;];</span><br><span class="line"></span><br><span class="line">    [RACScheduler.mainThreadScheduler afterDelay:2 schedule:^&#123;</span><br><span class="line">        [requestSignal subscribeNext:^(NSArray *x) &#123;</span><br><span class="line">            NSLog(@&quot;订阅者3:%@&quot;, x);</span><br><span class="line">        &#125;];</span><br><span class="line">    &#125;];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-e1f4373d8b49a171.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>RACMulticastConnection</code>与<code>RACSubject</code>结合使用时是直播的热信号</p>
-<p><code>RACCommand</code>、<code>replayLazily</code>、<code>RACReplaySubject</code>都是类似于冷信号的情况，不管何时订阅，都会收到所有数据</p>
-<h1 id="ReactiveCocoa中潜在的内存泄漏与解决方案"><a href="#ReactiveCocoa中潜在的内存泄漏与解决方案" class="headerlink" title="ReactiveCocoa中潜在的内存泄漏与解决方案"></a>ReactiveCocoa中潜在的内存泄漏与解决方案</h1><ul>
-<li><p><code>RACObserve</code>中潜在使用了self，要注意循环引用</p>
-</li>
-<li><p><code>RACSubject</code>中如果没有调用<code>sendCompleted</code>，调用map等操作将造成内存泄漏（循环引用）。RACSignal不会有这个问题</p>
-</li>
-</ul>
-<p>代码参见<a href="http://fromwiz.com/share/s/3rEj7C20FAXK2jIwRi1uhc1v0WQKj83L7k142p7dil0ygtoZ" target="_blank" rel="noopener">https://github.com/action456789/ReactiveCocoaDemo</a></p>
-<p>参考：<a href="http://tech.meituan.com/tag/ReactiveCocoa" target="_blank" rel="noopener">http://tech.meituan.com/tag/ReactiveCocoa</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/" itemprop="url">
-                  UITableView的`beginUpdates`与`endUpdates`用法详解
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-06-05 02:05:12" itemprop="dateCreated datePublished" datetime="2018-06-05T02:05:12+08:00">2018-06-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="UITaUITableView的beginUpdates和endUpdates"><a href="#UITaUITableView的beginUpdates和endUpdates" class="headerlink" title="UITaUITableView的beginUpdates和endUpdates"></a>UITaUITableView的<code>beginUpdates</code>和<code>endUpdates</code></h1><ol>
-<li>这个方法用于在调用插入，删除，选择方法时，同时有动画效果。 </li>
-<li>用endUpdate能动画改变行高(触发<code>heightForRowAtIndexPath</code>回调)，而无需relaod这个cell。</li>
-</ol>
-<h2 id="使用场景一：点击cell，cell的高度就变高"><a href="#使用场景一：点击cell，cell的高度就变高" class="headerlink" title="使用场景一：点击cell，cell的高度就变高"></a>使用场景一：点击cell，cell的高度就变高</h2><p>Cell点击方法执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[tableView beginUpdates];</span><br><span class="line">[tableView endUpdates];</span><br></pre></td></tr></table></figure>
-<p>这两句代码中间没有任何其他部分，但是会触发<code>heightForRowAtIndexPath</code>回调，从而修改cell的高度</p>
-<h2 id="使用场景二：有一个-TableView，现在我希望每按一次-update-按钮，就动态地在下方加两行。"><a href="#使用场景二：有一个-TableView，现在我希望每按一次-update-按钮，就动态地在下方加两行。" class="headerlink" title="使用场景二：有一个 TableView，现在我希望每按一次 update 按钮，就动态地在下方加两行。"></a>使用场景二：有一个 TableView，现在我希望每按一次 update 按钮，就动态地在下方加两行。</h2><ul>
-<li>方法一：简单粗暴的做法 ，更改数据源，然后刷新一下列表</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// tableData = [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;] </span><br><span class="line"></span><br><span class="line">@IBAction func update(_ sender: AnyObject) &#123; </span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;) </span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;) </span><br><span class="line">    tableView.reloadData() </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法二</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// tableData = [&quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;3&quot;]</span><br><span class="line"></span><br><span class="line">@IBAction func update(_ sender: AnyObject) &#123;</span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;)</span><br><span class="line">    tableData.append(&quot;\(tableData.count)&quot;)</span><br><span class="line">    tableView.beginUpdates()</span><br><span class="line"></span><br><span class="line">    let indexPaths = [IndexPath(row: tableData.count-2, section: 0), IndexPath(row: tableData.count-1, section: 0)]</span><br><span class="line"></span><br><span class="line">    tableView.insertRows(at: indexPaths, with: UITableViewRowAnimation.automatic)</span><br><span class="line"></span><br><span class="line">    tableView.endUpdates()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里 beginUpdates 和 endUpdates 方法的作用是，将这两条语句之间的对 tableView 的 insert/delete 操作聚合起来，然后同时更新 UI。</p>
-<h1 id="动态改变tableHeaderView高度"><a href="#动态改变tableHeaderView高度" class="headerlink" title="动态改变tableHeaderView高度"></a>动态改变<code>tableHeaderView</code>高度</h1><p>view 作为 tableView 的 tableHeaderView，单纯的改变 view 的 frame 是无济于事的，tableView 不会时刻适应它的高度，</p>
-<p>所以，如何告诉tableView 它的 tableHeaderView 已经改变了？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">headerView.frame = newFrame;</span><br><span class="line">[self.tableView setTableHeaderView:headerView];</span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[self.tableView beginUpdates];</span><br><span class="line">[self.tableView setTableHeaderView:headerView];</span><br><span class="line">[self.tableView endUpdates];</span><br></pre></td></tr></table></figure>
-<h2 id="如何检测动画在UITableView-beginUpdates-endUpdates上结束"><a href="#如何检测动画在UITableView-beginUpdates-endUpdates上结束" class="headerlink" title="如何检测动画在UITableView beginUpdates / endUpdates上结束"></a>如何检测动画在UITableView beginUpdates / endUpdates上结束</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[CATransaction begin];</span><br><span class="line"></span><br><span class="line">[CATransaction setCompletionBlock:^&#123;</span><br><span class="line">    // animation has finished</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line">[tableView beginUpdates];</span><br><span class="line">// do some work</span><br><span class="line">[tableView endUpdates];</span><br><span class="line"></span><br><span class="line">[CATransaction commit];</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/RxSwift入门：基本概念/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/RxSwift入门：基本概念/" itemprop="url">
-                  RxSwift入门：基本概念
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-05-21 18:01:12" itemprop="dateCreated datePublished" datetime="2018-05-21T18:01:12+08:00">2018-05-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h1><p>Observables是一个事件流的对象</p>
-<h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emptyStream: <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.empty()</span><br><span class="line"><span class="number">_</span> = emptyStream.subscribe &#123; event <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)  completed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> neverStream: <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.never()</span><br><span class="line"><span class="number">_</span> = neverStream.subscribe(&#123; <span class="number">_</span> <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"这个方法永远都不会被执行"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> justStream = <span class="type">Observable</span>.just(<span class="number">32</span>)</span><br><span class="line"><span class="number">_</span> = justStream.subscribe(&#123; event <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">next(32)</span></span><br><span class="line"><span class="comment">completed</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
-<h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ofStream = <span class="type">Observable</span>.of(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="number">_</span> = ofStream.subscribe(&#123; event <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">next(0)</span></span><br><span class="line"><span class="comment">next(1)</span></span><br><span class="line"><span class="comment">next(2)</span></span><br><span class="line"><span class="comment">completed</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> streamFromArray = <span class="type">Observable</span>.from([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line"><span class="number">_</span> = streamFromArray.subscribe(&#123; (event) <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">next(0)</span></span><br><span class="line"><span class="comment">next(1)</span></span><br><span class="line"><span class="comment">next(2)</span></span><br><span class="line"><span class="comment">completed</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> myJust = &#123; (singleElement: <span class="type">Int</span>) -&gt; <span class="type">Observable</span> &lt;<span class="type">Int</span>&gt; <span class="keyword">in</span></span><br><span class="line"><span class="keyword">return</span> <span class="type">Observable</span>.create(&#123; (observer) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></span><br><span class="line">observer.onNext(singleElement)</span><br><span class="line">observer.onCompleted()</span><br><span class="line"><span class="keyword">return</span> <span class="type">Disposables</span>.create()</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> singleElementStream = myJust(<span class="number">32</span>)</span><br><span class="line"><span class="number">_</span> = singleElementStream.subscribe &#123; (event) <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">next(32)</span></span><br><span class="line"><span class="comment">completed</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> error = <span class="type">NSError</span>(domain: <span class="string">"com.RxSwiftDemo.kesen"</span>, code: -<span class="number">1</span>, userInfo: <span class="literal">nil</span>)</span><br><span class="line"><span class="keyword">let</span> errorStream: <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; = <span class="type">Observable</span>.error(error)</span><br><span class="line"><span class="number">_</span> = errorStream.subscribe &#123; (event) <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)</span><br><span class="line">error(<span class="type">Error</span> <span class="type">Domain</span>=com.<span class="type">RxSwiftDemo</span>.kesen <span class="type">Code</span>=-<span class="number">1</span> <span class="string">"(null)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> defferedStream = <span class="type">Observable</span>.deferred &#123; () -&gt; <span class="type">Observable</span>&lt;<span class="type">Int</span>&gt; <span class="keyword">in</span></span><br><span class="line"><span class="keyword">return</span> <span class="type">Observable</span>.create(&#123; (observer) -&gt; <span class="type">Disposable</span> <span class="keyword">in</span></span><br><span class="line">observer.onNext(<span class="number">0</span>)</span><br><span class="line">observer.onNext(<span class="number">1</span>)</span><br><span class="line">observer.onCompleted()</span><br><span class="line"><span class="keyword">return</span> <span class="type">Disposables</span>.create()</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">_</span> = defferedStream.subscribe(&#123; (event) <span class="keyword">in</span></span><br><span class="line"><span class="built_in">print</span>(event)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">next(0)</span></span><br><span class="line"><span class="comment">next(1)</span></span><br><span class="line"><span class="comment">completed</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p>
-<h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p>
-<h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><p>它和PublishSubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p>
-<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p>
-<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2017/12/22/iOS11新特性/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/22/iOS11新特性/" itemprop="url">
-                  iOS11新特性
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-22 23:02:12" itemprop="dateCreated datePublished" datetime="2017-12-22T23:02:12+08:00">2017-12-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 16:12:06" itemprop="dateModified" datetime="2018-05-09T16:12:06+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="iOS11-大标题"><a href="#iOS11-大标题" class="headerlink" title="iOS11 大标题"></a>iOS11 大标题</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 导航控制器的`prefersLargeTitles`为大标题的总开关</span><br><span class="line">navigationController?.navigationBar.prefersLargeTitles = true</span><br><span class="line"></span><br><span class="line">// 各个控制器可以自己通过 largeTitleDisplayMode，如果导航控制器的 `prefersLargeTitles` 为 NO，largeTitleDisplayMode 将没有效果</span><br><span class="line">navigationItem.largeTitleDisplayMode = .never</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-d28e28449f722b55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="iOS11-导航栏搜索框"><a href="#iOS11-导航栏搜索框" class="headerlink" title="iOS11 导航栏搜索框"></a>iOS11 导航栏搜索框</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">let searchResultsVC = SearchResultTabelViewVC(nibName: nil, bundle: nil)</span><br><span class="line">lazy var searchController: UISearchController = &#123;</span><br><span class="line">let vc = UISearchController(searchResultsController: searchResultsVC)</span><br><span class="line">vc.searchResultsUpdater = self.searchResultsVC</span><br><span class="line"></span><br><span class="line">vc.hidesNavigationBarDuringPresentation = true</span><br><span class="line">vc.dimsBackgroundDuringPresentation = true</span><br><span class="line"></span><br><span class="line">vc.searchBar.placeholder = &quot;搜索设备&quot;</span><br><span class="line">vc.searchBar.enablesReturnKeyAutomatically = false</span><br><span class="line">vc.searchBar.sizeToFit()</span><br><span class="line"></span><br><span class="line">return vc</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line">navigationItem.searchController = searchController</span><br><span class="line">navigationItem.hidesSearchBarWhenScrolling = false</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-d3ea03b58766402f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-de6a6e4434ad40f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="iOS11-Safe-Area-Insets"><a href="#iOS11-Safe-Area-Insets" class="headerlink" title="iOS11 Safe Area Insets"></a>iOS11 Safe Area Insets</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">additionalSafeAreaInsets = UIEdgeInsets(top: 100, left: 0, bottom: 100, right: 100)</span><br></pre></td></tr></table></figure>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-390517a880546e67.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="UITableView-separatorInsetReference"><a href="#UITableView-separatorInsetReference" class="headerlink" title="UITableView separatorInsetReference"></a>UITableView separatorInsetReference</h1><p><img src="https://upload-images.jianshu.io/upload_images/1120923-67de438546b61af5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><img src="https://upload-images.jianshu.io/upload_images/1120923-1b6960bbfe07be8e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tableView.estimatedRowHeight = 0</span><br><span class="line">tableView.estimatedSectionHeaderHeight = 0</span><br><span class="line">tableView.estimatedSectionFooterHeight = 0</span><br><span class="line"></span><br><span class="line">tableView.separatorInsetReference = .fromAutomaticInsets</span><br><span class="line">tableView.separatorInset.left = 60</span><br></pre></td></tr></table></figure></p>
-<h1 id="UITableViewCell-左划、右划"><a href="#UITableViewCell-左划、右划" class="headerlink" title="UITableViewCell 左划、右划"></a>UITableViewCell 左划、右划</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">// iOS11 UITableViewCell 左划</span><br><span class="line">override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? &#123;</span><br><span class="line">let action = UIContextualAction(style: .normal, title: &quot;收藏&quot;) &#123; (action, view, completionHandler) in</span><br><span class="line">// 执行收藏操作</span><br><span class="line">// ...</span><br><span class="line">completionHandler(true)</span><br><span class="line">&#125;</span><br><span class="line">action.image =  imageLiteral(resourceName: &quot;favorite&quot;)</span><br><span class="line">action.backgroundColor = UIColor.red</span><br><span class="line"></span><br><span class="line">let configuration = UISwipeActionsConfiguration(actions: [action])</span><br><span class="line"></span><br><span class="line">return configuration</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// iOS11 UITableViewCell 右划</span><br><span class="line">override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -&gt; UISwipeActionsConfiguration? &#123;</span><br><span class="line">let action = UIContextualAction(style: .destructive, title: &quot;删除&quot;) &#123; (action, view, completionHandler) in</span><br><span class="line">// remove item</span><br><span class="line">// ...</span><br><span class="line">completionHandler(true)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let configuration = UISwipeActionsConfiguration(actions: [action])</span><br><span class="line"></span><br><span class="line">return configuration</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="代码见"><a href="#代码见" class="headerlink" title="代码见"></a>代码见</h1><p><a href="https://github.com/action456789/iOS11Demo" target="_blank" rel="noopener">https://github.com/action456789/iOS11Demo</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2017/12/09/iOS-SDK-开发/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/09/iOS-SDK-开发/" itemprop="url">
-                  iOS SDK 开发
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-12-09 15:07:25" itemprop="dateCreated datePublished" datetime="2017-12-09T15:07:25+08:00">2017-12-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 18:37:45" itemprop="dateModified" datetime="2018-05-09T18:37:45+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="一、Framework与-a基础"><a href="#一、Framework与-a基础" class="headerlink" title="一、Framework与.a基础"></a>一、Framework与.a基础</h1><p>此处等下一期</p>
-<p><br></p>
-<hr>
-
-<h1 id="二、工程嵌套联调静态库"><a href="#二、工程嵌套联调静态库" class="headerlink" title="二、工程嵌套联调静态库"></a>二、工程嵌套联调静态库</h1><h2 id="1、新建一个主工程"><a href="#1、新建一个主工程" class="headerlink" title="1、新建一个主工程"></a>1、新建一个主工程</h2><p><br></p>
-<h2 id="2、新建一个Library工程"><a href="#2、新建一个Library工程" class="headerlink" title="2、新建一个Library工程"></a>2、新建一个Library工程</h2><p><br></p>
-<h2 id="3、将静态库工程拖到主工程文件夹下"><a href="#3、将静态库工程拖到主工程文件夹下" class="headerlink" title="3、将静态库工程拖到主工程文件夹下"></a>3、将静态库工程拖到主工程文件夹下</h2><blockquote>
-<p>如果你要拖到其他目录，就要改Library Search Paths<br><img src="https://upload-images.jianshu.io/upload_images/1120923-cce04359a1bbfaad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><br></p>
-</blockquote>
-<h2 id="4、将Library工程下-a文件拖入主工程的Link-Binary-With-Libraries"><a href="#4、将Library工程下-a文件拖入主工程的Link-Binary-With-Libraries" class="headerlink" title="4、将Library工程下.a文件拖入主工程的Link Binary With Libraries"></a>4、将Library工程下.a文件拖入主工程的Link Binary With Libraries</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-a5abaa5e64aee935.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>如果有必要（运行时崩溃），将静态库需要加入 Embedded Binaries 中<br><img src="https://upload-images.jianshu.io/upload_images/1120923-a187820d28065970.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="5-主工程添加对子工程的依赖，避免每次修改都要手动编译子工程"><a href="#5-主工程添加对子工程的依赖，避免每次修改都要手动编译子工程" class="headerlink" title="5. 主工程添加对子工程的依赖，避免每次修改都要手动编译子工程"></a>5. 主工程添加对子工程的依赖，避免每次修改都要手动编译子工程</h2><p>如下图给主工程添加对子工程的依赖，这样每次编译主工程的时候也会编译子工程。<br><img src="https://upload-images.jianshu.io/upload_images/1120923-014ee57b806790ec.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p><br></p>
-<hr>
-
-<h1 id="三、在静态库中使用图片以及-xib-等资源文件"><a href="#三、在静态库中使用图片以及-xib-等资源文件" class="headerlink" title="三、在静态库中使用图片以及 xib 等资源文件"></a>三、在静态库中使用图片以及 xib 等资源文件</h1><h2 id="1、添加-Bundle-Target"><a href="#1、添加-Bundle-Target" class="headerlink" title="1、添加 Bundle Target"></a>1、添加 Bundle Target</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-0daa863f0f458a55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<blockquote>
-<p>因为iOS框架中没有bundle，要选中OS X框架找到bundle，如下图<br><img src="https://upload-images.jianshu.io/upload_images/1120923-271a68244a055813.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</blockquote>
-<h2 id="2、将资源文件加入-bundle-中"><a href="#2、将资源文件加入-bundle-中" class="headerlink" title="2、将资源文件加入 bundle 中"></a>2、将资源文件加入 bundle 中</h2><p>将工程中的资源文件都加入到刚刚建的bundle中，如xib、图片。点+号或直接拖都行。<br><img src="https://upload-images.jianshu.io/upload_images/1120923-54e9d8ebb8086020.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="3、iOS-Deployment-Target改为你支持的最低版本"><a href="#3、iOS-Deployment-Target改为你支持的最低版本" class="headerlink" title="3、iOS Deployment Target改为你支持的最低版本"></a>3、iOS Deployment Target改为你支持的最低版本</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-acc55ab1a1c172ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="4、设置base-SDK-为latest-iOS"><a href="#4、设置base-SDK-为latest-iOS" class="headerlink" title="4、设置base SDK 为latest iOS"></a>4、设置base SDK 为latest iOS</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-935ccc7c15d9dd90.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="5、编译-Bundle"><a href="#5、编译-Bundle" class="headerlink" title="5、编译 Bundle"></a>5、编译 Bundle</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-89b0b426acb67a1a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="6、主工程添加对子工程的依赖，避免每次修改都要手动编译子工程"><a href="#6、主工程添加对子工程的依赖，避免每次修改都要手动编译子工程" class="headerlink" title="6、主工程添加对子工程的依赖，避免每次修改都要手动编译子工程"></a>6、主工程添加对子工程的依赖，避免每次修改都要手动编译子工程</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-5e09392ed9b3954c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="7、加载-Bundle-里的资源文件"><a href="#7、加载-Bundle-里的资源文件" class="headerlink" title="7、加载 Bundle 里的资源文件"></a>7、加载 Bundle 里的资源文件</h2><h3 id="7-1、加载图片"><a href="#7-1、加载图片" class="headerlink" title="7.1、加载图片"></a>7.1、加载图片</h3><p>使用运行时替换 <code>[UIImage imageNamed:]</code>方法，减少修改代码的工作量。<br>相关代码在以下几个类中<br><img src="https://upload-images.jianshu.io/upload_images/1120923-d22158e1d55e1cab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 在AppDelegate中执行以下代码即可swizzle 所有 [UIImage imageNamed:]</span><br><span class="line"></span><br><span class="line">#import &quot;UIImage+Swizzle.h&quot;</span><br><span class="line"></span><br><span class="line">- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions &#123;</span><br><span class="line">    [UIImage kk_autoLoadImageInBundle];</span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>UIImage+Swizzle.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//  </span><br><span class="line">// 修改所有的 [UIImage imageNamed:]的实现，改为先从同一项目中的 .bundle 文件中加载，没有再使用系统默认实现加载</span><br><span class="line">+ (void)kk_autoLoadImageInBundle &#123;</span><br><span class="line">    SEL original = @selector(imageNamed:);</span><br><span class="line">    SEL new = @selector(hook_kk_imageWithName:);</span><br><span class="line">    [self kk_swizzleClassMethod:original with:new];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 1. 从 .bundle 中加载图片</span><br><span class="line">// 2. 按照默认的方法加载图片</span><br><span class="line">+ (instancetype)hook_kk_imageWithName:(NSString *)imageName &#123;</span><br><span class="line">    UIImage *image = [NSBundle kk_imageInBundle:kk_BundleName imageName:imageName];</span><br><span class="line">    if (!image) &#123;</span><br><span class="line">        image = [self hook_kk_imageWithName:imageName];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return image;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>NSObject+Swizzle.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;NSObject+Swizzle.h&quot;</span><br><span class="line">#import &lt;objc/objc.h&gt;</span><br><span class="line">#import &lt;objc/runtime.h&gt;</span><br><span class="line"></span><br><span class="line">@implementation NSObject (Swizzle)</span><br><span class="line"></span><br><span class="line">+ (BOOL)kk_swizzleInstanceMethod:(SEL)originalSel with:(SEL)newSel &#123;</span><br><span class="line">    Class class = object_getClass(self);</span><br><span class="line">    Method originalMethod = class_getInstanceMethod(class, originalSel);</span><br><span class="line">    Method newMethod = class_getInstanceMethod(class, newSel);</span><br><span class="line"></span><br><span class="line">    if (!originalMethod || !newMethod) return NO;</span><br><span class="line">    method_exchangeImplementations(originalMethod, newMethod);</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">+ (BOOL)kk_swizzleClassMethod:(SEL)originalSel with:(SEL)newSel &#123;</span><br><span class="line">    Class class = object_getClass(self);</span><br><span class="line">    Method originalMethod = class_getClassMethod(class, originalSel);</span><br><span class="line">    Method newMethod = class_getClassMethod(class, newSel);</span><br><span class="line">    </span><br><span class="line">    if (!originalMethod || !newMethod) return NO;</span><br><span class="line">    method_exchangeImplementations(originalMethod, newMethod);</span><br><span class="line">    </span><br><span class="line">    return YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="7-2、加载-xib"><a href="#7-2、加载-xib" class="headerlink" title="7.2、加载 xib"></a>7.2、加载 <code>xib</code></h3><h4 id="7-2-1-加载xib对应的UIViewController"><a href="#7-2-1-加载xib对应的UIViewController" class="headerlink" title="7.2.1 加载xib对应的UIViewController"></a>7.2.1 加载xib对应的<code>UIViewController</code></h4><p>需要重写xib对应控制器的 init 方法，否则可能出现找不到xib文件导致crash<br>参考<a href="http://www.jianshu.com/p/a8c9e52c80de" target="_blank" rel="noopener">bundle打包xib文件</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line"></span><br><span class="line">    NSBundle *bundle = [NSBundle kk_bundleWithName:kBundleTargetName];</span><br><span class="line"></span><br><span class="line">    self = [super initWithNibName:@&quot;CalculatePriceViewController&quot; bundle:bundle];</span><br><span class="line"></span><br><span class="line">    return self;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>代码参见：<a href="[https://github.com/action456789/SKS_Collection/blob/master/SKS_Collection/Classes/Category/Framework开发/NSBundle%2BResource.h">github</a>](<a href="https://github.com/action456789/SKS_Collection/blob/master/SKS_Collection/Classes/Category/Framework开发/NSBundle%2BResource.h)" target="_blank" rel="noopener">https://github.com/action456789/SKS_Collection/blob/master/SKS_Collection/Classes/Category/Framework开发/NSBundle%2BResource.h)</a>)</p>
-<h4 id="7-2-1-加载xib对应的UIVIew"><a href="#7-2-1-加载xib对应的UIVIew" class="headerlink" title="7.2.1 加载xib对应的UIVIew"></a>7.2.1 加载xib对应的<code>UIVIew</code></h4><p>需要重写xib对应View的 init 方法，，否则可能出现找不到xib文件导致crash<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@implementation OfflineView</span><br><span class="line"></span><br><span class="line">//重写要加载的view的init方法</span><br><span class="line">- (instancetype)init &#123;</span><br><span class="line">    if (self = [super init]) &#123;</span><br><span class="line">        NSBundle *bundle = [NSBundle kk_bundleWithName:kk_BundleName];</span><br><span class="line">        self = [[bundle loadNibNamed:@&quot;OfflineView&quot; owner:self options:nil] lastObject];</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
-<h3 id="7-3、加载-Localizable-strings"><a href="#7-3、加载-Localizable-strings" class="headerlink" title="7.3、加载 Localizable.strings"></a>7.3、加载 <code>Localizable.strings</code></h3><h4 id="第一步：在Bundle中新建国际化文件"><a href="#第一步：在Bundle中新建国际化文件" class="headerlink" title="第一步：在Bundle中新建国际化文件"></a>第一步：在Bundle中新建国际化文件</h4><p><img src="https://upload-images.jianshu.io/upload_images/1120923-6f11bf3b8f5d2236.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h4 id="第二步：添加语言，并将之前的国际化文件中的代码复制过来"><a href="#第二步：添加语言，并将之前的国际化文件中的代码复制过来" class="headerlink" title="第二步：添加语言，并将之前的国际化文件中的代码复制过来"></a>第二步：添加语言，并将之前的国际化文件中的代码复制过来</h4><p><img src="https://upload-images.jianshu.io/upload_images/1120923-37cc110dd92a5079.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h4 id="第三步："><a href="#第三步：" class="headerlink" title="第三步："></a>第三步：</h4><p>使用 NSBundle+Resource 如下方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+ (NSString *)mj_localizedStringForKey:(NSString *)key;</span><br><span class="line">+ (NSString *)mj_localizedStringForKey:(NSString *)key value:(NSString *)value;</span><br></pre></td></tr></table></figure></p>
-<p>然后使用如下宏定义<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 加载 Bundle 中的国际化语句</span><br><span class="line">#undef NSLocalizedString</span><br><span class="line">#define NSLocalizedString(key, comment) \</span><br><span class="line">[NSBundle mj_localizedStringForKey:(key)]</span><br></pre></td></tr></table></figure></p>
-<p>然后就可以自动的加载Bundle中的字符串了</p>
-<p><br></p>
-<hr>
-
-<h1 id="四、将整个App打包为Framework"><a href="#四、将整个App打包为Framework" class="headerlink" title="四、将整个App打包为Framework"></a>四、将整个App打包为Framework</h1><h2 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h2><ol>
-<li>整个项目都要解除 AppDelegate 的依赖，AppDelegate不能打入Framework中</li>
-<li>图片和xib文件需要按照 三 中的处理</li>
-<li>可以使用 runtime 动态加载图片和xib文件，减少工作量</li>
-<li>注意点：bundle中的国际化文件需要重新新建，添加语言，然后将之前App中的内容复制过来，直接拖进去是无效的</li>
-</ol>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-57f527356830710e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h2 id="实际操作中存在的问题"><a href="#实际操作中存在的问题" class="headerlink" title="实际操作中存在的问题"></a>实际操作中存在的问题</h2><ol>
-<li>图片同时存在@2x和@3x后缀导致加载的图片为nil的问题<br>解决办法为只要@2x的图片</li>
-</ol>
-<p><br></p>
-<hr>
-
-<h1 id="五、使用-appledoc-生成文档"><a href="#五、使用-appledoc-生成文档" class="headerlink" title="五、使用 appledoc 生成文档"></a>五、使用 <code>appledoc</code> 生成文档</h1><p><a href="https://github.com/tomaz/appledoc" target="_blank" rel="noopener">官网</a></p>
-<ul>
-<li>安装<br><code>brew install appledoc</code></li>
-<li>查看版本<br><code>appledoc --version</code></li>
-<li>查看帮助<br><code>appledoc --help</code></li>
-<li>生成文档<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appledoc --output ./doc --project-name &quot;D103Framework&quot;  --project-company &quot;RICISUNG&quot; --company-id &quot;RICISUNG&quot; .</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>”.“ 和前面的符号一定要加 空格 否则就会报错。<br><img src="https://upload-images.jianshu.io/upload_images/1120923-dbc07ae1c94010da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><h1 id="iOS-工程套子工程，主工程和framework工程或-a-library静态库工程联调-http-www-cnblogs-com-zhanglinfeng-p-5494762-html"><a href="#iOS-工程套子工程，主工程和framework工程或-a-library静态库工程联调-http-www-cnblogs-com-zhanglinfeng-p-5494762-html" class="headerlink" title="iOS 工程套子工程，主工程和framework工程或.a library静态库工程联调](http://www.cnblogs.com/zhanglinfeng/p/5494762.html))"></a><a href="[http://www.cnblogs.com/zhanglinfeng/p/5494762.html"><a href="http://www.cnblogs.com/zhanglinfeng/p/5494762.html" target="_blank" rel="noopener">iOS 工程套子工程，主工程和framework工程或.a library静态库工程联调</a></a>](<a href="http://www.cnblogs.com/zhanglinfeng/p/5494762.html)" target="_blank" rel="noopener">http://www.cnblogs.com/zhanglinfeng/p/5494762.html)</a>)</h1><h1 id="iOS-framework静态库中使用xib和图片资源详解"><a href="#iOS-framework静态库中使用xib和图片资源详解" class="headerlink" title="iOS framework静态库中使用xib和图片资源详解"></a><a href="http://www.cnblogs.com/zhanglinfeng/p/5510717.html" target="_blank" rel="noopener"><a href="http://www.cnblogs.com/zhanglinfeng/p/5510717.html" target="_blank" rel="noopener">iOS framework静态库中使用xib和图片资源详解</a></a></h1>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2017/09/09/git命令大全/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/09/git命令大全/" itemprop="url">
-                  git命令大全
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-09-09 21:09:46" itemprop="dateCreated datePublished" datetime="2017-09-09T21:09:46+08:00">2017-09-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 18:10:22" itemprop="dateModified" datetime="2018-05-09T18:10:22+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC] </p>
-<p>#基本概念</p>
-<ul>
-<li><code>master</code>指针：指向最新的提交</li>
-</ul>
-<hr>
-<h1 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h1><p><a href="http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008" target="_blank" rel="noopener">http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008</a></p>
-<hr>
-<p>#全局配置<br><code>$ git config --global user.name &quot;kk&quot;</code><br><code>$ git config --global user.email &quot;superkesen@gmail.com&quot;</code></p>
-<ul>
-<li><p>编辑模式查看全局设置：<br><code>git config --global -e</code></p>
-</li>
-<li><p>列表形式查看全局设置：<br><code>git config --global -l</code></p>
-</li>
-</ul>
-<hr>
-<h1 id="使用GitHub时，在本地创建SSH-Key"><a href="#使用GitHub时，在本地创建SSH-Key" class="headerlink" title="使用GitHub时，在本地创建SSH Key"></a>使用GitHub时，在本地创建SSH Key</h1><p><code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code></p>
-<ul>
-<li><p>如果一切顺利的话，可以在用户主目录里（~/.ssh）找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-</li>
-<li><p>第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：<br>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容</p>
-</li>
-</ul>
-<hr>
-<h1 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h1><ul>
-<li>克隆远程仓库到本地<br><code>git clone git@github.com:michaelliao/gitskills.git</code></li>
-<li><p>克隆远程仓库某个分支到本地<br><code>git clone -b &lt;branch&gt; &lt;remote_repo&gt;</code><br>例如： <code>git clone -b 指定的分支名字</code></p>
-</li>
-<li><p>给本地仓库指定远程仓库</p>
-</li>
-</ul>
-<ol>
-<li><p>关联GitHub仓库：<br><code>git remote add origin git@github.com:michaelliao/learngit.git</code></p>
-</li>
-<li><p>显示远程仓库：<br><code>git remote show origin</code><br>第一次推送使用：<br><code>git push -u origin 分支名称</code><br>之后推送使用：<br><code>git push origin maste</code></p>
-</li>
-<li><p>查看远程仓库地址<br><code>git remote -v</code></p>
-</li>
-<li><p>取消关联远程仓库<br><code>git remote rm origin</code></p>
-</li>
-</ol>
-<hr>
-<h1 id="初始化git仓库"><a href="#初始化git仓库" class="headerlink" title="初始化git仓库"></a>初始化git仓库</h1><p><code>git init</code><br><code>git add .</code><br><code>git commit -m “xxxx&quot;</code></p>
-<hr>
-<h1 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h1><p>删除所有文件<br><code>git rm * -r</code><br>删除文件夹<br><code>git rm filename -r</code><br>忽略无需版本控制的文档<br><code>echo “*.txt” &gt; .gitignore</code></p>
-<hr>
-<h1 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h1><p>查看commit日志<br><code>git reflog</code><br>或<br><code>git log</code></p>
-<hr>
-<h1 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h1><ul>
-<li>查看当前所在分支<br><code>git branch -a</code></li>
-<li>切换到某个分支<br><code>git checkout 分支名字</code></li>
-</ul>
-<hr>
-<ul>
-<li>创建本地分支并切换到创建的分支：<br><code>git checkout -b your_branch</code></li>
-<li>提交该分支到远程仓库<br><code>git push origin dev</code></li>
-</ul>
-<hr>
-<ul>
-<li>追踪远程分支<br><code>git branch --track release_2.3.0 origin/HEAD:refs/for/release_2.3.0</code></li>
-<li>将本地分支push到远程分支，（远程会自动创建your_branch分支），并关联本地分支与远程分支<br><code>git push -u origin your_branch</code></li>
-<li>删除远程分支<br><code>git push origin --delete &lt;branchName&gt;</code></li>
-<li>删除本地分支<br><code>git branch -d your_branch</code></li>
-</ul>
-<hr>
-<h1 id="本地提交回滚"><a href="#本地提交回滚" class="headerlink" title="本地提交回滚"></a>本地提交回滚</h1><ol>
-<li>先重置本地在上次提交之后的修改（如果需要的话）<br><code>git checkout *.m</code></li>
-<li>重置为远程仓库的最新版本<br>soft表示本地的修改还在本地文件中，不加的话那么本地的修改也没了<br><code>git reset HEAD^ --soft</code></li>
-</ol>
-<hr>
-<h1 id="拉取远程代码时冲突"><a href="#拉取远程代码时冲突" class="headerlink" title="拉取远程代码时冲突"></a>拉取远程代码时冲突</h1><ol>
-<li>保存本地修改到暂存区<br><code>git stash</code></li>
-<li>拉取远程代码<br><code>git pull</code></li>
-<li>将暂存区内容恢复到本地，有冲突时先解决冲突<br><code>git stash pop</code></li>
-</ol>
-<hr>
-<h1 id="git-stash-的使用"><a href="#git-stash-的使用" class="headerlink" title="git stash 的使用"></a>git stash 的使用</h1><ul>
-<li>列出所有暂时保存的工作<br><code>git stash list</code></li>
-<li>恢复某个暂时保存的工作</li>
-</ul>
-<p><code>git stash apply stash@{1}</code></p>
-<ul>
-<li><p>保存stash时设置stash名称<br><code>git stash save &quot;my_stash&quot;</code></p>
-</li>
-<li><p>丢弃最近一次stash的文件<br><code>git stash drop</code></p>
-</li>
-</ul>
-<h1 id="合并某次提交-merge-a-specific-commit-in-Git"><a href="#合并某次提交-merge-a-specific-commit-in-Git" class="headerlink" title="合并某次提交 merge a specific commit in Git"></a>合并某次提交 merge a specific commit in Git</h1><p><code>git cherry-pick d42c389f</code></p>
-<hr>
-<h1 id="git-merge-后-push-到-Gerrit-失败，提示-no-new-changes"><a href="#git-merge-后-push-到-Gerrit-失败，提示-no-new-changes" class="headerlink" title="git merge 后 push 到 Gerrit 失败，提示 no new changes"></a>git merge 后 push 到 Gerrit 失败，提示 no new changes</h1><ul>
-<li>在 <code>git merge</code> 的时候，加上 <code>--no-ff</code> 参数，是为了让它生成一个新的 commit，这样就可以提交了~（不过生成的 gerrit change 是看不到改动信息的）</li>
-</ul>
-<h1 id="tag-操作"><a href="#tag-操作" class="headerlink" title="tag 操作"></a>tag 操作</h1><ul>
-<li>查看tag<br><code>git tag</code></li>
-<li>创建 本地 tag<br><code>git tag 1.0.0</code><br>或者<br><code>git tag -m &quot;first release&quot; 0.1.0</code></li>
-<li>推送 本地 tag 到远程服务器<br><code>git push origin 1.0.0</code></li>
-<li>或者推送所有tags到远程服务器<br><code>git push --tags</code> </li>
-<li>删除本地 tag<br><code>git tag -d 1.0.0</code></li>
-<li>删除远程 tag</li>
-</ul>
-<ol>
-<li>先删除本地 tag<br><code>git tag -d 1.0.0</code></li>
-<li>然后push<br><code>git push origin --delete tag 1.0.0</code><h1 id="fatal-remote-origin-already-exists-错误解决"><a href="#fatal-remote-origin-already-exists-错误解决" class="headerlink" title="fatal: remote origin already exists.错误解决"></a><code>fatal: remote origin already exists.</code>错误解决</h1></li>
-<li>先删除远程 Git 仓库</li>
-</ol>
-<p><code>git remote rm origin</code><br>2 再添加远程 Git 仓库</p>
-<p><code>git remote add origin git@github.com:FBing/Java-code-generator</code></p>
-<h1 id="git-ignore"><a href="#git-ignore" class="headerlink" title="git ignore"></a>git ignore</h1><ul>
-<li>创建<code>.gitignore文件</code><br><code>touch .gitignore</code><br>忽略规则示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 这是注释行，将被忽略</span><br><span class="line">*.a       # 忽略所有以.a为扩展名的文件    </span><br><span class="line">!lib.a    # 但是名为lib.a的文件或目录不要忽略，即使前面设置了对*.a的忽略</span><br><span class="line">/TODO     # 只忽略此目录下的TODO文件，子目录中的TODO文件不忽略</span><br><span class="line">build/    # 忽略所有build目录下的文件，但如果是名为build的文件则不忽略</span><br><span class="line">doc/*.txt # 忽略文件如doc/notes.txt，但是文件如doc/server/arch.txt不忽略</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>例如忽略下图的GPUImage.framework框架<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SystemVedio/GPUImage/GPUImage.framework</span><br></pre></td></tr></table></figure></p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-8af29923ea45d7fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="6218590.png"></p>
-<p>只追踪某几个文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#忽略所有文件，注意放在开头</span><br><span class="line">/*</span><br><span class="line">#除src文件夹外</span><br><span class="line">!/src</span><br><span class="line">#除bin文件夹外</span><br><span class="line">!/bin </span><br><span class="line">#总的效果就是git只跟踪src和bin两个文件夹</span><br></pre></td></tr></table></figure></p>
-<h1 id="merge-与-rebase-的区别"><a href="#merge-与-rebase-的区别" class="headerlink" title="merge 与 rebase 的区别"></a>merge 与 rebase 的区别</h1><blockquote>
-<p>作者：王靖轩<br>链接：<a href="https://www.zhihu.com/question/36509119/answer/131513261" target="_blank" rel="noopener">https://www.zhihu.com/question/36509119/answer/131513261</a><br>来源：知乎<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
-</blockquote>
-<p>搞清楚这个问题首先要搞清楚merge和rebase背后的含义。</p>
-<h2 id="merge：会产生一次合并提交"><a href="#merge：会产生一次合并提交" class="headerlink" title="merge：会产生一次合并提交"></a>merge：会产生一次合并提交</h2><p>先看merge，官方文档给的说明是：<br>git-merge - Join two or more development histories together</p>
-<p>顾名思义，当你想要两个分支交汇的时候应该使用merge。<br>根据官方文档给的例子，是master merge topic，如图：<br>A—B—C topic<br>/         \<br>D—E—F—G—H master<br>然而在实践中，在H这个commit上的merge经常会出现merge conflict。为了避免解决冲突的时候引入一些不必要的问题，工程中一般都会规定no conflict merge。比如你在github上发pull request，如果有conflict就会禁止merge。</p>
-<p>所以才会有题主问的问题：在当前的topic分支，想要引入master分支的F、G commit上的内容以避免merge conflict，方便最终合并到master。</p>
-<p>这种情况下用merge当然是一个选项。用merge代表了topic分支与master分支交汇，并解决了所有合并冲突。然而merge的缺点是引入了一次不必要的history join。如图：<br>A–B–C-X topic<br>/       / \<br>D—E—F—G—H master<br>其实仔细想一下就会发现，在引入master分支的F、G commit这个问题上，我们并没有要求两个分支必须进行交汇(join)，我们只是想避免最终的merge conflict而已。</p>
-<h2 id="rebase：将其他分支的内容整合到当前分支，改变当前分支branch-out的位置"><a href="#rebase：将其他分支的内容整合到当前分支，改变当前分支branch-out的位置" class="headerlink" title="rebase：将其他分支的内容整合到当前分支，改变当前分支branch out的位置"></a>rebase：将其他分支的内容整合到当前分支，改变当前分支branch out的位置</h2><p>rebase是另一个选项。rebase的含义是改变当前分支branch out的位置。这个时候进行rebase其实意味着，将topic分支branch out的位置从E改为G，如图：<br>A—B—C topic<br>/<br>D—E—F—G master<br>在这个过程中会解决引入F、G导致的冲突，同时没有多余的history join。但是rebase的缺点是，改变了当前分支branch out的节点。如果这个信息对你很重要的话，那么rebase应该不是你想要的。rebase过程中也会有多次解决同一个地方的冲突的问题，不过可以用squash之类的选项解决。个人并不认为这个是rebase的主要问题。</p>
-<p>综上，其实选用merge还是rebase取决于你到底是以什么意图来避免merge conflict。实践上个人还是偏爱rebase。一个是因为branch out节点不能改变的情况实在太少。另外就是频繁从master merge导致的冗余的history join会提高所有人的认知成本。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2017/03/03/Mac安装MQTT服务器/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/03/03/Mac安装MQTT服务器/" itemprop="url">
-                  Mac安装MQTT服务器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2017-03-03 15:08:59" itemprop="dateCreated datePublished" datetime="2017-03-03T15:08:59+08:00">2017-03-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="emqttd-windows版安装"><a href="#emqttd-windows版安装" class="headerlink" title="emqttd windows版安装"></a>emqttd windows版安装</h1><p>具体以官方文档为主</p>
-<ol>
-<li>下载<a href="http://emqtt.io/docs/v2/install.html#installing-on-windows" target="_blank" rel="noopener">http://emqtt.io/docs/v2/install.html#installing-on-windows</a></li>
-<li>进入下载后的bin目录下<br><code>cd C:\Users\kk\Desktop\emqttd\bin\</code><br>然后执行<br><code>emqttd console</code></li>
-<li>进入Web管理控制台(Dashboard)<br>控制台地址: <a href="http://127.0.0.1:18083" target="_blank" rel="noopener">http://127.0.0.1:18083</a><br>默认用户: admin，密码：public</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/03/Mac安装MQTT服务器/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/11/09/Autolayout高级/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/11/09/Autolayout高级/" itemprop="url">
-                  Autolayout高级
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-11-09 20:23:21" itemprop="dateCreated datePublished" datetime="2016-11-09T20:23:21+08:00">2016-11-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-05-09 16:11:51" itemprop="dateModified" datetime="2018-05-09T16:11:51+08:00">2018-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="intrinsicContentSize"><a href="#intrinsicContentSize" class="headerlink" title="intrinsicContentSize"></a>intrinsicContentSize</h1><p><code>Intrinsic Content Size</code>：固有大小。意思就是说我知道自己的大小，如果你没有为我指定大小，我就按照这个大小来。</p>
-<p>比如：大家都知道在使用 AutoLayout 的时候，<code>UILabel</code> 就不用指定尺寸大小，只需指定位置即可，就是因为，只要确定了文字内容，字体等信息，它自己就能计算出大小来。</p>
-<blockquote>
-<p><code>UILabel</code>，<code>UIImageView</code>，<code>UIButton</code> 等组件及某些包含它们的系统组件都有 Intrinsic Content Size 属性。</p>
-</blockquote>
-<h1 id="Content-Hugging-约束（不想变大约束）"><a href="#Content-Hugging-约束（不想变大约束）" class="headerlink" title="Content Hugging 约束（不想变大约束）"></a><code>Content Hugging</code> 约束（不想变大约束）</h1><p>如果组件的此属性优先级比另一个组件此属性优先级高的话，那么这个组件就保持不变，另一个可以在需要拉伸的时候拉伸。</p>
-<h1 id="Content-Compression-Resistance-约束（不想变小约束）"><a href="#Content-Compression-Resistance-约束（不想变小约束）" class="headerlink" title="Content Compression Resistance 约束（不想变小约束）"></a><code>Content Compression Resistance</code> 约束（不想变小约束）</h1><p>如果组件的此属性优先级比另一个组件此属性优先级高的话，那么这个组件就保持不变，另一个可以在需要压缩的时候压缩。</p>
-<p>例如：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-143170678a0a5d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="Top-Layout-Guide"><a href="#Top-Layout-Guide" class="headerlink" title="Top Layout Guide"></a><code>Top Layout Guide</code></h1><p><code>topLayoutGuide</code>属性表示不希望被透明的状态栏或导航栏遮挡的内容范围的最高位置。这个属性的值是它的length属性的值（topLayoutGuide.length）</p>
-<p>这个值可能由当前的ViewController或这个ViewController所属的NavigationController或TabBarController决定，有如下情况：</p>
-<ol>
-<li>一个独立的ViewController，不包含于任何其他的ViewController。如果状态栏可见，topLayoutGuide表示状态栏的底部，否则表示这个ViewController的上边缘。</li>
-<li>包含于其他ViewController的ViewController不对这个属性起决定作用，而是由容器ViewController决定这个属性的含义：</li>
-</ol>
-<blockquote>
-<ol>
-<li>如果导航栏（Navigation Bar）可见，topLayoutGuide表示导航栏的底部。</li>
-<li>如果状态栏可见，topLayoutGuide表示状态栏的底部。</li>
-<li>如果都不可见，表示ViewController的上边缘。</li>
-</ol>
-</blockquote>
-<p>总之是屏幕上方任何遮挡内容的栏的最底部。</p>
-<h1 id="Safe-Area"><a href="#Safe-Area" class="headerlink" title="Safe Area"></a>Safe Area</h1><p>*作用：取代<code>topLayoutGuide</code>和<code>bottomLayoutGuide</code>**</p>
-<p><code>safeArea</code>是描述你的视图部分不被任何内容遮挡的方法。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/1120923-4bfd008744e885e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<h1 id="改变布局的方法"><a href="#改变布局的方法" class="headerlink" title="改变布局的方法"></a>改变布局的方法</h1><h2 id="一、-setNeedsLayout与layoutIfNeeded"><a href="#一、-setNeedsLayout与layoutIfNeeded" class="headerlink" title="一、 setNeedsLayout与layoutIfNeeded"></a>一、 <code>setNeedsLayout</code>与<code>layoutIfNeeded</code></h2><p>更新Autolayout后，如何要立即刷新布局，还要依次调用以下两个方法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">// 立即刷新布局（自己和subview的）</span><br><span class="line"></span><br><span class="line">self.view.setNeedsLayout()</span><br><span class="line"></span><br><span class="line">self.view.layoutIfNeeded()</span><br></pre></td></tr></table></figure>
-<p><code>setNeedsLayout</code>给当前 UIView 立一个 flag，以表示后续应该调用 <code>layoutSubviews</code>方法，以调整当前视图及其子视图的布局。</p>
-<p><code>layoutIfNeeded</code>如果有需要刷新的标记，立即调用layoutSubviews进行布局（如果没有标记，不会调用layoutSubviews）</p>
-<h2 id="二、-layoutSubviews"><a href="#二、-layoutSubviews" class="headerlink" title="二、 layoutSubviews"></a>二、 <code>layoutSubviews</code></h2><h3 id="触发时机——Frame改变就会触发，具体如下"><a href="#触发时机——Frame改变就会触发，具体如下" class="headerlink" title="触发时机——Frame改变就会触发，具体如下"></a>触发时机——Frame改变就会触发，具体如下</h3><ol>
-<li><p>初始化不会触发layoutSubviews，但是如果设置了不为CGRectZero的frame的时候就会触发</p>
-</li>
-<li><p>addSubview会触发layoutSubviews</p>
-</li>
-<li><p>设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化</p>
-</li>
-<li><p>滚动一个UIScrollView会触发layoutSubviews</p>
-</li>
-<li><p>旋转Screen会触发父UIView上的layoutSubviews事件</p>
-</li>
-<li><p>改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p>
-</li>
-</ol>
-<h3 id="何时重写-layoutSubviews-方法"><a href="#何时重写-layoutSubviews-方法" class="headerlink" title="何时重写 layoutSubviews 方法"></a>何时重写 <code>layoutSubviews</code> 方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当我们在某个类的内部调整子视图位置时，需要调用；如果你想要在外部设置subviews的位置，就不要重写。</span><br></pre></td></tr></table></figure>
-<h2 id="三、sizeToFit"><a href="#三、sizeToFit" class="headerlink" title="三、sizeToFit"></a>三、<code>sizeToFit</code></h2><p>调用sizeToFit的时候，系统会根据内容的帮我布局一个它认为最合适的大小。</p>
-<p>我们一般在不方便手动布局的时候才调用sizeToFit方法。比如</p>
-<ol>
-<li><p>navigationBar中对navigationItem的设置，（添加两个视图以上的控件到Item）</p>
-</li>
-<li><p>toolBar中的对UIBarButtonItem的设置（一般我们还要添加弹簧控件）</p>
-</li>
-</ol>
-<p>上述两种场合就可以用sizeToFit这个方法，来让系统给我们做自动布局。（注意：如果就添加一个控件的话，我们直接设置fram也是可以的）</p>
-<ol start="3">
-<li><p>在tabBar中我们不能手动的添加的子控件，因为tabBar是根据控制器系统默认自动添加的tabBarItem。（猜想系统可能也会自动调用了这个方法）</p>
-</li>
-<li><p>UILabel中添加文字，然后让调整label的大小来适应文字，我们也调用sizeToFit的方法。</p>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2016/10/18/iOS调试内存泄露/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/10/18/iOS调试内存泄露/" itemprop="url">
-                  iOS调试内存泄露
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-10-18 23:11:07" itemprop="dateCreated datePublished" datetime="2016-10-18T23:11:07+08:00">2016-10-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-05 16:59:21" itemprop="dateModified" datetime="2019-08-05T16:59:21+08:00">2019-08-05</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>[TOC]</p>
-<h1 id="Xcode8使用Memory-Graph"><a href="#Xcode8使用Memory-Graph" class="headerlink" title="Xcode8使用Memory Graph"></a>Xcode8使用Memory Graph</h1><ul>
-<li><p>第一步：真机下运行APP后，点击<br><img src="https://upload-images.jianshu.io/upload_images/1120923-296131fcf6ffee5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</li>
-<li><p>第二步：查看issue面板，注意选择右边Runtime<br><img src="https://upload-images.jianshu.io/upload_images/1120923-8ee8fe78474da0d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-</li>
-<li><p>第三步：查看可能出现的内存泄露<br>比如上图的 <code>1 instance of __NSMallocBlock_leaked</code>，点击后出现下图<br><img src="https://upload-images.jianshu.io/upload_images/1120923-7765184c6159e657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>原因在于如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">group.didSelectedRowBlock = &#123; [unowned self, group] row in</span><br><span class="line">guard let indexPaths = group.selectedIndexPaths else &#123;return&#125;</span><br><span class="line">if indexPaths.count &gt; 0 &#123;</span><br><span class="line">self.shouldAdd = true</span><br><span class="line">let row = (indexPaths.firstObject as! IndexPath).row</span><br><span class="line">self.deviceAttri?.attrValue = String(row)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">self.shouldAdd = false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>group的block中又使用了group，导致了循环引用，虽然使用了[unowned group]，事实证明并没有效果<br>最后的解决办法是修改didSelectedRowBlock的接口，直接将selectedIndexPaths参数传入block参数中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">group.didSelectedRowBlock = &#123; [unowned self] indexPaths in</span><br><span class="line">guard let indexPaths = indexPaths else &#123;return&#125;</span><br><span class="line">if indexPaths.count &gt; 0 &#123;</span><br><span class="line">self.shouldAdd = true</span><br><span class="line">self.deviceAttri?.attrValue = String(indexPaths.first!.row)</span><br><span class="line">&#125; else &#123;</span><br><span class="line">self.shouldAdd = false</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>第四步：在 debug 页面查看内存泄露情况<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5d076268da519675.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>有叹号说明需要注意可能存在内存泄露，可以看到 CoreFoundation中也可能存在内存泄露情况</li>
-</ul>
-<h1 id="使用Instruments的Leaks工具"><a href="#使用Instruments的Leaks工具" class="headerlink" title="使用Instruments的Leaks工具"></a>使用Instruments的Leaks工具</h1><h2 id="Time-Profiler"><a href="#Time-Profiler" class="headerlink" title="Time Profiler"></a><code>Time Profiler</code></h2><ul>
-<li>查看多个线程里那些方法费时过多的方法</li>
-<li>Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费时方法排序<br><img src="https://upload-images.jianshu.io/upload_images/1120923-b7b30c7aedac7d8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li>
-</ul>
-<h2 id="Allocations"><a href="#Allocations" class="headerlink" title="Allocations"></a><code>Allocations</code></h2><ul>
-<li>可以对每个动作的前后进行Generations，对比内存的增加，查看使内存增加的具体的方法和代码所在位置</li>
-<li>具体操作</li>
-</ul>
-<ol>
-<li>在右侧Generation Analysis里点击Mark Generation，这样会产生一个Generation，</li>
-<li>切换到其他页面或一段时间产生了另外一个事件时再点Mark Generation来产生一个新的Generation，</li>
-<li>这样反复，生成多个Generation，查看这几个Generation会看到Growth的大小，如果太大可以点进去查看相应占用较大的线程里右侧Heaviest Stack Trace里查看对应的代码块，然后进行相应的处理。</li>
-</ol>
-<h2 id="Leak"><a href="#Leak" class="headerlink" title="Leak"></a>Leak</h2><p>可以在上面区域的Leaks部分看到对应的时间点产生的溢出，选择后在下面区域的<code>Statistics&gt;Allocation Summary</code>能够看到泄漏的对象，同样可以通过Stack Trace查看到具体对应的代码区域。</p>
-<h1 id="其他调试方法"><a href="#其他调试方法" class="headerlink" title="其他调试方法"></a>其他调试方法</h1><h2 id="勾选Address-Sanitizer可以在运行时看到坏内存访问情况"><a href="#勾选Address-Sanitizer可以在运行时看到坏内存访问情况" class="headerlink" title="勾选Address Sanitizer可以在运行时看到坏内存访问情况"></a>勾选<code>Address Sanitizer</code>可以在运行时看到坏内存访问情况</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-a6440da959e589ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/img/default_avatar.jpg"
-                alt="action456789" />
-            
-              <p class="site-author-name" itemprop="name">action456789</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">25</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">4</span>
-                    <span class="site-state-item-name">tags</span>
-                  
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
-                  
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
-                  
-                </span>
-              
-            </div>
-          
-
-          
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">action456789</span>
-
-  
-
-  
+<input type="hidden" id="yelog_site_posts_number" value="25">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
 </div>
 
-
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="back-title-list"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <form onkeydown="if(event.keyCode==13){return false;}">
+        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
+        <i class="cross"></i>
+        <span>
+            <label for="tagswitch">Tags:</label>
+            <input id="tagswitch" type="checkbox" style="display: none" />
+            <i id="tagsWitchIcon"></i>
+        </span>
+    </form>
+    <div class="tags-list">
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">iOS</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color1">C/C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color4">Boardland C++</a>
+    </li>
+    
+    <li class="article-tag-list-item">
+        <a href="javascript:" class="color3">读书</a>
+    </li>
+    
+    <div class="clearfix"></div>
+</div>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+    <nav id="title-list-nav">
         
-      </div>
+        <a  class=""
+           href="/2016/11/09/Autolayout高级/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="Autolayout高级">Autolayout高级</span>
+            <span class="post-date" title="2016-11-09 20:23:21">2016/11/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/06/09/CocoaPods-管理私有库/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="CocoaPods 管理私有库">CocoaPods 管理私有库</span>
+            <span class="post-date" title="2016-06-09 18:02:18">2016/06/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/09/09/Hexo-GitHub博客搭建/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="Hexo GitHub博客搭建">Hexo GitHub博客搭建</span>
+            <span class="post-date" title="2015-09-09 12:01:05">2015/09/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/03/03/Mac安装MQTT服务器/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="Mac安装MQTT服务器">Mac安装MQTT服务器</span>
+            <span class="post-date" title="2017-03-03 15:08:59">2017/03/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/05/21/RxSwift入门：基本概念/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RxSwift入门：基本概念">RxSwift入门：基本概念</span>
+            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
+        </a>
+        
+        <a  class=""
+           href="/2014/09/03/cocoapods-安装与使用/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="cocoapods 安装与使用">cocoapods 安装与使用</span>
+            <span class="post-date" title="2014-09-03 09:10:54">2014/09/03</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="UITableView的`beginUpdates`与`endUpdates`用法详解">UITableView的`beginUpdates`与`endUpdates`用法详解</span>
+            <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/08/13/iOS中的时间/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS中的时间">iOS中的时间</span>
+            <span class="post-date" title="2015-08-13 22:10:18">2015/08/13</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/09/09/git命令大全/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="git命令大全">git命令大全</span>
+            <span class="post-date" title="2017-09-09 21:09:46">2017/09/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/12/22/iOS11新特性/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS11新特性">iOS11新特性</span>
+            <span class="post-date" title="2017-12-22 23:02:12">2017/12/22</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/11/06/iOS编译ffmpeg/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iOS编译ffmpeg">iOS编译ffmpeg</span>
+            <span class="post-date" title="2015-11-06 10:59:45">2015/11/06</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/10/18/iOS调试内存泄露/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS调试内存泄露">iOS调试内存泄露</span>
+            <span class="post-date" title="2016-10-18 23:11:07">2016/10/18</span>
+        </a>
+        
+        <a  class=""
+           href="/2013/07/15/《C语言深度剖析》读书笔记/"
+           data-tag="C/C++"
+           data-author="" >
+            <span class="post-title" title="《C语言深度剖析》读书笔记">《C语言深度剖析》读书笔记</span>
+            <span class="post-date" title="2013-07-15 14:19:07">2013/07/15</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/10/09/使用WireShark-调试真机网络/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="使用WireShark 调试真机网络">使用WireShark 调试真机网络</span>
+            <span class="post-date" title="2016-10-09 15:09:37">2016/10/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/01/09/消除编译器警告/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="消除编译器警告">消除编译器警告</span>
+            <span class="post-date" title="2016-01-09 17:54:41">2016/01/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2013/12/17/让StringGrid控件显示下拉菜单/"
+           data-tag="Boardland C++"
+           data-author="" >
+            <span class="post-title" title="让StringGrid控件显示下拉菜单">让StringGrid控件显示下拉菜单</span>
+            <span class="post-date" title="2013-12-17 18:13:51">2013/12/17</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/08/22/组件化模块间通信方案/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="组件化模块间通信方案">组件化模块间通信方案</span>
+            <span class="post-date" title="2018-08-22 01:12:20">2018/08/22</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/04/12/如何更新React-Native/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="如何更新React Native">如何更新React Native</span>
+            <span class="post-date" title="2016-04-12 15:32:04">2016/04/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/08/02/GCD用法全解/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="GCD用法全解">GCD用法全解</span>
+            <span class="post-date" title="2016-08-02 17:16:17">2016/08/02</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/10/24/KVO深入解析/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="KVO深入解析">KVO深入解析</span>
+            <span class="post-date" title="2015-10-24 17:18:51">2015/10/24</span>
+        </a>
+        
+        <a  class=""
+           href="/2018/07/30/ReactiveCocoa冷热信号详解/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ReactiveCocoa冷热信号详解">ReactiveCocoa冷热信号详解</span>
+            <span class="post-date" title="2018-07-30 20:08:40">2018/07/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2017/12/09/iOS-SDK-开发/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="iOS SDK 开发">iOS SDK 开发</span>
+            <span class="post-date" title="2017-12-09 15:07:25">2017/12/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2016/08/12/《Effective-Objective-C-2-0》读书笔记/"
+           data-tag="iOS"
+           data-author="" >
+            <span class="post-title" title="《Effective Objective-C 2.0》读书笔记">《Effective Objective-C 2.0》读书笔记</span>
+            <span class="post-date" title="2016-08-12 23:05:51">2016/08/12</span>
+        </a>
+        
+        <a  class=""
+           href="/2015/05/09/《黑客与画家》摘录/"
+           data-tag="读书"
+           data-author="" >
+            <span class="post-title" title="《黑客与画家》摘录">《黑客与画家》摘录</span>
+            <span class="post-date" title="2015-05-09 18:40:00">2015/05/09</span>
+        </a>
+        
+        <a  class=""
+           href="/2013/12/30/读闲书 摘录一/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="2013读书摘录">2013读书摘录</span>
+            <span class="post-date" title="2013-12-30 18:52:43">2013/12/30</span>
+        </a>
+        
+    </nav>
+</div>
+    </div>
+    <div class="hide-list">
+        <div class="semicircle">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div class="post index">
+    <div class="pjax">
+        <article class="index">
+            <div class="toc-ref">
     
-
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于叶落阁"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
     
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
+<blockquote>
+<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
+</blockquote>
+<blockquote>
+<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
+</blockquote>
+<blockquote>
+<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
+</blockquote>
+<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
+<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
+<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阿杰（杨玉杰）的个人站。</p>
+<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
+<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
+<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
+<p>主要功能：</p>
+<ul>
+<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
+<li>pad/手机等移动端适配</li>
+<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+</ul>
+
+        </article>
+        
+        <p>
+            <a href="javascript:void(0)" class="dashang" onclick="dashangToggle()">赏</a>
+        </p>
+        
+        
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">©2016-2019 Yelog</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full"><span class="min "></span></button>
+<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
+<div class="post-toc"><span class="post-toc-title">目录</span>
+    <div class="post-toc-content">
+
+    </div>
+</div>
+<a class="" id="rocket" href="javascript:void(0)"></a>
+    </div>
+</div>
+<div class="acParent"></div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
 
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
-
-
-
-  
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
+<script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+
+<script src="/js/script.js?v=1.0.1" ></script>
+<script>
+    var img_resize = 'default';
+    /*作者、标签的自动补全*/
+    $(function () {
+        $('.search').AutoComplete({
+            'data': ['#iOS','#C/C++','#Boardland C++','#读书',],
+            'itemHeight': 20,
+            'width': 418
+        }).AutoComplete('show');
+    })
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $(".post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().split('\n').length - 1, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: #fafafa;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+        .nav .hide-list.fullscreen {
+            left: 492px
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
+        border: #e2dede solid 1px;
+        border-radius: 10px;
+        padding: 10px 32px 10px 56px;
+    }
+    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
+        margin-bottom: auto;
+        margin-left: auto;
+    }
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
 </html>
