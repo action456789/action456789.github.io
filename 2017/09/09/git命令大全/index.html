@@ -6,15 +6,20 @@
   <meta name="keywords" content="">
   <meta name="description" content="git命令大全 | 爱工作·爱生活">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="[TOC]  #基本概念  master指针：指向最新的提交   资料http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008  #全局配置$ git config --global user.name &amp;quot;kk&amp;quot;$ git config --global user.email &amp;quot;">
 <meta name="keywords" content="技术博客,随笔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="C&#x2F;C++">
-<meta property="og:url" content="http://superkk.top/C-C/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git命令大全">
+<meta property="og:url" content="http://superkk.top/2017/09/09/git命令大全/index.html">
 <meta property="og:site_name" content="爱工作·爱生活">
+<meta property="og:description" content="[TOC]  #基本概念  master指针：指向最新的提交   资料http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008  #全局配置$ git config --global user.name &amp;quot;kk&amp;quot;$ git config --global user.email &amp;quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T08:06:37.000Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1120923-8af29923ea45d7fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-09T10:10:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C&#x2F;C++">
+<meta name="twitter:title" content="git命令大全">
+<meta name="twitter:description" content="[TOC]  #基本概念  master指针：指向最新的提交   资料http://sfault-image.b0.upaiyun.com/37/92/37923f2478edc5709b36562b26c9e008  #全局配置$ git config --global user.name &amp;quot;kk&amp;quot;$ git config --global user.email &amp;quot;">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1120923-8af29923ea45d7fe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -53,7 +58,7 @@
 <aside class="nav">
     <div class="nav-left">
         <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/avatar.jpg" />
+    <img class="avatar" src="/img/default_avatar.jpg" />
 </a>
 <div class="author">
     <span>action456789</span>
@@ -72,7 +77,7 @@
         
     
         
-        <a title="github" href="https://github.com/yelog" target="_blank">
+        <a title="github" href="https://github.com/action456789" target="_blank">
             
                 <svg class="iconfont-svg" aria-hidden="true">
                     <use xlink:href="#icon-github"></use>
@@ -82,13 +87,11 @@
         
     
         
-        <a title="facebook" href="https://www.facebook.com/faker.tops" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-facebook"></use>
-                </svg>
-            
-        </a>
+    
+        
+    
+        
+    
         
     
         
@@ -96,37 +99,7 @@
         
     
         
-        <a title="instagram" href="https://www.facebook.com/faker.tops" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-instagram"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="reddit" href="https://www.reddit.com/user/yelog/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-reddit"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="weibo" href="http://weibo.com/u/2307534817" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-weibo"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="jianshu" href="https://www.jianshu.com/u/ff56736de7cf" target="_blank">
+        <a title="jianshu" href="https://www.jianshu.com/u/7966a93b66ce" target="_blank">
             
                 <svg class="iconfont-svg" aria-hidden="true">
                     <use xlink:href="#icon-jianshu"></use>
@@ -136,67 +109,19 @@
         
     
         
-        <a title="zhihu" href="https://www.zhihu.com/people/jaytp/activities" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-zhihu"></use>
-                </svg>
-            
-        </a>
+    
+        
+    
         
     
         
     
         
-        <a title="oschina" href="https://my.oschina.net/yelog" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-oschina"></use>
-                </svg>
-            
-        </a>
-        
     
         
     
         
-        <a title="email" href="mailto:jaytp@qq.com" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-email"></use>
-                </svg>
-            
-        </a>
-        
     
-        
-        <a title="qq" href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-qq"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="kugou" href="https://www.kugou.com/" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-kugou"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="neteasemusic" href="https://music.163.com/#/user/home?id=88151013" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-neteasemusic"></use>
-                </svg>
-            
-        </a>
         
     
 </div>
@@ -205,7 +130,7 @@
 
 
 <ul>
-    <li><div class="all active">全部文章<small>(25)</small></div></li>
+    <li><div class="all active">全部文章<small>(26)</small></div></li>
     
 </ul>
 <div class="left-bottom">
@@ -217,7 +142,7 @@
     </div>
     <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="25">
+<input type="hidden" id="yelog_site_posts_number" value="26">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -471,6 +396,14 @@
            data-author="" >
             <span class="post-title" title="2013读书摘录">2013读书摘录</span>
             <span class="post-date" title="2013-12-30 18:52:43">2013/12/30</span>
+        </a>
+        
+        <a  class=""
+           href="/2019/08/29/hexo/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title=""></span>
+            <span class="post-date" title="2019-08-29 16:06:35">2019/08/29</span>
         </a>
         
     </nav>
@@ -836,13 +769,13 @@
     
     
     .nav {
-        width: 542px;
+        width: 552px;
     }
     .nav.fullscreen {
-        margin-left: -542px;
+        margin-left: -552px;
     }
     .nav-left {
-        width: 120px;
+        width: 130px;
     }
     
     
