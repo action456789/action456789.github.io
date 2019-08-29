@@ -21,7 +21,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -209,7 +209,7 @@
     
         
             
-            <li><div data-rel="C/C++">C/C++<small>(1)</small></div>
+            <li><div data-rel="C/C++">C/C++<small>(2)</small></div>
                 
             </li>
             
@@ -217,7 +217,7 @@
     
         
             
-            <li><div data-rel="Boardland C++">Boardland C++<small>(1)</small></div>
+            <li><div data-rel="Boardland C++">Boardland C++<small>(0)</small></div>
                 
             </li>
             
@@ -437,7 +437,7 @@
             <span class="post-date" title="2016-01-09 17:54:41">2016/01/09</span>
         </a>
         
-        <a  class="Boardland C++ "
+        <a  class="C/C++ "
            href="/2013/12/17/让StringGrid控件显示下拉菜单/"
            data-tag="Boardland C++"
            data-author="" >
@@ -539,7 +539,7 @@
         
         <span class="book">
             
-                <a href="javascript:" data-rel="Boardland C++">Boardland C++</a>
+                <a href="javascript:" data-rel="C/C++">C/C++</a>
             
         </span>
         
@@ -553,7 +553,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 17:07:04'>2013-12-17 18:13</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 17:27:58'>2013-12-17 18:13</time>
         
     </div>
     <div class="article-meta">
@@ -593,48 +593,46 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h1><p><img src="https://img-blog.csdn.net/20131217181100796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYWN0aW9uNDU2Nzg5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><pre><code class="C/C++">void __fastcall TForm1::FormCreate(TObject *Sender)  
+<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><pre><code class="C">void __fastcall TForm1::FormCreate(TObject *Sender)  
 {  
-StringGrid1-&gt;ColCount = 4;  
-StringGrid1-&gt;RowCount = 6;  
-StringGrid1-&gt;DefaultRowHeight = ComboBox1-&gt;Height;  
-StringGrid1-&gt;RowHeights[0] = 18;  
-StringGrid1-&gt;ColWidths[2] = 80;  
-StringGrid1-&gt;Cells[0][0] = &quot;FirstName&quot;;  
-StringGrid1-&gt;Cells[1][0] = &quot;LastName&quot;;  
-StringGrid1-&gt;Cells[2][0] = &quot;SBVLEdit LV1&quot;;  
-StringGrid1-&gt;Cells[3][0] = &quot;Action&quot;;  
+    StringGrid1-&gt;ColCount = 4;  
+    StringGrid1-&gt;RowCount = 6;  
+    StringGrid1-&gt;DefaultRowHeight = ComboBox1-&gt;Height;  
+    StringGrid1-&gt;RowHeights[0] = 18;  
+    StringGrid1-&gt;ColWidths[2] = 80;  
+    StringGrid1-&gt;Cells[0][0] = &quot;FirstName&quot;;  
+    StringGrid1-&gt;Cells[1][0] = &quot;LastName&quot;;  
+    StringGrid1-&gt;Cells[2][0] = &quot;SBVLEdit LV1&quot;;  
+    StringGrid1-&gt;Cells[3][0] = &quot;Action&quot;;  
 
-ComboBox1-&gt;Text = &quot;&quot;;  
-ComboBox1-&gt;Items-&gt;Add(&quot;Teen&quot;);  
-ComboBox1-&gt;Items-&gt;Add(&quot;Adult&quot;);  
-ComboBox1-&gt;Items-&gt;Add(&quot;Senior&quot;);  
-ComboBox1-&gt;Visible = False;  
-
+    ComboBox1-&gt;Text = &quot;&quot;;  
+    ComboBox1-&gt;Items-&gt;Add(&quot;Teen&quot;);  
+    ComboBox1-&gt;Items-&gt;Add(&quot;Adult&quot;);  
+    ComboBox1-&gt;Items-&gt;Add(&quot;Senior&quot;);  
+    ComboBox1-&gt;Visible = False;  
 }  
-//---------------------------------------------------------------------------  
 
 void __fastcall TForm1::ComboBox1Change(TObject *Sender)  
 {  
-StringGrid1-&gt;Cells[StringGrid1-&gt;Col][StringGrid1-&gt;Row] = ComboBox1-&gt;Items-&gt;Strings[ComboBox1-&gt;ItemIndex];  
+    StringGrid1-&gt;Cells[StringGrid1-&gt;Col][StringGrid1-&gt;Row] = ComboBox1-&gt;Items-&gt;Strings[ComboBox1-&gt;ItemIndex];  
 }  
-//---------------------------------------------------------------------------  
+
 void __fastcall TForm1::StringGrid1DblClick(TObject *Sender) //双击事件  
 {  
-TRect r;  
-if(StringGrid1-&gt;Col == 2)  
-{  
-int ACol = StringGrid1-&gt;Col;  
-int ARow = StringGrid1-&gt;Row;  
-r = StringGrid1-&gt;CellRect(ACol,ARow);  
-ComboBox1-&gt;Top = StringGrid1-&gt;Top + r.Top + StringGrid1-&gt;GridLineWidth + 1;  
-ComboBox1-&gt;Left = StringGrid1-&gt;Left + r.Left + StringGrid1-&gt;GridLineWidth +1;  
-ComboBox1-&gt;Width = r.Right - r.Left;  
-ComboBox1-&gt;ItemIndex = ComboBox1-&gt;Items-&gt;IndexOf(StringGrid1-&gt;Cells[ACol][ARow]);  
-ComboBox1-&gt;Visible = true;  
-}  
-else  
-ComboBox1-&gt;Visible = false;  
+    TRect r;  
+    if(StringGrid1-&gt;Col == 2)  
+    {  
+        int ACol = StringGrid1-&gt;Col;  
+        int ARow = StringGrid1-&gt;Row;  
+        r = StringGrid1-&gt;CellRect(ACol,ARow);  
+        ComboBox1-&gt;Top = StringGrid1-&gt;Top + r.Top + StringGrid1-&gt;GridLineWidth + 1;  
+        ComboBox1-&gt;Left = StringGrid1-&gt;Left + r.Left + StringGrid1-&gt;GridLineWidth +1;  
+        ComboBox1-&gt;Width = r.Right - r.Left;  
+        ComboBox1-&gt;ItemIndex = ComboBox1-&gt;Items-&gt;IndexOf(StringGrid1-&gt;Cells[ACol][ARow]);  
+        ComboBox1-&gt;Visible = true;  
+    } else { 
+        ComboBox1-&gt;Visible = false;
+    }  
 }  
 </code></pre>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://ymg97526.blog.163.com/blog/static/17365816020135264552765/" target="_blank" rel="noopener">http://ymg97526.blog.163.com/blog/static/17365816020135264552765/</a></p>
@@ -651,7 +649,7 @@ ComboBox1-&gt;Visible = false;
     <p><span class="copy-title">文章字数:</span><span class="post-count">223</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2013-12-17, 18:13:51</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 17:07:04</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 17:27:58</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2013/12/17/让StringGrid控件显示下拉菜单/" title="让StringGrid控件显示下拉菜单">http://superkk.top/2013/12/17/让StringGrid控件显示下拉菜单/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
