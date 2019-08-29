@@ -21,7 +21,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -357,7 +357,7 @@
            href="/2018/05/21/RxSwift入门：基本概念/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="RxSwift入门：基本概念">RxSwift入门：基本概念</span>
+            <span class="post-title" title="RxSwift基本概念">RxSwift基本概念</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -365,7 +365,7 @@
            href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="UITableView的`beginUpdates`与`endUpdates`用法详解">UITableView的`beginUpdates`与`endUpdates`用法详解</span>
+            <span class="post-title" title="UITableView的beginUpdates与endUpdates用法详解">UITableView的beginUpdates与endUpdates用法详解</span>
             <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
         </a>
         
@@ -586,10 +586,18 @@
         </a>
         
         <a  class="工具 "
+           href="/2018/05/21/快捷键/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快捷键">快捷键</span>
+            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
+        </a>
+        
+        <a  class="工具 "
            href="/2018/05/21/Jenkins安装/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="React-Native模版">React-Native模版</span>
+            <span class="post-title" title="MacOS安装Jenkins">MacOS安装Jenkins</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -598,14 +606,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="微信小程序">微信小程序</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/快捷键/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="快捷键">快捷键</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -641,12 +641,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 22:32:12'>2018-05-21 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 23:22:19'>2018-05-21 18:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:868</span>
+        <span>字数:871</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -834,11 +834,39 @@ zip() // async await zip test 切好的菜,烧好的水
 race() //async await race test 切好的菜
 </code></pre>
 <ul>
-<li>应用：为异步操作设置超时时间<br><code>`</code>JS<br>//请求某个图片资源<br>function requestImg(){<br>  var p = new Promise(function(resolve, reject){<br>  var img = new Image();<br>  img.onload = function(){<pre><code> resolve(img);
-</code></pre>  }<br>  img.src = ‘xxxxxx’;<br>  });<br>  return p;<br>}</li>
+<li>应用：为异步操作设置超时时间</li>
 </ul>
-<p>//延时函数，用于给请求计时<br>function timeout(){<br>    var p = new Promise(function(resolve, reject){<br>        setTimeout(function(){<br>            reject(‘图片请求超时’);<br>        }, 5000);<br>    });<br>    return p;<br>}</p>
-<p>Promise<br>.race([requestImg(), timeout()])<br>.then(function(results){<br>    console.log(results);<br>})<br>.catch(function(reason){<br>    console.log(reason);<br>});<br><code>`</code></p>
+<pre><code class="JS">//请求某个图片资源
+function requestImg(){
+    var p = new Promise(function(resolve, reject){
+    var img = new Image();
+    img.onload = function(){
+       resolve(img);
+    }
+    img.src = &#39;xxxxxx&#39;;
+    });
+    return p;
+}
+
+//延时函数，用于给请求计时
+function timeout(){
+    var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            reject(&#39;图片请求超时&#39;);
+        }, 5000);
+    });
+    return p;
+}
+
+Promise
+.race([requestImg(), timeout()])
+.then(function(results){
+    console.log(results);
+})
+.catch(function(reason){
+    console.log(reason);
+});
+</code></pre>
 <p>参考：<a href="https://www.cnblogs.com/sweeeper/p/8442613.html" target="_blank" rel="noopener">https://www.cnblogs.com/sweeeper/p/8442613.html</a><br><a href="https://segmentfault.com/a/1190000011526612?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011526612?utm_source=tag-newest</a></p>
 
       
@@ -850,10 +878,10 @@ race() //async await race test 切好的菜
 
 <div class="article_copyright">
     <p><span class="copy-title">文章标题:</span>JS中的Promise, async, await</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">868</span></p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">871</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2018-05-21, 18:01:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 22:32:12</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 23:22:19</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/JS中的Promise, async, await/" title="JS中的Promise, async, await">http://superkk.top/2018/05/21/JS中的Promise, async, await/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

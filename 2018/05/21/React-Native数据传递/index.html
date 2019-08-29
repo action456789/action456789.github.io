@@ -21,7 +21,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -357,7 +357,7 @@
            href="/2018/05/21/RxSwift入门：基本概念/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="RxSwift入门：基本概念">RxSwift入门：基本概念</span>
+            <span class="post-title" title="RxSwift基本概念">RxSwift基本概念</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -365,7 +365,7 @@
            href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="UITableView的`beginUpdates`与`endUpdates`用法详解">UITableView的`beginUpdates`与`endUpdates`用法详解</span>
+            <span class="post-title" title="UITableView的beginUpdates与endUpdates用法详解">UITableView的beginUpdates与endUpdates用法详解</span>
             <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
         </a>
         
@@ -586,10 +586,18 @@
         </a>
         
         <a  class="工具 "
+           href="/2018/05/21/快捷键/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快捷键">快捷键</span>
+            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
+        </a>
+        
+        <a  class="工具 "
            href="/2018/05/21/Jenkins安装/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="React-Native模版">React-Native模版</span>
+            <span class="post-title" title="MacOS安装Jenkins">MacOS安装Jenkins</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -598,14 +606,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="微信小程序">微信小程序</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/快捷键/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="快捷键">快捷键</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -641,7 +641,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 21:16:29'>2018-05-21 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 23:18:04'>2018-05-21 18:01</time>
         
     </div>
     <div class="article-meta">
@@ -682,7 +682,7 @@
       
         <h1 id="通过react-navigation传递数据"><a href="#通过react-navigation传递数据" class="headerlink" title="通过react-navigation传递数据"></a>通过react-navigation传递数据</h1><h2 id="顺传"><a href="#顺传" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p>
 <pre><code>_onItemPress = (item) =&gt; {
-    NavigationService.navigate(&quot;VehicleMonitorCarInfoPage&quot;, {
+    NavigationService.navigate(&quot;Page1&quot;, {
         data: item
     });
 };
@@ -697,7 +697,7 @@
 }
 
 _onItemPress = (item) =&gt; {
-    NavigationService.navigate(&quot;VehicleMonitorCarInfoPage&quot;, {
+    NavigationService.navigate(&quot;Page1&quot;, {
         callback: this._callback
     });
 };
@@ -715,17 +715,17 @@ _onItemPress = (item) =&gt; {
 </code></pre><h1 id="通过组件传递数据"><a href="#通过组件传递数据" class="headerlink" title="通过组件传递数据"></a>通过组件传递数据</h1><h2 id="顺传-1"><a href="#顺传-1" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p>
 <pre><code>_renderItem = ({item, index}) =&gt; {
     return (&lt;View&gt;
-        &lt;MsgCard msg={item} index={index} allMsgPageType={this.state.msgType} navigation={this.props.navigation}/&gt;
+        &lt;Component1 msg={item} index={index} dataA={this.state.dataA} navigation={this.props.navigation}/&gt;
     &lt;/View&gt;)
 };
 </code></pre><p>子组件获取数据</p>
-<pre><code>export default class MsgCard extends Component&lt;Props&gt; {
+<pre><code>export default class Component1 extends Component&lt;Props&gt; {
     constructor(props) {
         super(props);
         this.state = {
             msg: this.props.msg,
             index: this.props.index,
-            allMsgPageType: this.props.allMsgPageType,
+            dataA: this.props.dataA,
         }
     }
 
@@ -734,7 +734,7 @@ _onItemPress = (item) =&gt; {
         this.setState({
             msg: nextProps.msg,
             index: nextProps.index,
-            allMsgPageType: nextProps.allMsgPageType,
+            dataA: nextProps.dataA,
         });
     }
 }
@@ -746,18 +746,18 @@ _onItemPress = (item) =&gt; {
 render() {
     return (
     &lt;View&gt;
-        &lt;MyListItem callback={this._callback}&gt;&lt;/MyListItem&gt;
+        &lt;ComponentB callback={this._callback}&gt;&lt;/ComponentB&gt;
     &lt;/View&gt;)
 };
 </code></pre><p>组件B<br>子组件获取传递过来的callback并执行</p>
-<pre><code>class MyListItem extends React.PureComponent {
+<pre><code>class ComponentB extends React.PureComponent {
     _onPress = () =&gt; {
         this.props.callback(&#39;hello world&#39;)
     };
 
     render() {
         return (
-            &lt;View style={styles.flatListItem} &gt;
+            &lt;View style={styles.container} &gt;
                 &lt;Button
                     title={&quot;点击测试&quot;}
                     onPress={this._onPress}
@@ -780,7 +780,7 @@ render() {
     <p><span class="copy-title">文章字数:</span><span class="post-count">307</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2018-05-21, 18:01:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 21:16:29</p>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 23:18:04</p>
     <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/React-Native数据传递/" title="React-Native数据传递">http://superkk.top/2018/05/21/React-Native数据传递/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。

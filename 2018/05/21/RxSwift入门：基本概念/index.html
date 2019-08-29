@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>RxSwift入门：基本概念 | 爱工作·爱生活</title>
+  <title>RxSwift基本概念 | 爱工作·爱生活</title>
   <meta name="keywords" content="">
-  <meta name="description" content="RxSwift入门：基本概念 | 爱工作·爱生活">
+  <meta name="description" content="RxSwift基本概念 | 爱工作·爱生活">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -357,7 +357,7 @@
            href="/2018/05/21/RxSwift入门：基本概念/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="RxSwift入门：基本概念">RxSwift入门：基本概念</span>
+            <span class="post-title" title="RxSwift基本概念">RxSwift基本概念</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -365,7 +365,7 @@
            href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="UITableView的`beginUpdates`与`endUpdates`用法详解">UITableView的`beginUpdates`与`endUpdates`用法详解</span>
+            <span class="post-title" title="UITableView的beginUpdates与endUpdates用法详解">UITableView的beginUpdates与endUpdates用法详解</span>
             <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
         </a>
         
@@ -586,10 +586,18 @@
         </a>
         
         <a  class="工具 "
+           href="/2018/05/21/快捷键/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快捷键">快捷键</span>
+            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
+        </a>
+        
+        <a  class="工具 "
            href="/2018/05/21/Jenkins安装/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="React-Native模版">React-Native模版</span>
+            <span class="post-title" title="MacOS安装Jenkins">MacOS安装Jenkins</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -598,14 +606,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="微信小程序">微信小程序</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/快捷键/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="快捷键">快捷键</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -623,7 +623,7 @@
     <div class="pjax">
         <article id="post-RxSwift入门：基本概念" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">RxSwift入门：基本概念</h1>
+        <h1 class="article-title">RxSwift基本概念</h1>
     
     <div class="article-meta">
         
@@ -641,7 +641,7 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 17:07:04'>2018-05-21 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 23:19:42'>2018-05-21 18:01</time>
         
     </div>
     <div class="article-meta">
@@ -685,92 +685,92 @@
 <h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。</p>
 <pre><code class="Swift">let emptyStream: Observable&lt;Int&gt; = Observable.empty()
 _ = emptyStream.subscribe { event in
-print(event)  completed
+    print(event)  completed
 }
 </code></pre>
 <h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。</p>
 <pre><code class="Swift">let neverStream: Observable&lt;Int&gt; = Observable.never()
 _ = neverStream.subscribe({ _ in
-print(&quot;这个方法永远都不会被执行&quot;)
+    print(&quot;这个方法永远都不会被执行&quot;)
 })
 </code></pre>
 <h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。</p>
 <pre><code class="Swift">let justStream = Observable.just(32)
 _ = justStream.subscribe({ event in
-print(event)
-/*
-next(32)
-completed
-*/
+    print(event)
+    /*
+    next(32)
+    completed
+    */
 })
 </code></pre>
 <h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p>
 <pre><code class="Swift">let ofStream = Observable.of(0, 1, 2)
 _ = ofStream.subscribe({ event in
-print(event)
-/*
-next(0)
-next(1)
-next(2)
-completed
-*/
+    print(event)
+    /*
+    next(0)
+    next(1)
+    next(2)
+    completed
+    */
 })
 </code></pre>
 <h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p>
 <pre><code class="Swift">let streamFromArray = Observable.from([0, 1, 2])
 _ = streamFromArray.subscribe({ (event) in
-print(event)
-/*
-next(0)
-next(1)
-next(2)
-completed
-*/
+    print(event)
+    /*
+    next(0)
+    next(1)
+    next(2)
+    completed
+    */
 })
 </code></pre>
 <h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p>
 <pre><code class="Swift">let myJust = { (singleElement: Int) -&gt; Observable &lt;Int&gt; in
 return Observable.create({ (observer) -&gt; Disposable in
-observer.onNext(singleElement)
-observer.onCompleted()
-return Disposables.create()
+    observer.onNext(singleElement)
+    observer.onCompleted()
+    return Disposables.create()
 })
 }
 
 let singleElementStream = myJust(32)
 _ = singleElementStream.subscribe { (event) in
-print(event)
-/*
-next(32)
-completed
-*/
+    print(event)
+    /*
+    next(32)
+    completed
+    */
 }
 </code></pre>
 <h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p>
 <pre><code class="Swift">let error = NSError(domain: &quot;com.RxSwiftDemo.kesen&quot;, code: -1, userInfo: nil)
 let errorStream: Observable&lt;Int&gt; = Observable.error(error)
 _ = errorStream.subscribe { (event) in
-print(event)
-error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)
+    print(event)
+    error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)
 }
 </code></pre>
 <h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p>
 <pre><code class="Swift">let defferedStream = Observable.deferred { () -&gt; Observable&lt;Int&gt; in
 return Observable.create({ (observer) -&gt; Disposable in
-observer.onNext(0)
-observer.onNext(1)
-observer.onCompleted()
-return Disposables.create()
+    observer.onNext(0)
+    observer.onNext(1)
+    observer.onCompleted()
+    return Disposables.create()
 })
 }
 
 _ = defferedStream.subscribe({ (event) in
-print(event)
-/*
-next(0)
-next(1)
-completed
-*/
+    print(event)
+    /*
+    next(0)
+    next(1)
+    completed
+    */
 })
 </code></pre>
 <h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p>
@@ -787,12 +787,12 @@ completed
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>RxSwift入门：基本概念</p>
+    <p><span class="copy-title">文章标题:</span>RxSwift基本概念</p>
     <p><span class="copy-title">文章字数:</span><span class="post-count">702</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2018-05-21, 18:01:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 17:07:04</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/RxSwift入门：基本概念/" title="RxSwift入门：基本概念">http://superkk.top/2018/05/21/RxSwift入门：基本概念/</a>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 23:19:42</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/RxSwift入门：基本概念/" title="RxSwift基本概念">http://superkk.top/2018/05/21/RxSwift入门：基本概念/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>

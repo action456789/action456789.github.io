@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>React-Native模版 | 爱工作·爱生活</title>
+  <title>MacOS安装Jenkins | 爱工作·爱生活</title>
   <meta name="keywords" content="">
-  <meta name="description" content="React-Native模版 | 爱工作·爱生活">
+  <meta name="description" content="MacOS安装Jenkins | 爱工作·爱生活">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
@@ -21,7 +21,7 @@
 
 <link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/github.css?v=1.0.1" rel="stylesheet">
+<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
 
 <link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -357,7 +357,7 @@
            href="/2018/05/21/RxSwift入门：基本概念/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="RxSwift入门：基本概念">RxSwift入门：基本概念</span>
+            <span class="post-title" title="RxSwift基本概念">RxSwift基本概念</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -365,7 +365,7 @@
            href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="UITableView的`beginUpdates`与`endUpdates`用法详解">UITableView的`beginUpdates`与`endUpdates`用法详解</span>
+            <span class="post-title" title="UITableView的beginUpdates与endUpdates用法详解">UITableView的beginUpdates与endUpdates用法详解</span>
             <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
         </a>
         
@@ -586,10 +586,18 @@
         </a>
         
         <a  class="工具 "
+           href="/2018/05/21/快捷键/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="快捷键">快捷键</span>
+            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
+        </a>
+        
+        <a  class="工具 "
            href="/2018/05/21/Jenkins安装/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="React-Native模版">React-Native模版</span>
+            <span class="post-title" title="MacOS安装Jenkins">MacOS安装Jenkins</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -598,14 +606,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="微信小程序">微信小程序</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/快捷键/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="快捷键">快捷键</span>
             <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
         </a>
         
@@ -623,7 +623,7 @@
     <div class="pjax">
         <article id="post-Jenkins安装" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">React-Native模版</h1>
+        <h1 class="article-title">MacOS安装Jenkins</h1>
     
     <div class="article-meta">
         
@@ -639,12 +639,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 22:52:46'>2018-05-21 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 23:10:23'>2018-05-21 18:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:706</span>
+        <span>字数:685</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -663,7 +663,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文档建议只看两处，蒲公英和fastlane的"><span class="toc-text">文档建议只看两处，蒲公英和fastlane的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决无法安装插件问题"><span class="toc-text">解决无法安装插件问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限问题导致无法执行脚本"><span class="toc-text">权限问题导致无法执行脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法一：设置用户权限（不推荐）"><span class="toc-text">方法一：设置用户权限（不推荐）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改group-和user"><span class="toc-text">修改group 和user</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始Jenkins"><span class="toc-text">开始Jenkins</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法二：使用gem重新安装jenkins（推荐）"><span class="toc-text">方法二：使用gem重新安装jenkins（推荐）</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文档建议只看两处，蒲公英和fastlane的"><span class="toc-text">文档建议只看两处，蒲公英和fastlane的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决无法安装插件问题"><span class="toc-text">解决无法安装插件问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限问题导致无法执行脚本"><span class="toc-text">权限问题导致无法执行脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法一：设置用户权限（不推荐）"><span class="toc-text">方法一：设置用户权限（不推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法二：使用gem重新安装jenkins（推荐）"><span class="toc-text">方法二：使用gem重新安装jenkins（推荐）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jenkins如何使用本地git仓库"><span class="toc-text">Jenkins如何使用本地git仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#全局变量如何使用"><span class="toc-text">全局变量如何使用</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -684,56 +684,80 @@
 </ul>
 <h1 id="解决无法安装插件问题"><a href="#解决无法安装插件问题" class="headerlink" title="解决无法安装插件问题"></a>解决无法安装插件问题</h1><ol>
 <li>第一步：<code>插件管理 -&gt; Advanced -&gt; Update Site</code>中，将https改为http</li>
-<li>第二部：重启jenkins服务<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225004.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225013.png" alt=""><h1 id="权限问题导致无法执行脚本"><a href="#权限问题导致无法执行脚本" class="headerlink" title="权限问题导致无法执行脚本"></a>权限问题导致无法执行脚本</h1>有两种解决办法：<h2 id="方法一：设置用户权限（不推荐）"><a href="#方法一：设置用户权限（不推荐）" class="headerlink" title="方法一：设置用户权限（不推荐）"></a>方法一：设置用户权限（不推荐）</h2><strong>这样设置后依然会存在其他的一系列问题，例如执行fastlane脚本报错 </strong></li>
+<li>第二部：重启jenkins服务</li>
 </ol>
+<p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225004.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225013.png" alt=""></p>
+<h1 id="权限问题导致无法执行脚本"><a href="#权限问题导致无法执行脚本" class="headerlink" title="权限问题导致无法执行脚本"></a>权限问题导致无法执行脚本</h1><p>有两种解决办法：</p>
+<h2 id="方法一：设置用户权限（不推荐）"><a href="#方法一：设置用户权限（不推荐）" class="headerlink" title="方法一：设置用户权限（不推荐）"></a>方法一：设置用户权限（不推荐）</h2><p><strong>这样设置后依然会存在其他的一系列问题，例如执行fastlane脚本报错 </strong></p>
 <p>一般情况下，使用jenkins官网下载的安装包安装会出现这个问题。</p>
 <p>在官网下载dmg安装包，安装完毕即可在本机搭建jenkins的工作。但是jenkins不会用本地的用户去构建，任何创建的文件都是“jenkins”用户所有，这会造成很多权限问题，无法调用自己写的脚本，执行shell会出现没有权限的错误。</p>
 <ul>
 <li>解决办法：修改jenkins用户群组和用户</li>
-<li>第一步：查看自己的群组和用户名称：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225032.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225044.png" alt=""></li>
-<li>第二步：更改 Jenkins 用户群组和用户名称<br><code>`</code>script<br>#停止Jenkins<br>$ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</li>
+<li>第一步：查看自己的群组和用户名称： </li>
 </ul>
-<h1 id="修改group-和user"><a href="#修改group-和user" class="headerlink" title="修改group 和user"></a>修改group 和user</h1><p>$ sudo vim +1 +/daemon +’s/daemon/staff/’ +/daemon +’s/daemon/ks’ +wq org.jenkins-ci.plist<br>$ sudo chown -R ks:staff /Users/Shared/Jenkins/</p>
-<h1 id="开始Jenkins"><a href="#开始Jenkins" class="headerlink" title="开始Jenkins"></a>开始Jenkins</h1><p>$ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</p>
-<pre><code>
-或者你也可以手动修改 org.jenkins-ci.plist 文件中的内容
-![](https://raw.githubusercontent.com/action456789/Image/master/20190829225107.png)
-- 第三步：若无法打开jenkins，需要修改下权限
-```script
-$ sudo chown -R userName /Users/Shared/Jenkins
+<p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225032.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225044.png" alt=""></p>
+<ul>
+<li>第二步：更改 Jenkins 用户群组和用户名称</li>
+</ul>
+<pre><code class="javascript">//停止Jenkins
+sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+
+// 修改group 和user
+sudo vim +1 +/daemon +’s/daemon/staff/’ +/daemon +’s/daemon/ks’ +wq org.jenkins-ci.plist
+sudo chown -R ks:staff /Users/Shared/Jenkins/
+
+// 开始Jenkins
+sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
+</code></pre>
+<p>或者你也可以手动修改 org.jenkins-ci.plist 文件中的内容<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225107.png" alt=""></p>
+<ul>
+<li>第三步：若无法打开jenkins，需要修改下权限</li>
+</ul>
+<pre><code class="script">$ sudo chown -R userName /Users/Shared/Jenkins
 $ sudo chown -R userName /var/log/jenkins
 #重启Jenkins
 $ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>WARING: Jenkins更改工作空间会导致原来的数据全部丢失<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225126.png" alt=""><br>参考：<a href="https://www.cnblogs.com/ihojin/p/jenkins-permission.html" target="_blank" rel="noopener">https://www.cnblogs.com/ihojin/p/jenkins-permission.html</a></li>
 </ul>
 <h2 id="方法二：使用gem重新安装jenkins（推荐）"><a href="#方法二：使用gem重新安装jenkins（推荐）" class="headerlink" title="方法二：使用gem重新安装jenkins（推荐）"></a>方法二：使用gem重新安装jenkins（推荐）</h2><ul>
-<li>卸载使用安装包安装的jenkins<br><code>`</code><br>//进入以下目录，双击运行<br>/Library/Application Support/Jenkins/Uninstall.command<br>//也可以这样运行<br>sh “/Library/Application Support/Jenkins/Uninstall.command”</li>
+<li>卸载使用安装包安装的jenkins</li>
 </ul>
-<p>//删除配置，这个可选<br>sudo rm -rf /var/root/.jenkins ~/.jenkins<br>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist<br>sudo rm /Library/LaunchDaemons/org.jenkins-ci.plist<br>sudo rm -rf /Applications/Jenkins “/Library/Application Support/Jenkins” /Library/Documentation/Jenkins<br>sudo rm -rf /Users/Shared/Jenkins<br>sudo dscl . -delete /Users/jenkins<br>sudo dscl . -delete /Groups/jenkins<br>sudo rm -f /etc/newsyslog.d/jenkins.conf<br>pkgutil –pkgs | grep ‘org.jenkins-ci.‘ | xargs -n 1 sudo pkgutil –forget</p>
-<p>//如果使用brew安装的，可以执行以下命令<br>brew uninstall jenkins</p>
-<pre><code>
-- 安装
-</code></pre><p>brew update &amp;&amp; brew install jenkins</p>
-<pre><code>- 启动
-</code></pre><p>jenkins</p>
-<pre><code>参考：https://docs.fastlane.tools/best-practices/continuous-integration/jenkins/
+<pre><code>//进入以下目录，双击运行
+/Library/Application Support/Jenkins/Uninstall.command
+//也可以这样运行
+sh &quot;/Library/Application Support/Jenkins/Uninstall.command&quot;
 
-&lt;br&gt;
+//删除配置，这个可选
+sudo rm -rf /var/root/.jenkins ~/.jenkins
+sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+sudo rm /Library/LaunchDaemons/org.jenkins-ci.plist
+sudo rm -rf /Applications/Jenkins &quot;/Library/Application Support/Jenkins&quot; /Library/Documentation/Jenkins
+sudo rm -rf /Users/Shared/Jenkins
+sudo dscl . -delete /Users/jenkins
+sudo dscl . -delete /Groups/jenkins
+sudo rm -f /etc/newsyslog.d/jenkins.conf
+pkgutil --pkgs | grep &#39;org\.jenkins-ci\.&#39; | xargs -n 1 sudo pkgutil --forget
 
-# Jenkins如何使用本地git仓库
-git地址填写为本地文件路径即可
-`file:///home/rbkcbeqc/dev/git/gitsandbox.`
-参考：https://stackoverflow.com/questions/10498554/jenkins-linking-to-my-local-git-repository
-
-# 全局变量如何使用
-![](https://raw.githubusercontent.com/action456789/Image/master/20190829225149.png)
-![](https://raw.githubusercontent.com/action456789/Image/master/20190829225218.png)
-
-这里自己添加的变量可以在shell脚本中直接使用。
-```sh
-echo $TOKEN_SIT
+//如果使用brew安装的，可以执行以下命令
+brew uninstall jenkins
+</code></pre><ul>
+<li>安装</li>
+</ul>
+<pre><code>brew update &amp;&amp; brew install jenkins
+</code></pre><ul>
+<li>启动</li>
+</ul>
+<pre><code>jenkins
+</code></pre><p>参考：<a href="https://docs.fastlane.tools/best-practices/continuous-integration/jenkins/" target="_blank" rel="noopener">https://docs.fastlane.tools/best-practices/continuous-integration/jenkins/</a></p>
+<p><br></p>
+<h1 id="Jenkins如何使用本地git仓库"><a href="#Jenkins如何使用本地git仓库" class="headerlink" title="Jenkins如何使用本地git仓库"></a>Jenkins如何使用本地git仓库</h1><p>git地址填写为本地文件路径即可<br><code>file:///home/rbkcbeqc/dev/git/gitsandbox.</code><br>参考：<a href="https://stackoverflow.com/questions/10498554/jenkins-linking-to-my-local-git-repository" target="_blank" rel="noopener">https://stackoverflow.com/questions/10498554/jenkins-linking-to-my-local-git-repository</a></p>
+<h1 id="全局变量如何使用"><a href="#全局变量如何使用" class="headerlink" title="全局变量如何使用"></a>全局变量如何使用</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225149.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225218.png" alt=""></p>
+<p>这里自己添加的变量可以在shell脚本中直接使用。</p>
+<pre><code class="sh">echo $TOKEN_SIT
 </code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论。 </span>
     </div>
@@ -742,12 +766,12 @@ echo $TOKEN_SIT
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>React-Native模版</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">706</span></p>
+    <p><span class="copy-title">文章标题:</span>MacOS安装Jenkins</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">685</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2018-05-21, 18:01:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 22:52:46</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/Jenkins安装/" title="React-Native模版">http://superkk.top/2018/05/21/Jenkins安装/</a>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 23:10:23</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/Jenkins安装/" title="MacOS安装Jenkins">http://superkk.top/2018/05/21/Jenkins安装/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
