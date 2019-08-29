@@ -94,26 +94,28 @@
   </entry>
   
   <entry>
-    <title>JS原型链与prototype</title>
-    <link href="http://superkk.top/2018/05/21/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8Eprototype/"/>
-    <id>http://superkk.top/2018/05/21/JS原型链与prototype/</id>
+    <title>React-Native Tips</title>
+    <link href="http://superkk.top/2018/05/21/React-Native%20Tips/"/>
+    <id>http://superkk.top/2018/05/21/React-Native Tips/</id>
     <published>2018-05-21T10:01:12.000Z</published>
-    <updated>2019-08-29T14:40:08.384Z</updated>
+    <updated>2019-08-29T14:25:52.228Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="闭包：函数-在函数创建时刻关联的父作用域的一个集合体"><a href="#闭包：函数-在函数创建时刻关联的父作用域的一个集合体" class="headerlink" title="闭包：函数+在函数创建时刻关联的父作用域的一个集合体"></a>闭包：<code>函数</code>+<code>在函数创建时刻关联的父作用域</code>的一个集合体</h1><p>闭包在JavaScript当中就是一个函数和在函数创建时刻关联的父作用域的一个集合体，通过这个集合体，一个函数就可以访问外部函数的变量了。<br>注意：是在函数创建时刻关联父作用域，而不是运行时刻关联。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223729.png" alt=""></p><p>当执行creatEatFunction的时候， eat函数才会被创建出来，此时eat函数就会把外部函数的作用域链记录下来（其中包含desc=’ is eating’)，以便执行时使用”<br>比如eat函数的作用域链是这样的。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223756.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223809.png" alt=""><br>输出1</p><h1 id="JS中继承的实现：JS中没有类的概念，如何实现继承"><a href="#JS中继承的实现：JS中没有类的概念，如何实现继承" class="headerlink" title="JS中继承的实现：JS中没有类的概念，如何实现继承"></a>JS中继承的实现：JS中没有类的概念，如何实现继承</h1><ul><li>1、通过<code>__proto__</code>实现继承：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223828.png" alt=""><br><code>`</code>JavaScript<br>var animal = {<br>  name: ‘animal’,<br>  eat: function() {<pre><code>  console.log(this.name+&#39; is eating&#39;);</code></pre>  }<br>};</li></ul><p>var dog={<br>    name: ‘dog’,<br>    <strong>proto</strong>: animal<br>};</p><p>var cat={<br>    name: ‘cat’,<br>    <strong>proto</strong>: animal<br>};</p><p>dog.eat();<br>cat.eat();</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829223846.png)- 2、语法糖：`new````JavaScriptfunction Student(name){    this.name=name,    this.sayHello=function(){        console.log(&quot;Hi, I am &quot;+this.name);    }}andy=new Student(&#39;andy&#39;);lisa=new Student(&#39;lisa&#39;);andy.sayHello();lisa.sayHello();</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223906.png" alt=""></p><ul><li>3、通过prototype实现继承，避免同一方法的多个副本。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223918.png" alt=""><br><code>`</code>JavaScript<br>// 通过prototype实现继承<br>Student.prototype={<br>  sayHello2:function(){<pre><code>  console.log(&quot;Hi, I am &quot;+this.name);</code></pre>  }<br>}</li></ul><p>andy=new Student(‘andy’);<br>lisa=new Student(‘lisa’);</p><p>andy.sayHello();<br>lisa.sayHello();</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829223937.png)- 4、语法糖：`class````JavaScript// 语法糖class Student2{    constructor(name){        this.name=name;    }    sayHello() {        console.log(&quot;Hi, I am &quot;+this.name);    }}andy=new Student2(&#39;andy&#39;);andy.sayHello();</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223955.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="快速进入断点"><a href="#快速进入断点" class="headerlink" title="快速进入断点"></a>快速进入断点</h1><ol><li>模拟器开启远程调试</li><li>在浏览器上<code>cmd+option+I</code>打开调试页面</li><li>代码输入<code>dubugger</code>进入断点<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211638.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211651.png" alt=""></li></ol><h1 id="更新node"><a href="#更新node" class="headerlink" title="更新node"></a>更新node</h1><ul><li>1、更新npm<br><code>npm -v</code><br><code>npm install npm@latest -g</code></li><li>2、更新node<pre><code>sudo npm cache clean -fsudo npm install -g nsudo n stable</code></pre></li></ul><p>参考：<a href="https://www.hostingadvice.com/how-to/update-node-js-latest-version/" target="_blank" rel="noopener">https://www.hostingadvice.com/how-to/update-node-js-latest-version/</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;闭包：函数-在函数创建时刻关联的父作用域的一个集合体&quot;&gt;&lt;a href=&quot;#闭包：函数-在函数创建时刻关联的父作用域的一个集合体&quot; class=&quot;headerlink&quot; title=&quot;闭包：函数+在函数创建时刻关联的父作用域的一个集合体&quot;&gt;&lt;/a&gt;闭包：&lt;code
+        &lt;h1 id=&quot;快速进入断点&quot;&gt;&lt;a href=&quot;#快速进入断点&quot; class=&quot;headerlink&quot; title=&quot;快速进入断点&quot;&gt;&lt;/a&gt;快速进入断点&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;模拟器开启远程调试&lt;/li&gt;
+&lt;li&gt;在浏览器上&lt;code&gt;cmd+option+I&lt;/code
       
     
     </summary>
     
       <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="js" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/js/"/>
+      <category term="React-Native" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/React-Native/"/>
     
     
   </entry>
@@ -144,38 +146,94 @@
   </entry>
   
   <entry>
-    <title>TextInput</title>
-    <link href="http://superkk.top/2018/05/21/TextInput/"/>
-    <id>http://superkk.top/2018/05/21/TextInput/</id>
+    <title>RxSwift入门：基本概念</title>
+    <link href="http://superkk.top/2018/05/21/RxSwift%E5%85%A5%E9%97%A8%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+    <id>http://superkk.top/2018/05/21/RxSwift入门：基本概念/</id>
     <published>2018-05-21T10:01:12.000Z</published>
-    <updated>2019-08-29T13:11:48.965Z</updated>
+    <updated>2019-08-29T09:07:04.708Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="通用属性-Android-amp-iOS"><a href="#通用属性-Android-amp-iOS" class="headerlink" title="通用属性(Android &amp; iOS)"></a>通用属性(Android &amp; iOS)</h1><ul><li>(1)支持View的相关属性</li><li><p>(2)<code>autoCapitalize</code>:控制输入的字符进行切换成大写(参数:’none’,’sentences’,’words’,’characters’)<br><code>none</code>: 不自动切换任何字符大写<br><code>sentences</code>: 默认每个句子的首字母大写<br><code>words</code>:每个单词的首字母变成大写<br><code>characters</code>:每个字母全部变成大写</p></li><li><p>(3)<code>autoCorrect(bool)</code>:设置瓶邪自动修正功能,默认开启(true)</p></li><li><p>(4)<code>autoFocus(bool)</code>:设置是否默认获取到焦点,默认为关闭(false).需要comonentDidMount方法调用之后才会获取焦点(componentDidMount是React组件被渲染之后React主动回调的方法)</p></li><li><p>(5)<code>defaultValue(string)</code>:给文本框输入一个默认初始值.</p></li><li><p>(6)<code>editable(bool)</code>:设置文本框是否可以编辑,默认为true,可以进行编辑</p></li><li><p>(7)<code>keyboardType</code>:<br>键盘类型(可选参数:”default”, ‘email-address’, ‘numeric’, ‘phone-pad’, “ascii-capable”, ‘numbers-and-punctuation’, ‘url’, ‘number-pad’, ‘name-phone-pad’, ‘decimal-pad’, ‘twitter’, ‘web-search’) 该用来选择默认弹出键盘的类型例如我们甚至numeric就是弹出数字键盘。鉴于平台的原因如下的值是所有平台都可以进行通用的</p></li><li><p>(8)<code>maxLength(number)</code>:可以限制文本输入框最大的输入字符长度</p></li><li><p>(9)<code>multiline (bool)</code> : 设置可以输入多行文字，默认为false(表示无论文本输入多少，都是单行显示)</p></li><li>(10)<code>onBlur (function)</code>: 监听方法，文本框失去焦点回调方法</li><li>(11)<code>onChange (function)</code>: 监听方法,文本框内容发生改变回调方法</li><li>(12)<code>onChangeText (function)</code>:监听方法，文本框内容发生改变回调方法，该方法会进行传递文本内容</li><li>(13)<code>onEndEditing (function)</code>:监听方法，当文本结束文本输入回调方法</li><li>(14)<code>onFocus (function)</code> :监听方法 文本框获取到焦点回调方法</li><li>(15)<code>onLayout (function)</code>:监听方法 组价布局发生变化的时候调用，调用方法参数为 {x,y,width,height}</li><li>(16)<code>onSubmitEditing (function)</code>:监听方法，当编辑提交的时候回调方法。不过如果multiline={true}的时候，该属性就不生效</li><li>(17)<code>placeholder (string</code>) :当文本输入框还没有任何输入的时候，默认显示信息，当有输入的时候该值会被清除</li><li>(18)<code>placeholderText Color (string)</code>: 设置默认信息颜色(placeholer)</li><li>(19)<code>secureTextEntry (bool)</code>: 设置是否为密码安全输入框 ，默认为false</li><li>(20)<code>style</code> 风格属性 可以参考Text组件风格</li><li>(21)<code>value ( string )</code>:输入框中的内容值</li><li>(22)<code>returnKeyType</code>:决定“确定”按钮显示的内容。<br>done<br>go<br>next<br>search<br>send</li></ul><h1 id="Android-平台属性"><a href="#Android-平台属性" class="headerlink" title="Android 平台属性"></a>Android 平台属性</h1><ul><li>(22)<code>numberOfLines (number)</code>:设置文本输入框行数，该需要首先设置multiline为true,设置TextInput为多行文本。</li><li>(23)<code>textAlign</code> 设置文本横向布局方式 可选参数(‘start’, ‘center’, ‘end’)</li><li>(24)<code>textAlignVertical</code>: 设置文本垂直方向布局方式 可选参数(‘top’, ‘center’, ‘bottom’)</li><li>(25)<code>underlineColorAndroid</code>: 设置文本输入框下划线的颜色</li></ul><h1 id="长按出现菜单键为英文，如何改为中文"><a href="#长按出现菜单键为英文，如何改为中文" class="headerlink" title="长按出现菜单键为英文，如何改为中文"></a>长按出现菜单键为英文，如何改为中文</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210921.png" alt=""><br>在Xcode中，TARGETS—你的项目名—info，选择Localization native development region，选择China，这样文字都会变成中文啦，包括时间选择器等也会变成中文。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210959.png" alt=""></p><h1 id="键盘处理"><a href="#键盘处理" class="headerlink" title="键盘处理"></a>键盘处理</h1><p><a href="https://facebook.github.io/react-native/docs/inputaccessoryview#docsNav" target="_blank" rel="noopener">参考</a><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211043.png" alt=""></p><pre><code class="javascript">    const inputAccessoryViewID = &quot;inputAccessoryViewID&quot;;    _renderLeaveWordInput() {         return &lt;View style={{height: 60}}&gt;                &lt;TextInput style={{                    fontSize: 13,                    textAlignVertical: 'top',                    autoCapitalize: 'none',                    autoCorrect: false                 }}                   multiline={true}                   maxLength={50}                   onChangeText={this._onInputCommentsChange}                   value={this.state.comments}                   inputAccessoryViewID={inputAccessoryViewID}                   ref={&#39;LeaveWordTextInput&#39;}                   placeholder={&#39;请输入留言&#39;}/&gt;                &lt;InputAccessoryView nativeID={inputAccessoryViewID}&gt;                    &lt;View style={{flexDirection:'row-reverse'}}&gt;                        &lt;Button onPress={() =&gt; {this.refs.LeaveWordTextInput.blur();}}                                title=&quot;完成&quot;                                color=&quot;red&quot;                        /&gt;                    &lt;/View&gt;                &lt;/InputAccessoryView&gt;            &lt;/View&gt;    }</code></pre>]]></content>
+    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h1><p>Observables是一个事件流的对象</p><h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。</p><pre><code class="Swift">let emptyStream: Observable&lt;Int&gt; = Observable.empty()_ = emptyStream.subscribe { event inprint(event)  completed}</code></pre><h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。</p><pre><code class="Swift">let neverStream: Observable&lt;Int&gt; = Observable.never()_ = neverStream.subscribe({ _ inprint(&quot;这个方法永远都不会被执行&quot;)})</code></pre><h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。</p><pre><code class="Swift">let justStream = Observable.just(32)_ = justStream.subscribe({ event inprint(event)/*next(32)completed*/})</code></pre><h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p><pre><code class="Swift">let ofStream = Observable.of(0, 1, 2)_ = ofStream.subscribe({ event inprint(event)/*next(0)next(1)next(2)completed*/})</code></pre><h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p><pre><code class="Swift">let streamFromArray = Observable.from([0, 1, 2])_ = streamFromArray.subscribe({ (event) inprint(event)/*next(0)next(1)next(2)completed*/})</code></pre><h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p><pre><code class="Swift">let myJust = { (singleElement: Int) -&gt; Observable &lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable inobserver.onNext(singleElement)observer.onCompleted()return Disposables.create()})}let singleElementStream = myJust(32)_ = singleElementStream.subscribe { (event) inprint(event)/*next(32)completed*/}</code></pre><h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p><pre><code class="Swift">let error = NSError(domain: &quot;com.RxSwiftDemo.kesen&quot;, code: -1, userInfo: nil)let errorStream: Observable&lt;Int&gt; = Observable.error(error)_ = errorStream.subscribe { (event) inprint(event)error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)}</code></pre><h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p><pre><code class="Swift">let defferedStream = Observable.deferred { () -&gt; Observable&lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable inobserver.onNext(0)observer.onNext(1)observer.onCompleted()return Disposables.create()})}_ = defferedStream.subscribe({ (event) inprint(event)/*next(0)next(1)completed*/})</code></pre><h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p><h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p><h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><p>它和PublishSubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p><h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p><h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;通用属性-Android-amp-iOS&quot;&gt;&lt;a href=&quot;#通用属性-Android-amp-iOS&quot; class=&quot;headerlink&quot; title=&quot;通用属性(Android &amp;amp; iOS)&quot;&gt;&lt;/a&gt;通用属性(Android &amp;amp; iOS)
+        &lt;p&gt;[TOC]&lt;/p&gt;
+&lt;h1 id=&quot;Observable&quot;&gt;&lt;a href=&quot;#Observable&quot; class=&quot;headerlink&quot; title=&quot;Observable&quot;&gt;&lt;/a&gt;Observable&lt;/h1&gt;&lt;p&gt;Observables是一个事件流的对象&lt;/p&gt;
+
       
     
     </summary>
     
-      <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
+      <category term="iOS" scheme="http://superkk.top/categories/iOS/"/>
     
-      <category term="React-Native" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/React-Native/"/>
+      <category term="Rx &amp; RAC" scheme="http://superkk.top/categories/iOS/Rx-RAC/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>快捷键</title>
+    <link href="http://superkk.top/2018/05/21/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    <id>http://superkk.top/2018/05/21/快捷键/</id>
+    <published>2018-05-21T10:01:12.000Z</published>
+    <updated>2019-08-29T14:49:01.298Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Webstrom快捷键"><a href="#Webstrom快捷键" class="headerlink" title="Webstrom快捷键"></a>Webstrom快捷键</h1><ul><li><code>双击 Shift / cmd + shift + A</code>：全局搜索</li><li><code>cmd + B</code>: 跳到变量申明处</li><li><code>cmd + iption + B</code>: 跳转接口实现类</li><li><code>ctrl + F12</code>: 可以显示当前文件的结构</li><li><code>ctrl + D</code>: 行复制</li><li><code>cmd + Home/End</code>：跳到文件头/尾</li><li><code>cmd + K</code>: 代码补全 </li><li><code>cmd + option + T</code>：用 if, else, try, catch, for 等来围绕选中的代码块</li><li><code>cmd + N / ctrl + 回车</code>：打开代码生成菜单</li><li><code>cmd + P</code>：显示方法具体信息</li><li><code>ctrl + J</code>：查看方法文档</li><li><code>cmd + E</code>：显示打开的文件历史记录</li><li><code>cmd + U</code>：进入父类</li><li><code>cmd + ⬆️/⬇️</code>：进入上一个/下一个方法</li><li><code>cmd  + shift + T</code>：查看类、属性列表</li><li><code>option+ F7</code>：全局找到自己被使用的地方</li><li><code>cmd + F7</code>：在当前文件找到自己被使用的地方</li><li><code>cmd + PgUp / PgDn</code>：左右tab切换</li><li><code>cmd +W</code>：关闭当前tab</li><li><code>cmd + option + U</code>：显示类/接口的依赖关系UML图</li><li><code>cmd + option + V</code>：自动生成返回值</li><li><code>cmd + F9</code>：编译（idea热部署）</li><li><p><code>option + shift +  ⬆️/⬇️</code>： 移动行</p></li><li><p>自动import</p><ul><li><code>ctrl+option+O</code>：删除未使用的引用</li></ul></li><li><p>多光标操作</p><ul><li><code>ctrl+G</code>：选中出现的单词并添加光标（Windows上为<code>Alt + J</code>）</li><li><code>ctrl+shift+G</code>：取消选中出现的单词（Windows上的Alt + Shift + J）</li><li><code>option+shift+鼠标左键单机</code>：在单击处添加光标</li><li><code>option+鼠标拖动</code>：在选中处添加光标</li></ul></li><li><p>选中操作</p><ul><li><code>option+ ⬆️/⬇️</code>：增加选中范围 / 减少选中范围</li><li><code>cmd+option+M</code>：使用选中代码段生成函数</li><li><code>cmd+option+T</code>：使用try catch等包围代码段</li></ul></li></ul><p><a href="https://blog.jetbrains.com/phpstorm/2014/03/working-with-multiple-selection-in-phpstorm-8-eap/" target="_blank" rel="noopener">https://blog.jetbrains.com/phpstorm/2014/03/working-with-multiple-selection-in-phpstorm-8-eap/</a></p><h1 id="android模拟器快捷键"><a href="#android模拟器快捷键" class="headerlink" title="android模拟器快捷键"></a>android模拟器快捷键</h1><ul><li><code>cmd + m</code> 显示开发者菜单</li><li><code>R + R</code> reload</li></ul><h1 id="iOS模拟器快捷键"><a href="#iOS模拟器快捷键" class="headerlink" title="iOS模拟器快捷键"></a>iOS模拟器快捷键</h1><ul><li><code>cmd + d</code>/<code>ctrl+command+z</code> 显示开发者菜单</li><li><code>cmd + r</code> reload<br>单使用模拟器软键盘时，<code>cmd+r</code>/<code>cmd+d</code>可能失效，此时使用<code>ctrl+command+z</code>即可<br>或者：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829224617.png" alt=""><h2 id="React-Native-命令"><a href="#React-Native-命令" class="headerlink" title="React Native 命令"></a>React Native 命令</h2><code>react-native start</code>：启动react native服务器<br>在特定模拟器上启动<br><code>react-native run-ios --simulator &quot;iPhone 7 Plus”</code><h1 id="VSCode快捷键"><a href="#VSCode快捷键" class="headerlink" title="VSCode快捷键"></a>VSCode快捷键</h1><h2 id="JSON-格式化"><a href="#JSON-格式化" class="headerlink" title="JSON 格式化"></a>JSON 格式化</h2></li></ul><p>安装插件<code>JSON Tools</code></p><p><a href="https://marketplace.visualstudio.com/items?itemName=eriklynd.json-tools" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=eriklynd.json-tools</a></p><p><code>Ctrl(Cmd)+Alt+M</code> for JSON pretty.</p><p><code>Alt+M</code> for JSON minify.</p><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>Cmd + Shift + p</code>打开命令面板</p><p><code>Cmd+T</code>跳转到关键字（全局搜索变量或者函数）</p><p><code>Option + Cmd + ⬅️/➡️</code> 不同tab间切换</p><p><code>Ctrl + -</code> 前进（跳转到函数之后跳转回之前的位置）</p><p><code>Ctrl + Shift + -</code> 后退</p><p><code>ctrl + shift + y</code>打开/关闭Debug Console</p><p><code>Ctrl + ~</code> 打开/关闭终端（注意要在英文输入状态下，英文状态下是ctrl + ·导致无效）</p><p><code>Cmd+1</code>显示/隐藏侧边栏</p><p><code>Shift+cmd+k</code>删除当前行</p><p><code>Ctrl + G</code> 转到行</p><p><code>Ctrl + P</code> 转到文件</p><p><code>Ctrl + Shift + O</code> 跳转到关键字（文件内搜索变量或者函数）</p><p><code>Shift+Option+ ↑ / ↓</code> 移动当前行到上一行/下一行</p><p><code>Cmd+E</code>打开最近项目目录</p><ul><li>多光标操作</li></ul><p><code>cmd+shift+L</code>添加光标到所有出现的单词处，并选中</p><p><code>cmd+g</code>与<code>cmd+shift+L</code>配合可以在选中的单词间跳转</p><h1 id="微信小程序编辑器快捷键"><a href="#微信小程序编辑器快捷键" class="headerlink" title="微信小程序编辑器快捷键"></a>微信小程序编辑器快捷键</h1><h2 id="windows-下"><a href="#windows-下" class="headerlink" title="windows 下"></a>windows 下</h2><p><code>ctrl+p</code> 快速查找文件<br><code>ctrl+e</code> 快速查找最近打开过的文件</p><h1 id="eclipse快捷键"><a href="#eclipse快捷键" class="headerlink" title="eclipse快捷键"></a>eclipse快捷键</h1><p>选中代码，ctrl + 1，打开列表<br>反撤销，ctrl + y</p><h1 id="vim快捷键"><a href="#vim快捷键" class="headerlink" title="vim快捷键"></a>vim快捷键</h1><ul><li>撤销: 退出编辑模式，然后快速输入 u 两次 </li><li>反撤销:    退出编辑模式，然后快速输入 ctrl + r 两次</li><li>粘贴:p</li></ul><h1 id="Xcode快捷键"><a href="#Xcode快捷键" class="headerlink" title="Xcode快捷键"></a>Xcode快捷键</h1><p>| 快捷键 | 说明 |</p><p>|:-|:-|</p><p>| Command + Shift + O | 快速查找文件/文件夹 |</p><p>| Ctrl + 6 | 在类中快速查查找方法 |</p><p>| Ctrl + 2| 显示最近的浏览记录|</p><p>| Command + Shift + j  | 显示当前文件，在导航拦中的位置 |</p><p>|option + cmd + 回车| 打开辅助视图 |</p><p>|cmd + 回车 | 取消辅助视图 |</p><p>| option（即windows下Alt键） + Cmd + 0 | 关闭Xcode右边的窗口 |</p><p>| Cmd + 上方向键/下方向键 | 跳到代码开头/结尾 |</p><p>| Control + Cmd + 方向键 | 在.h和.m间切换 |</p><p>| cmd + 0 | 打开或者取消左边的导航栏 |</p><p>| option + cmd 0 | 打开或者取消右边的属性视图 |</p><p>| Control + I | 重新缩进代码 |</p><p>| Control + Cmd + E | 统一修改变量名 |</p><p>| <code>Command + [</code> 或 <code>Command +  ]</code> | 左移/右移代码块 |</p><p>| <code>Option + Command + [</code> 或 <code>Option + Command + ]</code> | 上移/下移代码 |</p><p>| Command + Shift + 左/右方向键 | 选中当前行 |</p><p>| Control + D | 删除光标右边的字符，相当与 windows 下的 Delete |</p><p>| Command + Alt + ⬅️／➡️ | 折叠展开代码段 |</p><p>| Command + L | 跳转到指定行 |</p><p>| Command + option + / | 添加标准注释 |</p><p>大小写转换<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829224804.png" alt=""></p><h2 id="storyBoard-快捷键"><a href="#storyBoard-快捷键" class="headerlink" title="storyBoard 快捷键"></a>storyBoard 快捷键</h2><ol><li>Command + Shift + _ / | 在                 storyBoard 上添加辅助线</li><li>Command + Shift + 鼠标右键             选中某个 View</li><li>使用键盘移动控件</li></ol><p>第一步：使用鼠标选中某个控件<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829224821.png" alt=""><br>第二步：使用<code>方向键</code>进行移动，按住<code>shift键 + 方向键</code>可以更快的移动</p><ol start="4"><li>多个控件层叠时选择某个控件<br><code>鼠标右键+shift</code></li></ol><h2 id="模拟器快捷键"><a href="#模拟器快捷键" class="headerlink" title="模拟器快捷键"></a>模拟器快捷键</h2><ul><li><p><code>Cmd + shift + H</code>回到桌面</p></li><li><p>按住<code>Ctrl + Shift</code> 点击控件，显示这个点上的所有控件</p></li></ul><p>⌥代表option键</p><h1 id="Mac-快捷键"><a href="#Mac-快捷键" class="headerlink" title="Mac 快捷键"></a>Mac 快捷键</h1><ul><li><p>全屏截图：Command-Shift-3</p></li><li><p>指定区域截图：Command-Shift-4</p></li><li><p>显示隐藏快捷键：Command+Shift+.</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;Webstrom快捷键&quot;&gt;&lt;a href=&quot;#Webstrom快捷键&quot; class=&quot;headerlink&quot; title=&quot;Webstrom快捷键&quot;&gt;&lt;/a&gt;Webstrom快捷键&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;双击 Shift / cmd + shift
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="http://superkk.top/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
   </entry>
   
   <entry>
     <title>React-Native模版</title>
-    <link href="http://superkk.top/2018/05/21/React-Native%E6%A8%A1%E7%89%88/"/>
-    <id>http://superkk.top/2018/05/21/React-Native模版/</id>
+    <link href="http://superkk.top/2018/05/21/Jenkins%E5%AE%89%E8%A3%85/"/>
+    <id>http://superkk.top/2018/05/21/Jenkins安装/</id>
     <published>2018-05-21T10:01:12.000Z</published>
-    <updated>2019-08-29T14:37:06.699Z</updated>
+    <updated>2019-08-29T14:52:46.494Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="文档建议只看两处，蒲公英和fastlane的"><a href="#文档建议只看两处，蒲公英和fastlane的" class="headerlink" title="文档建议只看两处，蒲公英和fastlane的"></a>文档建议只看两处，蒲公英和fastlane的</h1><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><ul><li>启动<br><code>sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></li><li>关闭<br><code>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</code></li></ul><h1 id="解决无法安装插件问题"><a href="#解决无法安装插件问题" class="headerlink" title="解决无法安装插件问题"></a>解决无法安装插件问题</h1><ol><li>第一步：<code>插件管理 -&gt; Advanced -&gt; Update Site</code>中，将https改为http</li><li>第二部：重启jenkins服务<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225004.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225013.png" alt=""><h1 id="权限问题导致无法执行脚本"><a href="#权限问题导致无法执行脚本" class="headerlink" title="权限问题导致无法执行脚本"></a>权限问题导致无法执行脚本</h1>有两种解决办法：<h2 id="方法一：设置用户权限（不推荐）"><a href="#方法一：设置用户权限（不推荐）" class="headerlink" title="方法一：设置用户权限（不推荐）"></a>方法一：设置用户权限（不推荐）</h2><strong>这样设置后依然会存在其他的一系列问题，例如执行fastlane脚本报错 </strong></li></ol><p>一般情况下，使用jenkins官网下载的安装包安装会出现这个问题。</p><p>在官网下载dmg安装包，安装完毕即可在本机搭建jenkins的工作。但是jenkins不会用本地的用户去构建，任何创建的文件都是“jenkins”用户所有，这会造成很多权限问题，无法调用自己写的脚本，执行shell会出现没有权限的错误。</p><ul><li>解决办法：修改jenkins用户群组和用户</li><li>第一步：查看自己的群组和用户名称：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225032.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225044.png" alt=""></li><li>第二步：更改 Jenkins 用户群组和用户名称<br><code>`</code>script<br>#停止Jenkins<br>$ sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</li></ul><h1 id="修改group-和user"><a href="#修改group-和user" class="headerlink" title="修改group 和user"></a>修改group 和user</h1><p>$ sudo vim +1 +/daemon +’s/daemon/staff/’ +/daemon +’s/daemon/ks’ +wq org.jenkins-ci.plist<br>$ sudo chown -R ks:staff /Users/Shared/Jenkins/</p><h1 id="开始Jenkins"><a href="#开始Jenkins" class="headerlink" title="开始Jenkins"></a>开始Jenkins</h1><p>$ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</p><pre><code>或者你也可以手动修改 org.jenkins-ci.plist 文件中的内容![](https://raw.githubusercontent.com/action456789/Image/master/20190829225107.png)- 第三步：若无法打开jenkins，需要修改下权限```script$ sudo chown -R userName /Users/Shared/Jenkins$ sudo chown -R userName /var/log/jenkins#重启Jenkins$ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></pre><ul><li>WARING: Jenkins更改工作空间会导致原来的数据全部丢失<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225126.png" alt=""><br>参考：<a href="https://www.cnblogs.com/ihojin/p/jenkins-permission.html" target="_blank" rel="noopener">https://www.cnblogs.com/ihojin/p/jenkins-permission.html</a></li></ul><h2 id="方法二：使用gem重新安装jenkins（推荐）"><a href="#方法二：使用gem重新安装jenkins（推荐）" class="headerlink" title="方法二：使用gem重新安装jenkins（推荐）"></a>方法二：使用gem重新安装jenkins（推荐）</h2><ul><li>卸载使用安装包安装的jenkins<br><code>`</code><br>//进入以下目录，双击运行<br>/Library/Application Support/Jenkins/Uninstall.command<br>//也可以这样运行<br>sh “/Library/Application Support/Jenkins/Uninstall.command”</li></ul><p>//删除配置，这个可选<br>sudo rm -rf /var/root/.jenkins ~/.jenkins<br>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist<br>sudo rm /Library/LaunchDaemons/org.jenkins-ci.plist<br>sudo rm -rf /Applications/Jenkins “/Library/Application Support/Jenkins” /Library/Documentation/Jenkins<br>sudo rm -rf /Users/Shared/Jenkins<br>sudo dscl . -delete /Users/jenkins<br>sudo dscl . -delete /Groups/jenkins<br>sudo rm -f /etc/newsyslog.d/jenkins.conf<br>pkgutil –pkgs | grep ‘org.jenkins-ci.‘ | xargs -n 1 sudo pkgutil –forget</p><p>//如果使用brew安装的，可以执行以下命令<br>brew uninstall jenkins</p><pre><code>- 安装</code></pre><p>brew update &amp;&amp; brew install jenkins</p><pre><code>- 启动</code></pre><p>jenkins</p><pre><code>参考：https://docs.fastlane.tools/best-practices/continuous-integration/jenkins/&lt;br&gt;# Jenkins如何使用本地git仓库git地址填写为本地文件路径即可`file:///home/rbkcbeqc/dev/git/gitsandbox.`参考：https://stackoverflow.com/questions/10498554/jenkins-linking-to-my-local-git-repository# 全局变量如何使用![](https://raw.githubusercontent.com/action456789/Image/master/20190829225149.png)![](https://raw.githubusercontent.com/action456789/Image/master/20190829225218.png)这里自己添加的变量可以在shell脚本中直接使用。```shecho $TOKEN_SIT</code></pre>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;文档建议只看两处，蒲公英和fastlane的&quot;&gt;&lt;a href=&quot;#文档建议只看两处，蒲公英和fastlane的&quot; class=&quot;headerlink&quot; title=&quot;文档建议只看两处，蒲公英和fastlane的&quot;&gt;&lt;/a&gt;文档建议只看两处，蒲公英和fastlan
+      
+    
+    </summary>
+    
+      <category term="工具" scheme="http://superkk.top/categories/%E5%B7%A5%E5%85%B7/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS原型链与prototype</title>
+    <link href="http://superkk.top/2018/05/21/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8Eprototype/"/>
+    <id>http://superkk.top/2018/05/21/JS原型链与prototype/</id>
+    <published>2018-05-21T10:01:12.000Z</published>
+    <updated>2019-08-29T14:40:08.384Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="闭包：函数-在函数创建时刻关联的父作用域的一个集合体"><a href="#闭包：函数-在函数创建时刻关联的父作用域的一个集合体" class="headerlink" title="闭包：函数+在函数创建时刻关联的父作用域的一个集合体"></a>闭包：<code>函数</code>+<code>在函数创建时刻关联的父作用域</code>的一个集合体</h1><p>闭包在JavaScript当中就是一个函数和在函数创建时刻关联的父作用域的一个集合体，通过这个集合体，一个函数就可以访问外部函数的变量了。<br>注意：是在函数创建时刻关联父作用域，而不是运行时刻关联。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223729.png" alt=""></p><p>当执行creatEatFunction的时候， eat函数才会被创建出来，此时eat函数就会把外部函数的作用域链记录下来（其中包含desc=’ is eating’)，以便执行时使用”<br>比如eat函数的作用域链是这样的。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223756.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223809.png" alt=""><br>输出1</p><h1 id="JS中继承的实现：JS中没有类的概念，如何实现继承"><a href="#JS中继承的实现：JS中没有类的概念，如何实现继承" class="headerlink" title="JS中继承的实现：JS中没有类的概念，如何实现继承"></a>JS中继承的实现：JS中没有类的概念，如何实现继承</h1><ul><li>1、通过<code>__proto__</code>实现继承：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223828.png" alt=""><br><code>`</code>JavaScript<br>var animal = {<br>  name: ‘animal’,<br>  eat: function() {<pre><code>  console.log(this.name+&#39; is eating&#39;);</code></pre>  }<br>};</li></ul><p>var dog={<br>    name: ‘dog’,<br>    <strong>proto</strong>: animal<br>};</p><p>var cat={<br>    name: ‘cat’,<br>    <strong>proto</strong>: animal<br>};</p><p>dog.eat();<br>cat.eat();</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829223846.png)- 2、语法糖：`new````JavaScriptfunction Student(name){    this.name=name,    this.sayHello=function(){        console.log(&quot;Hi, I am &quot;+this.name);    }}andy=new Student(&#39;andy&#39;);lisa=new Student(&#39;lisa&#39;);andy.sayHello();lisa.sayHello();</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223906.png" alt=""></p><ul><li>3、通过prototype实现继承，避免同一方法的多个副本。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223918.png" alt=""><br><code>`</code>JavaScript<br>// 通过prototype实现继承<br>Student.prototype={<br>  sayHello2:function(){<pre><code>  console.log(&quot;Hi, I am &quot;+this.name);</code></pre>  }<br>}</li></ul><p>andy=new Student(‘andy’);<br>lisa=new Student(‘lisa’);</p><p>andy.sayHello();<br>lisa.sayHello();</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829223937.png)- 4、语法糖：`class````JavaScript// 语法糖class Student2{    constructor(name){        this.name=name;    }    sayHello() {        console.log(&quot;Hi, I am &quot;+this.name);    }}andy=new Student2(&#39;andy&#39;);andy.sayHello();</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223955.png" alt=""></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;闭包：函数-在函数创建时刻关联的父作用域的一个集合体&quot;&gt;&lt;a href=&quot;#闭包：函数-在函数创建时刻关联的父作用域的一个集合体&quot; class=&quot;headerlink&quot; title=&quot;闭包：函数+在函数创建时刻关联的父作用域的一个集合体&quot;&gt;&lt;/a&gt;闭包：&lt;code
+      
     
     </summary>
     
@@ -212,6 +270,31 @@
   </entry>
   
   <entry>
+    <title>TextInput</title>
+    <link href="http://superkk.top/2018/05/21/TextInput/"/>
+    <id>http://superkk.top/2018/05/21/TextInput/</id>
+    <published>2018-05-21T10:01:12.000Z</published>
+    <updated>2019-08-29T13:11:48.965Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="通用属性-Android-amp-iOS"><a href="#通用属性-Android-amp-iOS" class="headerlink" title="通用属性(Android &amp; iOS)"></a>通用属性(Android &amp; iOS)</h1><ul><li>(1)支持View的相关属性</li><li><p>(2)<code>autoCapitalize</code>:控制输入的字符进行切换成大写(参数:’none’,’sentences’,’words’,’characters’)<br><code>none</code>: 不自动切换任何字符大写<br><code>sentences</code>: 默认每个句子的首字母大写<br><code>words</code>:每个单词的首字母变成大写<br><code>characters</code>:每个字母全部变成大写</p></li><li><p>(3)<code>autoCorrect(bool)</code>:设置瓶邪自动修正功能,默认开启(true)</p></li><li><p>(4)<code>autoFocus(bool)</code>:设置是否默认获取到焦点,默认为关闭(false).需要comonentDidMount方法调用之后才会获取焦点(componentDidMount是React组件被渲染之后React主动回调的方法)</p></li><li><p>(5)<code>defaultValue(string)</code>:给文本框输入一个默认初始值.</p></li><li><p>(6)<code>editable(bool)</code>:设置文本框是否可以编辑,默认为true,可以进行编辑</p></li><li><p>(7)<code>keyboardType</code>:<br>键盘类型(可选参数:”default”, ‘email-address’, ‘numeric’, ‘phone-pad’, “ascii-capable”, ‘numbers-and-punctuation’, ‘url’, ‘number-pad’, ‘name-phone-pad’, ‘decimal-pad’, ‘twitter’, ‘web-search’) 该用来选择默认弹出键盘的类型例如我们甚至numeric就是弹出数字键盘。鉴于平台的原因如下的值是所有平台都可以进行通用的</p></li><li><p>(8)<code>maxLength(number)</code>:可以限制文本输入框最大的输入字符长度</p></li><li><p>(9)<code>multiline (bool)</code> : 设置可以输入多行文字，默认为false(表示无论文本输入多少，都是单行显示)</p></li><li>(10)<code>onBlur (function)</code>: 监听方法，文本框失去焦点回调方法</li><li>(11)<code>onChange (function)</code>: 监听方法,文本框内容发生改变回调方法</li><li>(12)<code>onChangeText (function)</code>:监听方法，文本框内容发生改变回调方法，该方法会进行传递文本内容</li><li>(13)<code>onEndEditing (function)</code>:监听方法，当文本结束文本输入回调方法</li><li>(14)<code>onFocus (function)</code> :监听方法 文本框获取到焦点回调方法</li><li>(15)<code>onLayout (function)</code>:监听方法 组价布局发生变化的时候调用，调用方法参数为 {x,y,width,height}</li><li>(16)<code>onSubmitEditing (function)</code>:监听方法，当编辑提交的时候回调方法。不过如果multiline={true}的时候，该属性就不生效</li><li>(17)<code>placeholder (string</code>) :当文本输入框还没有任何输入的时候，默认显示信息，当有输入的时候该值会被清除</li><li>(18)<code>placeholderText Color (string)</code>: 设置默认信息颜色(placeholer)</li><li>(19)<code>secureTextEntry (bool)</code>: 设置是否为密码安全输入框 ，默认为false</li><li>(20)<code>style</code> 风格属性 可以参考Text组件风格</li><li>(21)<code>value ( string )</code>:输入框中的内容值</li><li>(22)<code>returnKeyType</code>:决定“确定”按钮显示的内容。<br>done<br>go<br>next<br>search<br>send</li></ul><h1 id="Android-平台属性"><a href="#Android-平台属性" class="headerlink" title="Android 平台属性"></a>Android 平台属性</h1><ul><li>(22)<code>numberOfLines (number)</code>:设置文本输入框行数，该需要首先设置multiline为true,设置TextInput为多行文本。</li><li>(23)<code>textAlign</code> 设置文本横向布局方式 可选参数(‘start’, ‘center’, ‘end’)</li><li>(24)<code>textAlignVertical</code>: 设置文本垂直方向布局方式 可选参数(‘top’, ‘center’, ‘bottom’)</li><li>(25)<code>underlineColorAndroid</code>: 设置文本输入框下划线的颜色</li></ul><h1 id="长按出现菜单键为英文，如何改为中文"><a href="#长按出现菜单键为英文，如何改为中文" class="headerlink" title="长按出现菜单键为英文，如何改为中文"></a>长按出现菜单键为英文，如何改为中文</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210921.png" alt=""><br>在Xcode中，TARGETS—你的项目名—info，选择Localization native development region，选择China，这样文字都会变成中文啦，包括时间选择器等也会变成中文。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210959.png" alt=""></p><h1 id="键盘处理"><a href="#键盘处理" class="headerlink" title="键盘处理"></a>键盘处理</h1><p><a href="https://facebook.github.io/react-native/docs/inputaccessoryview#docsNav" target="_blank" rel="noopener">参考</a><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211043.png" alt=""></p><pre><code class="javascript">    const inputAccessoryViewID = &quot;inputAccessoryViewID&quot;;    _renderLeaveWordInput() {         return &lt;View style={{height: 60}}&gt;                &lt;TextInput style={{                    fontSize: 13,                    textAlignVertical: 'top',                    autoCapitalize: 'none',                    autoCorrect: false                 }}                   multiline={true}                   maxLength={50}                   onChangeText={this._onInputCommentsChange}                   value={this.state.comments}                   inputAccessoryViewID={inputAccessoryViewID}                   ref={&#39;LeaveWordTextInput&#39;}                   placeholder={&#39;请输入留言&#39;}/&gt;                &lt;InputAccessoryView nativeID={inputAccessoryViewID}&gt;                    &lt;View style={{flexDirection:'row-reverse'}}&gt;                        &lt;Button onPress={() =&gt; {this.refs.LeaveWordTextInput.blur();}}                                title=&quot;完成&quot;                                color=&quot;red&quot;                        /&gt;                    &lt;/View&gt;                &lt;/InputAccessoryView&gt;            &lt;/View&gt;    }</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;通用属性-Android-amp-iOS&quot;&gt;&lt;a href=&quot;#通用属性-Android-amp-iOS&quot; class=&quot;headerlink&quot; title=&quot;通用属性(Android &amp;amp; iOS)&quot;&gt;&lt;/a&gt;通用属性(Android &amp;amp; iOS)
+      
+    
+    </summary>
+    
+      <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="React-Native" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/React-Native/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>JS中的Promise, async, await</title>
     <link href="http://superkk.top/2018/05/21/JS%E4%B8%AD%E7%9A%84Promise,%20async,%20await/"/>
     <id>http://superkk.top/2018/05/21/JS中的Promise, async, await/</id>
@@ -227,6 +310,50 @@
         &lt;h2 id=&quot;准备代码&quot;&gt;&lt;a href=&quot;#准备代码&quot; class=&quot;headerlink&quot; title=&quot;准备代码&quot;&gt;&lt;/a&gt;准备代码&lt;/h2&gt;&lt;pre&gt;&lt;code class=&quot;JS&quot;&gt;//做饭
 function cook() {
     console.log(&amp;#39
+      
+    
+    </summary>
+    
+      <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="js" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/js/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>React-Native模版</title>
+    <link href="http://superkk.top/2018/05/21/React-Native%E6%A8%A1%E7%89%88/"/>
+    <id>http://superkk.top/2018/05/21/React-Native模版/</id>
+    <published>2018-05-21T10:01:12.000Z</published>
+    <updated>2019-08-29T14:37:06.699Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="js" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/js/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JS常用点</title>
+    <link href="http://superkk.top/2018/05/21/JS%E5%B8%B8%E7%94%A8%E7%82%B9/"/>
+    <id>http://superkk.top/2018/05/21/JS常用点/</id>
+    <published>2018-05-21T10:01:12.000Z</published>
+    <updated>2019-08-29T14:31:27.338Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><ul><li><code>for of</code>：遍历数组value<blockquote><p>TIPS: for of 断点时，获取不到变量信息<br><code>`</code><br>const array = [<br> {</p><pre><code> name: &quot;张三&quot;</code></pre><p> }, {</p><pre><code> name: &quot;李四&quot;</code></pre><p> }, {</p><pre><code> name: &quot;王五&quot;</code></pre><p> }, {</p><pre><code> name: &quot;小红&quot;</code></pre><p> }];</p></blockquote></li></ul><p>let obj = {<br>    name: “小红”,<br>    age: 19,<br>    sex: ‘女’,<br>}</p><p>// for of：遍历数组value<br>for (const item of array) {<br>    console.log(item.name);<br>}</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829222714.png)- `for in`：遍历对象key</code></pre><p>// for in：遍历对象key<br>for (const key in obj) {<br>    console.log(<code>${key}:${obj[key]}</code>);<br>}</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829222733.png)- `map`</code></pre><p>let nArray = array.map((value, index) =&gt; {<br>    return { …value, type: ‘哈哈’ }<br>})<br>console.log(nArray);</p><pre><code>- 切片：`splice`    - [start, end) 从下标start开始，到下标end结束，不包括end    - end 大于数组长度会截取到数组结束</code></pre><p>let subArray = array.splice(0, 6)<br>console.log(subArray)</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829222753.png)# 解构赋值本质是`模式匹配`## 数组- 本质：实现了Iterator 接口的对象就可以按顺序解构赋值数组的元素是按次序排列的，变量的取值由它的位置决定</code></pre><p>let [a, [b], d] = [1, [2, 3], 4];<br>a // 1<br>b // 2<br>d // 4</p><pre><code>- 默认值</code></pre><p>let [x = 1, y = x] = [2];    // x=2; y=2<br>let [foo = true] = [];<br>foo // true</p><p>let [x = 1] = [undefined];<br>x // 1</p><pre><code>#### 对象#####变量与属性同名- 字符串赋值</code></pre><p>  let { bar, foo, hello } = { foo: ‘aaa’, bar: ‘bbb’ };<br>  foo // “aaa”<br>  bar // “bbb”<br>  hello // “undefined”</p><pre><code>- 对象方法赋值</code></pre><p>const { log } = console;<br>log(‘hello’) // hello</p><pre><code>##### 变量名与属性名不同名</code></pre><p>let { foo: baz } = { foo: ‘aaa’, bar: ‘bbb’ };<br>baz // “aaa”</p><pre><code>对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者##### 嵌套对象赋值- 注意，对象嵌套赋值里，`冒号:`代表模式，并不是取值</code></pre><p>const node = {<br>    loc: {<br>      start: {<br>        line: 1,<br>        column: 5<br>      }<br>    }<br>  };</p><p>let { loc: { start }} = node;<br>start // Object {line: 1, column: 5}<br>loc // undefined</p><p>let { loc, loc: { start }}<br>start // Object {line: 1, column: 5}<br>loc // Object {start: Object}</p><p>let { loc: { start: { line }}} = node;<br>line // 1<br>loc // undefined<br>start // undefined</p><pre><code>##### 获取对象继承的属性</code></pre><p>const obj1 = {};<br>const obj2 = { foo: ‘bar’ };<br>Object.setPrototypeOf(obj1, obj2);</p><p>const { foo } = obj1;<br>foo // “bar”</p><pre><code>##### 默认值</code></pre><p>var {x = 3} = {};<br>x // 3</p><p>var {x = 3} = {x: undefined};<br>x // 3</p><pre><code>#### 已声明变量的解构赋值- 错误的写法</code></pre><p>let x;<br>{x} = {x: 1};<br>// SyntaxError: syntax error</p><pre><code>- 正确的写法</code></pre><p>let x;<br>({x} = {x: 1});</p><pre><code>#### 函数参数的解构赋值函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。对于函数内部的代码来说，它们能感受到的参数就是x和y。</code></pre><p>function add([x, y]){<br>  return x + y;<br>}</p><p>add([1, 2]); // 3</p><p><code>`</code></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;数组&quot;&gt;&lt;a href=&quot;#数组&quot; class=&quot;headerlink&quot; title=&quot;数组&quot;&gt;&lt;/a&gt;数组&lt;/h1&gt;&lt;h2 id=&quot;遍历&quot;&gt;&lt;a href=&quot;#遍历&quot; class=&quot;headerlink&quot; title=&quot;遍历&quot;&gt;&lt;/a&gt;遍历&lt;/h2&gt;&lt;ul&gt;
+&lt;
       
     
     </summary>
@@ -264,81 +391,26 @@ function cook() {
   </entry>
   
   <entry>
-    <title>React-Native Tips</title>
-    <link href="http://superkk.top/2018/05/21/React-Native%20Tips/"/>
-    <id>http://superkk.top/2018/05/21/React-Native Tips/</id>
+    <title>微信小程序</title>
+    <link href="http://superkk.top/2018/05/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    <id>http://superkk.top/2018/05/21/微信小程序/</id>
     <published>2018-05-21T10:01:12.000Z</published>
-    <updated>2019-08-29T14:25:52.228Z</updated>
+    <updated>2019-08-29T14:54:14.391Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="快速进入断点"><a href="#快速进入断点" class="headerlink" title="快速进入断点"></a>快速进入断点</h1><ol><li>模拟器开启远程调试</li><li>在浏览器上<code>cmd+option+I</code>打开调试页面</li><li>代码输入<code>dubugger</code>进入断点<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211638.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211651.png" alt=""></li></ol><h1 id="更新node"><a href="#更新node" class="headerlink" title="更新node"></a>更新node</h1><ul><li>1、更新npm<br><code>npm -v</code><br><code>npm install npm@latest -g</code></li><li>2、更新node<pre><code>sudo npm cache clean -fsudo npm install -g nsudo n stable</code></pre></li></ul><p>参考：<a href="https://www.hostingadvice.com/how-to/update-node-js-latest-version/" target="_blank" rel="noopener">https://www.hostingadvice.com/how-to/update-node-js-latest-version/</a></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="升级（检查更新）"><a href="#升级（检查更新）" class="headerlink" title="升级（检查更新）"></a>升级（检查更新）</h1><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html</a></p><h1 id="使用mpvue进行小程序开发"><a href="#使用mpvue进行小程序开发" class="headerlink" title="使用mpvue进行小程序开发"></a>使用mpvue进行小程序开发</h1><h2 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h2><p><code>一斤代码</code>的简书<a href="https://www.jianshu.com/p/8f779950bfd9" target="_blank" rel="noopener">https://www.jianshu.com/p/8f779950bfd9</a></p><h2 id="在mpvue中使用Vant-Weapp组件库"><a href="#在mpvue中使用Vant-Weapp组件库" class="headerlink" title="在mpvue中使用Vant Weapp组件库"></a>在mpvue中使用Vant Weapp组件库</h2><ul><li><p>1、将下载的小程序组件的<code>dist</code>目录拷贝到工程static目录下，然后改名，比如van-weapp<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225337.png" alt=""></p></li><li><p>2、打开ES6转ES5<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225350.png" alt=""></p></li><li><p>3、在需要使用van-weapp组件的页面创建main.json文件，并进行引入<br>然后在main.json中添加如下内容</p><pre><code class="json">{  &quot;usingComponents&quot;: {      &quot;van-tab&quot;: &quot;../../../static/vant-weapp/tab/index&quot;,      &quot;van-tabs&quot;: &quot;../../../static/vant-weapp/tabs/index&quot;  }}</code></pre></li><li>4、使用自定义组件<pre><code class="Vue">  &lt;!-- 使用第三方组件 --&gt;  &lt;van-tabs v-bind:active=&quot;active&quot; @click=&quot;onChange&quot;&gt;    &lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;  &lt;/van-tabs&gt;</code></pre></li><li>注意：在vant-weapp的官方文档中的具体用法是使用wxml的语法，所以我们不能直接照搬使用<br>比如官方文档示例代码为：<pre><code>&lt;van-tabs active=&quot;{{ active }}&quot; bind:change=&quot;onChange&quot;&gt;&lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;&lt;/van-tabs&gt;</code></pre>具体参考<a href="https://www.jianshu.com/p/2adff147b8a6" target="_blank" rel="noopener">https://www.jianshu.com/p/2adff147b8a6</a></li></ul><p>其他参考：<a href="https://www.jianshu.com/p/1b3b9e17ac88" target="_blank" rel="noopener">https://www.jianshu.com/p/1b3b9e17ac88</a></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;快速进入断点&quot;&gt;&lt;a href=&quot;#快速进入断点&quot; class=&quot;headerlink&quot; title=&quot;快速进入断点&quot;&gt;&lt;/a&gt;快速进入断点&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;模拟器开启远程调试&lt;/li&gt;
-&lt;li&gt;在浏览器上&lt;code&gt;cmd+option+I&lt;/code
+        &lt;h1 id=&quot;升级（检查更新）&quot;&gt;&lt;a href=&quot;#升级（检查更新）&quot; class=&quot;headerlink&quot; title=&quot;升级（检查更新）&quot;&gt;&lt;/a&gt;升级（检查更新）&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://developers.weixin.qq.com/mini
       
     
     </summary>
     
       <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
     
-      <category term="React-Native" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/React-Native/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>JS常用点</title>
-    <link href="http://superkk.top/2018/05/21/JS%E5%B8%B8%E7%94%A8%E7%82%B9/"/>
-    <id>http://superkk.top/2018/05/21/JS常用点/</id>
-    <published>2018-05-21T10:01:12.000Z</published>
-    <updated>2019-08-29T14:31:27.338Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><ul><li><code>for of</code>：遍历数组value<blockquote><p>TIPS: for of 断点时，获取不到变量信息<br><code>`</code><br>const array = [<br> {</p><pre><code> name: &quot;张三&quot;</code></pre><p> }, {</p><pre><code> name: &quot;李四&quot;</code></pre><p> }, {</p><pre><code> name: &quot;王五&quot;</code></pre><p> }, {</p><pre><code> name: &quot;小红&quot;</code></pre><p> }];</p></blockquote></li></ul><p>let obj = {<br>    name: “小红”,<br>    age: 19,<br>    sex: ‘女’,<br>}</p><p>// for of：遍历数组value<br>for (const item of array) {<br>    console.log(item.name);<br>}</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829222714.png)- `for in`：遍历对象key</code></pre><p>// for in：遍历对象key<br>for (const key in obj) {<br>    console.log(<code>${key}:${obj[key]}</code>);<br>}</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829222733.png)- `map`</code></pre><p>let nArray = array.map((value, index) =&gt; {<br>    return { …value, type: ‘哈哈’ }<br>})<br>console.log(nArray);</p><pre><code>- 切片：`splice`    - [start, end) 从下标start开始，到下标end结束，不包括end    - end 大于数组长度会截取到数组结束</code></pre><p>let subArray = array.splice(0, 6)<br>console.log(subArray)</p><pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829222753.png)# 解构赋值本质是`模式匹配`## 数组- 本质：实现了Iterator 接口的对象就可以按顺序解构赋值数组的元素是按次序排列的，变量的取值由它的位置决定</code></pre><p>let [a, [b], d] = [1, [2, 3], 4];<br>a // 1<br>b // 2<br>d // 4</p><pre><code>- 默认值</code></pre><p>let [x = 1, y = x] = [2];    // x=2; y=2<br>let [foo = true] = [];<br>foo // true</p><p>let [x = 1] = [undefined];<br>x // 1</p><pre><code>#### 对象#####变量与属性同名- 字符串赋值</code></pre><p>  let { bar, foo, hello } = { foo: ‘aaa’, bar: ‘bbb’ };<br>  foo // “aaa”<br>  bar // “bbb”<br>  hello // “undefined”</p><pre><code>- 对象方法赋值</code></pre><p>const { log } = console;<br>log(‘hello’) // hello</p><pre><code>##### 变量名与属性名不同名</code></pre><p>let { foo: baz } = { foo: ‘aaa’, bar: ‘bbb’ };<br>baz // “aaa”</p><pre><code>对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者##### 嵌套对象赋值- 注意，对象嵌套赋值里，`冒号:`代表模式，并不是取值</code></pre><p>const node = {<br>    loc: {<br>      start: {<br>        line: 1,<br>        column: 5<br>      }<br>    }<br>  };</p><p>let { loc: { start }} = node;<br>start // Object {line: 1, column: 5}<br>loc // undefined</p><p>let { loc, loc: { start }}<br>start // Object {line: 1, column: 5}<br>loc // Object {start: Object}</p><p>let { loc: { start: { line }}} = node;<br>line // 1<br>loc // undefined<br>start // undefined</p><pre><code>##### 获取对象继承的属性</code></pre><p>const obj1 = {};<br>const obj2 = { foo: ‘bar’ };<br>Object.setPrototypeOf(obj1, obj2);</p><p>const { foo } = obj1;<br>foo // “bar”</p><pre><code>##### 默认值</code></pre><p>var {x = 3} = {};<br>x // 3</p><p>var {x = 3} = {x: undefined};<br>x // 3</p><pre><code>#### 已声明变量的解构赋值- 错误的写法</code></pre><p>let x;<br>{x} = {x: 1};<br>// SyntaxError: syntax error</p><pre><code>- 正确的写法</code></pre><p>let x;<br>({x} = {x: 1});</p><pre><code>#### 函数参数的解构赋值函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。对于函数内部的代码来说，它们能感受到的参数就是x和y。</code></pre><p>function add([x, y]){<br>  return x + y;<br>}</p><p>add([1, 2]); // 3</p><p><code>`</code></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;数组&quot;&gt;&lt;a href=&quot;#数组&quot; class=&quot;headerlink&quot; title=&quot;数组&quot;&gt;&lt;/a&gt;数组&lt;/h1&gt;&lt;h2 id=&quot;遍历&quot;&gt;&lt;a href=&quot;#遍历&quot; class=&quot;headerlink&quot; title=&quot;遍历&quot;&gt;&lt;/a&gt;遍历&lt;/h2&gt;&lt;ul&gt;
-&lt;
-      
-    
-    </summary>
-    
-      <category term="大前端" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="js" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/js/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>RxSwift入门：基本概念</title>
-    <link href="http://superkk.top/2018/05/21/RxSwift%E5%85%A5%E9%97%A8%EF%BC%9A%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-    <id>http://superkk.top/2018/05/21/RxSwift入门：基本概念/</id>
-    <published>2018-05-21T10:01:12.000Z</published>
-    <updated>2019-08-29T09:07:04.708Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h1><p>Observables是一个事件流的对象</p><h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。</p><pre><code class="Swift">let emptyStream: Observable&lt;Int&gt; = Observable.empty()_ = emptyStream.subscribe { event inprint(event)  completed}</code></pre><h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。</p><pre><code class="Swift">let neverStream: Observable&lt;Int&gt; = Observable.never()_ = neverStream.subscribe({ _ inprint(&quot;这个方法永远都不会被执行&quot;)})</code></pre><h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。</p><pre><code class="Swift">let justStream = Observable.just(32)_ = justStream.subscribe({ event inprint(event)/*next(32)completed*/})</code></pre><h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p><pre><code class="Swift">let ofStream = Observable.of(0, 1, 2)_ = ofStream.subscribe({ event inprint(event)/*next(0)next(1)next(2)completed*/})</code></pre><h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p><pre><code class="Swift">let streamFromArray = Observable.from([0, 1, 2])_ = streamFromArray.subscribe({ (event) inprint(event)/*next(0)next(1)next(2)completed*/})</code></pre><h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p><pre><code class="Swift">let myJust = { (singleElement: Int) -&gt; Observable &lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable inobserver.onNext(singleElement)observer.onCompleted()return Disposables.create()})}let singleElementStream = myJust(32)_ = singleElementStream.subscribe { (event) inprint(event)/*next(32)completed*/}</code></pre><h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p><pre><code class="Swift">let error = NSError(domain: &quot;com.RxSwiftDemo.kesen&quot;, code: -1, userInfo: nil)let errorStream: Observable&lt;Int&gt; = Observable.error(error)_ = errorStream.subscribe { (event) inprint(event)error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)}</code></pre><h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p><pre><code class="Swift">let defferedStream = Observable.deferred { () -&gt; Observable&lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable inobserver.onNext(0)observer.onNext(1)observer.onCompleted()return Disposables.create()})}_ = defferedStream.subscribe({ (event) inprint(event)/*next(0)next(1)completed*/})</code></pre><h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p><h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p><h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><p>它和PublishSubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p><h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p><h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;Observable&quot;&gt;&lt;a href=&quot;#Observable&quot; class=&quot;headerlink&quot; title=&quot;Observable&quot;&gt;&lt;/a&gt;Observable&lt;/h1&gt;&lt;p&gt;Observables是一个事件流的对象&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://superkk.top/categories/iOS/"/>
-    
-      <category term="Rx &amp; RAC" scheme="http://superkk.top/categories/iOS/Rx-RAC/"/>
+      <category term="微信小程序" scheme="http://superkk.top/categories/%E5%A4%A7%E5%89%8D%E7%AB%AF/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
     
     
   </entry>
@@ -447,85 +519,6 @@ function cook() {
     </summary>
     
       <category term="iOS" scheme="http://superkk.top/categories/iOS/"/>
-    
-    
-      <category term="iOS" scheme="http://superkk.top/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Autolayout高级</title>
-    <link href="http://superkk.top/2016/11/09/Autolayout%E9%AB%98%E7%BA%A7/"/>
-    <id>http://superkk.top/2016/11/09/Autolayout高级/</id>
-    <published>2016-11-09T12:23:21.000Z</published>
-    <updated>2019-08-29T09:02:37.964Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="intrinsicContentSize"><a href="#intrinsicContentSize" class="headerlink" title="intrinsicContentSize"></a>intrinsicContentSize</h1><p><code>Intrinsic Content Size</code>：固有大小。意思就是说我知道自己的大小，如果你没有为我指定大小，我就按照这个大小来。</p><p>比如：大家都知道在使用 AutoLayout 的时候，<code>UILabel</code> 就不用指定尺寸大小，只需指定位置即可，就是因为，只要确定了文字内容，字体等信息，它自己就能计算出大小来。</p><blockquote><p><code>UILabel</code>，<code>UIImageView</code>，<code>UIButton</code> 等组件及某些包含它们的系统组件都有 Intrinsic Content Size 属性。</p></blockquote><h1 id="Content-Hugging-约束（不想变大约束）"><a href="#Content-Hugging-约束（不想变大约束）" class="headerlink" title="Content Hugging 约束（不想变大约束）"></a><code>Content Hugging</code> 约束（不想变大约束）</h1><p>如果组件的此属性优先级比另一个组件此属性优先级高的话，那么这个组件就保持不变，另一个可以在需要拉伸的时候拉伸。</p><h1 id="Content-Compression-Resistance-约束（不想变小约束）"><a href="#Content-Compression-Resistance-约束（不想变小约束）" class="headerlink" title="Content Compression Resistance 约束（不想变小约束）"></a><code>Content Compression Resistance</code> 约束（不想变小约束）</h1><p>如果组件的此属性优先级比另一个组件此属性优先级高的话，那么这个组件就保持不变，另一个可以在需要压缩的时候压缩。</p><p>例如：</p><p><img src="https://upload-images.jianshu.io/upload_images/1120923-143170678a0a5d2a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h1 id="Top-Layout-Guide"><a href="#Top-Layout-Guide" class="headerlink" title="Top Layout Guide"></a><code>Top Layout Guide</code></h1><p><code>topLayoutGuide</code>属性表示不希望被透明的状态栏或导航栏遮挡的内容范围的最高位置。这个属性的值是它的length属性的值（topLayoutGuide.length）</p><p>这个值可能由当前的ViewController或这个ViewController所属的NavigationController或TabBarController决定，有如下情况：</p><ol><li>一个独立的ViewController，不包含于任何其他的ViewController。如果状态栏可见，topLayoutGuide表示状态栏的底部，否则表示这个ViewController的上边缘。</li><li>包含于其他ViewController的ViewController不对这个属性起决定作用，而是由容器ViewController决定这个属性的含义：</li></ol><blockquote><ol><li>如果导航栏（Navigation Bar）可见，topLayoutGuide表示导航栏的底部。</li><li>如果状态栏可见，topLayoutGuide表示状态栏的底部。</li><li>如果都不可见，表示ViewController的上边缘。</li></ol></blockquote><p>总之是屏幕上方任何遮挡内容的栏的最底部。</p><h1 id="Safe-Area"><a href="#Safe-Area" class="headerlink" title="Safe Area"></a>Safe Area</h1><p>*作用：取代<code>topLayoutGuide</code>和<code>bottomLayoutGuide</code>**</p><p><code>safeArea</code>是描述你的视图部分不被任何内容遮挡的方法。</p><p><img src="https://upload-images.jianshu.io/upload_images/1120923-4bfd008744e885e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h1 id="改变布局的方法"><a href="#改变布局的方法" class="headerlink" title="改变布局的方法"></a>改变布局的方法</h1><h2 id="一、-setNeedsLayout与layoutIfNeeded"><a href="#一、-setNeedsLayout与layoutIfNeeded" class="headerlink" title="一、 setNeedsLayout与layoutIfNeeded"></a>一、 <code>setNeedsLayout</code>与<code>layoutIfNeeded</code></h2><p>更新Autolayout后，如何要立即刷新布局，还要依次调用以下两个方法</p><pre><code>// 立即刷新布局（自己和subview的）self.view.setNeedsLayout()self.view.layoutIfNeeded()</code></pre><p><code>setNeedsLayout</code>给当前 UIView 立一个 flag，以表示后续应该调用 <code>layoutSubviews</code>方法，以调整当前视图及其子视图的布局。</p><p><code>layoutIfNeeded</code>如果有需要刷新的标记，立即调用layoutSubviews进行布局（如果没有标记，不会调用layoutSubviews）</p><h2 id="二、-layoutSubviews"><a href="#二、-layoutSubviews" class="headerlink" title="二、 layoutSubviews"></a>二、 <code>layoutSubviews</code></h2><h3 id="触发时机——Frame改变就会触发，具体如下"><a href="#触发时机——Frame改变就会触发，具体如下" class="headerlink" title="触发时机——Frame改变就会触发，具体如下"></a>触发时机——Frame改变就会触发，具体如下</h3><ol><li><p>初始化不会触发layoutSubviews，但是如果设置了不为CGRectZero的frame的时候就会触发</p></li><li><p>addSubview会触发layoutSubviews</p></li><li><p>设置view的Frame会触发layoutSubviews，当然前提是frame的值设置前后发生了变化</p></li><li><p>滚动一个UIScrollView会触发layoutSubviews</p></li><li><p>旋转Screen会触发父UIView上的layoutSubviews事件</p></li><li><p>改变一个UIView大小的时候也会触发父UIView上的layoutSubviews事件</p></li></ol><h3 id="何时重写-layoutSubviews-方法"><a href="#何时重写-layoutSubviews-方法" class="headerlink" title="何时重写 layoutSubviews 方法"></a>何时重写 <code>layoutSubviews</code> 方法</h3><pre><code>当我们在某个类的内部调整子视图位置时，需要调用；如果你想要在外部设置subviews的位置，就不要重写。</code></pre><h2 id="三、sizeToFit"><a href="#三、sizeToFit" class="headerlink" title="三、sizeToFit"></a>三、<code>sizeToFit</code></h2><p>调用sizeToFit的时候，系统会根据内容的帮我布局一个它认为最合适的大小。</p><p>我们一般在不方便手动布局的时候才调用sizeToFit方法。比如</p><ol><li><p>navigationBar中对navigationItem的设置，（添加两个视图以上的控件到Item）</p></li><li><p>toolBar中的对UIBarButtonItem的设置（一般我们还要添加弹簧控件）</p></li></ol><p>上述两种场合就可以用sizeToFit这个方法，来让系统给我们做自动布局。（注意：如果就添加一个控件的话，我们直接设置fram也是可以的）</p><ol start="3"><li><p>在tabBar中我们不能手动的添加的子控件，因为tabBar是根据控制器系统默认自动添加的tabBarItem。（猜想系统可能也会自动调用了这个方法）</p></li><li><p>UILabel中添加文字，然后让调整label的大小来适应文字，我们也调用sizeToFit的方法。</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;intrinsicContentSize&quot;&gt;&lt;a href=&quot;#intrinsicContentSize&quot; class=&quot;headerlink&quot; title=&quot;intrinsicContentSize&quot;&gt;&lt;/a&gt;intrinsicCont
-      
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://superkk.top/categories/iOS/"/>
-    
-      <category term="高级" scheme="http://superkk.top/categories/iOS/%E9%AB%98%E7%BA%A7/"/>
-    
-    
-      <category term="iOS" scheme="http://superkk.top/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>iOS调试内存泄露</title>
-    <link href="http://superkk.top/2016/10/18/iOS%E8%B0%83%E8%AF%95%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/"/>
-    <id>http://superkk.top/2016/10/18/iOS调试内存泄露/</id>
-    <published>2016-10-18T15:11:07.000Z</published>
-    <updated>2019-08-29T09:07:04.735Z</updated>
-    
-    <content type="html"><![CDATA[<p>[TOC]</p><h1 id="Xcode8使用Memory-Graph"><a href="#Xcode8使用Memory-Graph" class="headerlink" title="Xcode8使用Memory Graph"></a>Xcode8使用Memory Graph</h1><ul><li><p>第一步：真机下运行APP后，点击<br><img src="https://upload-images.jianshu.io/upload_images/1120923-296131fcf6ffee5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></li><li><p>第二步：查看issue面板，注意选择右边Runtime<br><img src="https://upload-images.jianshu.io/upload_images/1120923-8ee8fe78474da0d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></li><li><p>第三步：查看可能出现的内存泄露<br>比如上图的 <code>1 instance of __NSMallocBlock_leaked</code>，点击后出现下图<br><img src="https://upload-images.jianshu.io/upload_images/1120923-7765184c6159e657.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>原因在于如下代码</p><pre><code>group.didSelectedRowBlock = { [unowned self, group] row inguard let indexPaths = group.selectedIndexPaths else {return}if indexPaths.count &gt; 0 {self.shouldAdd = truelet row = (indexPaths.firstObject as! IndexPath).rowself.deviceAttri?.attrValue = String(row)} else {self.shouldAdd = false}}</code></pre><p>group的block中又使用了group，导致了循环引用，虽然使用了[unowned group]，事实证明并没有效果<br>最后的解决办法是修改didSelectedRowBlock的接口，直接将selectedIndexPaths参数传入block参数中:</p><pre><code>group.didSelectedRowBlock = { [unowned self] indexPaths inguard let indexPaths = indexPaths else {return}if indexPaths.count &gt; 0 {self.shouldAdd = trueself.deviceAttri?.attrValue = String(indexPaths.first!.row)} else {self.shouldAdd = false}}</code></pre></li><li>第四步：在 debug 页面查看内存泄露情况<br><img src="https://upload-images.jianshu.io/upload_images/1120923-5d076268da519675.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>有叹号说明需要注意可能存在内存泄露，可以看到 CoreFoundation中也可能存在内存泄露情况</li></ul><h1 id="使用Instruments的Leaks工具"><a href="#使用Instruments的Leaks工具" class="headerlink" title="使用Instruments的Leaks工具"></a>使用Instruments的Leaks工具</h1><h2 id="Time-Profiler"><a href="#Time-Profiler" class="headerlink" title="Time Profiler"></a><code>Time Profiler</code></h2><ul><li>查看多个线程里那些方法费时过多的方法</li><li>Call Tree上会默认按照费时的线程进行排序，单个线程中会也会按照对应的费时方法排序<br><img src="https://upload-images.jianshu.io/upload_images/1120923-b7b30c7aedac7d8a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li></ul><h2 id="Allocations"><a href="#Allocations" class="headerlink" title="Allocations"></a><code>Allocations</code></h2><ul><li>可以对每个动作的前后进行Generations，对比内存的增加，查看使内存增加的具体的方法和代码所在位置</li><li>具体操作</li></ul><ol><li>在右侧Generation Analysis里点击Mark Generation，这样会产生一个Generation，</li><li>切换到其他页面或一段时间产生了另外一个事件时再点Mark Generation来产生一个新的Generation，</li><li>这样反复，生成多个Generation，查看这几个Generation会看到Growth的大小，如果太大可以点进去查看相应占用较大的线程里右侧Heaviest Stack Trace里查看对应的代码块，然后进行相应的处理。</li></ol><h2 id="Leak"><a href="#Leak" class="headerlink" title="Leak"></a>Leak</h2><p>可以在上面区域的Leaks部分看到对应的时间点产生的溢出，选择后在下面区域的<code>Statistics&gt;Allocation Summary</code>能够看到泄漏的对象，同样可以通过Stack Trace查看到具体对应的代码区域。</p><h1 id="其他调试方法"><a href="#其他调试方法" class="headerlink" title="其他调试方法"></a>其他调试方法</h1><h2 id="勾选Address-Sanitizer可以在运行时看到坏内存访问情况"><a href="#勾选Address-Sanitizer可以在运行时看到坏内存访问情况" class="headerlink" title="勾选Address Sanitizer可以在运行时看到坏内存访问情况"></a>勾选<code>Address Sanitizer</code>可以在运行时看到坏内存访问情况</h2><p><img src="https://upload-images.jianshu.io/upload_images/1120923-a6440da959e589ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;[TOC]&lt;/p&gt;
-&lt;h1 id=&quot;Xcode8使用Memory-Graph&quot;&gt;&lt;a href=&quot;#Xcode8使用Memory-Graph&quot; class=&quot;headerlink&quot; title=&quot;Xcode8使用Memory Graph&quot;&gt;&lt;/a&gt;Xcode8使用Memor
-      
-    
-    </summary>
-    
-      <category term="iOS" scheme="http://superkk.top/categories/iOS/"/>
-    
-    
-      <category term="iOS" scheme="http://superkk.top/tags/iOS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用WireShark 调试真机网络</title>
-    <link href="http://superkk.top/2016/10/09/%E4%BD%BF%E7%94%A8WireShark-%E8%B0%83%E8%AF%95%E7%9C%9F%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    <id>http://superkk.top/2016/10/09/使用WireShark-调试真机网络/</id>
-    <published>2016-10-09T07:09:37.000Z</published>
-    <updated>2019-08-29T09:07:04.728Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="使用WireShark-调试真机网络"><a href="#使用WireShark-调试真机网络" class="headerlink" title="使用WireShark 调试真机网络"></a>使用WireShark 调试真机网络</h1><p>需求：调试UIWebView加载缓慢问题</p><ul><li><ol><li>获取iPhone的UDID<br><img src="https://upload-images.jianshu.io/upload_images/1120923-d7d6872480927c6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li></ol></li><li><p>2：根据获取的 UDID 创建一个虚拟的网卡<br><code>rvictl -s &lt;UDID&gt;</code><br><img src="https://upload-images.jianshu.io/upload_images/1120923-f7f78d28cb94eda6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></li></ul><p>通过 <code>ifconfig</code> 可以看到多了一个 <code>rvi0</code>接口<br>通过 <code>rvictl -l</code> 命令可以列出所有挂接的虚拟接口</p><ul><li>3: 在 Wireshark 首页选择 rvi0，使用默认的 Capture Options 即可开始对 iPhone 进行抓包。<br><img src="https://upload-images.jianshu.io/upload_images/1120923-602c6eb7b8e0f13c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li></ul><p>其中 iPhone 手机连接 WiFi 动态获取的 IP 地址为 192.168.100.1。</p><blockquote><p>黑色的内容表示遇到错误，需要重点关注<br>关闭wifi，可以抓取移动网络数据包</p></blockquote><p>-4 ： 使用<code>rvictl  -x</code>命令删除虚拟接口, 使用 iPhone 的 UDID 作为参数。</p><h1 id="WireShark-抓包技巧"><a href="#WireShark-抓包技巧" class="headerlink" title="WireShark 抓包技巧"></a>WireShark 抓包技巧</h1><ul><li>第一步：找到请求网址的 IP 地址<br>方法一：用ping命令得到对应的IP地址（可能不对，此时要用方法二）<br><img src="https://upload-images.jianshu.io/upload_images/1120923-4ff29746a38a13a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></li></ul><p>方法二：使用DNS包来确定IP地址</p><blockquote><p>注意手机上 DNS 解析的结果并不总是和电脑上的解析结果一致。这种情况下我们可以通过查看 DNS 数据包来确定<br>DNS 是基于 UDP 的协议，不会有 TCP 重传</p></blockquote><p><img src="https://upload-images.jianshu.io/upload_images/1120923-368232f0c1e87923.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><ul><li><p>第二步：过滤 IP 地址<br><img src="https://upload-images.jianshu.io/upload_images/1120923-78b3a639da943708.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></li><li><p>第三步：确定端口号<br><img src="https://upload-images.jianshu.io/upload_images/1120923-730d2741f957db51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p></li></ul><p>注意红框中的 <strong>SourcePort</strong>，这是客户端端口。我们知道 HTTP 支持并发请求，不同的并发请求肯定是占用不同的端口。所以在图中看到的上下两个数据包，并非一定是请求与响应的关系，他们可能属于两个不同的端口，彼此之间毫无关系，只是恰好在时间上最接近而已。</p><blockquote><p>如果只想显示某个端口的数据，可以使用:</p></blockquote><p><code>ip.addr == 220.194.203.68 and tcp.dstport == 52914</code></p><blockquote><p>如果只想看 HTTP 协议的 GET 请求与响应，可以使用 </p></blockquote><p><code></code>ip.addr == 220.194.203.68 and (http.request.method == “GET” || http.response.code == 200)<code></code>来过滤。</p><blockquote><p>如果想看丢包方面的数据，可以用 </p></blockquote><p><code>ip.addr == 220.194.203.68 and (tcp.analysis.fast_retransmission || tcp.analysis.retransmission)</code></p><p><code># 参考</code></p><p><a href="http://ios.jobbole.com/93159/" target="_blank" rel="noopener">http://ios.jobbole.com/93159/</a></p><p><a href="http://blog.csdn.net/phunxm/article/details/38590561" target="_blank" rel="noopener">http://blog.csdn.net/phunxm/article/details/38590561</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;使用WireShark-调试真机网络&quot;&gt;&lt;a href=&quot;#使用WireShark-调试真机网络&quot; class=&quot;headerlink&quot; title=&quot;使用WireShark 调试真机网络&quot;&gt;&lt;/a&gt;使用WireShark 调试真机网络&lt;/h1&gt;&lt;p&gt;需求：调试U
-      
-    
-    </summary>
-    
-      <category term="工具" scheme="http://superkk.top/categories/%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="iOS" scheme="http://superkk.top/tags/iOS/"/>

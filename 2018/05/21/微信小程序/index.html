@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>React-Native数据传递 | 爱工作·爱生活</title>
+  <title>微信小程序 | 爱工作·爱生活</title>
   <meta name="keywords" content="">
-  <meta name="description" content="React-Native数据传递 | 爱工作·爱生活">
+  <meta name="description" content="微信小程序 | 爱工作·爱生活">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
@@ -621,9 +621,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-React-Native数据传递" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-微信小程序" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">React-Native数据传递</h1>
+        <h1 class="article-title">微信小程序</h1>
     
     <div class="article-meta">
         
@@ -633,7 +633,7 @@
             
                 <a href="javascript:" data-rel="大前端">大前端</a>/
             
-                <a href="javascript:" data-rel="React-Native">React-Native</a>
+                <a href="javascript:" data-rel="微信小程序">微信小程序</a>
             
         </span>
         
@@ -641,12 +641,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 21:16:29'>2018-05-21 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 22:54:14'>2018-05-21 18:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:307</span>
+        <span>字数:402</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -665,7 +665,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#通过react-navigation传递数据"><span class="toc-text">通过react-navigation传递数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#顺传"><span class="toc-text">顺传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逆传"><span class="toc-text">逆传</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通过组件传递数据"><span class="toc-text">通过组件传递数据</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#顺传-1"><span class="toc-text">顺传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#逆传-1"><span class="toc-text">逆传</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#升级（检查更新）"><span class="toc-text">升级（检查更新）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用mpvue进行小程序开发"><span class="toc-text">使用mpvue进行小程序开发</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#系列教程"><span class="toc-text">系列教程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在mpvue中使用Vant-Weapp组件库"><span class="toc-text">在mpvue中使用Vant Weapp组件库</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -680,94 +680,41 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="通过react-navigation传递数据"><a href="#通过react-navigation传递数据" class="headerlink" title="通过react-navigation传递数据"></a>通过react-navigation传递数据</h1><h2 id="顺传"><a href="#顺传" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p>
-<pre><code>_onItemPress = (item) =&gt; {
-    NavigationService.navigate(&quot;VehicleMonitorCarInfoPage&quot;, {
-        data: item
-    });
-};
-</code></pre><p>获取数据</p>
-<pre><code>componentDidMount() {
-    // 或者使用 this.props.navigation.getParam(&#39;data&#39;)
-    let data = this.props.navigation.state.params.data;
-}
-</code></pre><h2 id="逆传"><a href="#逆传" class="headerlink" title="逆传"></a>逆传</h2><p>传递数据</p>
-<pre><code>_callback = (message) =&gt; {
-    console.log(message);
-}
-
-_onItemPress = (item) =&gt; {
-    NavigationService.navigate(&quot;VehicleMonitorCarInfoPage&quot;, {
-        callback: this._callback
-    });
-};
-</code></pre><p>子组件获取回调并执行</p>
-<pre><code>render() {
-    return (
-        &lt;View style={styles.container}&gt;
-            &lt;Button
-                title={&#39;点击测试&#39;}
-                onPress={() =&gt; this.props.navigation.state.params.callback(&#39;hello world&#39;) }&gt;
-            &lt;/Button&gt;
-        &lt;/View&gt;
-    );
-}
-</code></pre><h1 id="通过组件传递数据"><a href="#通过组件传递数据" class="headerlink" title="通过组件传递数据"></a>通过组件传递数据</h1><h2 id="顺传-1"><a href="#顺传-1" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p>
-<pre><code>_renderItem = ({item, index}) =&gt; {
-    return (&lt;View&gt;
-        &lt;MsgCard msg={item} index={index} allMsgPageType={this.state.msgType} navigation={this.props.navigation}/&gt;
-    &lt;/View&gt;)
-};
-</code></pre><p>子组件获取数据</p>
-<pre><code>export default class MsgCard extends Component&lt;Props&gt; {
-    constructor(props) {
-        super(props);
-        this.state = {
-            msg: this.props.msg,
-            index: this.props.index,
-            allMsgPageType: this.props.allMsgPageType,
-        }
-    }
-
-    //父组件更新数据，子组件不刷新时使用
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            msg: nextProps.msg,
-            index: nextProps.index,
-            allMsgPageType: nextProps.allMsgPageType,
-        });
-    }
-}
-</code></pre><h2 id="逆传-1"><a href="#逆传-1" class="headerlink" title="逆传"></a>逆传</h2><p>组件A<br>传递callback</p>
-<pre><code>_callback = (message) =&gt; {
-    console.log(message);
-}
-
-render() {
-    return (
-    &lt;View&gt;
-        &lt;MyListItem callback={this._callback}&gt;&lt;/MyListItem&gt;
-    &lt;/View&gt;)
-};
-</code></pre><p>组件B<br>子组件获取传递过来的callback并执行</p>
-<pre><code>class MyListItem extends React.PureComponent {
-    _onPress = () =&gt; {
-        this.props.callback(&#39;hello world&#39;)
-    };
-
-    render() {
-        return (
-            &lt;View style={styles.flatListItem} &gt;
-                &lt;Button
-                    title={&quot;点击测试&quot;}
-                    onPress={this._onPress}
-                &gt;
-                &lt;/Button&gt;
-            &lt;/View&gt;
-        );
-    }
+        <h1 id="升级（检查更新）"><a href="#升级（检查更新）" class="headerlink" title="升级（检查更新）"></a>升级（检查更新）</h1><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html</a></p>
+<h1 id="使用mpvue进行小程序开发"><a href="#使用mpvue进行小程序开发" class="headerlink" title="使用mpvue进行小程序开发"></a>使用mpvue进行小程序开发</h1><h2 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h2><p><code>一斤代码</code>的简书<a href="https://www.jianshu.com/p/8f779950bfd9" target="_blank" rel="noopener">https://www.jianshu.com/p/8f779950bfd9</a></p>
+<h2 id="在mpvue中使用Vant-Weapp组件库"><a href="#在mpvue中使用Vant-Weapp组件库" class="headerlink" title="在mpvue中使用Vant Weapp组件库"></a>在mpvue中使用Vant Weapp组件库</h2><ul>
+<li><p>1、将下载的小程序组件的<code>dist</code>目录拷贝到工程static目录下，然后改名，比如van-weapp<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225337.png" alt=""></p>
+</li>
+<li><p>2、打开ES6转ES5<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225350.png" alt=""></p>
+</li>
+<li><p>3、在需要使用van-weapp组件的页面创建main.json文件，并进行引入<br>然后在main.json中添加如下内容</p>
+<pre><code class="json">{
+  &quot;usingComponents&quot;: {
+      &quot;van-tab&quot;: &quot;../../../static/vant-weapp/tab/index&quot;,
+      &quot;van-tabs&quot;: &quot;../../../static/vant-weapp/tabs/index&quot;
+  }
 }
 </code></pre>
+</li>
+<li>4、使用自定义组件<pre><code class="Vue">  &lt;!-- 使用第三方组件 --&gt;
+  &lt;van-tabs v-bind:active=&quot;active&quot; @click=&quot;onChange&quot;&gt;
+    &lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;
+    &lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;
+    &lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;
+    &lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;
+  &lt;/van-tabs&gt;
+</code></pre>
+</li>
+<li>注意：在vant-weapp的官方文档中的具体用法是使用wxml的语法，所以我们不能直接照搬使用<br>比如官方文档示例代码为：<pre><code>&lt;van-tabs active=&quot;{{ active }}&quot; bind:change=&quot;onChange&quot;&gt;
+&lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;
+&lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;
+&lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;
+&lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;
+&lt;/van-tabs&gt;
+</code></pre>具体参考<a href="https://www.jianshu.com/p/2adff147b8a6" target="_blank" rel="noopener">https://www.jianshu.com/p/2adff147b8a6</a></li>
+</ul>
+<p>其他参考：<a href="https://www.jianshu.com/p/1b3b9e17ac88" target="_blank" rel="noopener">https://www.jianshu.com/p/1b3b9e17ac88</a></p>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论。 </span>
     </div>
@@ -776,12 +723,12 @@ render() {
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>React-Native数据传递</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">307</span></p>
+    <p><span class="copy-title">文章标题:</span>微信小程序</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">402</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2018-05-21, 18:01:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 21:16:29</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/React-Native数据传递/" title="React-Native数据传递">http://superkk.top/2018/05/21/React-Native数据传递/</a>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 22:54:14</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/微信小程序/" title="微信小程序">http://superkk.top/2018/05/21/微信小程序/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
