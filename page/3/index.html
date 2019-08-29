@@ -1265,7 +1265,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-05-09 18:20:02" itemprop="dateModified" datetime="2018-05-09T18:20:02+08:00">2018-05-09</time>
+                <time title="Modified: 2019-08-20 18:40:25" itemprop="dateModified" datetime="2019-08-20T18:40:25+08:00">2019-08-20</time>
               
             
           </span>
@@ -1325,7 +1325,7 @@
 <p>C)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char * (*fun1)(char * p1,char * p2);     //fun1 不是什么函数名,而是一个 指针变量,它指向一个函数。这个函数有两个指针类型的参数,函数的返回值也是一个指 针。我们把这个表达式改写一下:char * (*)(char * p1,char * p2) fun1; 这样子是不 是好看一些呢?只可惜编译器不这么想。</span><br></pre></td></tr></table></figure></p>
 <h1 id="函数指针数组"><a href="#函数指针数组" class="headerlink" title="函数指针数组"></a>函数指针数组</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">char * (*pf)(char * p)     //函数指针</span><br><span class="line">char * (*pf[3])(char * p);     //这是定义一个函数指针数组。它是一个数组,数组名为 pf,数组内存储了 3 个指向函数的 指针。pf是数组名</span><br></pre></td></tr></table></figure>
 <h1 id="函数指针数组的指针"><a href="#函数指针数组的指针" class="headerlink" title="函数指针数组的指针"></a>函数指针数组的指针</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char * (*(*pf)[3])(char * p);     //pf是指针，这个指针指向一个包含了 3 个元素的数组;这个数字里 面存的是指向函数的指针;这些指针指向一些返回值类型为指向字符的指针、参数为一个 指向字符的指针的函数。</span><br></pre></td></tr></table></figure>
-<h1 id="实战练习"><a href="#实战练习" class="headerlink" title="实战练习"></a>实战练习</h1><p><img src="https://upload-images.jianshu.io/upload_images/1120923-fd9888f4fcd773b3.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=" "></p>
+<h1 id="实战练习"><a href="#实战练习" class="headerlink" title="实战练习"></a>实战练习</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190820184018.png" alt=""></p>
 <ul>
 <li>参考答案：<br>a) int a;<br>b) int <em>a;<br>c) int **a;<br>d) int a[10];<br>e) int </em> a[10];<br>f) int (<em>a)[10];<br>g) int (</em>func)(int a);<br>h) int (*func[10])(int a);</li>
 </ul>
