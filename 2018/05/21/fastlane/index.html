@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MacOS安装Jenkins | 爱工作·爱生活</title>
+  <title>fastlane | 爱工作·爱生活</title>
   <meta name="keywords" content="">
-  <meta name="description" content="MacOS安装Jenkins | 爱工作·爱生活">
+  <meta name="description" content="fastlane | 爱工作·爱生活">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
@@ -621,9 +621,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-Jenkins安装" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-fastlane" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MacOS安装Jenkins</h1>
+        <h1 class="article-title">fastlane</h1>
     
     <div class="article-meta">
         
@@ -639,12 +639,12 @@
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-29 23:10:23'>2018-05-21 18:01</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-29 23:39:53'>2018-05-21 18:01</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:685</span>
+        <span>字数:927</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -663,7 +663,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#文档建议只看两处，蒲公英和fastlane的"><span class="toc-text">文档建议只看两处，蒲公英和fastlane的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决无法安装插件问题"><span class="toc-text">解决无法安装插件问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#权限问题导致无法执行脚本"><span class="toc-text">权限问题导致无法执行脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方法一：设置用户权限（不推荐）"><span class="toc-text">方法一：设置用户权限（不推荐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方法二：使用gem重新安装jenkins（推荐）"><span class="toc-text">方法二：使用gem重新安装jenkins（推荐）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Jenkins如何使用本地git仓库"><span class="toc-text">Jenkins如何使用本地git仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#全局变量如何使用"><span class="toc-text">全局变量如何使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#官方文档（推荐）"><span class="toc-text">官方文档（推荐）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mac上ruby管理工具-RVM"><span class="toc-text">Mac上ruby管理工具 RVM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装rvm"><span class="toc-text">安装rvm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关命令"><span class="toc-text">相关命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gem-常用命令"><span class="toc-text">gem 常用命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#fastlane"><span class="toc-text">fastlane</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TODO"><span class="toc-text">TODO:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gym"><span class="toc-text">gym</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fastlane-的工具链"><span class="toc-text">fastlane 的工具链</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-fir"><span class="toc-text">安装 fir</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-fastlane进行持续集成"><span class="toc-text">使用 fastlane进行持续集成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory"><span class="toc-text">报错：You don&#39;t have write permissions for the /usr/bin directory.</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -678,85 +678,94 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="文档建议只看两处，蒲公英和fastlane的"><a href="#文档建议只看两处，蒲公英和fastlane的" class="headerlink" title="文档建议只看两处，蒲公英和fastlane的"></a>文档建议只看两处，蒲公英和fastlane的</h1><h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><ul>
-<li>启动<br><code>sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist</code></li>
-<li>关闭<br><code>sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist</code></li>
-</ul>
-<h1 id="解决无法安装插件问题"><a href="#解决无法安装插件问题" class="headerlink" title="解决无法安装插件问题"></a>解决无法安装插件问题</h1><ol>
-<li>第一步：<code>插件管理 -&gt; Advanced -&gt; Update Site</code>中，将https改为http</li>
-<li>第二部：重启jenkins服务</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225004.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225013.png" alt=""></p>
-<h1 id="权限问题导致无法执行脚本"><a href="#权限问题导致无法执行脚本" class="headerlink" title="权限问题导致无法执行脚本"></a>权限问题导致无法执行脚本</h1><p>有两种解决办法：</p>
-<h2 id="方法一：设置用户权限（不推荐）"><a href="#方法一：设置用户权限（不推荐）" class="headerlink" title="方法一：设置用户权限（不推荐）"></a>方法一：设置用户权限（不推荐）</h2><p><strong>这样设置后依然会存在其他的一系列问题，例如执行fastlane脚本报错 </strong></p>
-<p>一般情况下，使用jenkins官网下载的安装包安装会出现这个问题。</p>
-<p>在官网下载dmg安装包，安装完毕即可在本机搭建jenkins的工作。但是jenkins不会用本地的用户去构建，任何创建的文件都是“jenkins”用户所有，这会造成很多权限问题，无法调用自己写的脚本，执行shell会出现没有权限的错误。</p>
-<ul>
-<li>解决办法：修改jenkins用户群组和用户</li>
-<li>第一步：查看自己的群组和用户名称： </li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225032.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225044.png" alt=""></p>
-<ul>
-<li>第二步：更改 Jenkins 用户群组和用户名称</li>
-</ul>
-<pre><code class="javascript">//停止Jenkins
-sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+        <p>[TOC]</p>
+<h1 id="官方文档（推荐）"><a href="#官方文档（推荐）" class="headerlink" title="官方文档（推荐）"></a>官方文档（推荐）</h1><p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p>
+<h1 id="Mac上ruby管理工具-RVM"><a href="#Mac上ruby管理工具-RVM" class="headerlink" title="Mac上ruby管理工具 RVM"></a>Mac上ruby管理工具 <code>RVM</code></h1><p>因为rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。</p>
+<h2 id="安装rvm"><a href="#安装rvm" class="headerlink" title="安装rvm"></a>安装rvm</h2><pre><code>
+$ curl -L get.rvm.io | bash -s stable
 
-// 修改group 和user
-sudo vim +1 +/daemon +’s/daemon/staff/’ +/daemon +’s/daemon/ks’ +wq org.jenkins-ci.plist
-sudo chown -R ks:staff /Users/Shared/Jenkins/
+$ source ~/.rvm/scripts/rvm
 
-// 开始Jenkins
-sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
-</code></pre>
-<p>或者你也可以手动修改 org.jenkins-ci.plist 文件中的内容<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225107.png" alt=""></p>
-<ul>
-<li>第三步：若无法打开jenkins，需要修改下权限</li>
-</ul>
-<pre><code class="script">$ sudo chown -R userName /Users/Shared/Jenkins
-$ sudo chown -R userName /var/log/jenkins
-#重启Jenkins
-$ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
-</code></pre>
-<ul>
-<li>WARING: Jenkins更改工作空间会导致原来的数据全部丢失<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225126.png" alt=""><br>参考：<a href="https://www.cnblogs.com/ihojin/p/jenkins-permission.html" target="_blank" rel="noopener">https://www.cnblogs.com/ihojin/p/jenkins-permission.html</a></li>
-</ul>
-<h2 id="方法二：使用gem重新安装jenkins（推荐）"><a href="#方法二：使用gem重新安装jenkins（推荐）" class="headerlink" title="方法二：使用gem重新安装jenkins（推荐）"></a>方法二：使用gem重新安装jenkins（推荐）</h2><ul>
-<li>卸载使用安装包安装的jenkins</li>
-</ul>
-<pre><code>//进入以下目录，双击运行
-/Library/Application Support/Jenkins/Uninstall.command
-//也可以这样运行
-sh &quot;/Library/Application Support/Jenkins/Uninstall.command&quot;
+</code></pre><p>等待终端加载完毕,后输入：</p>
+<pre><code>
+rvm -v
 
-//删除配置，这个可选
-sudo rm -rf /var/root/.jenkins ~/.jenkins
-sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
-sudo rm /Library/LaunchDaemons/org.jenkins-ci.plist
-sudo rm -rf /Applications/Jenkins &quot;/Library/Application Support/Jenkins&quot; /Library/Documentation/Jenkins
-sudo rm -rf /Users/Shared/Jenkins
-sudo dscl . -delete /Users/jenkins
-sudo dscl . -delete /Groups/jenkins
-sudo rm -f /etc/newsyslog.d/jenkins.conf
-pkgutil --pkgs | grep &#39;org\.jenkins-ci\.&#39; | xargs -n 1 sudo pkgutil --forget
-
-//如果使用brew安装的，可以执行以下命令
-brew uninstall jenkins
-</code></pre><ul>
-<li>安装</li>
-</ul>
-<pre><code>brew update &amp;&amp; brew install jenkins
-</code></pre><ul>
-<li>启动</li>
-</ul>
-<pre><code>jenkins
-</code></pre><p>参考：<a href="https://docs.fastlane.tools/best-practices/continuous-integration/jenkins/" target="_blank" rel="noopener">https://docs.fastlane.tools/best-practices/continuous-integration/jenkins/</a></p>
+</code></pre><p>如果能显示版本好则安装成功了。</p>
+<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><p>|描述|命令|</p>
+<p>|:-|:-|</p>
+<p>| 列出ruby可安装的版本信息 | <code>rvm list known</code> |</p>
+<p>| 更新RVM | <code>rvm get stable</code> |</p>
+<p>| 查看当前ruby版本 | rvm -v |</p>
+<p>| 安装一个ruby版本 | <code>rvm install 2.3.3</code> |</p>
+<p>| 设置为默认版本 | <code>rvm use 2.3.3 --default</code> |</p>
+<p>| 使用某个版本 | <code>rvm use 2.3.3</code> |</p>
+<p>| 查看已安装的ruby | <code>rvm list</code> |</p>
+<p>| 卸载一个已安装ruby版本 | <code>rvm remove 2.3.3</code> |</p>
+<p>| 查看已有的源 | <code>gem source -l</code> |</p>
 <p><br></p>
-<h1 id="Jenkins如何使用本地git仓库"><a href="#Jenkins如何使用本地git仓库" class="headerlink" title="Jenkins如何使用本地git仓库"></a>Jenkins如何使用本地git仓库</h1><p>git地址填写为本地文件路径即可<br><code>file:///home/rbkcbeqc/dev/git/gitsandbox.</code><br>参考：<a href="https://stackoverflow.com/questions/10498554/jenkins-linking-to-my-local-git-repository" target="_blank" rel="noopener">https://stackoverflow.com/questions/10498554/jenkins-linking-to-my-local-git-repository</a></p>
-<h1 id="全局变量如何使用"><a href="#全局变量如何使用" class="headerlink" title="全局变量如何使用"></a>全局变量如何使用</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225149.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225218.png" alt=""></p>
-<p>这里自己添加的变量可以在shell脚本中直接使用。</p>
-<pre><code class="sh">echo $TOKEN_SIT
-</code></pre>
+<p><br></p>
+<hr>
+<p><br></p>
+<h1 id="gem-常用命令"><a href="#gem-常用命令" class="headerlink" title="gem 常用命令"></a>gem 常用命令</h1><p>官网<a href="https://gems.ruby-china.com/" target="_blank" rel="noopener">https://gems.ruby-china.com/</a></p>
+<p>|描述|命令|</p>
+<p>|:-|:-|</p>
+<p>| 更新 gem | <code>sudo gem update --system</code>  |</p>
+<p>| 从Gem源安装gem包  |  <code>gem install [gemname]</code> |</p>
+<p>| 更新所有已安装的gem包 |<code>gem update</code> |</p>
+<p>| 更新指定的gem包 | <code>gem update [gemname]</code>|</p>
+<p>| 删除指定的gem包，注意此命令将删除所有已安装的版本| <code>gem uninstall [gemname]</code>|</p>
+<p>| 查看本机已安装的所有gem包 | <code>gem list [--local]</code> |</p>
+<p>| 查看镜像 | <code>gem sources -l</code> |</p>
+<p>| 修改镜像 |gem sources –add <a href="https://gems.ruby-china.org/" target="_blank" rel="noopener">https://gems.ruby-china.org/</a> –remove <a href="https://rubygems.org/，可以进入这两个网址查看详细信息" target="_blank" rel="noopener">https://rubygems.org/，可以进入这两个网址查看详细信息</a> |</p>
+<h1 id="fastlane"><a href="#fastlane" class="headerlink" title="fastlane"></a>fastlane</h1><p>官网<a href="https://fastlane.tools/" target="_blank" rel="noopener">https://fastlane.tools/</a></p>
+<p>github: <a href="https://github.com/fastlane/fastlane/tree/master/snapshot" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/snapshot</a></p>
+<p>|命令|描述|</p>
+<p>|:-|:-|</p>
+<p>| <code>sudo gem install fastlane -NV</code> | 安装/更新 fastlane |</p>
+<p> | <code>fastlane init</code>| 进入工程目录，初始化 fastlane 配置 |</p>
+<p>| <code>fastlane update_fastlane</code> | 更新fastlane各种插件等 |</p>
+<p>| <code>fastlane actions</code> |      列出所有可用fastlane活动 | </p>
+<p>| <code>fastlane action [action_name]</code> |    显示一个更详细的活动描述| </p>
+<p> | <code>fastlane lanes</code>   |     列出所有可用lanes (有描述) | </p>
+<p> | <code>fastlane list</code>  |     列出所有可用lanes (没有描述)  | </p>
+<p> | <code>fastlane new_action</code> |    在fastlane创建一个活动(集成) | </p>
+<p> | <code>fastlane search_plugins</code> |  查看所有插件 | </p>
+<p> | <code>fastlane add_plugin firim</code> |  安装插件 firim | </p>
+<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a>TODO:</h1><p>由于<code>xcodebuild -showBuildSettings -project ./RiciBellSDKDemo.xcodeproj</code> 命令卡死，导致无法继续，暂时没有找到解决办法，可能是因为使用了Xcode9 beta 版的Bug导致，后期再继续</p>
+<p>收藏一篇博客<a href="http://www.jianshu.com/p/228354881eab" target="_blank" rel="noopener">http://www.jianshu.com/p/228354881eab</a></p>
+<h2 id="gym"><a href="#gym" class="headerlink" title="gym"></a>gym</h2><p> 类似于<code>shenzhen</code></p>
+<p><a href="https://github.com/fastlane/fastlane/tree/master/gym#export-options" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/gym#export-options</a></p>
+<p>|命令|描述|</p>
+<p>|:-|:-|</p>
+<p>| <code>gym init</code> | 创建Gymfile文件 |</p>
+<h2 id="fastlane-的工具链"><a href="#fastlane-的工具链" class="headerlink" title="fastlane 的工具链"></a>fastlane 的工具链</h2><p>在 fastlane 这个大家庭中，包含了下列工具：</p>
+<ul>
+<li>produce 创建可用于 iTunes Connect 和 Apple Developer Portal 的 iOS app。</li>
+<li>cert 自动创建和维护 iOS 代码签名证书。</li>
+<li>sigh 创建、更新、下载和修复 provisioning profiles。</li>
+<li>snapshot 自动将 App 屏幕截图本地化到每种设备上。</li>
+<li>frameit 将屏幕截图适配到适当的设备屏幕大小。</li>
+<li>gym 创建和打包 iOS app。</li>
+<li>deliver 上传屏幕截图、元数据和 App 到 App 商店。<h1 id="安装-fir"><a href="#安装-fir" class="headerlink" title="安装 fir"></a>安装 fir</h1></li>
+</ul>
+<p>1、安装</p>
+<p>|描述|命令|</p>
+<p>|:-|:-|</p>
+<p>| 安装 fir-cli | <code>gem install fir-cli</code> |</p>
+<p>2、获取token登陆</p>
+<p>获取 fir 账号的 token，当使用 fir login 登录了之后, 后续命令都不需要加上 -T 参数, 会默认使用当前用户的 token 进行相关操作</p>
+<p>|描述|命令|</p>
+<p>|:-|:-|</p>
+<p>| 登陆 fir-cli | <code>fir login XXX_YOUR_API_TOKEN_XXX</code> |</p>
+<p>3、编译打包 ipa 文件</p>
+<p>|描述|命令| 参数说明|</p>
+<p>|:-|:-|:- |</p>
+<p>| 编译打包 ipa 文件 | <code>schema=&quot;testFir&quot; fir build_ipa ~/Developer/$schema -o ~/Developer/build -w -C Release -S &quot;$schema&quot;</code> | -w 是 –workspace 的简写，表示编译 *.xcworkspace, 没有带这个参数则编译 xcodeproj 文件。<br> -C Release, 以 Release 方式打包，若 Debug 则是打调试包。 <br> -S: 编译用 CocoaPods 做依赖管理的 .ipa 包|</p>
+<p>4、上传 ipa</p>
+<p>|描述|命令| 参数说明|</p>
+<p>|:-|:-|:- |</p>
+<p>| 上传 ipa | <code>fir publish -c &quot;first version log&quot; ${schema}*.ipa</code> | -c 后带 log。默认的包名是 schema-版本号-build－build 号，如 testFir-2.5.3-build-576.ipa。 |</p>
+<h1 id="使用-fastlane进行持续集成"><a href="#使用-fastlane进行持续集成" class="headerlink" title="使用 fastlane进行持续集成"></a>使用 fastlane进行持续集成</h1><h1 id="报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory"><a href="#报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory" class="headerlink" title="报错：You don&#39;t have write permissions for the /usr/bin directory."></a>报错：<code>You don&#39;t have write permissions for the /usr/bin directory.</code></h1><p><code>sudo gem install fastlane -n /usr/local/bin</code></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论。 </span>
@@ -766,12 +775,12 @@ brew uninstall jenkins
 
 
 <div class="article_copyright">
-    <p><span class="copy-title">文章标题:</span>MacOS安装Jenkins</p>
-    <p><span class="copy-title">文章字数:</span><span class="post-count">685</span></p>
+    <p><span class="copy-title">文章标题:</span>fastlane</p>
+    <p><span class="copy-title">文章字数:</span><span class="post-count">927</span></p>
     <p><span class="copy-title">本文作者:</span><a href="javascript:void(0)" title="action456789">action456789</a></p>
     <p><span class="copy-title">发布时间:</span>2018-05-21, 18:01:12</p>
-    <p><span class="copy-title">最后更新:</span>2019-08-29, 23:10:23</p>
-    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/Jenkins安装/" title="MacOS安装Jenkins">http://superkk.top/2018/05/21/Jenkins安装/</a>
+    <p><span class="copy-title">最后更新:</span>2019-08-29, 23:39:53</p>
+    <span class="copy-title">原始链接:</span><a class="post-url" href="/2018/05/21/fastlane/" title="fastlane">http://superkk.top/2018/05/21/fastlane/</a>
     <p>
         <span class="copy-title">版权声明:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
     </p>
