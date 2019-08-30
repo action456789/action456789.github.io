@@ -1209,7 +1209,7 @@ class ServiceA: NSObject {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/RxSwift map,flatMap,flatMapLatest的区别/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/RxSwift基本概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -1228,8 +1228,8 @@ class ServiceA: NSObject {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/21/RxSwift map,flatMap,flatMapLatest的区别/" itemprop="url">
-                  RxSwift map,flatMap,flatMapLatest的区别
+                <a class="post-title-link" href="/2018/05/21/RxSwift基本概念/" itemprop="url">
+                  RxSwift基本概念
                 </a>
               
             
@@ -1272,7 +1272,7 @@ class ServiceA: NSObject {
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-30 00:19:38" itemprop="dateModified" datetime="2019-08-30T00:19:38+08:00">2019-08-30</time>
+                <time title="Modified: 2019-08-30 00:10:11" itemprop="dateModified" datetime="2019-08-30T00:10:11+08:00">2019-08-30</time>
               
             
           </span>
@@ -1332,9 +1332,104 @@ class ServiceA: NSObject {
       
         
           
-            <h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830001857.png" alt=""></p>
-<h1 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830001915.png" alt=""></p>
-<h1 id="flatMapLatest"><a href="#flatMapLatest" class="headerlink" title="flatMapLatest"></a>flatMapLatest</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830001930.png" alt=""></p>
+            <p>[TOC]</p>
+<h1 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h1><p>Observables是一个事件流的对象</p>
+<h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。</p>
+<pre><code class="Swift">let emptyStream: Observable&lt;Int&gt; = Observable.empty()
+_ = emptyStream.subscribe { event in
+    print(event)  completed
+}
+</code></pre>
+<h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。</p>
+<pre><code class="Swift">let neverStream: Observable&lt;Int&gt; = Observable.never()
+_ = neverStream.subscribe({ _ in
+    print(&quot;这个方法永远都不会被执行&quot;)
+})
+</code></pre>
+<h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。</p>
+<pre><code class="Swift">let justStream = Observable.just(32)
+_ = justStream.subscribe({ event in
+    print(event)
+    /*
+    next(32)
+    completed
+    */
+})
+</code></pre>
+<h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p>
+<pre><code class="Swift">let ofStream = Observable.of(0, 1, 2)
+_ = ofStream.subscribe({ event in
+    print(event)
+    /*
+    next(0)
+    next(1)
+    next(2)
+    completed
+    */
+})
+</code></pre>
+<h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p>
+<pre><code class="Swift">let streamFromArray = Observable.from([0, 1, 2])
+_ = streamFromArray.subscribe({ (event) in
+    print(event)
+    /*
+    next(0)
+    next(1)
+    next(2)
+    completed
+    */
+})
+</code></pre>
+<h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p>
+<pre><code class="Swift">let myJust = { (singleElement: Int) -&gt; Observable &lt;Int&gt; in
+return Observable.create({ (observer) -&gt; Disposable in
+    observer.onNext(singleElement)
+    observer.onCompleted()
+    return Disposables.create()
+})
+}
+
+let singleElementStream = myJust(32)
+_ = singleElementStream.subscribe { (event) in
+    print(event)
+    /*
+    next(32)
+    completed
+    */
+}
+</code></pre>
+<h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p>
+<pre><code class="Swift">let error = NSError(domain: &quot;com.RxSwiftDemo.kesen&quot;, code: -1, userInfo: nil)
+let errorStream: Observable&lt;Int&gt; = Observable.error(error)
+_ = errorStream.subscribe { (event) in
+    print(event)
+    error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)
+}
+</code></pre>
+<h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p>
+<pre><code class="Swift">let defferedStream = Observable.deferred { () -&gt; Observable&lt;Int&gt; in
+return Observable.create({ (observer) -&gt; Disposable in
+    observer.onNext(0)
+    observer.onNext(1)
+    observer.onCompleted()
+    return Disposables.create()
+})
+}
+
+_ = defferedStream.subscribe({ (event) in
+    print(event)
+    /*
+    next(0)
+    next(1)
+    completed
+    */
+})
+</code></pre>
+<h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p>
+<h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p>
+<h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><p>它和PublishSubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p>
+<h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p>
+<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>
 
           
         
@@ -1388,7 +1483,7 @@ class ServiceA: NSObject {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/JS中的Promise, async, await/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/JS原型链与prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -1407,8 +1502,8 @@ class ServiceA: NSObject {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/21/JS中的Promise, async, await/" itemprop="url">
-                  JS中的Promise, async, await
+                <a class="post-title-link" href="/2018/05/21/JS原型链与prototype/" itemprop="url">
+                  JS原型链与prototype
                 </a>
               
             
@@ -1451,7 +1546,7 @@ class ServiceA: NSObject {
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-29 23:22:19" itemprop="dateModified" datetime="2019-08-29T23:22:19+08:00">2019-08-29</time>
+                <time title="Modified: 2019-08-29 22:40:08" itemprop="dateModified" datetime="2019-08-29T22:40:08+08:00">2019-08-29</time>
               
             
           </span>
@@ -1511,194 +1606,52 @@ class ServiceA: NSObject {
       
         
           
-            <h2 id="准备代码"><a href="#准备代码" class="headerlink" title="准备代码"></a>准备代码</h2><pre><code class="JS">//做饭
-function cook() {
-    console.log(&#39;开始做饭。&#39;);
-    var p = new Promise(function (resolve, reject) { //做一些异步操作
-        setTimeout(function () {
-            resolve(&#39;鸡蛋炒饭&#39;);
-            // reject(&#39;烧焦的米饭&#39;);
-        }, 1000);
-    });
-    return p;
-}
-
-//吃饭
-function eat(data) {
-    console.log(&#39;开始吃饭：&#39; + data);
-    var p = new Promise(function (resolve, reject) { //做一些异步操作
-        setTimeout(function () {
-            resolve(&#39;一块碗和一双筷子&#39;);
-        }, 2000);
-    });
-    return p;
-}
-
-function wash(data) {
-    console.log(&#39;开始洗碗：&#39; + data);
-    var p = new Promise(function (resolve, reject) { //做一些异步操作
-        setTimeout(function () {
-            resolve(&#39;干净的碗筷&#39;);
-        }, 2000);
-    });
-    return p;
-}
-</code></pre>
-<pre><code class="JS">//切菜
-function cutUp() {
-    var p = new Promise(function (resolve, reject) { //做一些异步操作
-        setTimeout(function () {
-            resolve(&#39;切好的菜&#39;);
-        }, 1000);
-    });
-    return p;
-}
-
-//烧水
-function boil() {
-    var p = new Promise(function (resolve, reject) { //做一些异步操作
-        setTimeout(function () {
-            resolve(&#39;烧好的水&#39;);
-        }, 2000);
-    });
-    return p;
-}
-</code></pre>
-<h2 id="async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"><a href="#async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题" class="headerlink" title="async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"></a>async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题</h2><h4 id="async"><a href="#async" class="headerlink" title="async"></a>async</h4><ul>
-<li>当调用一个 async 函数时，会返回一个 Promise 对象</li>
-<li>当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；</li>
-<li>当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。<ul>
-<li>当async 函数没有返回值，它会返回 Promise.resolve()。</li>
+            <h1 id="闭包：函数-在函数创建时刻关联的父作用域的一个集合体"><a href="#闭包：函数-在函数创建时刻关联的父作用域的一个集合体" class="headerlink" title="闭包：函数+在函数创建时刻关联的父作用域的一个集合体"></a>闭包：<code>函数</code>+<code>在函数创建时刻关联的父作用域</code>的一个集合体</h1><p>闭包在JavaScript当中就是一个函数和在函数创建时刻关联的父作用域的一个集合体，通过这个集合体，一个函数就可以访问外部函数的变量了。<br>注意：是在函数创建时刻关联父作用域，而不是运行时刻关联。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223729.png" alt=""></p>
+<p>当执行creatEatFunction的时候， eat函数才会被创建出来，此时eat函数就会把外部函数的作用域链记录下来（其中包含desc=’ is eating’)，以便执行时使用”<br>比如eat函数的作用域链是这样的。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223756.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223809.png" alt=""><br>输出1</p>
+<h1 id="JS中继承的实现：JS中没有类的概念，如何实现继承"><a href="#JS中继承的实现：JS中没有类的概念，如何实现继承" class="headerlink" title="JS中继承的实现：JS中没有类的概念，如何实现继承"></a>JS中继承的实现：JS中没有类的概念，如何实现继承</h1><ul>
+<li>1、通过<code>__proto__</code>实现继承：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223828.png" alt=""><br><code>`</code>JavaScript<br>var animal = {<br>  name: ‘animal’,<br>  eat: function() {<pre><code>  console.log(this.name+&#39; is eating&#39;);
+</code></pre>  }<br>};</li>
 </ul>
-</li>
-</ul>
-<h4 id="await"><a href="#await" class="headerlink" title="await"></a>await</h4><ul>
-<li>await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。</li>
-<li>await后面调用的函数需要返回一个promise</li>
-<li><p>await 必须出现在 async 函数内部，不能单独使用。</p>
-</li>
-<li><p>若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行async function。</p>
-</li>
-<li>若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。</li>
-<li>若 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。</li>
-</ul>
-<h2 id="一-then-：多个异步事件串行执行"><a href="#一-then-：多个异步事件串行执行" class="headerlink" title="一. then()：多个异步事件串行执行"></a>一. <code>then()</code>：多个异步事件串行执行</h2><p>类似于RxSwift中<code>flatMap</code></p>
-<h4 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h4><pre><code class="JS">cook()
-    .then(data =&gt; {
-        return eat(data);
-    })
-    .then(data =&gt; {
-        return wash(data);
-    })
-    .then(data =&gt; {
-        console.log(data);
-    });
-</code></pre>
-<h4 id="写法二：-简化的写法"><a href="#写法二：-简化的写法" class="headerlink" title="写法二： 简化的写法"></a>写法二： 简化的写法</h4><pre><code>// 简化的写法
-cook()
-    .then(eat)
-    .then(wash)
-    .then((data) =&gt; {
-        console.log(data);
-    })
-    .catch(err=&gt;{
-        console.log(err);
-    });
-</code></pre><h4 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h4><pre><code>// 抛出异常
-cook()
-    .then(data =&gt; {
-        throw new Error(&#39;米饭被打翻了！&#39;);
-        eat(data);
-    })
-    .then(wash)
-    .then((data) =&gt; {
-        console.log(data);
-    })
-    .catch(err =&gt; {
-        console.log(err);
-    });
-</code></pre><h4 id="写法三：使用async-await"><a href="#写法三：使用async-await" class="headerlink" title="写法三：使用async/await"></a>写法三：使用async/await</h4><pre><code class="js">async function flatMap() {
-    try {
-        let cookResult = await cook();
-        let eatResult = await eat();
-        let washResult = await wash();
-        console.log(`async await flatMap test: ${cookResult},${eatResult},${washResult}~~~~~`);
-    } catch (err) {
-        console.log(`error: ${err}`);
-    }
-}
-flatMap() // async await flatMap test: 鸡蛋炒饭,一块碗和一双筷子,干净的碗筷~~~~~
-</code></pre>
-<h2 id="二-all-多个异步事件并行执行，全部执行完毕后再执行then回调"><a href="#二-all-多个异步事件并行执行，全部执行完毕后再执行then回调" class="headerlink" title="二. all(): 多个异步事件并行执行，全部执行完毕后再执行then回调"></a>二. <code>all()</code>: 多个异步事件并行执行，全部执行完毕后再执行then回调</h2><p>类似于RxSwift中<code>zip</code></p>
-<h4 id="方式一：Promise"><a href="#方式一：Promise" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise
-    .all([cutUp(), boil()])
-    .then(results =&gt; {
-        console.log(results);
-    });
-</code></pre>
-<h4 id="方式二：使用async-await"><a href="#方式二：使用async-await" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="js">async function zip() {
-    try {
-        let results = await Promise.all([cutUp(), boil()]);
-        console.log(`async await zip test ${results}`)
-    } catch (err) {
-        console.log(`error: ${err}`);
+<p>var dog={<br>    name: ‘dog’,<br>    <strong>proto</strong>: animal<br>};</p>
+<p>var cat={<br>    name: ‘cat’,<br>    <strong>proto</strong>: animal<br>};</p>
+<p>dog.eat();<br>cat.eat();</p>
+<pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829223846.png)
+- 2、语法糖：`new`
+```JavaScript
+function Student(name){
+    this.name=name,
+    this.sayHello=function(){
+        console.log(&quot;Hi, I am &quot;+this.name);
     }
 }
 
-zip() // async await zip test 切好的菜,烧好的水
-</code></pre>
-<h2 id="三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调"><a href="#三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调" class="headerlink" title="三. race(): 多个异步事件同时执行，只要有一个执行完毕立即执行then回调"></a>三. <code>race()</code>: 多个异步事件同时执行，只要有一个执行完毕立即执行then回调</h2><h4 id="方式一：Promise-1"><a href="#方式一：Promise-1" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise
-    .race([cutUp(), boil()])
-    .then(results =&gt; {
-        console.log(results);
-    });
-</code></pre>
-<h4 id="方式二：使用async-await-1"><a href="#方式二：使用async-await-1" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="JS">async function race() {
-    try {
-        let results = await Promise.race([cutUp(), boil()]);
-        console.log(`async await race test ${results}`)
-    } catch (err) {
-        console.log(`error: ${err}`);
-    }
-}
+andy=new Student(&#39;andy&#39;);
+lisa=new Student(&#39;lisa&#39;);
 
-race() //async await race test 切好的菜
-</code></pre>
+andy.sayHello();
+lisa.sayHello();
+</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223906.png" alt=""></p>
 <ul>
-<li>应用：为异步操作设置超时时间</li>
+<li>3、通过prototype实现继承，避免同一方法的多个副本。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223918.png" alt=""><br><code>`</code>JavaScript<br>// 通过prototype实现继承<br>Student.prototype={<br>  sayHello2:function(){<pre><code>  console.log(&quot;Hi, I am &quot;+this.name);
+</code></pre>  }<br>}</li>
 </ul>
-<pre><code class="JS">//请求某个图片资源
-function requestImg(){
-    var p = new Promise(function(resolve, reject){
-    var img = new Image();
-    img.onload = function(){
-       resolve(img);
+<p>andy=new Student(‘andy’);<br>lisa=new Student(‘lisa’);</p>
+<p>andy.sayHello();<br>lisa.sayHello();</p>
+<pre><code>![](https://raw.githubusercontent.com/action456789/Image/master/20190829223937.png)
+- 4、语法糖：`class`
+```JavaScript
+// 语法糖
+class Student2{
+    constructor(name){
+        this.name=name;
     }
-    img.src = &#39;xxxxxx&#39;;
-    });
-    return p;
+    sayHello() {
+        console.log(&quot;Hi, I am &quot;+this.name);
+    }
 }
-
-//延时函数，用于给请求计时
-function timeout(){
-    var p = new Promise(function(resolve, reject){
-        setTimeout(function(){
-            reject(&#39;图片请求超时&#39;);
-        }, 5000);
-    });
-    return p;
-}
-
-Promise
-.race([requestImg(), timeout()])
-.then(function(results){
-    console.log(results);
-})
-.catch(function(reason){
-    console.log(reason);
-});
-</code></pre>
-<p>参考：<a href="https://www.cnblogs.com/sweeeper/p/8442613.html" target="_blank" rel="noopener">https://www.cnblogs.com/sweeeper/p/8442613.html</a><br><a href="https://segmentfault.com/a/1190000011526612?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011526612?utm_source=tag-newest</a></p>
+andy=new Student2(&#39;andy&#39;);
+andy.sayHello();
+</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829223955.png" alt=""></p>
 
           
         
@@ -2309,7 +2262,7 @@ brew uninstall jenkins
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/快捷键/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/微信小程序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -2328,8 +2281,8 @@ brew uninstall jenkins
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/21/快捷键/" itemprop="url">
-                  快捷键
+                <a class="post-title-link" href="/2018/05/21/微信小程序/" itemprop="url">
+                  微信小程序
                 </a>
               
             
@@ -2372,7 +2325,7 @@ brew uninstall jenkins
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-29 22:57:04" itemprop="dateModified" datetime="2019-08-29T22:57:04+08:00">2019-08-29</time>
+                <time title="Modified: 2019-08-29 22:54:14" itemprop="dateModified" datetime="2019-08-29T22:54:14+08:00">2019-08-29</time>
               
             
           </span>
@@ -2389,7 +2342,14 @@ brew uninstall jenkins
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大前端/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大前端/微信小程序/" itemprop="url" rel="index"><span itemprop="name">微信小程序</span></a></span>
 
                 
                 
@@ -2425,138 +2385,40 @@ brew uninstall jenkins
       
         
           
-            <h1 id="Webstrom-IDEA-快捷键"><a href="#Webstrom-IDEA-快捷键" class="headerlink" title="Webstrom/IDEA 快捷键"></a>Webstrom/IDEA 快捷键</h1><ul>
-<li><code>双击 Shift / cmd + shift + A</code>：全局搜索</li>
-<li><code>cmd + B</code>: 跳到变量申明处</li>
-<li><code>cmd + iption + B</code>: 跳转接口实现类</li>
-<li><code>ctrl + F12</code>: 可以显示当前文件的结构</li>
-<li><code>ctrl + D</code>: 行复制</li>
-<li><code>cmd + Home/End</code>：跳到文件头/尾</li>
-<li><code>cmd + K</code>: 代码补全 </li>
-<li><code>cmd + option + T</code>：用 if, else, try, catch, for 等来围绕选中的代码块</li>
-<li><code>cmd + N / ctrl + 回车</code>：打开代码生成菜单</li>
-<li><code>cmd + P</code>：显示方法具体信息</li>
-<li><code>ctrl + J</code>：查看方法文档</li>
-<li><code>cmd + E</code>：显示打开的文件历史记录</li>
-<li><code>cmd + U</code>：进入父类</li>
-<li><code>cmd + ⬆️/⬇️</code>：进入上一个/下一个方法</li>
-<li><code>cmd  + shift + T</code>：查看类、属性列表</li>
-<li><code>option+ F7</code>：全局找到自己被使用的地方</li>
-<li><code>cmd + F7</code>：在当前文件找到自己被使用的地方</li>
-<li><code>cmd + PgUp / PgDn</code>：左右tab切换</li>
-<li><code>cmd +W</code>：关闭当前tab</li>
-<li><code>cmd + option + U</code>：显示类/接口的依赖关系UML图</li>
-<li><code>cmd + option + V</code>：自动生成返回值</li>
-<li><code>cmd + F9</code>：编译（idea热部署）</li>
-<li><p><code>option + shift +  ⬆️/⬇️</code>： 移动行</p>
+            <h1 id="升级（检查更新）"><a href="#升级（检查更新）" class="headerlink" title="升级（检查更新）"></a>升级（检查更新）</h1><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html</a></p>
+<h1 id="使用mpvue进行小程序开发"><a href="#使用mpvue进行小程序开发" class="headerlink" title="使用mpvue进行小程序开发"></a>使用mpvue进行小程序开发</h1><h2 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h2><p><code>一斤代码</code>的简书<a href="https://www.jianshu.com/p/8f779950bfd9" target="_blank" rel="noopener">https://www.jianshu.com/p/8f779950bfd9</a></p>
+<h2 id="在mpvue中使用Vant-Weapp组件库"><a href="#在mpvue中使用Vant-Weapp组件库" class="headerlink" title="在mpvue中使用Vant Weapp组件库"></a>在mpvue中使用Vant Weapp组件库</h2><ul>
+<li><p>1、将下载的小程序组件的<code>dist</code>目录拷贝到工程static目录下，然后改名，比如van-weapp<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225337.png" alt=""></p>
 </li>
-<li><p>自动import</p>
-<ul>
-<li><code>ctrl+option+O</code>：删除未使用的引用</li>
-</ul>
+<li><p>2、打开ES6转ES5<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225350.png" alt=""></p>
 </li>
-<li><p>多光标操作</p>
-<ul>
-<li><code>ctrl+G</code>：选中出现的单词并添加光标（Windows上为<code>Alt + J</code>）</li>
-<li><code>ctrl+shift+G</code>：取消选中出现的单词（Windows上的Alt + Shift + J）</li>
-<li><code>option+shift+鼠标左键单机</code>：在单击处添加光标</li>
-<li><code>option+鼠标拖动</code>：在选中处添加光标</li>
-</ul>
+<li><p>3、在需要使用van-weapp组件的页面创建main.json文件，并进行引入<br>然后在main.json中添加如下内容</p>
+<pre><code class="json">{
+  &quot;usingComponents&quot;: {
+      &quot;van-tab&quot;: &quot;../../../static/vant-weapp/tab/index&quot;,
+      &quot;van-tabs&quot;: &quot;../../../static/vant-weapp/tabs/index&quot;
+  }
+}
+</code></pre>
 </li>
-<li><p>选中操作</p>
-<ul>
-<li><code>option+ ⬆️/⬇️</code>：增加选中范围 / 减少选中范围</li>
-<li><code>cmd+option+M</code>：使用选中代码段生成函数</li>
-<li><code>cmd+option+T</code>：使用try catch等包围代码段</li>
-</ul>
+<li>4、使用自定义组件<pre><code class="Vue">  &lt;!-- 使用第三方组件 --&gt;
+  &lt;van-tabs v-bind:active=&quot;active&quot; @click=&quot;onChange&quot;&gt;
+    &lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;
+    &lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;
+    &lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;
+    &lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;
+  &lt;/van-tabs&gt;
+</code></pre>
 </li>
+<li>注意：在vant-weapp的官方文档中的具体用法是使用wxml的语法，所以我们不能直接照搬使用<br>比如官方文档示例代码为：<pre><code>&lt;van-tabs active=&quot;{{ active }}&quot; bind:change=&quot;onChange&quot;&gt;
+&lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;
+&lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;
+&lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;
+&lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;
+&lt;/van-tabs&gt;
+</code></pre>具体参考<a href="https://www.jianshu.com/p/2adff147b8a6" target="_blank" rel="noopener">https://www.jianshu.com/p/2adff147b8a6</a></li>
 </ul>
-<p><a href="https://blog.jetbrains.com/phpstorm/2014/03/working-with-multiple-selection-in-phpstorm-8-eap/" target="_blank" rel="noopener">https://blog.jetbrains.com/phpstorm/2014/03/working-with-multiple-selection-in-phpstorm-8-eap/</a></p>
-<h1 id="android模拟器快捷键"><a href="#android模拟器快捷键" class="headerlink" title="android模拟器快捷键"></a>android模拟器快捷键</h1><ul>
-<li><code>cmd + m</code> 显示开发者菜单</li>
-<li><code>R + R</code> reload</li>
-</ul>
-<h1 id="iOS模拟器快捷键"><a href="#iOS模拟器快捷键" class="headerlink" title="iOS模拟器快捷键"></a>iOS模拟器快捷键</h1><ul>
-<li><code>cmd + d</code>/<code>ctrl+command+z</code> 显示开发者菜单</li>
-<li><code>cmd + r</code> reload<br>单使用模拟器软键盘时，<code>cmd+r</code>/<code>cmd+d</code>可能失效，此时使用<code>ctrl+command+z</code>即可<br>或者：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829224617.png" alt=""><h2 id="React-Native-命令"><a href="#React-Native-命令" class="headerlink" title="React Native 命令"></a>React Native 命令</h2><code>react-native start</code>：启动react native服务器<br>在特定模拟器上启动<br><code>react-native run-ios --simulator &quot;iPhone 7 Plus”</code><h1 id="VSCode快捷键"><a href="#VSCode快捷键" class="headerlink" title="VSCode快捷键"></a>VSCode快捷键</h1><h2 id="JSON-格式化"><a href="#JSON-格式化" class="headerlink" title="JSON 格式化"></a>JSON 格式化</h2></li>
-</ul>
-<p>安装插件<code>JSON Tools</code></p>
-<p><a href="https://marketplace.visualstudio.com/items?itemName=eriklynd.json-tools" target="_blank" rel="noopener">https://marketplace.visualstudio.com/items?itemName=eriklynd.json-tools</a></p>
-<p><code>Ctrl(Cmd)+Alt+M</code> for JSON pretty.</p>
-<p><code>Alt+M</code> for JSON minify.</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><code>Cmd + Shift + p</code>打开命令面板</p>
-<p><code>Cmd+T</code>跳转到关键字（全局搜索变量或者函数）</p>
-<p><code>Option + Cmd + ⬅️/➡️</code> 不同tab间切换</p>
-<p><code>Ctrl + -</code> 前进（跳转到函数之后跳转回之前的位置）</p>
-<p><code>Ctrl + Shift + -</code> 后退</p>
-<p><code>ctrl + shift + y</code>打开/关闭Debug Console</p>
-<p><code>Ctrl + ~</code> 打开/关闭终端（注意要在英文输入状态下，英文状态下是ctrl + ·导致无效）</p>
-<p><code>Cmd+1</code>显示/隐藏侧边栏</p>
-<p><code>Shift+cmd+k</code>删除当前行</p>
-<p><code>Ctrl + G</code> 转到行</p>
-<p><code>Ctrl + P</code> 转到文件</p>
-<p><code>Ctrl + Shift + O</code> 跳转到关键字（文件内搜索变量或者函数）</p>
-<p><code>Shift+Option+ ↑ / ↓</code> 移动当前行到上一行/下一行</p>
-<p><code>Cmd+E</code>打开最近项目目录</p>
-<ul>
-<li>多光标操作</li>
-</ul>
-<p><code>cmd+shift+L</code>添加光标到所有出现的单词处，并选中</p>
-<p><code>cmd+g</code>与<code>cmd+shift+L</code>配合可以在选中的单词间跳转</p>
-<h1 id="微信小程序编辑器快捷键"><a href="#微信小程序编辑器快捷键" class="headerlink" title="微信小程序编辑器快捷键"></a>微信小程序编辑器快捷键</h1><h2 id="windows-下"><a href="#windows-下" class="headerlink" title="windows 下"></a>windows 下</h2><p><code>ctrl+p</code> 快速查找文件<br><code>ctrl+e</code> 快速查找最近打开过的文件</p>
-<h1 id="eclipse快捷键"><a href="#eclipse快捷键" class="headerlink" title="eclipse快捷键"></a>eclipse快捷键</h1><p>选中代码，ctrl + 1，打开列表<br>反撤销，ctrl + y</p>
-<h1 id="vim快捷键"><a href="#vim快捷键" class="headerlink" title="vim快捷键"></a>vim快捷键</h1><ul>
-<li>撤销: 退出编辑模式，然后快速输入 u 两次 </li>
-<li>反撤销:    退出编辑模式，然后快速输入 ctrl + r 两次</li>
-<li>粘贴:p</li>
-</ul>
-<h1 id="Xcode快捷键"><a href="#Xcode快捷键" class="headerlink" title="Xcode快捷键"></a>Xcode快捷键</h1><p>| 快捷键 | 说明 |</p>
-<p>|:-|:-|</p>
-<p>| Command + Shift + O | 快速查找文件/文件夹 |</p>
-<p>| Ctrl + 6 | 在类中快速查查找方法 |</p>
-<p>| Ctrl + 2| 显示最近的浏览记录|</p>
-<p>| Command + Shift + j  | 显示当前文件，在导航拦中的位置 |</p>
-<p>|option + cmd + 回车| 打开辅助视图 |</p>
-<p>|cmd + 回车 | 取消辅助视图 |</p>
-<p>| option（即windows下Alt键） + Cmd + 0 | 关闭Xcode右边的窗口 |</p>
-<p>| Cmd + 上方向键/下方向键 | 跳到代码开头/结尾 |</p>
-<p>| Control + Cmd + 方向键 | 在.h和.m间切换 |</p>
-<p>| cmd + 0 | 打开或者取消左边的导航栏 |</p>
-<p>| option + cmd 0 | 打开或者取消右边的属性视图 |</p>
-<p>| Control + I | 重新缩进代码 |</p>
-<p>| Control + Cmd + E | 统一修改变量名 |</p>
-<p>| <code>Command + [</code> 或 <code>Command +  ]</code> | 左移/右移代码块 |</p>
-<p>| <code>Option + Command + [</code> 或 <code>Option + Command + ]</code> | 上移/下移代码 |</p>
-<p>| Command + Shift + 左/右方向键 | 选中当前行 |</p>
-<p>| Control + D | 删除光标右边的字符，相当与 windows 下的 Delete |</p>
-<p>| Command + Alt + ⬅️／➡️ | 折叠展开代码段 |</p>
-<p>| Command + L | 跳转到指定行 |</p>
-<p>| Command + option + / | 添加标准注释 |</p>
-<p>大小写转换<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829224804.png" alt=""></p>
-<h2 id="storyBoard-快捷键"><a href="#storyBoard-快捷键" class="headerlink" title="storyBoard 快捷键"></a>storyBoard 快捷键</h2><ol>
-<li>Command + Shift + _ / | 在                 storyBoard 上添加辅助线</li>
-<li>Command + Shift + 鼠标右键             选中某个 View</li>
-<li>使用键盘移动控件</li>
-</ol>
-<p>第一步：使用鼠标选中某个控件<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829224821.png" alt=""><br>第二步：使用<code>方向键</code>进行移动，按住<code>shift键 + 方向键</code>可以更快的移动</p>
-<ol start="4">
-<li>多个控件层叠时选择某个控件<br><code>鼠标右键+shift</code></li>
-</ol>
-<h2 id="模拟器快捷键"><a href="#模拟器快捷键" class="headerlink" title="模拟器快捷键"></a>模拟器快捷键</h2><ul>
-<li><p><code>Cmd + shift + H</code>回到桌面</p>
-</li>
-<li><p>按住<code>Ctrl + Shift</code> 点击控件，显示这个点上的所有控件</p>
-</li>
-</ul>
-<p>⌥代表option键</p>
-<h1 id="Mac-快捷键"><a href="#Mac-快捷键" class="headerlink" title="Mac 快捷键"></a>Mac 快捷键</h1><ul>
-<li><p>全屏截图：Command-Shift-3</p>
-</li>
-<li><p>指定区域截图：Command-Shift-4</p>
-</li>
-<li><p>显示隐藏快捷键：Command+Shift+.</p>
-</li>
-</ul>
+<p>其他参考：<a href="https://www.jianshu.com/p/1b3b9e17ac88" target="_blank" rel="noopener">https://www.jianshu.com/p/1b3b9e17ac88</a></p>
 
           
         

@@ -301,251 +301,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/TextInput/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="action456789">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/img/default_avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="爱工作·爱生活">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/21/TextInput/" itemprop="url">
-                  TextInput
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2018-05-21 18:01:12" itemprop="dateCreated datePublished" datetime="2018-05-21T18:01:12+08:00">2018-05-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-29 21:11:48" itemprop="dateModified" datetime="2019-08-29T21:11:48+08:00">2019-08-29</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大前端/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a></span>
-
-                
-                
-                  , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大前端/React-Native/" itemprop="url" rel="index"><span itemprop="name">React-Native</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="通用属性-Android-amp-iOS"><a href="#通用属性-Android-amp-iOS" class="headerlink" title="通用属性(Android &amp; iOS)"></a>通用属性(Android &amp; iOS)</h1><ul>
-<li>(1)支持View的相关属性</li>
-<li><p>(2)<code>autoCapitalize</code>:控制输入的字符进行切换成大写(参数:’none’,’sentences’,’words’,’characters’)<br><code>none</code>: 不自动切换任何字符大写<br><code>sentences</code>: 默认每个句子的首字母大写<br><code>words</code>:每个单词的首字母变成大写<br><code>characters</code>:每个字母全部变成大写</p>
-</li>
-<li><p>(3)<code>autoCorrect(bool)</code>:设置瓶邪自动修正功能,默认开启(true)</p>
-</li>
-<li><p>(4)<code>autoFocus(bool)</code>:设置是否默认获取到焦点,默认为关闭(false).需要comonentDidMount方法调用之后才会获取焦点(componentDidMount是React组件被渲染之后React主动回调的方法)</p>
-</li>
-<li><p>(5)<code>defaultValue(string)</code>:给文本框输入一个默认初始值.</p>
-</li>
-<li><p>(6)<code>editable(bool)</code>:设置文本框是否可以编辑,默认为true,可以进行编辑</p>
-</li>
-<li><p>(7)<code>keyboardType</code>:<br>键盘类型(可选参数:”default”, ‘email-address’, ‘numeric’, ‘phone-pad’, “ascii-capable”, ‘numbers-and-punctuation’, ‘url’, ‘number-pad’, ‘name-phone-pad’, ‘decimal-pad’, ‘twitter’, ‘web-search’) 该用来选择默认弹出键盘的类型例如我们甚至numeric就是弹出数字键盘。鉴于平台的原因如下的值是所有平台都可以进行通用的</p>
-</li>
-<li><p>(8)<code>maxLength(number)</code>:可以限制文本输入框最大的输入字符长度</p>
-</li>
-<li><p>(9)<code>multiline (bool)</code> : 设置可以输入多行文字，默认为false(表示无论文本输入多少，都是单行显示)</p>
-</li>
-<li>(10)<code>onBlur (function)</code>: 监听方法，文本框失去焦点回调方法</li>
-<li>(11)<code>onChange (function)</code>: 监听方法,文本框内容发生改变回调方法</li>
-<li>(12)<code>onChangeText (function)</code>:监听方法，文本框内容发生改变回调方法，该方法会进行传递文本内容</li>
-<li>(13)<code>onEndEditing (function)</code>:监听方法，当文本结束文本输入回调方法</li>
-<li>(14)<code>onFocus (function)</code> :监听方法 文本框获取到焦点回调方法</li>
-<li>(15)<code>onLayout (function)</code>:监听方法 组价布局发生变化的时候调用，调用方法参数为 {x,y,width,height}</li>
-<li>(16)<code>onSubmitEditing (function)</code>:监听方法，当编辑提交的时候回调方法。不过如果multiline={true}的时候，该属性就不生效</li>
-<li>(17)<code>placeholder (string</code>) :当文本输入框还没有任何输入的时候，默认显示信息，当有输入的时候该值会被清除</li>
-<li>(18)<code>placeholderText Color (string)</code>: 设置默认信息颜色(placeholer)</li>
-<li>(19)<code>secureTextEntry (bool)</code>: 设置是否为密码安全输入框 ，默认为false</li>
-<li>(20)<code>style</code> 风格属性 可以参考Text组件风格</li>
-<li>(21)<code>value ( string )</code>:输入框中的内容值</li>
-<li>(22)<code>returnKeyType</code>:决定“确定”按钮显示的内容。<br>done<br>go<br>next<br>search<br>send</li>
-</ul>
-<h1 id="Android-平台属性"><a href="#Android-平台属性" class="headerlink" title="Android 平台属性"></a>Android 平台属性</h1><ul>
-<li>(22)<code>numberOfLines (number)</code>:设置文本输入框行数，该需要首先设置multiline为true,设置TextInput为多行文本。</li>
-<li>(23)<code>textAlign</code> 设置文本横向布局方式 可选参数(‘start’, ‘center’, ‘end’)</li>
-<li>(24)<code>textAlignVertical</code>: 设置文本垂直方向布局方式 可选参数(‘top’, ‘center’, ‘bottom’)</li>
-<li>(25)<code>underlineColorAndroid</code>: 设置文本输入框下划线的颜色</li>
-</ul>
-<h1 id="长按出现菜单键为英文，如何改为中文"><a href="#长按出现菜单键为英文，如何改为中文" class="headerlink" title="长按出现菜单键为英文，如何改为中文"></a>长按出现菜单键为英文，如何改为中文</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210921.png" alt=""><br>在Xcode中，TARGETS—你的项目名—info，选择Localization native development region，选择China，这样文字都会变成中文啦，包括时间选择器等也会变成中文。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210959.png" alt=""></p>
-<h1 id="键盘处理"><a href="#键盘处理" class="headerlink" title="键盘处理"></a>键盘处理</h1><p><a href="https://facebook.github.io/react-native/docs/inputaccessoryview#docsNav" target="_blank" rel="noopener">参考</a><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211043.png" alt=""></p>
-<pre><code class="javascript">    const inputAccessoryViewID = &quot;inputAccessoryViewID&quot;;
-    _renderLeaveWordInput() { 
-        return &lt;View style={{height: 60}}&gt;
-                &lt;TextInput style={{
-                    fontSize: 13,
-                    textAlignVertical: 'top',
-                    autoCapitalize: 'none',
-                    autoCorrect: false 
-                }}
-                   multiline={true}
-                   maxLength={50}
-                   onChangeText={this._onInputCommentsChange}
-                   value={this.state.comments}
-                   inputAccessoryViewID={inputAccessoryViewID}
-                   ref={&#39;LeaveWordTextInput&#39;}
-                   placeholder={&#39;请输入留言&#39;}/&gt;
-
-                &lt;InputAccessoryView nativeID={inputAccessoryViewID}&gt;
-                    &lt;View style={{flexDirection:'row-reverse'}}&gt;
-                        &lt;Button onPress={() =&gt; {this.refs.LeaveWordTextInput.blur();}}
-                                title=&quot;完成&quot;
-                                color=&quot;red&quot;
-                        /&gt;
-                    &lt;/View&gt;
-
-                &lt;/InputAccessoryView&gt;
-            &lt;/View&gt;
-    }
-</code></pre>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/JS中的this绑定/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -789,7 +544,7 @@ console.log(obj);
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/fastlane/">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/JS中的Promise, async, await/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="action456789">
@@ -808,8 +563,8 @@ console.log(obj);
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/21/fastlane/" itemprop="url">
-                  fastlane
+                <a class="post-title-link" href="/2018/05/21/JS中的Promise, async, await/" itemprop="url">
+                  JS中的Promise, async, await
                 </a>
               
             
@@ -852,7 +607,7 @@ console.log(obj);
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-29 23:39:53" itemprop="dateModified" datetime="2019-08-29T23:39:53+08:00">2019-08-29</time>
+                <time title="Modified: 2019-08-29 23:22:19" itemprop="dateModified" datetime="2019-08-29T23:22:19+08:00">2019-08-29</time>
               
             
           </span>
@@ -869,7 +624,14 @@ console.log(obj);
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大前端/" itemprop="url" rel="index"><span itemprop="name">大前端</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/大前端/js/" itemprop="url" rel="index"><span itemprop="name">js</span></a></span>
 
                 
                 
@@ -905,94 +667,489 @@ console.log(obj);
       
         
           
-            <p>[TOC]</p>
-<h1 id="官方文档（推荐）"><a href="#官方文档（推荐）" class="headerlink" title="官方文档（推荐）"></a>官方文档（推荐）</h1><p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p>
-<h1 id="Mac上ruby管理工具-RVM"><a href="#Mac上ruby管理工具-RVM" class="headerlink" title="Mac上ruby管理工具 RVM"></a>Mac上ruby管理工具 <code>RVM</code></h1><p>因为rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。</p>
-<h2 id="安装rvm"><a href="#安装rvm" class="headerlink" title="安装rvm"></a>安装rvm</h2><pre><code>
-$ curl -L get.rvm.io | bash -s stable
+            <h2 id="准备代码"><a href="#准备代码" class="headerlink" title="准备代码"></a>准备代码</h2><pre><code class="JS">//做饭
+function cook() {
+    console.log(&#39;开始做饭。&#39;);
+    var p = new Promise(function (resolve, reject) { //做一些异步操作
+        setTimeout(function () {
+            resolve(&#39;鸡蛋炒饭&#39;);
+            // reject(&#39;烧焦的米饭&#39;);
+        }, 1000);
+    });
+    return p;
+}
 
-$ source ~/.rvm/scripts/rvm
+//吃饭
+function eat(data) {
+    console.log(&#39;开始吃饭：&#39; + data);
+    var p = new Promise(function (resolve, reject) { //做一些异步操作
+        setTimeout(function () {
+            resolve(&#39;一块碗和一双筷子&#39;);
+        }, 2000);
+    });
+    return p;
+}
 
-</code></pre><p>等待终端加载完毕,后输入：</p>
-<pre><code>
-rvm -v
+function wash(data) {
+    console.log(&#39;开始洗碗：&#39; + data);
+    var p = new Promise(function (resolve, reject) { //做一些异步操作
+        setTimeout(function () {
+            resolve(&#39;干净的碗筷&#39;);
+        }, 2000);
+    });
+    return p;
+}
+</code></pre>
+<pre><code class="JS">//切菜
+function cutUp() {
+    var p = new Promise(function (resolve, reject) { //做一些异步操作
+        setTimeout(function () {
+            resolve(&#39;切好的菜&#39;);
+        }, 1000);
+    });
+    return p;
+}
 
-</code></pre><p>如果能显示版本好则安装成功了。</p>
-<h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><p>|描述|命令|</p>
-<p>|:-|:-|</p>
-<p>| 列出ruby可安装的版本信息 | <code>rvm list known</code> |</p>
-<p>| 更新RVM | <code>rvm get stable</code> |</p>
-<p>| 查看当前ruby版本 | rvm -v |</p>
-<p>| 安装一个ruby版本 | <code>rvm install 2.3.3</code> |</p>
-<p>| 设置为默认版本 | <code>rvm use 2.3.3 --default</code> |</p>
-<p>| 使用某个版本 | <code>rvm use 2.3.3</code> |</p>
-<p>| 查看已安装的ruby | <code>rvm list</code> |</p>
-<p>| 卸载一个已安装ruby版本 | <code>rvm remove 2.3.3</code> |</p>
-<p>| 查看已有的源 | <code>gem source -l</code> |</p>
-<p><br></p>
-<p><br></p>
-<hr>
-<p><br></p>
-<h1 id="gem-常用命令"><a href="#gem-常用命令" class="headerlink" title="gem 常用命令"></a>gem 常用命令</h1><p>官网<a href="https://gems.ruby-china.com/" target="_blank" rel="noopener">https://gems.ruby-china.com/</a></p>
-<p>|描述|命令|</p>
-<p>|:-|:-|</p>
-<p>| 更新 gem | <code>sudo gem update --system</code>  |</p>
-<p>| 从Gem源安装gem包  |  <code>gem install [gemname]</code> |</p>
-<p>| 更新所有已安装的gem包 |<code>gem update</code> |</p>
-<p>| 更新指定的gem包 | <code>gem update [gemname]</code>|</p>
-<p>| 删除指定的gem包，注意此命令将删除所有已安装的版本| <code>gem uninstall [gemname]</code>|</p>
-<p>| 查看本机已安装的所有gem包 | <code>gem list [--local]</code> |</p>
-<p>| 查看镜像 | <code>gem sources -l</code> |</p>
-<p>| 修改镜像 |gem sources –add <a href="https://gems.ruby-china.org/" target="_blank" rel="noopener">https://gems.ruby-china.org/</a> –remove <a href="https://rubygems.org/，可以进入这两个网址查看详细信息" target="_blank" rel="noopener">https://rubygems.org/，可以进入这两个网址查看详细信息</a> |</p>
-<h1 id="fastlane"><a href="#fastlane" class="headerlink" title="fastlane"></a>fastlane</h1><p>官网<a href="https://fastlane.tools/" target="_blank" rel="noopener">https://fastlane.tools/</a></p>
-<p>github: <a href="https://github.com/fastlane/fastlane/tree/master/snapshot" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/snapshot</a></p>
-<p>|命令|描述|</p>
-<p>|:-|:-|</p>
-<p>| <code>sudo gem install fastlane -NV</code> | 安装/更新 fastlane |</p>
-<p> | <code>fastlane init</code>| 进入工程目录，初始化 fastlane 配置 |</p>
-<p>| <code>fastlane update_fastlane</code> | 更新fastlane各种插件等 |</p>
-<p>| <code>fastlane actions</code> |      列出所有可用fastlane活动 | </p>
-<p>| <code>fastlane action [action_name]</code> |    显示一个更详细的活动描述| </p>
-<p> | <code>fastlane lanes</code>   |     列出所有可用lanes (有描述) | </p>
-<p> | <code>fastlane list</code>  |     列出所有可用lanes (没有描述)  | </p>
-<p> | <code>fastlane new_action</code> |    在fastlane创建一个活动(集成) | </p>
-<p> | <code>fastlane search_plugins</code> |  查看所有插件 | </p>
-<p> | <code>fastlane add_plugin firim</code> |  安装插件 firim | </p>
-<h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a>TODO:</h1><p>由于<code>xcodebuild -showBuildSettings -project ./RiciBellSDKDemo.xcodeproj</code> 命令卡死，导致无法继续，暂时没有找到解决办法，可能是因为使用了Xcode9 beta 版的Bug导致，后期再继续</p>
-<p>收藏一篇博客<a href="http://www.jianshu.com/p/228354881eab" target="_blank" rel="noopener">http://www.jianshu.com/p/228354881eab</a></p>
-<h2 id="gym"><a href="#gym" class="headerlink" title="gym"></a>gym</h2><p> 类似于<code>shenzhen</code></p>
-<p><a href="https://github.com/fastlane/fastlane/tree/master/gym#export-options" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/gym#export-options</a></p>
-<p>|命令|描述|</p>
-<p>|:-|:-|</p>
-<p>| <code>gym init</code> | 创建Gymfile文件 |</p>
-<h2 id="fastlane-的工具链"><a href="#fastlane-的工具链" class="headerlink" title="fastlane 的工具链"></a>fastlane 的工具链</h2><p>在 fastlane 这个大家庭中，包含了下列工具：</p>
-<ul>
-<li>produce 创建可用于 iTunes Connect 和 Apple Developer Portal 的 iOS app。</li>
-<li>cert 自动创建和维护 iOS 代码签名证书。</li>
-<li>sigh 创建、更新、下载和修复 provisioning profiles。</li>
-<li>snapshot 自动将 App 屏幕截图本地化到每种设备上。</li>
-<li>frameit 将屏幕截图适配到适当的设备屏幕大小。</li>
-<li>gym 创建和打包 iOS app。</li>
-<li>deliver 上传屏幕截图、元数据和 App 到 App 商店。<h1 id="安装-fir"><a href="#安装-fir" class="headerlink" title="安装 fir"></a>安装 fir</h1></li>
+//烧水
+function boil() {
+    var p = new Promise(function (resolve, reject) { //做一些异步操作
+        setTimeout(function () {
+            resolve(&#39;烧好的水&#39;);
+        }, 2000);
+    });
+    return p;
+}
+</code></pre>
+<h2 id="async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"><a href="#async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题" class="headerlink" title="async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"></a>async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题</h2><h4 id="async"><a href="#async" class="headerlink" title="async"></a>async</h4><ul>
+<li>当调用一个 async 函数时，会返回一个 Promise 对象</li>
+<li>当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；</li>
+<li>当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。<ul>
+<li>当async 函数没有返回值，它会返回 Promise.resolve()。</li>
 </ul>
-<p>1、安装</p>
-<p>|描述|命令|</p>
-<p>|:-|:-|</p>
-<p>| 安装 fir-cli | <code>gem install fir-cli</code> |</p>
-<p>2、获取token登陆</p>
-<p>获取 fir 账号的 token，当使用 fir login 登录了之后, 后续命令都不需要加上 -T 参数, 会默认使用当前用户的 token 进行相关操作</p>
-<p>|描述|命令|</p>
-<p>|:-|:-|</p>
-<p>| 登陆 fir-cli | <code>fir login XXX_YOUR_API_TOKEN_XXX</code> |</p>
-<p>3、编译打包 ipa 文件</p>
-<p>|描述|命令| 参数说明|</p>
-<p>|:-|:-|:- |</p>
-<p>| 编译打包 ipa 文件 | <code>schema=&quot;testFir&quot; fir build_ipa ~/Developer/$schema -o ~/Developer/build -w -C Release -S &quot;$schema&quot;</code> | -w 是 –workspace 的简写，表示编译 *.xcworkspace, 没有带这个参数则编译 xcodeproj 文件。<br> -C Release, 以 Release 方式打包，若 Debug 则是打调试包。 <br> -S: 编译用 CocoaPods 做依赖管理的 .ipa 包|</p>
-<p>4、上传 ipa</p>
-<p>|描述|命令| 参数说明|</p>
-<p>|:-|:-|:- |</p>
-<p>| 上传 ipa | <code>fir publish -c &quot;first version log&quot; ${schema}*.ipa</code> | -c 后带 log。默认的包名是 schema-版本号-build－build 号，如 testFir-2.5.3-build-576.ipa。 |</p>
-<h1 id="使用-fastlane进行持续集成"><a href="#使用-fastlane进行持续集成" class="headerlink" title="使用 fastlane进行持续集成"></a>使用 fastlane进行持续集成</h1><h1 id="报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory"><a href="#报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory" class="headerlink" title="报错：You don&#39;t have write permissions for the /usr/bin directory."></a>报错：<code>You don&#39;t have write permissions for the /usr/bin directory.</code></h1><p><code>sudo gem install fastlane -n /usr/local/bin</code></p>
+</li>
+</ul>
+<h4 id="await"><a href="#await" class="headerlink" title="await"></a>await</h4><ul>
+<li>await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。</li>
+<li>await后面调用的函数需要返回一个promise</li>
+<li><p>await 必须出现在 async 函数内部，不能单独使用。</p>
+</li>
+<li><p>若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行async function。</p>
+</li>
+<li>若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。</li>
+<li>若 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。</li>
+</ul>
+<h2 id="一-then-：多个异步事件串行执行"><a href="#一-then-：多个异步事件串行执行" class="headerlink" title="一. then()：多个异步事件串行执行"></a>一. <code>then()</code>：多个异步事件串行执行</h2><p>类似于RxSwift中<code>flatMap</code></p>
+<h4 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h4><pre><code class="JS">cook()
+    .then(data =&gt; {
+        return eat(data);
+    })
+    .then(data =&gt; {
+        return wash(data);
+    })
+    .then(data =&gt; {
+        console.log(data);
+    });
+</code></pre>
+<h4 id="写法二：-简化的写法"><a href="#写法二：-简化的写法" class="headerlink" title="写法二： 简化的写法"></a>写法二： 简化的写法</h4><pre><code>// 简化的写法
+cook()
+    .then(eat)
+    .then(wash)
+    .then((data) =&gt; {
+        console.log(data);
+    })
+    .catch(err=&gt;{
+        console.log(err);
+    });
+</code></pre><h4 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h4><pre><code>// 抛出异常
+cook()
+    .then(data =&gt; {
+        throw new Error(&#39;米饭被打翻了！&#39;);
+        eat(data);
+    })
+    .then(wash)
+    .then((data) =&gt; {
+        console.log(data);
+    })
+    .catch(err =&gt; {
+        console.log(err);
+    });
+</code></pre><h4 id="写法三：使用async-await"><a href="#写法三：使用async-await" class="headerlink" title="写法三：使用async/await"></a>写法三：使用async/await</h4><pre><code class="js">async function flatMap() {
+    try {
+        let cookResult = await cook();
+        let eatResult = await eat();
+        let washResult = await wash();
+        console.log(`async await flatMap test: ${cookResult},${eatResult},${washResult}~~~~~`);
+    } catch (err) {
+        console.log(`error: ${err}`);
+    }
+}
+flatMap() // async await flatMap test: 鸡蛋炒饭,一块碗和一双筷子,干净的碗筷~~~~~
+</code></pre>
+<h2 id="二-all-多个异步事件并行执行，全部执行完毕后再执行then回调"><a href="#二-all-多个异步事件并行执行，全部执行完毕后再执行then回调" class="headerlink" title="二. all(): 多个异步事件并行执行，全部执行完毕后再执行then回调"></a>二. <code>all()</code>: 多个异步事件并行执行，全部执行完毕后再执行then回调</h2><p>类似于RxSwift中<code>zip</code></p>
+<h4 id="方式一：Promise"><a href="#方式一：Promise" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise
+    .all([cutUp(), boil()])
+    .then(results =&gt; {
+        console.log(results);
+    });
+</code></pre>
+<h4 id="方式二：使用async-await"><a href="#方式二：使用async-await" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="js">async function zip() {
+    try {
+        let results = await Promise.all([cutUp(), boil()]);
+        console.log(`async await zip test ${results}`)
+    } catch (err) {
+        console.log(`error: ${err}`);
+    }
+}
+
+zip() // async await zip test 切好的菜,烧好的水
+</code></pre>
+<h2 id="三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调"><a href="#三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调" class="headerlink" title="三. race(): 多个异步事件同时执行，只要有一个执行完毕立即执行then回调"></a>三. <code>race()</code>: 多个异步事件同时执行，只要有一个执行完毕立即执行then回调</h2><h4 id="方式一：Promise-1"><a href="#方式一：Promise-1" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise
+    .race([cutUp(), boil()])
+    .then(results =&gt; {
+        console.log(results);
+    });
+</code></pre>
+<h4 id="方式二：使用async-await-1"><a href="#方式二：使用async-await-1" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="JS">async function race() {
+    try {
+        let results = await Promise.race([cutUp(), boil()]);
+        console.log(`async await race test ${results}`)
+    } catch (err) {
+        console.log(`error: ${err}`);
+    }
+}
+
+race() //async await race test 切好的菜
+</code></pre>
+<ul>
+<li>应用：为异步操作设置超时时间</li>
+</ul>
+<pre><code class="JS">//请求某个图片资源
+function requestImg(){
+    var p = new Promise(function(resolve, reject){
+    var img = new Image();
+    img.onload = function(){
+       resolve(img);
+    }
+    img.src = &#39;xxxxxx&#39;;
+    });
+    return p;
+}
+
+//延时函数，用于给请求计时
+function timeout(){
+    var p = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            reject(&#39;图片请求超时&#39;);
+        }, 5000);
+    });
+    return p;
+}
+
+Promise
+.race([requestImg(), timeout()])
+.then(function(results){
+    console.log(results);
+})
+.catch(function(reason){
+    console.log(reason);
+});
+</code></pre>
+<p>参考：<a href="https://www.cnblogs.com/sweeeper/p/8442613.html" target="_blank" rel="noopener">https://www.cnblogs.com/sweeeper/p/8442613.html</a><br><a href="https://segmentfault.com/a/1190000011526612?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011526612?utm_source=tag-newest</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2018/05/21/iOS自定义对象归档/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/21/iOS自定义对象归档/" itemprop="url">
+                  iOS自定义对象归档
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-05-21 18:01:12" itemprop="dateCreated datePublished" datetime="2018-05-21T18:01:12+08:00">2018-05-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-29 23:58:23" itemprop="dateModified" datetime="2019-08-29T23:58:23+08:00">2019-08-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="自定义对象数据归档"><a href="#自定义对象数据归档" class="headerlink" title="自定义对象数据归档"></a>自定义对象数据归档</h1><ul>
+<li>如果想将一个自定义对象保存到文件中必须实现NSCoding协议</li>
+</ul>
+<h2 id="NJPerson类如下"><a href="#NJPerson类如下" class="headerlink" title="NJPerson类如下"></a><code>NJPerson</code>类如下</h2><pre><code class="Objective-C">@interface NJPerson : NSObject &lt;NSCoding&gt;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) int age;
+@property (nonatomic, assign) double height;
+@end
+
+#import &quot;NJPerson.h&quot;
+
+@implementation NJPerson
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    NSLog(@&quot;NJPerson encodeWithCoder&quot;);
+    [encoder encodeObject:self.name forKey:@&quot;name&quot;];
+    [encoder encodeInteger:self.age forKey:@&quot;age&quot;];
+    [encoder encodeFloat:self.height forKey:@&quot;heigth&quot;];
+}
+
+
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    NSLog(@&quot;NJPerson initWithCoder&quot;);
+    if (self = [super init]) {
+        self.name = [decoder decodeObjectForKey:@&quot;name&quot;];
+        self.age = [decoder decodeIntegerForKey:@&quot;age&quot;];
+        self.height = [decoder decodeFloatForKey:@&quot;heigth&quot;];
+    }
+    return self;
+}
+@end
+
+</code></pre>
+<h2 id="NJPerson-类有一个子类-NJStudent"><a href="#NJPerson-类有一个子类-NJStudent" class="headerlink" title="NJPerson 类有一个子类 NJStudent"></a><code>NJPerson</code> 类有一个子类 <code>NJStudent</code></h2><pre><code class="Objective-C">@interface NJStudent : NJPerson
+@property (nonatomic, assign) float weight;
+@end
+
+#import &quot;NJStudent.h&quot;
+
+@implementation NJStudent
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [super encodeWithCoder:aCoder];
+    [aCoder encodeFloat:self.weight forKey:@&quot;weight&quot;];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        self.weight = [aDecoder decodeFloatForKey:@&quot;weight&quot;];
+    }
+    return self;
+}
+@end
+
+</code></pre>
+<h2 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h2><pre><code class="Objective-C">NJStudent *stu = [[NJStudent alloc] init];
+stu.name = @&quot;lnj&quot;;
+stu.age = 28;
+stu.height = 1.8;
+stu.weight = 60;
+
+[NSKeyedArchiver archiveRootObject:stu toFile:path];
+</code></pre>
+<h2 id="解档"><a href="#解档" class="headerlink" title="解档"></a>解档</h2><pre><code class="Objective-C">NJStudent *stu = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+</code></pre>
+<h1 id="归档自定义对象的数组"><a href="#归档自定义对象的数组" class="headerlink" title="归档自定义对象的数组"></a>归档自定义对象的数组</h1><ol>
+<li><p>自定义的对象要实现NSCoding协议</p>
+</li>
+<li><p>要先将数组归档为NSData，然后写到文件中</p>
+</li>
+</ol>
+<pre><code class="Swift">class DeviceModal: NSObject, NSCoding {
+    public var id: String?
+    public var name: String?
+    public var frame: CGRect = CGRect.zero
+    public var huxingMapImage: UIImage?
+
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(id, forKey: &quot;id&quot;)
+        aCoder.encode(name, forKey: &quot;name&quot;)
+        aCoder.encode(frame, forKey: &quot;frame&quot;)
+        aCoder.encode(huxingMapImage, forKey: &quot;huxingMapImage&quot;)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init()
+        id = aDecoder.decodeObject(forKey: &quot;id&quot;) as? String
+        name = aDecoder.decodeObject(forKey: &quot;name&quot;) as? String
+        frame = aDecoder.decodeCGRect(forKey: &quot;frame&quot;)
+        huxingMapImage = aDecoder.decodeObject(forKey: &quot;huxingMapImage&quot;) as? UIImage
+    }
+
+    init(id:String, name: String, frame: CGRect, image: UIImage?) {
+        self.id = id
+        self.name = name
+        self.frame = frame
+        self.huxingMapImage = image
+    }
+}
+
+</code></pre>
+<pre><code class="Swift">class PersistentTool: NSObject {
+
+    private var filePath: URL {
+        let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        let filePath = URL(fileURLWithPath: documentPath).appendingPathComponent(&quot;AddedDevices.info&quot;)
+        return filePath
+    }
+
+    public func saveArray(array: Array&lt;Any&gt;) {
+        let data = NSKeyedArchiver.archivedData(withRootObject: array)
+        try? data.write(to: filePath, options: .atomicWrite)
+    }
+
+    public func readArrayData() -&gt; Array&lt;Any&gt;? {
+        do {
+            let data = try Data(contentsOf: filePath)
+            let array = NSKeyedUnarchiver.unarchiveObject(with: data) as? Array&lt;Any&gt;
+            return array
+        } catch {
+            print(error)
+            return nil
+        }
+    }
+
+}
+</code></pre>
 
           
         
