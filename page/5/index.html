@@ -1,929 +1,1554 @@
 <!DOCTYPE html>
-<html>
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head>
-  <meta charset="utf-8">
-  <title>爱工作·爱生活</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="爱工作·爱生活">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="keywords" content="技术博客,随笔">
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.2.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.2.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="keywords" content="技术博客,随笔">
 <meta property="og:type" content="website">
-<meta property="og:title" content="C&#x2F;C++">
-<meta property="og:url" content="http://superkk.top/C-C/index.html">
+<meta property="og:title" content="爱工作·爱生活">
+<meta property="og:url" content="http://superkk.top/page/5/index.html">
 <meta property="og:site_name" content="爱工作·爱生活">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-09T08:06:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C&#x2F;C++">
+<meta name="twitter:title" content="爱工作·爱生活">
 
 
-<link rel="icon" href="/img/avatar.jpg">
 
-<link href="/css/style.css?v=1.0.1" rel="stylesheet">
 
-<link href="/css/hl_theme/sublime.css?v=1.0.1" rel="stylesheet">
 
-<link href="//cdn.bootcss.com/animate.css/3.5.2/animate.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="/js/jquery.autocomplete.min.js?v=1.0.1" ></script>
+  <link rel="canonical" href="http://superkk.top/page/5/"/>
 
-<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script>
-    hljs.initHighlightingOnLoad();
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
 </script>
 
-<script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+  <title>爱工作·爱生活</title>
+  
 
 
 
-<script src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js" ></script>
 
-<script src="/js/iconfont.js?v=1.0.1" ></script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?d35cf97ff8f4abe81876248566401ad5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
 
 </head>
-<div style="display: none">
-  <input class="theme_disqus_on" value="false">
-  <input class="theme_preload_comment" value="false">
-  <input class="theme_blog_path" value="">
-</div>
 
-<body>
-<aside class="nav mobile">
-    <div class="nav-left">
-        <a href="/" class="avatar_target">
-    <img class="avatar" src="/img/default_avatar.jpg" />
-</a>
-<div class="author">
-    <span>action456789</span>
-</div>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-<div class="icon">
+  
+  
     
-        
-        <a title="rss" href="/atom.xml" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-rss"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-        <a title="github" href="https://github.com/action456789" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-github"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-        <a title="jianshu" href="https://www.jianshu.com/u/7966a93b66ce" target="_blank">
-            
-                <svg class="iconfont-svg" aria-hidden="true">
-                    <use xlink:href="#icon-jianshu"></use>
-                </svg>
-            
-        </a>
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-</div>
+  
 
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
 
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-
-<ul>
-    <li><div class="all active">全部文章<small>(45)</small></div></li>
-    
-        
-            
-            <li><div data-rel="iOS"><i class="fold iconfont icon-right"></i>iOS<small>(23)</small></div>
-                
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="高级">高级<small>(3)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="Rx &amp; RAC">Rx &amp; RAC<small>(3)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="cocoapods">cocoapods<small>(2)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="大前端"><i class="fold iconfont icon-right"></i>大前端<small>(11)</small></div>
-                
-                    <ul class="sub hide">
-                        
-                        <li><div data-rel="React-Native">React-Native<small>(5)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="JS">JS<small>(0)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="js">js<small>(5)</small></div>
-                            
-                        </li>
-                            
-                        <li><div data-rel="微信小程序">微信小程序<small>(1)</small></div>
-                            
-                        </li>
-                            
-                    </ul>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="工具">工具<small>(5)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="git">git<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-            <li><div data-rel="ffmpeg">ffmpeg<small>(1)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="C/C++">C/C++<small>(2)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="读书">读书<small>(2)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-        
-            
-        
-    
-</ul>
-<div class="left-bottom">
-    <div class="menus">
-    
-    
-    
-    
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">爱工作·爱生活</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
-    <div><a class="about  hasFriend  site_url"  href="/about">关于</a><a style="width: 50%"  class="friends">友链</a></div>
-</div>
-<input type="hidden" id="yelog_site_posts_number" value="45">
-<input type="hidden" id="yelog_site_word_count" value="36.8k">
-<div style="display: none">
-    <span id="busuanzi_value_site_uv"></span>
-    <span id="busuanzi_value_site_pv"></span>
+      
+        <p class="site-subtitle">action456789</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-    </div>
-    <div class="nav-right">
-        <div class="friends-area">
-    <div class="friends-title">
-        友情链接
-        <i class="back-title-list"></i>
-    </div>
-    <div class="friends-content">
-        <ul>
-            
-            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
-            
-        </ul>
-    </div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
 </div>
-        <div class="title-list">
-    <form onkeydown="if(event.keyCode==13){return false;}">
-        <input class="search" type="text" placeholder="Search..." autocomplete="off"id="local-search-input" >
-        <i class="cross"></i>
-        <span>
-            <label for="tagswitch">Tags:</label>
-            <input id="tagswitch" type="checkbox" style="display: none" />
-            <i id="tagsWitchIcon"></i>
-        </span>
-    </form>
-    <div class="tags-list">
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">iOS</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">C/C++</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color4">Boardland C++</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color3">读书</a>
-    </li>
-    
-    <li class="article-tag-list-item">
-        <a href="javascript:" class="color1">Swift</a>
-    </li>
-    
-    <div class="clearfix"></div>
-</div>
+    </header>
 
     
-    <nav id="title-list-nav">
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2014/09/03/cocoapods-安装与使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
         
-        <a  class="iOS 高级 "
-           href="/2016/11/09/Autolayout高级/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="Autolayout高级">Autolayout高级</span>
-            <span class="post-date" title="2016-11-09 20:23:21">2016/11/09</span>
-        </a>
         
-        <a  class="iOS cocoapods "
-           href="/2016/06/09/CocoaPods-管理私有库/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="CocoaPods 管理私有库">CocoaPods 管理私有库</span>
-            <span class="post-date" title="2016-06-09 18:02:18">2016/06/09</span>
-        </a>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2014/09/03/cocoapods-安装与使用/" itemprop="url">
+                  cocoapods 安装与使用
+                </a>
+              
+            
+          </h1>
         
-        <a  class="iOS "
-           href="/2017/03/03/Mac安装MQTT服务器/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="Mac安装MQTT服务器">Mac安装MQTT服务器</span>
-            <span class="post-date" title="2017-03-03 15:08:59">2017/03/03</span>
-        </a>
-        
-        <a  class="大前端 React-Native "
-           href="/2018/05/21/React-Native Tips/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="React-Native Tips">React-Native Tips</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 React-Native "
-           href="/2018/05/21/React-Native数据传递/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="React-Native数据传递">React-Native数据传递</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2018/06/05/UITableView的`beginUpdates`与`endUpdates`用法详解/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="UITableView的beginUpdates与endUpdates用法详解">UITableView的beginUpdates与endUpdates用法详解</span>
-            <span class="post-date" title="2018-06-05 02:05:12">2018/06/05</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2015/09/09/Hexo-GitHub博客搭建/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="Hexo GitHub博客搭建">Hexo GitHub博客搭建</span>
-            <span class="post-date" title="2015-09-09 12:01:05">2015/09/09</span>
-        </a>
-        
-        <a  class="iOS cocoapods "
-           href="/2014/09/03/cocoapods-安装与使用/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="cocoapods 安装与使用">cocoapods 安装与使用</span>
-            <span class="post-date" title="2014-09-03 09:10:54">2014/09/03</span>
-        </a>
-        
-        <a  class="git "
-           href="/2017/09/09/git命令大全/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="git命令大全">git命令大全</span>
-            <span class="post-date" title="2017-09-09 21:09:46">2017/09/09</span>
-        </a>
-        
-        <a  class="大前端 React-Native "
-           href="/2018/05/21/TextInput/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="TextInput">TextInput</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2015/08/13/iOS中的时间/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="iOS中的时间">iOS中的时间</span>
-            <span class="post-date" title="2015-08-13 22:10:18">2015/08/13</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2017/12/22/iOS11新特性/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="iOS11新特性">iOS11新特性</span>
-            <span class="post-date" title="2017-12-22 23:02:12">2017/12/22</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2016/10/18/iOS调试内存泄露/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="iOS调试内存泄露">iOS调试内存泄露</span>
-            <span class="post-date" title="2016-10-18 23:11:07">2016/10/18</span>
-        </a>
-        
-        <a  class="ffmpeg "
-           href="/2015/11/06/iOS编译ffmpeg/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="iOS编译ffmpeg">iOS编译ffmpeg</span>
-            <span class="post-date" title="2015-11-06 10:59:45">2015/11/06</span>
-        </a>
-        
-        <a  class="C/C++ "
-           href="/2013/07/15/《C语言深度剖析》读书笔记/"
-           data-tag="C/C++"
-           data-author="" >
-            <span class="post-title" title="《C语言深度剖析》读书笔记">《C语言深度剖析》读书笔记</span>
-            <span class="post-date" title="2013-07-15 14:19:07">2013/07/15</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2016/10/09/使用WireShark-调试真机网络/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="使用WireShark 调试真机网络">使用WireShark 调试真机网络</span>
-            <span class="post-date" title="2016-10-09 15:09:37">2016/10/09</span>
-        </a>
-        
-        <a  class="大前端 React-Native "
-           href="/2016/04/12/如何更新React-Native/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="如何更新React Native">如何更新React Native</span>
-            <span class="post-date" title="2016-04-12 15:32:04">2016/04/12</span>
-        </a>
-        
-        <a  class="iOS 高级 "
-           href="/2018/08/22/组件化模块间通信方案/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="组件化模块间通信方案">组件化模块间通信方案</span>
-            <span class="post-date" title="2018-08-22 01:12:20">2018/08/22</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2016/01/09/消除编译器警告/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="消除编译器警告">消除编译器警告</span>
-            <span class="post-date" title="2016-01-09 17:54:41">2016/01/09</span>
-        </a>
-        
-        <a  class="C/C++ "
-           href="/2013/12/17/让StringGrid控件显示下拉菜单/"
-           data-tag="Boardland C++"
-           data-author="" >
-            <span class="post-title" title="让StringGrid控件显示下拉菜单">让StringGrid控件显示下拉菜单</span>
-            <span class="post-date" title="2013-12-17 18:13:51">2013/12/17</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2016/08/02/GCD用法全解/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="GCD用法全解">GCD用法全解</span>
-            <span class="post-date" title="2016-08-02 17:16:17">2016/08/02</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2015/10/24/KVO深入解析/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="KVO深入解析">KVO深入解析</span>
-            <span class="post-date" title="2015-10-24 17:18:51">2015/10/24</span>
-        </a>
-        
-        <a  class="iOS Rx &amp; RAC "
-           href="/2018/07/30/ReactiveCocoa冷热信号详解/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="ReactiveCocoa冷热信号详解">ReactiveCocoa冷热信号详解</span>
-            <span class="post-date" title="2018-07-30 20:08:40">2018/07/30</span>
-        </a>
-        
-        <a  class="iOS 高级 "
-           href="/2017/12/09/iOS-SDK-开发/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="iOS SDK 开发">iOS SDK 开发</span>
-            <span class="post-date" title="2017-12-09 15:07:25">2017/12/09</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2016/08/12/《Effective-Objective-C-2-0》读书笔记/"
-           data-tag="iOS"
-           data-author="" >
-            <span class="post-title" title="《Effective Objective-C 2.0》读书笔记">《Effective Objective-C 2.0》读书笔记</span>
-            <span class="post-date" title="2016-08-12 23:05:51">2016/08/12</span>
-        </a>
-        
-        <a  class="读书 "
-           href="/2015/05/09/《黑客与画家》摘录/"
-           data-tag="读书"
-           data-author="" >
-            <span class="post-title" title="《黑客与画家》摘录">《黑客与画家》摘录</span>
-            <span class="post-date" title="2015-05-09 18:40:00">2015/05/09</span>
-        </a>
-        
-        <a  class="读书 "
-           href="/2013/12/30/读闲书 摘录一/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="2013读书摘录">2013读书摘录</span>
-            <span class="post-date" title="2013-12-30 18:52:43">2013/12/30</span>
-        </a>
-        
-        <a  class="大前端 React-Native "
-           href="/2018/05/21/React-Native 布局/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="React-Native布局">React-Native布局</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 js "
-           href="/2018/05/21/JS常用点/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="JS常用点">JS常用点</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 js "
-           href="/2018/05/21/React-Native模版/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="React-Native模版">React-Native模版</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 js "
-           href="/2018/05/21/JS中的Promise, async, await/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="JS中的Promise, async, await">JS中的Promise, async, await</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 js "
-           href="/2018/05/21/JS中的this绑定/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="JS中的this绑定">JS中的this绑定</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 js "
-           href="/2018/05/21/JS原型链与prototype/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="JS原型链与prototype">JS原型链与prototype</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/快捷键/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="快捷键">快捷键</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/Jenkins安装/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="MacOS安装Jenkins">MacOS安装Jenkins</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="大前端 微信小程序 "
-           href="/2018/05/21/微信小程序/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="微信小程序">微信小程序</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="工具 "
-           href="/2018/05/21/fastlane/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="fastlane">fastlane</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2018/05/21/iOS自定义对象归档/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="iOS自定义对象归档">iOS自定义对象归档</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2018/05/21/Swift要点/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="Swift要点">Swift要点</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2018/05/21/Swift中的高阶函数/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="Swift高阶函数">Swift高阶函数</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2018/05/21/Swift中where的使用/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="Swift中where的使用">Swift中where的使用</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2018/05/21/Swift面向协议编程/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="Swift要点">Swift要点</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS Rx &amp; RAC "
-           href="/2018/05/21/RxSwift基本概念/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="RxSwift基本概念">RxSwift基本概念</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS Rx &amp; RAC "
-           href="/2018/05/21/RxSwift map,flatMap,flatMapLatest的区别/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="RxSwift map,flatMap,flatMapLatest的区别">RxSwift map,flatMap,flatMapLatest的区别</span>
-            <span class="post-date" title="2018-05-21 18:01:12">2018/05/21</span>
-        </a>
-        
-        <a  class="iOS "
-           href="/2017/05/21/Swift踩坑记/"
-           data-tag="Swift"
-           data-author="" >
-            <span class="post-title" title="Swift踩坑记">Swift踩坑记</span>
-            <span class="post-date" title="2017-05-21 18:01:12">2017/05/21</span>
-        </a>
-        
-    </nav>
-</div>
-    </div>
-    <div class="hide-list">
-        <div class="semicircle">
-            <div class="brackets first"><</div>
-            <div class="brackets">&gt;</div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2014-09-03 09:10:54" itemprop="dateCreated datePublished" datetime="2014-09-03T09:10:54+08:00">2014-09-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-29 17:02:37" itemprop="dateModified" datetime="2019-08-29T17:02:37+08:00">2019-08-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/cocoapods/" itemprop="url" rel="index"><span itemprop="name">cocoapods</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
         </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><h2 id="更新本地索引库"><a href="#更新本地索引库" class="headerlink" title="更新本地索引库"></a>更新本地索引库</h2><p>需要经常手动进行更新，尤其在苹果有大的版本发布之后，各个第三方库会在随后更新<br><code>pod repo update</code></p>
+<h2 id="更新cocoapod版本"><a href="#更新cocoapod版本" class="headerlink" title="更新cocoapod版本"></a>更新cocoapod版本</h2><p><code>gem install cocoapods --pre</code></p>
+<h2 id="单独更新某个库"><a href="#单独更新某个库" class="headerlink" title="单独更新某个库"></a>单独更新某个库</h2><p><code>pod update MJRefresh</code></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><hr>
+<h2 id="1-安装-rvm"><a href="#1-安装-rvm" class="headerlink" title="1.安装 rvm"></a>1.安装 rvm</h2><p>参考：<a href="http://ruby-china.org/wiki/rvm-guide，测试可行" target="_blank" rel="noopener">http://ruby-china.org/wiki/rvm-guide，测试可行</a></p>
+<h2 id="2-安装ruby"><a href="#2-安装ruby" class="headerlink" title="2.安装ruby"></a>2.安装ruby</h2><p>同样参考上面的网站</p>
+<h2 id="3-开始安装cocoapods"><a href="#3-开始安装cocoapods" class="headerlink" title="3.开始安装cocoapods"></a>3.开始安装cocoapods</h2><p>升级ruby的gem<br><code>sudo gem update --system</code><br>安装cocoapods<br><code>sudo gem install cocoapods</code><br>还有一点需要注意，pod setup在执行时，会输出Setting up CocoaPods master repo，但是会等待比较久的时间。这步其实是 Cocoapods 在将它的信息下载到 ~/.cocoapods目录下，如果你等太久，可以试着 cd 到那个目录，用du -sh *来查看下载进度。</p>
+<blockquote>
+<p>请参见cocoapods官网 <a href="https://cocoapods.org" target="_blank" rel="noopener">https://cocoapods.org</a></p>
+</blockquote>
+<h2 id="4-更新ruby的源"><a href="#4-更新ruby的源" class="headerlink" title="4.更新ruby的源"></a>4.更新ruby的源</h2><blockquote>
+<p>最新的国内安装源可以在这里看到 <a href="https://gems.ruby-china.org" target="_blank" rel="noopener">https://gems.ruby-china.org</a></p>
+</blockquote>
+<pre><code>gem sources --remove https://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+gem sources -l
+</code></pre><blockquote>
+<p>参考唐巧博客：<a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/</a></p>
+</blockquote>
+<h2 id="二、重装"><a href="#二、重装" class="headerlink" title="二、重装"></a>二、重装</h2><hr>
+<p>更新了 <code>Xcode 7</code> 和 <code>OSX 0.11.1</code> 后，<code>install pod</code> 不好使了。试了下重新安装 <code>cocoapods</code>。遇到了一些问题</p>
+<h3 id="1-执行-sudo-gem-install-cocoapods-出现了如下错误："><a href="#1-执行-sudo-gem-install-cocoapods-出现了如下错误：" class="headerlink" title="1. 执行 sudo gem install cocoapods 出现了如下错误："></a>1. 执行 <code>sudo gem install cocoapods</code> 出现了如下错误：</h3><blockquote>
+<p>ERROR:  Could not find a valid gem ‘cocospods’ (&gt;= 0), here is why:<br>Unable to download data from <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a> - bad response Not Found 404 (<a href="http://ruby.taobao.org/latest_specs.4.8.gz" target="_blank" rel="noopener">http://ruby.taobao.org/latest_specs.4.8.gz</a>)</p>
+</blockquote>
+<h3 id="解决办法：将http-替换成-https，具体如下"><a href="#解决办法：将http-替换成-https，具体如下" class="headerlink" title="解决办法：将http 替换成 https，具体如下"></a>解决办法：将http 替换成 https，具体如下</h3><ol>
+<li>gem sources –remove <a href="http://ruby.taobao.org/" target="_blank" rel="noopener">http://ruby.taobao.org/</a></li>
+<li>gem sources -a <a href="https://ruby.taobao.org/" target="_blank" rel="noopener">https://ruby.taobao.org/</a></li>
+<li>查看源对不对<br>gem sources -l</li>
+<li>再安装就好了<br>sudo gem install cocoapods</li>
+</ol>
+<h3 id="2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误"><a href="#2-然后可以执行-sudo-gem-install-cocoapods-了。但是执行到一半又出现了如下错误" class="headerlink" title="2. 然后可以执行 sudo gem install cocoapods 了。但是执行到一半又出现了如下错误"></a>2. 然后可以执行 <code>sudo gem install cocoapods</code> 了。但是执行到一半又出现了如下错误</h3><blockquote>
+<p>While executing gem … (Errno::EPERM)<br>Operation not permitted - /usr/bin/xcodeproj</p>
+</blockquote>
+<h3 id="解决办法：自定义GEM-HOME"><a href="#解决办法：自定义GEM-HOME" class="headerlink" title="解决办法：自定义GEM_HOME"></a>解决办法：自定义GEM_HOME</h3><p>命令行操作：</p>
+<pre><code>$ mkdir -p $HOME/Software/ruby
+$ export GEM_HOME=$HOME/Software/ruby
+$ gem install cocoapods
+　　[...]
+　　1 gem installed
+　　$ export PATH=$PATH:$HOME/Sofware/ruby/bin
+　　$ pod --version
+　　0.39.0
+　　
+</code></pre><p>　　<br>　　然后就顺利安装成功了<br>　　<br>　　## 三、使用 cocoapods<br>　　<br>　　<del>~### 更换clone github镜像，加快 pod 代码下载速度</del>~<br>　　<br>　　<code>$ cd ~/.cocoapods/repos 
+　　$ pod repo remove master
+　　$ git clone https://git.coding.net/hging/Specs.git master</code><br>　　<br>　　<del>~然后需要在 podfile文件中加入如下代码</del>~<br>　　<code>// 如果不加这一句话，它默认还是从github镜像源地址去下载的
+　　source &#39;https://git.coding.net/hging/Specs.git&#39;</code><br>　　<br>　　<br><br>　　<br>　　<font color="#0099ff" face="黑体">目前没有发现比较好的镜像，上面的镜像pod里库的版本已经很低，不建议使用了，所以暂时无法解决慢的问题。</font><br>　　—-<br>　　<br>　　### 常用命令<br>　　<code>pod search pop</code><br>　　<code>pod init</code><br>　　<code>pod install</code><br>　　<code>pod install --verbose --no-repo-update</code><br>　　<code>pod update</code><br>　　<code>pod update --verbose --no-repo-update</code><br>　　<br>　　### 注意点<br>　　* 如果 import 的时候没有提示 <code>POP.h</code> 的文件，可以在 <code>target-Build Settings</code> 下修改 <code>User Header Search Paths</code> 项，新增 <code>${SRCROOT}</code> 并选择 <code>rcursive</code>，如下图。<br>　　<br>　　<br>　　## 四、参考：<br>　　<a href="http://www.bubuko.com/infodetail-1136466.html" target="_blank" rel="noopener">安装Cocoapods， 更新gem出现的问题</a><br>　　<a href="http://blog.csdn.net/w_x_p/article/details/49151477" target="_blank" rel="noopener">Mac OS X 跟新到10.11后cocoapods安装出现的问题（- bad response Not Found 404 (http://ruby.taobao.org/latest_spe</a><br>　　<a href="http://ryantang.me/blog/2014/01/05/cocoapods/" target="_blank" rel="noopener">使用CocoaPods管理依赖库</a><br>　　<a href="https://www.cnblogs.com/dengchaojie/p/8232555.html" target="_blank" rel="noopener">解决CocoaPods慢的小技巧</a></p>
+
+          
+        
+      
     </div>
-</aside>
-<div class="post index">
-    <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Why-Blog"><span class="toc-text">Why Blog</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#对博客的理解"><span class="toc-text">对博客的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于叶落阁"><span class="toc-text">关于叶落阁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#博客平台"><span class="toc-text">博客平台</span></a></li></ol></li></ol>
+
     
-<style>
-    .left-col .switch-btn,
-    .left-col .switch-area {
-        display: none;
-    }
-    .toc-level-3 i,
-    .toc-level-3 ol {
-        display: none !important;
-    }
-</style>
-</div>
-            <h1 id="Why-Blog"><a href="#Why-Blog" class="headerlink" title="Why Blog"></a>Why Blog</h1><h2 id="对博客的理解"><a href="#对博客的理解" class="headerlink" title="对博客的理解"></a>对博客的理解</h2><p>喜欢写Blog的人，会经历三个阶段。</p>
-<blockquote>
-<p>第一阶段，刚接触Blog，觉得很新鲜，试着选择一个免费空间来写。</p>
-</blockquote>
-<blockquote>
-<p>第二阶段，发现免费空间限制太多，就自己购买域名和空间，搭建独立博客。</p>
-</blockquote>
-<blockquote>
-<p>第三阶段，觉得独立博客的管理太麻烦，最好在保留控制权的前提下，让别人来管，自己只负责写文章。</p>
-</blockquote>
-<p>我们每个人的在网络上产生的数据越来越多，这些信息是我们在互联网上存在过的痕迹，值得我们认真对待。但是它们被分散分布在各个网站上。很多时候我们很难将它们聚合在一起，而且各个网站的信息排布方式也没有办法自由控制，所以我们需要一个可以由自己主宰的空间——博客。</p>
-<p>通过博客，我们可以记录自己的生活和成长的轨迹。它不像 Twitter 那样碎片化，也不像 Facebook 那样关系化，它是私人的空间。</p>
-<h2 id="关于叶落阁"><a href="#关于叶落阁" class="headerlink" title="关于叶落阁"></a>关于叶落阁</h2><p><strong>叶落阁</strong> 是阿杰（杨玉杰）的个人站。</p>
-<p>到目前为止已经写了<code class="article_number"></code>篇文章， 共<code class="site_word_count"></code>字。</p>
-<p>本站访问人数：<code class="site_uv"></code>人次 ， 访问量：<code class="site_pv"></code>次</p>
-<h2 id="博客平台"><a href="#博客平台" class="headerlink" title="博客平台"></a>博客平台</h2><p>这个博客通过 <a href="https://hexo.io/">Hexo</a> 生成，部署在 <a href="https://pages.github.com/">GitHub Pages</a>，主题 <a href="https://github.com/yelog/hexo-theme-3-hexo">3-hexo</a> 已经在github上开源</p>
-<p>主要功能：</p>
-<ul>
-<li>搜索支持文章标题、标签(#标签)、作者(@作者)</li>
-<li>pad/手机等移动端适配</li>
-<li>页面全局快捷键 <a href='http://yelog.org/2017/03/24/3-hexo-shortcuts/'>3-hexo快捷键说明</a></li>
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2013/12/30/读闲书 摘录一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/30/读闲书 摘录一/" itemprop="url">
+                  2013读书摘录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2013-12-30 18:52:43" itemprop="dateCreated datePublished" datetime="2013-12-30T18:52:43+08:00">2013-12-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-29 17:07:04" itemprop="dateModified" datetime="2019-08-29T17:07:04+08:00">2019-08-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/读书/" itemprop="url" rel="index"><span itemprop="name">读书</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="《月亮和六便士》"><a href="#《月亮和六便士》" class="headerlink" title="《月亮和六便士》"></a>《月亮和六便士》</h1><ul>
+<li>人们在仰望月亮时常常忘了脚下的六便士——月亮与六便士</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/1120923-2c4720d657226555.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="8e8166c087f4c7b10d227d7570eedef0.png"></li>
+</ul>
+<h1 id="《且听风吟》"><a href="#《且听风吟》" class="headerlink" title="《且听风吟》"></a>《且听风吟》</h1><ul>
+<li><p>于是我一只手拿尺，开始惶惶不安地张望周围的世界。那年大概是肯尼迪总统惨死的那年，距今已有15年之久。这15年里我的确扔掉了很多很多东西。就像发动机出了故障的飞机为减轻重量而甩掉货物、甩掉座椅、最后连可怜的男乘务员也甩掉一样。十五年里我舍弃了一切，身上几乎一无所有。至于这样做是否正确，我无从断定。心情变得痛快这点倒是确确实实的。然而每当我想起临终时身上将剩何物，我便觉得格外恐惧。一旦付诸火炬，想必连一截残骨也断难剩下。死去的祖母常说，“心情抑郁的人只能做抑郁的梦，要是更加抑郁，连梦都不做的。”——《且听风吟》</p>
+</li>
+<li><p>“不存在十全十美的文章，如同不存在彻头彻尾的绝望。”或者说 “不存在十全十美的人物，如同不存在彻头彻尾的绝望。——《且听风吟》</p>
+</li>
+</ul>
+<h1 id="《了不起的盖茨比》"><a href="#《了不起的盖茨比》" class="headerlink" title="《了不起的盖茨比》"></a>《了不起的盖茨比》</h1><ul>
+<li><p>“每当你要批评别人，要记住，世上不是每个人都有你这么好的条件。”</p>
+</li>
+<li><p>“在大都市迷人的黄昏时刻，我有时感到一种难以排遣的寂寞，同时也觉得别人有同感——那些在橱窗面前踯躅的穷困的青年小职员，等到了时候独个儿上小饭馆去吃一顿晚饭——黄昏中的青年小职员，虚度着夜晚和生活中最令人陶醉的时光。” </p>
+</li>
+<li><p>“盖茨比深切地体会到财富怎样禁甸和保存青春与神秘，体会到一套套衣装怎样使人保持清析，体会到黛西像白银一样皎皎发光，安然高踞于穷苦人激烈的生存斗争之上。”</p>
+</li>
+<li><p>“不是因为时间令我遗忘当时的心情，而是在时间中希望又失望又希望，循环往复，终于证明快乐的确不用发觉，是正觉，“原来”两个字，提醒了我，所谓感觉，是随心境而生灭，并无绝对的真相或事实的概念.</p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-3f7f980047226f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="c5fb575293c19238d890b0c3f569ea7d.png"></p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-3f7f980047226f5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="c5fb575293c19238d890b0c3f569ea7d.png"></p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-061acbfd64e7bb89.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="- "></p>
+</li>
+</ul>
+<h1 id="《原来你并非不快乐》"><a href="#《原来你并非不快乐》" class="headerlink" title="《原来你并非不快乐》"></a>《原来你并非不快乐》</h1><ul>
+<li><p>“钱可以帮你，贪心的话，钱便可以主宰你。够好心钱更可以救助天地，但愿别为钱而忧，亦别独独为钱而喜，足够，便足以忘记。</p>
+</li>
+<li><p>“假如买不起一个高清电视弥补失恋之苦，不如买本《庄子》看一下更能放下前度的阴影，假如去不其欧洲奖励自己半年无休的辛劳，去一次郊区观鸟，更会发现钱除了买到享受，最重要是买到将来选择的自由”</p>
+</li>
+<li><p>旅游，不是太早，就是太迟。</p>
+</li>
+<li><p>不是因为时间令我遗忘当时的心情，而是在时间中希望又失望又希望，循环往复，终于证明快乐的确不用发觉，是正觉，“原来”两个字，提醒了我，所谓感觉，是随心境而生灭，并无绝对的真相或事实的概念</p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-946deaec2ec6a4fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="a753e4b21ed84b75da113e2235986b1b.png"></p>
+</li>
+</ul>
+<h1 id="《登天的感觉，我在哈佛大学做心理咨询》"><a href="#《登天的感觉，我在哈佛大学做心理咨询》" class="headerlink" title="《登天的感觉，我在哈佛大学做心理咨询》"></a>《登天的感觉，我在哈佛大学做心理咨询》</h1><ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/1120923-778c2757812283ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="778fda349df5e4a2b31f19d8a287cb7f.png"></li>
+</ul>
+<h1 id="《鲁迅经典全集》"><a href="#《鲁迅经典全集》" class="headerlink" title="《鲁迅经典全集》"></a>《鲁迅经典全集》</h1><ul>
+<li><p>其实人禽之辨，本不必这样严。在动物界，虽然并不如古人所幻想的那样舒适自由，可是噜苏做作的事总比人间少。它们适性任情，对就对，错就错，不说一句分辩话。虫蛆也许是不干净的，但它们并没有自命清高；鸷禽猛兽以较弱的动物为饵，不妨说是凶残的罢，但它们从来就没有竖过 “ 公理 ”“ 正义 ” 的旗子，使牺牲者直到被吃的时候为止，还是一味佩服赞叹它们。人呢，能直立了，自然是一大进步；能说话了，自然又是一大进步；能写字作文了，自然又是一大进步。然而也就堕落，因为那时也开始了说空话。说空话尚无不可，甚至于连自己也不知道说着违心之论，则对于只能嗥叫的动物，实在免不得 “ 颜厚有忸怩 ”。假使真有一位一视同仁的造物主，高高在上，那么，对于人类的这些小聪明，也许倒以为多事，正如我们在万生园里，看见猴子翻筋斗，母象请安，虽然往往破颜一笑，但同时也觉得不舒服，甚至于感到悲哀，以为这些多余的聪明，倒不如没有的好罢。然而，既经为人，便也只好“ 党同伐异 ” ，学着人们的说话，随俗来谈一谈，辩一辩了。《朝花夕拾》</p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-ceb85b5bfdb8cd46.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4c96d3f5830beaed37473d162910fa95.png"></p>
+</li>
+</ul>
+<h1 id="《独自上场》"><a href="#《独自上场》" class="headerlink" title="《独自上场》"></a>《独自上场》</h1><ul>
+<li><p>你不可能从现在这个点上看到将来；只有回头看时，才会发现它们之间的关系。所以你必须相信，那些点点滴滴，会在你未来的生命里，以某种方式串联起来。”——李娜《独自上场》</p>
+</li>
+<li><p>愤怒比悲伤更有力，愤怒不会让一个人垮掉。——李娜《独自上场》</p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-0a06bd817940075c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="817e3b298d4339d845309c889cc5edb1.png"></p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-b2e1ce30c6328e5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="9c305f985d283d54d6c10b543843c820.png"></p>
+</li>
+</ul>
+<h1 id="杨绛《我两的故事》"><a href="#杨绛《我两的故事》" class="headerlink" title="杨绛《我两的故事》"></a>杨绛《我两的故事》</h1><ul>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-62d408e807407b7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="24059d08bdb154129e416ef2a7bc1f70.png"></p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-28d8684745f066ef.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="b39c594256e4be67ff53d7d4e1ccd699.png"></p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-b8d7ad3a545bf79a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="e711ffc9bb4aaf9a42931cf6fe3d4b1f.png"></p>
+</li>
+<li><p>见她之前，从未想结婚；娶她之后，从未后悔娶她。</p>
+</li>
+</ul>
+<h1 id="《文化苦旅》"><a href="#《文化苦旅》" class="headerlink" title="《文化苦旅》"></a>《文化苦旅》</h1><ul>
+<li><img src="https://upload-images.jianshu.io/upload_images/1120923-b471d9fb26be798b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="10c4a2219cddd9eb8a79c98462b0d328.png"></li>
+</ul>
+<h1 id="《沉默的大多数》"><a href="#《沉默的大多数》" class="headerlink" title="《沉默的大多数》"></a>《沉默的大多数》</h1><ul>
+<li><p>此人之肉，彼人之毒；一件对此人有利的事，难免会伤害另一个人。真正的君子知道，自己的见解受所处环境左右，未必是公平的；——《沉默的大多数》</p>
+</li>
+<li><p>话语有一个神圣的使命，就是想要证明说话者本身与众不同，是芸芸众生中的娇娇者。假设这些都是实情，我们不妨把这些保藏在内心处不说，“闷兹蜜”。——《沉默的大多数》原来王小波先生也是”闷骚”型。其实这个世界不缺沉默。</p>
+</li>
+</ul>
+<h1 id="《突然就走到西藏》"><a href="#《突然就走到西藏》" class="headerlink" title="《突然就走到西藏》"></a>《突然就走到西藏》</h1><ul>
+<li><p>亲友或爱人之间争吵，有时候争得面红耳赤不如一个拥抱来得温暖直接。——《突然就走到了西藏 纯文字》</p>
+</li>
+<li><p>感谢那个残酷对你的人——《突然就走到了西藏 纯文字》，否则你会沉浸于梦境中，梦总有会醒的时候。</p>
+</li>
+<li><p>自卑常常以骄傲的面目出现。人的自傲与自卑是一对孪生兄弟，有时候过于自傲反倒说明你是自卑的。——《突然就走到了西藏 纯文字》</p>
+</li>
+</ul>
+<h1 id="《生命不能承受之轻》"><a href="#《生命不能承受之轻》" class="headerlink" title="《生命不能承受之轻》"></a>《生命不能承受之轻》</h1><ul>
+<li><p>人的生命只有一次，我们既不能把它与我们以前的生活相此较，也无法使其完美之后再来度过。——《生命中不能承受之轻》</p>
+</li>
+<li><p>也许最沉重的负担同时也是一种生活最为充实的象征，负担越沉，我们的生活也就越贴近大地，越趋近真切和实在。——《生命中不能承受之轻》</p>
+</li>
+</ul>
+<h1 id="《张爱玲文集》"><a href="#《张爱玲文集》" class="headerlink" title="《张爱玲文集》"></a>《张爱玲文集》</h1><ul>
+<li><p>如果你不调戏女人，她说你不是一个男人，如果你调戏她，她说你不是一个上等人。——《张爱玲文集(全5卷)》</p>
+</li>
+<li><p>用别人的钱，即使是父母的遗产，也不如用自己赚来的钱来得自由自在，良心上痛快。可是用丈夫的钱，如果爱他的话，那却是一种快乐，愿意想自己是吃他的饭，穿他的衣服。那是女人的传统的权利，即使女人现在有了职业，还是舍不得放弃的。——《张爱玲文集(全5卷)》</p>
+</li>
+</ul>
+<h1 id="王朔《过把瘾就死》"><a href="#王朔《过把瘾就死》" class="headerlink" title="王朔《过把瘾就死》"></a>王朔《过把瘾就死》</h1><ul>
+<li>“就像童话中两个贪心人挖地下的财宝，结果挖出一个人的骸骨，虽然迅速埋上了，甚至在上面种了树，栽了花，但都清楚地知道底下埋的是什么。看见树，看见花，想的却是地下的那具骸骨。” ——王朔《过把瘾就死》</li>
+</ul>
+<h1 id="路遥《人生》"><a href="#路遥《人生》" class="headerlink" title="路遥《人生》"></a>路遥《人生》</h1><ul>
+<li><p>我们当今的现实生活中有马占胜和高明楼这样的人。他们为了个人的利益。有时毫不顾忌地给这些徘徊在生活十字路口的人当头一棒，使他们对生活更加悲观；有时，还是出于个人目的，他们又一下子把这些人推到生活的顺风船上。——《人生》看到这里，生活不过如此了</p>
+</li>
+<li><p>劳动啊，它是艰苦的，但也有它本身的欢乐！《人生》</p>
+</li>
+<li><p>生活的变化真如同春夏秋冬，一寒一暑，差别甚远！三年前，这样的夜晚，他此刻或者在明亮温馨的教室里读书；或者在电影院散场的人群里，和同学们说说笑笑走向学校.　　现在，他却拉着茅粪桶，东避西躲，鬼鬼祟祟，像一个夜游鬼一样。——《人生》</p>
+</li>
+<li><p>现在他一屁股坐下来，浑身骨头似乎全掉了，两只手像抓着两把葛针，疼得万箭钻心！　　不过，他也感到了一种无法言语的愉快。他让所有的庄稼人看见：他们衡量一个优秀庄稼人最重在的品质――吃苦精神，他高加林也具备。从性格上说，他的确是个强者；而这个优点在某些情况下又使他犯错误。——《人生》</p>
+</li>
+<li><p>爱情就像一条河，我们都是瞎子，谁不是摸着石头过河。</p>
+</li>
+</ul>
+<h1 id="柴静《看见》"><a href="#柴静《看见》" class="headerlink" title="柴静《看见》"></a>柴静《看见》</h1><ul>
+<li><p>“但痛苦也是一种清洗，是对牺牲的人的告慰。”——《看见》</p>
+</li>
+<li><p>当一个人关心别人的时候，才会忘记自己。——《看见》</p>
+</li>
+<li><p>我知道自己身上已经开始散发失败者的味儿，再这样下去谁都会闻出来了–在动物界，你知道，只要你散发出那样的气味，几乎就意味着没有指望了，很快，很快，就会被盯上，毫不留情地被扑倒在地，同伴会四奔逃散，甚至顾不上看你一眼。——《看见》</p>
+</li>
+<li><p>“人们声称的最美好的岁月其实都是最痛苦的，只是事后回忆起来的时候才那么幸福。”——《看见》</p>
+</li>
+</ul>
+<h1 id="《牧羊少年的奇幻之旅》"><a href="#《牧羊少年的奇幻之旅》" class="headerlink" title="《牧羊少年的奇幻之旅》"></a>《牧羊少年的奇幻之旅》</h1><ul>
+<li><p>“我就像大多数人一样－－只肯相信自己要相信的，不肯去看清事情究竟真正是怎么一回事。”——《牧羊少年奇幻之旅》</p>
+</li>
+<li><p>幸福的秘密就是去欣赏世界上所有的奇妙景观，但不要忘了汤匙里的油。’——《牧羊少年奇幻之旅》</p>
+</li>
+</ul>
+<h1 id="《雪国》"><a href="#《雪国》" class="headerlink" title="《雪国》"></a>《雪国》</h1><ul>
+<li><p>“山头上罩满了月色，这是原野尽头惟一的景色，月色虽以淡淡消去，但余韵无穷，不禁使人产生冬夜寥峭的感觉。”“盈盈皓月，深深地射了进来，照亮得连驹子的耳朵的凹凸线条都清晰地浮现出来。”——《雪国》</p>
+</li>
+<li><p>诗句不都是句句真言吗？像一道彩虹悬挂在虚空，瞬间出现五彩缤纷像。当白日空中辉照时，虚无又明亮起来了。然而虚空本来无光，也是无色可装点的。我也在这如虚空般的心上，着上种种情趣盎然的色彩，但没有留下一丝踪迹——《雪国》现实的事物遮住了眼睛，充斥了双耳，而诗歌呢，就如虚空中的彩虹一样。</p>
+</li>
+<li><p>以前觉得“感冒一直纠缠不休，鼻子堵塞”。当一到雪国这清冷的环境中，“这时一下子通了气，穿到头顶心。”——《雪国》</p>
+</li>
+<li><p>弗洛伊德说：“女人越是轻浮放荡，就越使男人爱得发狂。同这种女人相爱，往往使他们魂销骨酥，不能自拔。……但一旦爱上之后，又要求她们对自己忠实。”《雪国》序</p>
+</li>
+</ul>
+<h1 id="《目送》"><a href="#《目送》" class="headerlink" title="《目送》"></a>《目送》</h1><ul>
+<li><p>我慢慢地、慢慢地了解到，所谓父女母子一场，只不过意味着，你和他的缘分就是今生今世不断地在目送他的背影渐行渐远。你站立在小路的这一端，看着他逐渐消失在小路转弯的地方，而且，他用背影默默告诉你：不必追。——《目送》</p>
+</li>
+<li><p>只有一个人能听的音乐，是一扇紧闭的门。——《目送》</p>
+</li>
+<li><p>一件事情的毕业，永远是另一件事情的开启。——《目送》</p>
+</li>
+</ul>
+<h1 id="《乡关何处》"><a href="#《乡关何处》" class="headerlink" title="《乡关何处》"></a>《乡关何处》</h1><ul>
+<li><p>我们不是我们污脏的外表，我们的心中一直盛开着一朵圣洁的向日葵。——《乡关何处》</p>
+</li>
+<li><p>命运未卜，何敢触碰爱情这种高贵的话题。即便心中藏有一个重洋，流出来也只是两颗泪珠。——《乡关何处》</p>
+</li>
+<li><p>最美的生活是善良、平等和文明，最好的工作是为未来做几件切实有益的事情，最甜的笑由于淡淡的幽默。人们不以权势扰乱平静无辜的心灵的时代，才是人性真正解放的时代。——《乡关何处》</p>
+</li>
+<li><p>一个人滥情是罪过，但一个人独身也同样难容于大众。一个人因为穷或残障而不能成婚，已多蒙歧视，如果他健康且尚可谋生而不婚，则难逃物议。——《乡关何处》</p>
+</li>
+<li><p>雪夜访戴，兴至而往，兴尽而归，何必见戴。——《乡关何处》</p>
+</li>
+<li><p>当“访旧半为鬼”时，当“故人日以稀”时，当在暮烟的幻象中遥见你曾朝夕与共甚或唇齿相依的大队面容时，你何曾有一丝幸存者的窃喜。就像此夜，当我枯坐于天涯客馆，燃一炬烟，吞吐几十年的往事时，我恍若一个同谋共犯——他们去了，我却苟活于斯——我怎堪独自直面这残酷的余生。——《乡关何处》</p>
+</li>
+<li><p>死亡，在许多时候，真是一件近乎日常的琐事。你买菜的路上，邂逅车轮下的一摊血；你拎着一堆肉食回来，看见邻居的一张讣告——在你行经的地方，人们竞相奔赴道路的尽头。你才发现，生命竟然确实薄如蝉翼。——《乡关何处》</p>
+</li>
+<li><p>可是好人却无好命，这几乎已经是这个世界的潜规则。这些好人来到这个世界，就是来承担磨难的；他们像一粒糖抛进大海，永远无法改变那深重的苦涩，也许只有经过的鱼才会知道那一丝稀有的甜蜜。——《乡关何处》</p>
+</li>
+<li><p>即使在此过程中已经深知这一结局的无法回避，但一个活生生的人真正在你手里呼出最后一口气时，你依然难以接受——你在那一刻无法不痛感人的弱小和不堪一击。我们有谁能与死神相争呢？——《乡关何处》</p>
+</li>
+</ul>
+<h1 id="巴金《家》"><a href="#巴金《家》" class="headerlink" title="巴金《家》"></a>巴金《家》</h1><ul>
+<li><p>顺受的，毫不抱怨，毫不诉苦的。像大海一样，它接受了一切，吞下了一切，可是它连一点吼声也没有。——《家》鸣凤的对待不公的表情</p>
+</li>
+<li><p>有人说过，路本没有，因为走的人多了，便成了一条路。又有人说路是有的，正因为有了路才有许多人走。谁是谁非，我不想判断。我还年轻，我还要活下去，我还要征服生活。我知道生活的激流是不会停止的，且看它把我载到什么地方去！——《家》</p>
+</li>
+<li><p>黑暗到了尽头，黎明就出现了。——《家》</p>
+</li>
+<li><p>几年前我流着眼泪读完托尔斯泰的小说《复活》，曾经在扉页上写了一句话：“生活本身就是一个悲剧。”　　事实并不是这样。生活并不是悲剧。它是一场“搏斗”。我们生活来做什么？或者说我们为什么要有这生命？罗曼罗兰的回答是“为的是来征服它”。《家》巴金</p>
+</li>
+</ul>
+<h1 id="《傲慢与偏见》"><a href="#《傲慢与偏见》" class="headerlink" title="《傲慢与偏见》"></a>《傲慢与偏见》</h1><ul>
+<li><p>大凡一个人爱上一个人，都是因为先有了感激之心，器重之意。《傲慢与偏见》</p>
+</li>
+<li><p>虚荣与骄傲是截然不同的两件事，尽管字面上常常当作同义词用，一个人可以骄傲而不虚荣。骄傲多半不外乎我们对我们自己的估价，虚荣却牵涉到我们希望别人对我们的看法。——《傲慢与偏见》</p>
+</li>
+</ul>
+<h1 id="《潜规则》"><a href="#《潜规则》" class="headerlink" title="《潜规则》"></a>《潜规则》</h1><ul>
+<li><p>合法伤害权是很值钱的。有了这种权力，没有钱可以有钱，没有敛钱的规矩可以创造出规矩。用古汉语一个简洁贴切的词来表达，这叫势所必至。势之所至，潜规则生焉。即使这规则不合法，也可以转弯抹角将它装扮起来–广大群众爱护人民警察，凑点钱表达他们的感激之情，这难道有什么不对吗？——《潜规则》</p>
+</li>
+<li><p>合法地祸害别人的能力，乃是官吏们的看家本领。这是一门真正的艺术，种种资源和财富正要据此分肥并重新调整。——《潜规则》</p>
+</li>
+<li><p><img src="https://upload-images.jianshu.io/upload_images/1120923-7eb5255c46eeae00.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="685926ffc7f7a3e369358a5bb2e33fdc.jpg"></p>
+</li>
 </ul>
 
-        </article>
+          
         
-        
+      
     </div>
-    <div class="copyright">
-        <p class="footer-entry">©2016-2019 action456789</p>
-<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
-    </div>
-    <div class="full-toc">
-        <button class="full"><span class="min "></span></button>
-<button class="post-toc-menu"><span class="post-toc-menu-icons"></span></button>
-<div class="post-toc"><span class="post-toc-title">目录</span>
-    <div class="post-toc-content">
-
-    </div>
-</div>
-<a class="" id="rocket" href="javascript:void(0)"></a>
-    </div>
-</div>
-<div class="acParent"></div>
-
-</body>
-<script src="//cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
-
-<script src="/js/script.js?v=1.0.1" ></script>
-<script>
-    var img_resize = 'default';
-    /*作者、标签的自动补全*/
-    $(function () {
-        $('.search').AutoComplete({
-            'data': ['#iOS','#C/C++','#Boardland C++','#读书','#Swift',],
-            'itemHeight': 20,
-            'width': 418
-        }).AutoComplete('show');
-    })
-    function initArticle() {
-        /*渲染对应的表格样式*/
-        
-            $(".post .pjax table").addClass("green_title");
-        
-
-        /*渲染打赏样式*/
-        
-
-        /*高亮代码块行号*/
-        
-
-        /*访问数量*/
-        
-        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
-        
-
-        /*代码高亮，行号对齐*/
-        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
-
-        
-    }
-
-    /*打赏页面隐藏与展示*/
     
 
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2013/12/17/让StringGrid控件显示下拉菜单/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/12/17/让StringGrid控件显示下拉菜单/" itemprop="url">
+                  让StringGrid控件显示下拉菜单
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2013-12-17 18:13:51" itemprop="dateCreated datePublished" datetime="2013-12-17T18:13:51+08:00">2013-12-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-29 17:27:58" itemprop="dateModified" datetime="2019-08-29T17:27:58+08:00">2019-08-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h1><p><img src="https://img-blog.csdn.net/20131217181100796?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYWN0aW9uNDU2Nzg5/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<h1 id="关键代码"><a href="#关键代码" class="headerlink" title="关键代码"></a>关键代码</h1><pre><code class="C">void __fastcall TForm1::FormCreate(TObject *Sender)  
+{  
+    StringGrid1-&gt;ColCount = 4;  
+    StringGrid1-&gt;RowCount = 6;  
+    StringGrid1-&gt;DefaultRowHeight = ComboBox1-&gt;Height;  
+    StringGrid1-&gt;RowHeights[0] = 18;  
+    StringGrid1-&gt;ColWidths[2] = 80;  
+    StringGrid1-&gt;Cells[0][0] = &quot;FirstName&quot;;  
+    StringGrid1-&gt;Cells[1][0] = &quot;LastName&quot;;  
+    StringGrid1-&gt;Cells[2][0] = &quot;SBVLEdit LV1&quot;;  
+    StringGrid1-&gt;Cells[3][0] = &quot;Action&quot;;  
+
+    ComboBox1-&gt;Text = &quot;&quot;;  
+    ComboBox1-&gt;Items-&gt;Add(&quot;Teen&quot;);  
+    ComboBox1-&gt;Items-&gt;Add(&quot;Adult&quot;);  
+    ComboBox1-&gt;Items-&gt;Add(&quot;Senior&quot;);  
+    ComboBox1-&gt;Visible = False;  
+}  
+
+void __fastcall TForm1::ComboBox1Change(TObject *Sender)  
+{  
+    StringGrid1-&gt;Cells[StringGrid1-&gt;Col][StringGrid1-&gt;Row] = ComboBox1-&gt;Items-&gt;Strings[ComboBox1-&gt;ItemIndex];  
+}  
+
+void __fastcall TForm1::StringGrid1DblClick(TObject *Sender) //双击事件  
+{  
+    TRect r;  
+    if(StringGrid1-&gt;Col == 2)  
+    {  
+        int ACol = StringGrid1-&gt;Col;  
+        int ARow = StringGrid1-&gt;Row;  
+        r = StringGrid1-&gt;CellRect(ACol,ARow);  
+        ComboBox1-&gt;Top = StringGrid1-&gt;Top + r.Top + StringGrid1-&gt;GridLineWidth + 1;  
+        ComboBox1-&gt;Left = StringGrid1-&gt;Left + r.Left + StringGrid1-&gt;GridLineWidth +1;  
+        ComboBox1-&gt;Width = r.Right - r.Left;  
+        ComboBox1-&gt;ItemIndex = ComboBox1-&gt;Items-&gt;IndexOf(StringGrid1-&gt;Cells[ACol][ARow]);  
+        ComboBox1-&gt;Visible = true;  
+    } else { 
+        ComboBox1-&gt;Visible = false;
+    }  
+}  
+</code></pre>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://ymg97526.blog.163.com/blog/static/17365816020135264552765/" target="_blank" rel="noopener">http://ymg97526.blog.163.com/blog/static/17365816020135264552765/</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://superkk.top/2013/07/15/《C语言深度剖析》读书笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="action456789">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/img/default_avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="爱工作·爱生活">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2013/07/15/《C语言深度剖析》读书笔记/" itemprop="url">
+                  《C语言深度剖析》读书笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2013-07-15 14:19:07" itemprop="dateCreated datePublished" datetime="2013-07-15T14:19:07+08:00">2013-07-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-29 17:07:04" itemprop="dateModified" datetime="2019-08-29T17:07:04+08:00">2019-08-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/C-C/" itemprop="url" rel="index"><span itemprop="name">C/C++</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="register"><a href="#register" class="headerlink" title="register"></a><code>register</code></h1><p>register 变量必须是一个单个的值,并且其长度应小 于或等于整型的长度。 而且 register 变量可能不存放在内存中,所以不能用取址运算符“&amp;” 来获取 register 变量的地址。</p>
+<h1 id="float-变量与“零值”进行比较"><a href="#float-变量与“零值”进行比较" class="headerlink" title="float 变量与“零值”进行比较"></a><code>float</code> 变量与“零值”进行比较</h1><pre><code class="C/C++">//EPSINON 为定义好的 精度。
+if((fTestVal &gt;= -EPSINON) &amp;&amp; (fTestVal &lt;= EPSINON)); 
+</code></pre>
+<h1 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a><code>volatile</code></h1><p>volatile 关键字告诉编译器 i 是随时可能发生变化的,每次使用它的时候必须从内存中取出 i 的值,因而编译器生成的汇编代码会重新从 i 的地址处读取数据放在 k 中。</p>
+<p>这样看来,如果 i 是一个寄存器变量或者表示一个端口数据或者是多个线程的共享数 据,就容易出错,所以说 volatile 可以保证对特殊地址的稳定访问。</p>
+<h1 id="extern"><a href="#extern" class="headerlink" title="extern"></a><code>extern</code></h1><p>extern 可以置于变量或者函数前,以 标示变量或者函数的定义在别的文件中,下面的代码用到的这些变量或函数是外来的,不 是本文件定义的,提示编译器遇到此变量和函数时在其他模块中寻找其定义</p>
+<h1 id="空结构体占用空间大小"><a href="#空结构体占用空间大小" class="headerlink" title="空结构体占用空间大小"></a>空结构体占用空间大小</h1><pre><code class="C/C++">struct student {
+
+}stu;
+</code></pre>
+<h1 id="sizeof-stu-的值是多少呢"><a href="#sizeof-stu-的值是多少呢" class="headerlink" title="sizeof(stu)的值是多少呢?"></a><code>sizeof(stu)</code>的值是多少呢?</h1><p>Visual C++ 6.0上为 1<br>编译器认为你构造一个结构体数据类型是用来打包一些数据成员的,而最小的数据成员需要 1 个 byte,编译器为每个结构体类型数据至少预留 1 个 byte 的空间。所以,空结构体的大小就定位 1 个 byte。</p>
+<h1 id="struct-与-class-的区别"><a href="#struct-与-class-的区别" class="headerlink" title="struct 与 class 的区别"></a>struct 与 class 的区别</h1><p>struct 的成 员默认情况下属性是 public 的,而 class 成员却是 private 的。</p>
+<h1 id="union-关键字"><a href="#union-关键字" class="headerlink" title="union 关键字"></a>union 关键字</h1><p>union 维护足够的空间来置放多个数据成员中的“一种”,而不是为每一个数据成员配置 空间,在 union 中所有的数据成员共用一个空间,同一时间只能储存其中一个数据成员,所 有的数据成员具有相同的起始地址。</p>
+<pre><code class="C/C++">union StateMachine {
+char character;
+int number;
+char *str;
+double exp;
+};
+</code></pre>
+<p>一个 union 只配置一个足够大的空间以来容纳最大长度的数据成员,以上例而言,最大 长度是 double 型态,所以 StateMachine 的空间大小就是 double 数据类型的大小。<br>另外，注意大小端模式对 union 类型数据存储的空间有影响</p>
+<h1 id="typedef-关键字"><a href="#typedef-关键字" class="headerlink" title="typedef 关键字"></a><code>typedef</code> 关键字</h1><pre><code class="C/C++">typedef struct student {
+
+//code
+}Stu_st,*Stu_pst;
+A),struct student stu1;和 Stu_st stu1;没有区别。
+B),struct student *stu2;和 Stu_pst stu2;和 Stu_st *stu2;没有区别。 这个地方很多初学者迷惑,B)的两个定义为什么相等呢?其实很好
+
+const
+const  int *p;      //p指向的对象不可变（*p不可变）
+int const *p;     //p指向的对象不可变（*p不可变）
+int *const p;     //p不可变，p指向的对象可变
+const int *const p; //前一个 const 修饰*p,后一个 const 修饰 p,指针 p 和 p 指向的对象 都不可变
+
+void Fun(const int i);     //不希望这个参数值被函数体内意外改变。
+const int Fun (void);     //返回值不可被改变。
+</code></pre>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><pre><code class="C/C++">SQR(8)
+</code></pre>
+<p>输出的是:<br>The square of 8 is 64.</p>
+<p>#预算符</p>
+<p>##运算符可以用于宏函数的替换部分。这个运算符把两个语言符号组 合成单个语言符号。</p>
+<pre><code class="C/C++">#define XNAME(n) x ## n
+</code></pre>
+<p>如果这样使用宏:</p>
+<pre><code class="C/C++">XNAME(8)
+</code></pre>
+<p>则会被展开成这样:<br>x8</p>
+<h1 id="指针和数组"><a href="#指针和数组" class="headerlink" title="指针和数组"></a>指针和数组</h1><p>A)</p>
+<pre><code class="C/C++">int* p1[10];     // 指针数组，数组的每个值都是指针
+</code></pre>
+<p>“[]”的优先级比“<em>”要高。p1 先与“[]”结合,构成一个数组的定义,数组名为 p1,int </em> 修饰的是数组的内容,即数组的每个元素。那现在我们清楚,这是一个数组,其包含 10 个 指向 int 类型数据的指针,即指针数组。<br>B)</p>
+<pre><code class="C/C++">int  (*p2)[10];     //数组指针，可以理解为 int (*)[10] p2，实际上就是二维数组p[][10];
+</code></pre>
+<p>“()”的优先级比 “[]”高,“*”号和 p2 构成一个指针的定义，指针变量名为 p2,int 修饰的是数组的内容, 即数组的每个元素。数组在这里并没有名字,是个匿名数组。那现在我们清楚 p2 是一个指 针,它指向一个包含 10 个 int 类型数据的数组,即数组指针。</p>
+<h1 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h1><p>A)</p>
+<pre><code class="C/C++">char * fun3(char * p1,char * p2);     //fun3是函数名,p1,p2是参数,其类型为char*型,函数的返回值为char * 类型。
+</code></pre>
+<p>B)</p>
+<pre><code class="C/C++">char * *fun2(char * p1,char * p2);     //与 C)表达式相比,唯一不同的就是函数的返回值类型为 char**
+</code></pre>
+<p>C)</p>
+<pre><code class="C/C++">char * (*fun1)(char * p1,char * p2);     //fun1 不是什么函数名,而是一个 指针变量,它指向一个函数。这个函数有两个指针类型的参数,函数的返回值也是一个指 针。我们把这个表达式改写一下:char * (*)(char * p1,char * p2) fun1; 这样子是不 是好看一些呢?只可惜编译器不这么想。
+</code></pre>
+<h1 id="函数指针数组"><a href="#函数指针数组" class="headerlink" title="函数指针数组"></a>函数指针数组</h1><pre><code class="C/C++">char * (*pf)(char * p)     //函数指针
+char * (*pf[3])(char * p);     //这是定义一个函数指针数组。它是一个数组,数组名为 pf,数组内存储了 3 个指向函数的 指针。pf是数组名
+</code></pre>
+<h1 id="函数指针数组的指针"><a href="#函数指针数组的指针" class="headerlink" title="函数指针数组的指针"></a>函数指针数组的指针</h1><pre><code class="C/C++">char * (*(*pf)[3])(char * p);     //pf是指针，这个指针指向一个包含了 3 个元素的数组;这个数字里 面存的是指向函数的指针;这些指针指向一些返回值类型为指向字符的指针、参数为一个 指向字符的指针的函数。
+</code></pre>
+<h1 id="实战练习"><a href="#实战练习" class="headerlink" title="实战练习"></a>实战练习</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190820184018.png" alt=""></p>
+<ul>
+<li>参考答案：<br>a) int a;<br>b) int <em>a;<br>c) int **a;<br>d) int a[10];<br>e) int </em> a[10];<br>f) int (<em>a)[10];<br>g) int (</em>func)(int a);<br>h) int (*func[10])(int a);</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/img/default_avatar.jpg"
+                alt="action456789" />
+            
+              <p class="site-author-name" itemprop="name">action456789</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/action456789" target="_blank" title="GitHub"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.jianshu.com/u/7966a93b66ce" target="_blank" title="jianshu"><i class="fa fa-fw fa-globe"></i>jianshu</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">action456789</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.2.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
 
-<!--加入行号的高亮代码块样式-->
-
-<!--自定义样式设置-->
-<style>
-    
-    
-    .nav {
-        width: 542px;
-    }
-    .nav.fullscreen {
-        margin-left: -542px;
-    }
-    .nav-left {
-        width: 120px;
-    }
-    
-    
-    @media screen and (max-width: 1468px) {
-        .nav {
-            width: 492px;
-        }
-        .nav.fullscreen {
-            margin-left: -492px;
-        }
-        .nav-left {
-            width: 100px;
-        }
-    }
-    
-    
-    @media screen and (max-width: 1024px) {
-        .nav {
-            width: 492px;
-            margin-left: -492px
-        }
-        .nav.fullscreen {
-            margin-left: 0;
-        }
-        .nav .hide-list.fullscreen {
-            left: 492px
-        }
-    }
-    
-    @media screen and (max-width: 426px) {
-        .nav {
-            width: 100%;
-        }
-        .nav-left {
-            width: 100%;
-        }
-    }
-    
-    
-    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
-        color: #383636;
-    }
-    
-    
-    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
-        color: #5e5e5f;
-    }
-    
-    
-    .nav-right nav a.hover, #local-search-result a.hover{
-        background-color: #e2e0e0;
-    }
-    
-    
-
-    /*列表样式*/
-    
-    .post .pjax article .article-entry>ol, .post .pjax article .article-entry>ul, .post .pjax article>ol, .post .pjax article>ul{
-        border: #e2dede solid 1px;
-        border-radius: 10px;
-        padding: 10px 32px 10px 56px;
-    }
-    .post .pjax article .article-entry li>ol, .post .pjax article .article-entry li>ul,.post .pjax article li>ol, .post .pjax article li>ul{
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
-    .post .pjax article .article-entry>ol>li, .post .pjax article .article-entry>ul>li,.post .pjax article>ol>li, .post .pjax article>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    .post .pjax article .article-entry li>ol>li, .post .pjax article .article-entry li>ul>li,.post .pjax article li>ol>li, .post .pjax article li>ul>li{
-        margin-bottom: auto;
-        margin-left: auto;
-    }
-    
-
-    /* 背景图样式 */
-    
-    
-
-
-    /*引用块样式*/
-    
-
-    /*文章列表背景图*/
-    
-    .nav-right:before {
-        content: ' ';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0.3;
-        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
-        background-repeat: no-repeat;
-        background-position: 50% 0;
-        -ms-background-size: cover;
-        -o-background-size: cover;
-        -moz-background-size: cover;
-        -webkit-background-size: cover;
-        background-size: cover;
-    }
-    
-
-    
-    .post .pjax article :not(pre) > code {
-        color: #24292e;
-        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
-        background-color: rgba(27,31,35,.05);
-        border-radius: 3px;
-        font-size: 85%;
-        margin: 0;
-        padding: .2em .4em;
-    }
-    
-</style>
 
 
 
@@ -931,4 +1556,121 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.2.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.2.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.2.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.2.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
 </html>

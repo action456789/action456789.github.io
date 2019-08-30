@@ -71,238 +71,6 @@
     
     
     <entry>
-      <title>React-Native数据传递</title>
-      <link href="/2018/05/21/React-Native%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/"/>
-      <url>/2018/05/21/React-Native%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/</url>
-      
-        <content type="html"><![CDATA[<h1 id="通过react-navigation传递数据"><a href="#通过react-navigation传递数据" class="headerlink" title="通过react-navigation传递数据"></a>通过react-navigation传递数据</h1><h2 id="顺传"><a href="#顺传" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p><pre><code>_onItemPress = (item) =&gt; {    NavigationService.navigate(&quot;Page1&quot;, {        data: item    });};</code></pre><p>获取数据</p><pre><code>componentDidMount() {    // 或者使用 this.props.navigation.getParam(&#39;data&#39;)    let data = this.props.navigation.state.params.data;}</code></pre><h2 id="逆传"><a href="#逆传" class="headerlink" title="逆传"></a>逆传</h2><p>传递数据</p><pre><code>_callback = (message) =&gt; {    console.log(message);}_onItemPress = (item) =&gt; {    NavigationService.navigate(&quot;Page1&quot;, {        callback: this._callback    });};</code></pre><p>子组件获取回调并执行</p><pre><code>render() {    return (        &lt;View style={styles.container}&gt;            &lt;Button                title={&#39;点击测试&#39;}                onPress={() =&gt; this.props.navigation.state.params.callback(&#39;hello world&#39;) }&gt;            &lt;/Button&gt;        &lt;/View&gt;    );}</code></pre><h1 id="通过组件传递数据"><a href="#通过组件传递数据" class="headerlink" title="通过组件传递数据"></a>通过组件传递数据</h1><h2 id="顺传-1"><a href="#顺传-1" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p><pre><code>_renderItem = ({item, index}) =&gt; {    return (&lt;View&gt;        &lt;Component1 msg={item} index={index} dataA={this.state.dataA} navigation={this.props.navigation}/&gt;    &lt;/View&gt;)};</code></pre><p>子组件获取数据</p><pre><code>export default class Component1 extends Component&lt;Props&gt; {    constructor(props) {        super(props);        this.state = {            msg: this.props.msg,            index: this.props.index,            dataA: this.props.dataA,        }    }    //父组件更新数据，子组件不刷新时使用    componentWillReceiveProps(nextProps) {        this.setState({            msg: nextProps.msg,            index: nextProps.index,            dataA: nextProps.dataA,        });    }}</code></pre><h2 id="逆传-1"><a href="#逆传-1" class="headerlink" title="逆传"></a>逆传</h2><p>组件A<br>传递callback</p><pre><code>_callback = (message) =&gt; {    console.log(message);}render() {    return (    &lt;View&gt;        &lt;ComponentB callback={this._callback}&gt;&lt;/ComponentB&gt;    &lt;/View&gt;)};</code></pre><p>组件B<br>子组件获取传递过来的callback并执行</p><pre><code>class ComponentB extends React.PureComponent {    _onPress = () =&gt; {        this.props.callback(&#39;hello world&#39;)    };    render() {        return (            &lt;View style={styles.container} &gt;                &lt;Button                    title={&quot;点击测试&quot;}                    onPress={this._onPress}                &gt;                &lt;/Button&gt;            &lt;/View&gt;        );    }}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> React-Native </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>React-Native布局</title>
-      <link href="/2018/05/21/React-Native%20%E5%B8%83%E5%B1%80/"/>
-      <url>/2018/05/21/React-Native%20%E5%B8%83%E5%B1%80/</url>
-      
-        <content type="html"><![CDATA[<p><a href="https://facebook.github.io/react-native/docs/flexbox" target="_blank" rel="noopener">https://facebook.github.io/react-native/docs/flexbox</a><br><a href="https://yogalayout.com/playground" target="_blank" rel="noopener">https://yogalayout.com/playground</a></p><h1 id="颜色字符串"><a href="#颜色字符串" class="headerlink" title="颜色字符串"></a>颜色字符串</h1><p>backgroundColor: ‘#30576EA0’,<br>前面两位（30）表示透明度，范围是0～99</p><h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829215932.png" alt=""><br> 边框属性(border)用来设定一个元素的边线。</p><ul><li>边距属性(margin)是用来设置一个元素所占空间的边缘到相邻元素之间的距离。</li><li>间隙属性(padding)是用来设置元素内容到元素边界的距离。</li></ul><p><br></p><h1 id="Flexbox布局属性"><a href="#Flexbox布局属性" class="headerlink" title="Flexbox布局属性"></a>Flexbox布局属性</h1><h2 id="伸缩容器的属性"><a href="#伸缩容器的属性" class="headerlink" title="伸缩容器的属性"></a>伸缩容器的属性</h2><h3 id="主轴"><a href="#主轴" class="headerlink" title="主轴"></a>主轴</h3><ul><li><p><code>flexDirection</code>  ：决定布局的主轴，默认值是竖直轴(column)</p><ul><li><code>row</code>:（默认值）</li><li><code>row-reverse</code></li><li><code>column</code> (RN默认值)</li><li><code>column-reverse</code></li></ul></li><li><p><code>justifyContent</code> ：决定其子元素沿着主轴的排列方式</p><ul><li><code>flex-start</code>:（默认值）从主轴的起点对齐    </li><li><code>flex-end</code>: 从主轴的终点对齐    </li><li><code>center</code>:从主轴的中间位置对齐    </li><li><code>space-between</code>:平均分布在主轴线上    </li><li><code>space-around</code>:平均分布在主轴线上，两端留下一半的距离</li></ul></li></ul><ul><li><code>flexWap</code><br>伸缩容器在主轴线方向空间不足的情况下，是否换行以及该如何换行<ul><li><code>nowrap</code>（默认值）</li><li><code>wrap</code>    </li><li><code>wrap-reverse</code></li></ul></li></ul><h3 id="次轴"><a href="#次轴" class="headerlink" title="次轴"></a>次轴</h3><ul><li><p><code>alignItems</code>：决定其子元素沿着次轴的排列方式</p><ul><li><code>flex-start</code>（默认值）交叉轴起点对齐</li><li><code>flex-end</code> 交叉轴终点对齐</li><li><code>center</code> 中点对齐</li><li><code>stretch</code> 拉伸</li><li><code>baseline</code> 基线对齐<br><code>baseline</code>对齐效果：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829221739.png" alt=""><br><code>stretch</code>效果（不设置高度时）<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829221759.png" alt=""></li></ul></li><li><p><code>align-content</code><br>用来调整伸缩项目出现换行后在交叉轴上的对齐方式</p><ul><li><code>flex-start</code></li><li><code>flex-end</code>    </li><li><code>center</code>    </li><li><code>space-between</code>    </li><li><code>space-around</code>    </li><li><code>stretch</code>（默认值）</li></ul></li></ul><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul><li><code>display</code><ul><li><code>flex</code>    块级伸缩容器    </li><li><code>inline-flex</code>行内级伸缩容器</li><li><code>none</code>隐藏元素</li></ul></li></ul><ul><li><code>flex-flow</code><br>同时定义了伸缩容器的主轴和侧轴, 其默认值为 <ul><li><code>row</code> </li><li><code>nowrap</code></li></ul></li></ul><h2 id="伸缩项目的属性"><a href="#伸缩项目的属性" class="headerlink" title="伸缩项目的属性"></a>伸缩项目的属性</h2><ul><li><p><code>order</code><br>定义项目的排列顺序，数值越小，排列越靠前，默认值为0<br>语法为：order：整数值</p></li><li><p><code>flex-grow</code><br>定义伸缩项目的放大比例，为整数值</p><ul><li>0(默认值): 不放大</li><li>其他值: 如果存在剩余空间，那么将自动占据全部剩余空间，每个item所占据的空间大小会根据这个值自动调整</li></ul></li><li><p><code>flex-shrink</code><br>定义伸缩项目的收缩能力，默认值为1 ，其语法为：flex-shrink:整数值</p><ul><li>1(默认值)    其他值</li><li>如果不存在剩余空间，那么将自动缩小</li></ul></li><li><p><code>flex-basis</code><br>用来设置伸缩项目的基准值，剩余的空间按比率进行伸缩</p><ul><li><code>auto</code>(默认值)    </li><li><code>length</code></li></ul></li><li><p><code>flex</code><br>是flex-grow flex-shrink flex-basis这三个属性的缩写，其语法为：flex:none | flex-grow flex-shrink flex-basis，其中第二个和第三个参数为可选参数，默认值为：0 1 auto</p></li><li><p><code>alignSelf</code><br>用来设置单独的伸缩项目在交叉轴上的对齐方式，会覆盖默认的对齐方式 </p><ul><li><code>auto</code> 按照自身设置的宽高进行显示    </li><li><code>flex-start</code>    </li><li><code>flex-end</code>    </li><li><code>center</code>    </li><li><code>baseline</code>    </li><li><code>stretch</code>默认,伸缩项目在交叉轴方向占满伸缩容器，如果交叉轴为垂直方向的话，只有在不设置高度的情况下才能看到效果</li></ul></li></ul><h1 id="React-Native中的postion定位"><a href="#React-Native中的postion定位" class="headerlink" title="React Native中的postion定位"></a>React Native中的postion定位</h1><ul><li><code>relative</code> 相对定位(默认)，以元素本来的位置为基准进行偏移。</li><li><code>absolute</code> 绝对定位，以父元素的边框为基准进行偏移。<br><a href="https://blog.csdn.net/al4fun/article/details/80253364" target="_blank" rel="noopener">https://blog.csdn.net/al4fun/article/details/80253364</a></li></ul><h1 id="width-39-100-39-与width-39-auto-39"><a href="#width-39-100-39-与width-39-auto-39" class="headerlink" title="width:&#39;100%&#39;与width:&#39;auto&#39;"></a><code>width:&#39;100%&#39;与width:&#39;auto&#39;</code></h1><ul><li><code>width:auto</code> 会将元素撑开至整个父元素width，但是会减去子节点自己的margin，padding或者border的大小。</li><li><code>width:100%</code> 会强制将元素变成和父元素一样的宽，并且添加额外的空间到这个元素的width上。就是因为这个，会导致很多问题。</li></ul><p>使用width:100%永远都不是一个好主意。这个属性容易让人产生你正在定义一个元素可视大小，其实，你是在对这个元素的状态做了巨大的改变。</p><pre><code>&lt;TouchableOpacity style={[styles.comButton]}&gt;    &lt;Text        style={[        {            width: &quot;100%&quot;,            height: &quot;100%&quot;,        }]}&gt;        {item.title}    &lt;/Text&gt;&lt;/TouchableOpacity&gt;comButton: {    padding:0,    flex: 1,    alignItems: &quot;center&quot;,    justifyContent: &quot;center&quot;,    color: CommonStyle.col_gray_dark,    borderColor: CommonStyle.col_gray_dark,    borderWidth: 0.8,    borderRadius: 48,    height: 44  }</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222452.png" alt=""></p><pre><code>&lt;TouchableOpacity style={[styles.comButton]}&gt;    &lt;Text        style={[        {            width: Platform.OS === &#39;ios&#39; ? &#39;auto&#39; : &quot;100%&quot;,            height: Platform.OS === &#39;ios&#39; ? &#39;auto&#39; : &quot;100%&quot;,        }]}&gt;        {item.title}    &lt;/Text&gt;&lt;/TouchableOpacity&gt;</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222515.png" alt=""></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> React-Native </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>RxSwift基本概念</title>
-      <link href="/2018/05/21/RxSwift%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
-      <url>/2018/05/21/RxSwift%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
-      
-        <content type="html"><![CDATA[<p>[TOC]</p><h1 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h1><p>Observables是一个事件流的对象</p><h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。</p><pre><code class="Swift">let emptyStream: Observable&lt;Int&gt; = Observable.empty()_ = emptyStream.subscribe { event in    print(event)  completed}</code></pre><h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。</p><pre><code class="Swift">let neverStream: Observable&lt;Int&gt; = Observable.never()_ = neverStream.subscribe({ _ in    print(&quot;这个方法永远都不会被执行&quot;)})</code></pre><h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。</p><pre><code class="Swift">let justStream = Observable.just(32)_ = justStream.subscribe({ event in    print(event)    /*    next(32)    completed    */})</code></pre><h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p><pre><code class="Swift">let ofStream = Observable.of(0, 1, 2)_ = ofStream.subscribe({ event in    print(event)    /*    next(0)    next(1)    next(2)    completed    */})</code></pre><h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p><pre><code class="Swift">let streamFromArray = Observable.from([0, 1, 2])_ = streamFromArray.subscribe({ (event) in    print(event)    /*    next(0)    next(1)    next(2)    completed    */})</code></pre><h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p><pre><code class="Swift">let myJust = { (singleElement: Int) -&gt; Observable &lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable in    observer.onNext(singleElement)    observer.onCompleted()    return Disposables.create()})}let singleElementStream = myJust(32)_ = singleElementStream.subscribe { (event) in    print(event)    /*    next(32)    completed    */}</code></pre><h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p><pre><code class="Swift">let error = NSError(domain: &quot;com.RxSwiftDemo.kesen&quot;, code: -1, userInfo: nil)let errorStream: Observable&lt;Int&gt; = Observable.error(error)_ = errorStream.subscribe { (event) in    print(event)    error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)}</code></pre><h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p><pre><code class="Swift">let defferedStream = Observable.deferred { () -&gt; Observable&lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable in    observer.onNext(0)    observer.onNext(1)    observer.onCompleted()    return Disposables.create()})}_ = defferedStream.subscribe({ (event) in    print(event)    /*    next(0)    next(1)    completed    */})</code></pre><h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p><h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p><h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><p>它和PublishSubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p><h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p><h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-          <category> Rx &amp; RAC </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Swift </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Swift要点</title>
-      <link href="/2018/05/21/Swift%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B/"/>
-      <url>/2018/05/21/Swift%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B/</url>
-      
-        <content type="html"><![CDATA[<h1 id="扩展协议"><a href="#扩展协议" class="headerlink" title="扩展协议"></a>扩展协议</h1><ul><li>为协议方法增加默认实现</li><li>为协议增加方法，可以扩展系统中的协议</li><li>为协议增加计算属性</li></ul><pre><code class="Swift">protocol Recordable: CustomStringConvertible {    var wins: Int {get}    var losses: Int {get}    func winningPercent() -&gt; Double}// 扩展 Record 协议extension Recordable {    // 增加协议默认实现    var description: String {        return &quot;Wins: \(wins), Losses: \(losses)&quot;    }    // 增加计算属性    var gamePlayed: Int {        return wins + losses    }    // 增加方法    func winningPercent() -&gt; Double {        return Double(wins) / Double(gamePlayed)    }}</code></pre><h1 id="针对某个类扩展协议"><a href="#针对某个类扩展协议" class="headerlink" title="针对某个类扩展协议"></a>针对某个类扩展协议</h1><pre><code class="Swift">protocol SomeProtocolA {    func someProtocolMethodA()}class A: SomeProtocolA {    let a = 1        func someProtocolMethodA() {        print(a)    }}class B {    let b = 2}// 针对类 A 扩展协议// 基类A继承了SomeProtocol协议才能添加扩展// 说人话：如果类A实现了 SomeProtocol 协议，那么可以进行扩展extension SomeProtocolA where Self: A {    func showParamA() {        print(self.a)    }}// 针对类 B 扩展协议// 反例，不符合where条件extension SomeProtocolA where Self: B {    func someProtocolMethodA() {        print(&quot;someMethodProtocolA&quot;)    }}test(&quot;协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展）&quot;) {    // 换个说法， 多个类实现了同一个协议，该语法根据类名分别为这些类添加扩展， 注意是分别(以类名区分)！！！    let objA = A()    let objB = B()  // 类B没实现SomeProtocol， 所有没有协议方法    objA.showParamA()  //输出1}protocol SomeProtocolB {    func someProtocolMethodB()}// 针对协议 A 扩展协议 Bextension SomeProtocolB where Self: SomeProtocolA {    func someProtocolMethodB() {        print(&quot;SomeProtocolB&quot;)    }}class C: SomeProtocolA &amp; SomeProtocolB {    func someProtocolMethodA() {        print(#function)    }      func someProtocolMethodB() {        print(#function)    }}</code></pre><h1 id="同时满足多个协议才进行扩展"><a href="#同时满足多个协议才进行扩展" class="headerlink" title="同时满足多个协议才进行扩展"></a>同时满足多个协议才进行扩展</h1><p>只有当类实现了Tieable协议才会进行扩展，换个说法：只有当某个类同时实现了这两个协议，才会有下列扩展的效果。</p><pre><code class="Swift">protocol Tieable {    var ties: Int {get set}}// 同时扩展Record协议和Tieable协议（同时遵守了两个协议）extension Recordable where Self: Tieable {    var gamePlayed: Int {        return wins + losses + ties    }    // 有平局的情况下，需要计算ties    func winningPercent() -&gt; Double {        return Double(wins) / Double(gamePlayed)    }}</code></pre><h1 id="覆盖协议中的默认实现"><a href="#覆盖协议中的默认实现" class="headerlink" title="覆盖协议中的默认实现"></a>覆盖协议中的默认实现</h1><pre><code class="Swift">// 棒球struct BaseballRecord: Recordable {    var wins: Int    var losses: Int      // 覆盖协议中的默认实现    let gamePlayed: Int = 162}</code></pre><h1 id="协议聚合"><a href="#协议聚合" class="headerlink" title="协议聚合"></a>协议聚合</h1><p>表示某个对象要满足多个协议，使用 <code>&amp;</code>连接多个协议</p><pre><code class="Swift">protocol Prizable {    func isPrizable() -&gt; Bool}// one要满足多个协议func award(one: Prizable &amp; CustomStringConvertible) {    if one.isPrizable() {        print(one)        print(&quot;Congratulation&quot;)    }}</code></pre><h1 id="为泛型参数增加协议约束"><a href="#为泛型参数增加协议约束" class="headerlink" title="为泛型参数增加协议约束"></a>为泛型参数增加协议约束</h1><pre><code class="Swift">// 单个协议func top&lt;T: Recordable&gt;(seq: [T]) -&gt; T? {    return seq.first}// 多个协议func top&lt;T: Recordable &amp; Prizable&gt;(seq: [T]) -&gt; T? {    return seq.first}</code></pre><h1 id="可选协议"><a href="#可选协议" class="headerlink" title="可选协议"></a>可选协议</h1><ul><li>需要标志位@objc，使得它兼容Objective-C代码，因为Swift要使用Objective-C的运行时来检查类所遵守的可选方法是否存在。</li><li>拥有可选方法的协议只能被类遵守，结构体和枚举是不可以遵守该协议的。</li></ul><pre><code class="Swift">@objc protocol Animal {    @objc optional func fly()}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Swift </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>JS常用点</title>
-      <link href="/2018/05/21/JS%E5%B8%B8%E7%94%A8%E7%82%B9/"/>
-      <url>/2018/05/21/JS%E5%B8%B8%E7%94%A8%E7%82%B9/</url>
-      
-        <content type="html"><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="for-of：遍历数组value"><a href="#for-of：遍历数组value" class="headerlink" title="for of：遍历数组value"></a><code>for of</code>：遍历数组value</h3><blockquote><p>TIPS: for of 断点时，获取不到变量信息</p><pre><code class="javascript">const array = [    {        name: &quot;张三&quot;    }, {        name: &quot;李四&quot;    }, {        name: &quot;王五&quot;    }, {        name: &quot;小红&quot;    }];let obj = {    name: &quot;小红&quot;,    age: 19,    sex: &#39;女&#39;,}// for of：遍历数组valuefor (const item of array) {    console.log(item.name);}</code></pre></blockquote><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222714.png" alt=""></p><h3 id="for-in：遍历对象key"><a href="#for-in：遍历对象key" class="headerlink" title="for in：遍历对象key"></a><code>for in</code>：遍历对象key</h3><pre><code class="javascript">// for in：遍历对象keyfor (const key in obj) {    console.log(`${key}:${obj[key]}`);}</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222733.png" alt=""></p><h3 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h3><pre><code class="javascript">let nArray = array.map((value, index) =&gt; {    return { ...value, type: &#39;哈哈&#39; }})console.log(nArray);</code></pre><h3 id="切片：splice"><a href="#切片：splice" class="headerlink" title="切片：splice"></a>切片：<code>splice</code></h3><pre><code>- [start, end) 从下标start开始，到下标end结束，不包括end- end 大于数组长度会截取到数组结束</code></pre><pre><code>let subArray = array.splice(0, 6)console.log(subArray)</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222753.png" alt=""></p><h1 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h1><p>本质是<code>模式匹配</code></p><h2 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h2><ul><li><p>本质：实现了Iterator 接口的对象就可以按顺序解构赋值<br>数组的元素是按次序排列的，变量的取值由它的位置决定</p><pre><code class="javascript">let [a, [b], d] = [1, [2, 3], 4];a // 1b // 2d // 4</code></pre></li><li><p>默认值</p><pre><code class="javascript">let [x = 1, y = x] = [2];    // x=2; y=2let [foo = true] = [];foo // truelet [x = 1] = [undefined];x // 1</code></pre></li></ul><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="变量与属性同名"><a href="#变量与属性同名" class="headerlink" title="变量与属性同名"></a>变量与属性同名</h3><ul><li>字符串赋值<pre><code class="javascript">let { bar, foo, hello } = { foo: &#39;aaa&#39;, bar: &#39;bbb&#39; };foo // &quot;aaa&quot;bar // &quot;bbb&quot;hello // &quot;undefined&quot;</code></pre></li><li>对象方法赋值<pre><code class="javascript">const { log } = console;log(&#39;hello&#39;) // hello</code></pre><h3 id="变量名与属性名不同名"><a href="#变量名与属性名不同名" class="headerlink" title="变量名与属性名不同名"></a>变量名与属性名不同名</h3><pre><code class="javascript">let { foo: baz } = { foo: &#39;aaa&#39;, bar: &#39;bbb&#39; };baz // &quot;aaa&quot;</code></pre>对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者</li></ul><h3 id="嵌套对象赋值"><a href="#嵌套对象赋值" class="headerlink" title="嵌套对象赋值"></a>嵌套对象赋值</h3><ul><li>注意，对象嵌套赋值里，<code>冒号:</code>代表模式，并不是取值</li></ul><pre><code class="javascript">const node = {    loc: {      start: {        line: 1,        column: 5      }    }  };let { loc: { start }} = node;start // Object {line: 1, column: 5}loc // undefinedlet { loc, loc: { start }}start // Object {line: 1, column: 5}loc // Object {start: Object}let { loc: { start: { line }}} = node;line // 1loc // undefinedstart // undefined</code></pre><h3 id="获取对象继承的属性"><a href="#获取对象继承的属性" class="headerlink" title="获取对象继承的属性"></a>获取对象继承的属性</h3><pre><code class="javascript">const obj1 = {};const obj2 = { foo: &#39;bar&#39; };Object.setPrototypeOf(obj1, obj2);const { foo } = obj1;foo // &quot;bar&quot;</code></pre><h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><pre><code class="javascript">var {x = 3} = {};x // 3var {x = 3} = {x: undefined};x // 3</code></pre><h3 id="已声明变量的解构赋值"><a href="#已声明变量的解构赋值" class="headerlink" title="已声明变量的解构赋值"></a>已声明变量的解构赋值</h3><ul><li>错误的写法</li></ul><pre><code class="javascript">let x;{x} = {x: 1};// SyntaxError: syntax error</code></pre><ul><li>正确的写法</li></ul><pre><code class="javascript">let x;({x} = {x: 1});</code></pre><h3 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h3><p>函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。对于函数内部的代码来说，它们能感受到的参数就是x和y。</p><pre><code class="javascript">function add([x, y]){  return x + y;}add([1, 2]); // 3</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> js </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>TextInput</title>
-      <link href="/2018/05/21/TextInput/"/>
-      <url>/2018/05/21/TextInput/</url>
-      
-        <content type="html"><![CDATA[<h1 id="通用属性-Android-amp-iOS"><a href="#通用属性-Android-amp-iOS" class="headerlink" title="通用属性(Android &amp; iOS)"></a>通用属性(Android &amp; iOS)</h1><ul><li>(1)支持View的相关属性</li><li><p>(2)<code>autoCapitalize</code>:控制输入的字符进行切换成大写(参数:’none’,’sentences’,’words’,’characters’)<br><code>none</code>: 不自动切换任何字符大写<br><code>sentences</code>: 默认每个句子的首字母大写<br><code>words</code>:每个单词的首字母变成大写<br><code>characters</code>:每个字母全部变成大写</p></li><li><p>(3)<code>autoCorrect(bool)</code>:设置瓶邪自动修正功能,默认开启(true)</p></li><li><p>(4)<code>autoFocus(bool)</code>:设置是否默认获取到焦点,默认为关闭(false).需要comonentDidMount方法调用之后才会获取焦点(componentDidMount是React组件被渲染之后React主动回调的方法)</p></li><li><p>(5)<code>defaultValue(string)</code>:给文本框输入一个默认初始值.</p></li><li><p>(6)<code>editable(bool)</code>:设置文本框是否可以编辑,默认为true,可以进行编辑</p></li><li><p>(7)<code>keyboardType</code>:<br>键盘类型(可选参数:”default”, ‘email-address’, ‘numeric’, ‘phone-pad’, “ascii-capable”, ‘numbers-and-punctuation’, ‘url’, ‘number-pad’, ‘name-phone-pad’, ‘decimal-pad’, ‘twitter’, ‘web-search’) 该用来选择默认弹出键盘的类型例如我们甚至numeric就是弹出数字键盘。鉴于平台的原因如下的值是所有平台都可以进行通用的</p></li><li><p>(8)<code>maxLength(number)</code>:可以限制文本输入框最大的输入字符长度</p></li><li><p>(9)<code>multiline (bool)</code> : 设置可以输入多行文字，默认为false(表示无论文本输入多少，都是单行显示)</p></li><li>(10)<code>onBlur (function)</code>: 监听方法，文本框失去焦点回调方法</li><li>(11)<code>onChange (function)</code>: 监听方法,文本框内容发生改变回调方法</li><li>(12)<code>onChangeText (function)</code>:监听方法，文本框内容发生改变回调方法，该方法会进行传递文本内容</li><li>(13)<code>onEndEditing (function)</code>:监听方法，当文本结束文本输入回调方法</li><li>(14)<code>onFocus (function)</code> :监听方法 文本框获取到焦点回调方法</li><li>(15)<code>onLayout (function)</code>:监听方法 组价布局发生变化的时候调用，调用方法参数为 {x,y,width,height}</li><li>(16)<code>onSubmitEditing (function)</code>:监听方法，当编辑提交的时候回调方法。不过如果multiline={true}的时候，该属性就不生效</li><li>(17)<code>placeholder (string</code>) :当文本输入框还没有任何输入的时候，默认显示信息，当有输入的时候该值会被清除</li><li>(18)<code>placeholderText Color (string)</code>: 设置默认信息颜色(placeholer)</li><li>(19)<code>secureTextEntry (bool)</code>: 设置是否为密码安全输入框 ，默认为false</li><li>(20)<code>style</code> 风格属性 可以参考Text组件风格</li><li>(21)<code>value ( string )</code>:输入框中的内容值</li><li>(22)<code>returnKeyType</code>:决定“确定”按钮显示的内容。<br>done<br>go<br>next<br>search<br>send</li></ul><h1 id="Android-平台属性"><a href="#Android-平台属性" class="headerlink" title="Android 平台属性"></a>Android 平台属性</h1><ul><li>(22)<code>numberOfLines (number)</code>:设置文本输入框行数，该需要首先设置multiline为true,设置TextInput为多行文本。</li><li>(23)<code>textAlign</code> 设置文本横向布局方式 可选参数(‘start’, ‘center’, ‘end’)</li><li>(24)<code>textAlignVertical</code>: 设置文本垂直方向布局方式 可选参数(‘top’, ‘center’, ‘bottom’)</li><li>(25)<code>underlineColorAndroid</code>: 设置文本输入框下划线的颜色</li></ul><h1 id="长按出现菜单键为英文，如何改为中文"><a href="#长按出现菜单键为英文，如何改为中文" class="headerlink" title="长按出现菜单键为英文，如何改为中文"></a>长按出现菜单键为英文，如何改为中文</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210921.png" alt=""><br>在Xcode中，TARGETS—你的项目名—info，选择Localization native development region，选择China，这样文字都会变成中文啦，包括时间选择器等也会变成中文。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210959.png" alt=""></p><h1 id="键盘处理"><a href="#键盘处理" class="headerlink" title="键盘处理"></a>键盘处理</h1><p><a href="https://facebook.github.io/react-native/docs/inputaccessoryview#docsNav" target="_blank" rel="noopener">参考</a><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211043.png" alt=""></p><pre><code class="javascript">    const inputAccessoryViewID = &quot;inputAccessoryViewID&quot;;    _renderLeaveWordInput() {         return &lt;View style={{height: 60}}&gt;                &lt;TextInput style={{                    fontSize: 13,                    textAlignVertical: 'top',                    autoCapitalize: 'none',                    autoCorrect: false                 }}                   multiline={true}                   maxLength={50}                   onChangeText={this._onInputCommentsChange}                   value={this.state.comments}                   inputAccessoryViewID={inputAccessoryViewID}                   ref={&#39;LeaveWordTextInput&#39;}                   placeholder={&#39;请输入留言&#39;}/&gt;                &lt;InputAccessoryView nativeID={inputAccessoryViewID}&gt;                    &lt;View style={{flexDirection:'row-reverse'}}&gt;                        &lt;Button onPress={() =&gt; {this.refs.LeaveWordTextInput.blur();}}                                title=&quot;完成&quot;                                color=&quot;red&quot;                        /&gt;                    &lt;/View&gt;                &lt;/InputAccessoryView&gt;            &lt;/View&gt;    }</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> React-Native </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Swift中where的使用</title>
-      <link href="/2018/05/21/Swift%E4%B8%ADwhere%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
-      <url>/2018/05/21/Swift%E4%B8%ADwhere%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
-      
-        <content type="html"><![CDATA[<h1 id="集合遍历-forEach-中使用"><a href="#集合遍历-forEach-中使用" class="headerlink" title="集合遍历 forEach 中使用"></a>集合遍历 <code>forEach</code> 中使用</h1><pre><code class="Swift">let array = [0, 1, 2, 3, 4, 5, 6]test(&quot;集合遍历 forEach&quot;) {    //使用switch遍历    array.forEach {        switch $0 {        case let x where x &gt; 3:   //where相当于判断条件            print(x)        default:            print(&quot;默认值&quot;)        }    }}</code></pre><h1 id="集合遍历-for-in"><a href="#集合遍历-for-in" class="headerlink" title="集合遍历 for in"></a>集合遍历 <code>for in</code></h1><p> 中使用</p><pre><code class="Swift">test(&quot;集合遍历 for in&quot;) {    for value in array where value &gt; 2 {        print(value)   //输出3 4 5 6    }    for (index, value) in array.enumerated() where index &gt; 2 &amp;&amp; value &gt; 3 {        print(&quot;下标:\(index), 值：\(value)&quot;)    }}</code></pre><h1 id="在补充异常的do-catch里使用"><a href="#在补充异常的do-catch里使用" class="headerlink" title="在补充异常的do/catch里使用"></a>在补充异常的<code>do/catch</code>里使用</h1><pre><code class="Swift">enum SomeError: Error {    case error1(Int)    case error2(String)}func methodError() throws {    throw SomeError.error1(3)}test(&quot;在补充异常的do/catch里使用&quot;) {    do {        try methodError()    } catch SomeError.error1(let param) where param &gt; 2 { // 捕获异常时判断参数        print(&quot;判断参数的异常: \(param)&quot;)    } catch {        print(&quot;默认异常处理&quot;)    }}</code></pre><h1 id="协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展"><a href="#协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展" class="headerlink" title="协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展"></a>协议使用<code>where</code>情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展</h1><p>也可参考Swift面向协议编程.md</p><pre><code class="Swift">protocol SomeProtocolA {    func someProtocolMethodA()}class A: SomeProtocolA {    let a = 1       func someProtocolMethodA() {        print(a)    }}class B {    let b = 2}// 针对类 A 扩展协议// 基类A继承了SomeProtocol协议才能添加扩展// 说人话：如果类A实现了 SomeProtocol 协议，那么可以进行扩展extension SomeProtocolA where Self: A {    func showParamA() {        print(self.a)    }}// 针对类 B 扩展协议// 反例，不符合where条件extension SomeProtocolA where Self: B {    func someProtocolMethodA() {        print(&quot;someMethodProtocolA&quot;)    }}test(&quot;协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展）&quot;) {    // 换个说法， 多个类实现了同一个协议，该语法根据类名分别为这些类添加扩展， 注意是分别(以类名区分)！！！        let objA = A()    let objB = B()  // 类B没实现SomeProtocol， 所有没有协议方法    objA.showParamA()  //输出1}protocol SomeProtocolB {    func someProtocolMethodB()}// 针对协议 A 扩展协议 Bextension SomeProtocolB where Self: SomeProtocolA {    func someProtocolMethodB() {        print(&quot;SomeProtocolB&quot;)    }}class C: SomeProtocolA &amp; SomeProtocolB {    func someProtocolMethodA() {        print(#function)    }    func someProtocolMethodB() {        print(#function)    }}</code></pre><h1 id="协议使用where-情形二：只有基类同时遵守了另外一个协议才能添加扩展"><a href="#协议使用where-情形二：只有基类同时遵守了另外一个协议才能添加扩展" class="headerlink" title="协议使用where:情形二：只有基类同时遵守了另外一个协议才能添加扩展"></a>协议使用<code>where</code>:情形二：只有基类同时遵守了另外一个协议才能添加扩展</h1><pre><code class="Swift">protocol SomeProtocolB {    func someProtocolMethodB()}// 针对协议 A 扩展协议 Bextension SomeProtocolB where Self: SomeProtocolA {    func someProtocolMethodB() {        print(&quot;SomeProtocolB&quot;)    }}class C: SomeProtocolA &amp; SomeProtocolB {    func someProtocolMethodA() {        print(#function)    }    func someProtocolMethodB() {        print(#function)    }}test(&quot;协议使用where:情形二：只有基类同时遵守了另外一个协议才能添加扩展&quot;) {    let objC = C()    objC.someProtocolMethodA()}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Swift </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>React-Native模版</title>
-      <link href="/2018/05/21/React-Native%E6%A8%A1%E7%89%88/"/>
-      <url>/2018/05/21/React-Native%E6%A8%A1%E7%89%88/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> js </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Swift高阶函数</title>
-      <link href="/2018/05/21/Swift%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/"/>
-      <url>/2018/05/21/Swift%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Swift高阶函数"><a href="#Swift高阶函数" class="headerlink" title="Swift高阶函数"></a>Swift高阶函数</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h2><p>对数组中的每个元素执行一次block中的操作</p><p>例如，获取数组中对象的某个属性，返回一个新的数组</p><pre><code>// 获取字典中所有 value 返回一个数组，然后获取数组中对象的name字段，返回一个数组let huxingMapDeviceNames:[String : DeviceModal] = Array(huxingMapDevices.values).map {$0.name}</code></pre><h2 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a><code>flatMap</code></h2><ul><li>flatMap 与 map 不同之处是</li></ul><ol><li>flatMap返回后的数组中不存在 nil 同时它会把Optional解包;</li><li>flatMap 还能把数组中存有数组的数组 一同打开变成一个新的数组 ;</li><li>flatMap也能把两个不同的数组合并成一个数组 这个合并的数组元素个数是前面两个数组元素个数的乘积</li></ol><p>例如上面的例子中返回的数组每个元素类型是 option(string)</p><p>而如果使用 flatmap 那么就是 string</p><h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a><code>Filter</code></h2><p>filter 可以取出数组中符合条件的元素 重新组成一个新的数组, 可以帮我们把数组中不需要的值都去掉</p><pre><code>let numbers = [1,2,3,4,5,6]let evens = numbers.filter { $0 % 2 == 0 }// [2, 4, 6]</code></pre><h2 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a><code>Reduce</code></h2><p>用于把所有元素的值合并成一个新的值</p><h3 id="比如我们要获得一个数组中所有元素的和"><a href="#比如我们要获得一个数组中所有元素的和" class="headerlink" title="比如我们要获得一个数组中所有元素的和"></a>比如我们要获得一个数组中所有元素的和</h3><pre><code>let numbers = [1,2,3,4,5]// reduce 函数第一个参数是返回值的初始化值let sum = numbers.reduce(0) { $0 + $1 }</code></pre><blockquote><p> 这里我写下完整的格式</p></blockquote><pre><code>let sum1 = numbers.reduce(0) { total, num in    // 这里写不写return在Playground都循环5次 但上面用最洁简的方法显示循环6次。。。 What The Fuck 这是什么鬼！！！    return total + num}// 15</code></pre><h3 id="合并数组中的字符串"><a href="#合并数组中的字符串" class="headerlink" title="合并数组中的字符串"></a>合并数组中的字符串</h3><pre><code>let numbers = [1,5,1,8,8,8,8,8,8,8,8]// reduce 函数第一个参数是返回值的初始化值let tel = numbers.reduce(&quot;&quot;) { &quot;\($0)&quot; + &quot;\($1)&quot; }// 15188888888</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Swift </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Swift要点</title>
-      <link href="/2018/05/21/Swift%E8%A6%81%E7%82%B9/"/>
-      <url>/2018/05/21/Swift%E8%A6%81%E7%82%B9/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Swift中的Array与Dictionary为struct类型"><a href="#Swift中的Array与Dictionary为struct类型" class="headerlink" title="Swift中的Array与Dictionary为struct类型"></a>Swift中的Array与Dictionary为struct类型</h1><p>在 Swift 中所有的基本类型，包括 Array 和 Dictionary 这些传统意义上会是 class 的东西，统统都是 struct 类型，并不能由 AnyObject 来表示，于是 Apple 提出了一个更为特殊的 Any，除了class 以外，它还可以表示包括 struct 和 enum 在内的所有类型。<br><a href="http://swifter.tips/any-anyobject/" target="_blank" rel="noopener">http://swifter.tips/any-anyobject/</a></p><h1 id="Swift中的-self"><a href="#Swift中的-self" class="headerlink" title="Swift中的.self"></a>Swift中的<code>.self</code></h1><ul><li>2 在 Swift 中，<code>.self</code> 可以用在类型后面取得类型本身，也可以用在某个实例后面取得这个实例本身。<br>前一种方法可以用来获得一个表示该类型的值，这在某些时候会很有用；而后者因为拿到的实例本身<br><a href="http://swifter.tips/self-anyclass/" target="_blank" rel="noopener">http://swifter.tips/self-anyclass/</a></li></ul><h1 id="Swift中类转字符串"><a href="#Swift中类转字符串" class="headerlink" title="Swift中类转字符串"></a>Swift中类转字符串</h1><pre><code class="Swift">NSStringFromClass(UserProfileCell.self)// &quot;WechatMoments.UserProfileCell&quot;String(describing: UserProfileCell.self)// &quot;UserProfileCell&quot;String(describing: type(of: UserProfileCell.self))// &quot;UserProfileCell.Type&quot;String(describing: type(of: self))// &quot;UserProfileSectionController&quot;</code></pre><h1 id="NSObject-AnyObject-Any"><a href="#NSObject-AnyObject-Any" class="headerlink" title="NSObject, AnyObject, Any"></a><code>NSObject</code>, <code>AnyObject</code>, <code>Any</code></h1><ul><li><p><code>NSObject</code>：是OC中的基类</p></li><li><p><code>AnyObject</code>： 包含了<code>NSObject</code>以及Swift中定义的类的对象</p></li><li><p><code>Any</code>：所有的类型，包括了AnyObject，以及闭包类型</p></li></ul><p>所以在范围上：Any &gt; AnyObject &gt; NSObject</p><h1 id="is运算符"><a href="#is运算符" class="headerlink" title="is运算符"></a><code>is</code>运算符</h1><p>is 用于运行时判断具体类型，类似于isKindOfClass</p><h1 id="Swift包管理工具"><a href="#Swift包管理工具" class="headerlink" title="Swift包管理工具"></a>Swift包管理工具</h1><p><a href="https://swift.org/package-manager/#example-usage" target="_blank" rel="noopener">https://swift.org/package-manager/#example-usage</a></p><p>|命令|描述|</p><p>|:-|:-|</p><p>|<code>swift package init --type executable</code>|创建可执行的包|</p><p>|<code>swift package init --type library</code>|创建库|</p><p>| <code>swift package update</code> | 更新一个包的依赖 |</p><p>| <code>swift package generate-xcodeproj</code> | 为包生成 Xcode 项目 |</p><p>| <code>swift build</code> | 编译库或可执行文件 |</p><p>| <code>swift test</code> | 运行测试 |</p><h1 id="swift-中-static-与-class-关键字"><a href="#swift-中-static-与-class-关键字" class="headerlink" title="swift 中 static 与 class 关键字"></a>swift 中 <code>static</code> 与 <code>class</code> 关键字</h1><h2 id="在类中"><a href="#在类中" class="headerlink" title="在类中"></a>在类中</h2><h3 id="static方法-与-class方法"><a href="#static方法-与-class方法" class="headerlink" title="static方法 与 class方法"></a><code>static方法</code> 与 <code>class方法</code></h3><ul><li><p><code>class 方法</code> 即 OC 中的类方法</p></li><li><p><code>static 方法</code> 类方法，同时不允许子类重载</p></li></ul><h3 id="static变量-与-class变量"><a href="#static变量-与-class变量" class="headerlink" title="static变量 与 class变量"></a><code>static变量</code> 与 <code>class变量</code></h3><ul><li><p><code>class 变量</code> swift当前版本暂不支持</p></li><li><p><code>static 变量</code> 类变量</p></li></ul><h1 id="Swift性能优化分析"><a href="#Swift性能优化分析" class="headerlink" title="Swift性能优化分析"></a>Swift性能优化分析</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830000526.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830000534.png" alt=""></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Swift </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>RxSwift map,flatMap,flatMapLatest的区别</title>
       <link href="/2018/05/21/RxSwift%20map,flatMap,flatMapLatest%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
       <url>/2018/05/21/RxSwift%20map,flatMap,flatMapLatest%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
@@ -330,16 +98,18 @@
     
     
     <entry>
-      <title>fastlane</title>
-      <link href="/2018/05/21/fastlane/"/>
-      <url>/2018/05/21/fastlane/</url>
+      <title>JS中的Promise, async, await</title>
+      <link href="/2018/05/21/JS%E4%B8%AD%E7%9A%84Promise,%20async,%20await/"/>
+      <url>/2018/05/21/JS%E4%B8%AD%E7%9A%84Promise,%20async,%20await/</url>
       
-        <content type="html"><![CDATA[<p>[TOC]</p><h1 id="官方文档（推荐）"><a href="#官方文档（推荐）" class="headerlink" title="官方文档（推荐）"></a>官方文档（推荐）</h1><p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p><h1 id="Mac上ruby管理工具-RVM"><a href="#Mac上ruby管理工具-RVM" class="headerlink" title="Mac上ruby管理工具 RVM"></a>Mac上ruby管理工具 <code>RVM</code></h1><p>因为rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。</p><h2 id="安装rvm"><a href="#安装rvm" class="headerlink" title="安装rvm"></a>安装rvm</h2><pre><code>$ curl -L get.rvm.io | bash -s stable$ source ~/.rvm/scripts/rvm</code></pre><p>等待终端加载完毕,后输入：</p><pre><code>rvm -v</code></pre><p>如果能显示版本好则安装成功了。</p><h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><p>|描述|命令|</p><p>|:-|:-|</p><p>| 列出ruby可安装的版本信息 | <code>rvm list known</code> |</p><p>| 更新RVM | <code>rvm get stable</code> |</p><p>| 查看当前ruby版本 | rvm -v |</p><p>| 安装一个ruby版本 | <code>rvm install 2.3.3</code> |</p><p>| 设置为默认版本 | <code>rvm use 2.3.3 --default</code> |</p><p>| 使用某个版本 | <code>rvm use 2.3.3</code> |</p><p>| 查看已安装的ruby | <code>rvm list</code> |</p><p>| 卸载一个已安装ruby版本 | <code>rvm remove 2.3.3</code> |</p><p>| 查看已有的源 | <code>gem source -l</code> |</p><p><br></p><p><br></p><hr><p><br></p><h1 id="gem-常用命令"><a href="#gem-常用命令" class="headerlink" title="gem 常用命令"></a>gem 常用命令</h1><p>官网<a href="https://gems.ruby-china.com/" target="_blank" rel="noopener">https://gems.ruby-china.com/</a></p><p>|描述|命令|</p><p>|:-|:-|</p><p>| 更新 gem | <code>sudo gem update --system</code>  |</p><p>| 从Gem源安装gem包  |  <code>gem install [gemname]</code> |</p><p>| 更新所有已安装的gem包 |<code>gem update</code> |</p><p>| 更新指定的gem包 | <code>gem update [gemname]</code>|</p><p>| 删除指定的gem包，注意此命令将删除所有已安装的版本| <code>gem uninstall [gemname]</code>|</p><p>| 查看本机已安装的所有gem包 | <code>gem list [--local]</code> |</p><p>| 查看镜像 | <code>gem sources -l</code> |</p><p>| 修改镜像 |gem sources –add <a href="https://gems.ruby-china.org/" target="_blank" rel="noopener">https://gems.ruby-china.org/</a> –remove <a href="https://rubygems.org/，可以进入这两个网址查看详细信息" target="_blank" rel="noopener">https://rubygems.org/，可以进入这两个网址查看详细信息</a> |</p><h1 id="fastlane"><a href="#fastlane" class="headerlink" title="fastlane"></a>fastlane</h1><p>官网<a href="https://fastlane.tools/" target="_blank" rel="noopener">https://fastlane.tools/</a></p><p>github: <a href="https://github.com/fastlane/fastlane/tree/master/snapshot" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/snapshot</a></p><p>|命令|描述|</p><p>|:-|:-|</p><p>| <code>sudo gem install fastlane -NV</code> | 安装/更新 fastlane |</p><p> | <code>fastlane init</code>| 进入工程目录，初始化 fastlane 配置 |</p><p>| <code>fastlane update_fastlane</code> | 更新fastlane各种插件等 |</p><p>| <code>fastlane actions</code> |      列出所有可用fastlane活动 | </p><p>| <code>fastlane action [action_name]</code> |    显示一个更详细的活动描述| </p><p> | <code>fastlane lanes</code>   |     列出所有可用lanes (有描述) | </p><p> | <code>fastlane list</code>  |     列出所有可用lanes (没有描述)  | </p><p> | <code>fastlane new_action</code> |    在fastlane创建一个活动(集成) | </p><p> | <code>fastlane search_plugins</code> |  查看所有插件 | </p><p> | <code>fastlane add_plugin firim</code> |  安装插件 firim | </p><h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a>TODO:</h1><p>由于<code>xcodebuild -showBuildSettings -project ./RiciBellSDKDemo.xcodeproj</code> 命令卡死，导致无法继续，暂时没有找到解决办法，可能是因为使用了Xcode9 beta 版的Bug导致，后期再继续</p><p>收藏一篇博客<a href="http://www.jianshu.com/p/228354881eab" target="_blank" rel="noopener">http://www.jianshu.com/p/228354881eab</a></p><h2 id="gym"><a href="#gym" class="headerlink" title="gym"></a>gym</h2><p> 类似于<code>shenzhen</code></p><p><a href="https://github.com/fastlane/fastlane/tree/master/gym#export-options" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/gym#export-options</a></p><p>|命令|描述|</p><p>|:-|:-|</p><p>| <code>gym init</code> | 创建Gymfile文件 |</p><h2 id="fastlane-的工具链"><a href="#fastlane-的工具链" class="headerlink" title="fastlane 的工具链"></a>fastlane 的工具链</h2><p>在 fastlane 这个大家庭中，包含了下列工具：</p><ul><li>produce 创建可用于 iTunes Connect 和 Apple Developer Portal 的 iOS app。</li><li>cert 自动创建和维护 iOS 代码签名证书。</li><li>sigh 创建、更新、下载和修复 provisioning profiles。</li><li>snapshot 自动将 App 屏幕截图本地化到每种设备上。</li><li>frameit 将屏幕截图适配到适当的设备屏幕大小。</li><li>gym 创建和打包 iOS app。</li><li>deliver 上传屏幕截图、元数据和 App 到 App 商店。<h1 id="安装-fir"><a href="#安装-fir" class="headerlink" title="安装 fir"></a>安装 fir</h1></li></ul><p>1、安装</p><p>|描述|命令|</p><p>|:-|:-|</p><p>| 安装 fir-cli | <code>gem install fir-cli</code> |</p><p>2、获取token登陆</p><p>获取 fir 账号的 token，当使用 fir login 登录了之后, 后续命令都不需要加上 -T 参数, 会默认使用当前用户的 token 进行相关操作</p><p>|描述|命令|</p><p>|:-|:-|</p><p>| 登陆 fir-cli | <code>fir login XXX_YOUR_API_TOKEN_XXX</code> |</p><p>3、编译打包 ipa 文件</p><p>|描述|命令| 参数说明|</p><p>|:-|:-|:- |</p><p>| 编译打包 ipa 文件 | <code>schema=&quot;testFir&quot; fir build_ipa ~/Developer/$schema -o ~/Developer/build -w -C Release -S &quot;$schema&quot;</code> | -w 是 –workspace 的简写，表示编译 *.xcworkspace, 没有带这个参数则编译 xcodeproj 文件。<br> -C Release, 以 Release 方式打包，若 Debug 则是打调试包。 <br> -S: 编译用 CocoaPods 做依赖管理的 .ipa 包|</p><p>4、上传 ipa</p><p>|描述|命令| 参数说明|</p><p>|:-|:-|:- |</p><p>| 上传 ipa | <code>fir publish -c &quot;first version log&quot; ${schema}*.ipa</code> | -c 后带 log。默认的包名是 schema-版本号-build－build 号，如 testFir-2.5.3-build-576.ipa。 |</p><h1 id="使用-fastlane进行持续集成"><a href="#使用-fastlane进行持续集成" class="headerlink" title="使用 fastlane进行持续集成"></a>使用 fastlane进行持续集成</h1><h1 id="报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory"><a href="#报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory" class="headerlink" title="报错：You don&#39;t have write permissions for the /usr/bin directory."></a>报错：<code>You don&#39;t have write permissions for the /usr/bin directory.</code></h1><p><code>sudo gem install fastlane -n /usr/local/bin</code></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="准备代码"><a href="#准备代码" class="headerlink" title="准备代码"></a>准备代码</h2><pre><code class="JS">//做饭function cook() {    console.log(&#39;开始做饭。&#39;);    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;鸡蛋炒饭&#39;);            // reject(&#39;烧焦的米饭&#39;);        }, 1000);    });    return p;}//吃饭function eat(data) {    console.log(&#39;开始吃饭：&#39; + data);    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;一块碗和一双筷子&#39;);        }, 2000);    });    return p;}function wash(data) {    console.log(&#39;开始洗碗：&#39; + data);    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;干净的碗筷&#39;);        }, 2000);    });    return p;}</code></pre><pre><code class="JS">//切菜function cutUp() {    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;切好的菜&#39;);        }, 1000);    });    return p;}//烧水function boil() {    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;烧好的水&#39;);        }, 2000);    });    return p;}</code></pre><h2 id="async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"><a href="#async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题" class="headerlink" title="async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"></a>async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题</h2><h4 id="async"><a href="#async" class="headerlink" title="async"></a>async</h4><ul><li>当调用一个 async 函数时，会返回一个 Promise 对象</li><li>当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；</li><li>当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。<ul><li>当async 函数没有返回值，它会返回 Promise.resolve()。</li></ul></li></ul><h4 id="await"><a href="#await" class="headerlink" title="await"></a>await</h4><ul><li>await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。</li><li>await后面调用的函数需要返回一个promise</li><li><p>await 必须出现在 async 函数内部，不能单独使用。</p></li><li><p>若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行async function。</p></li><li>若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。</li><li>若 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。</li></ul><h2 id="一-then-：多个异步事件串行执行"><a href="#一-then-：多个异步事件串行执行" class="headerlink" title="一. then()：多个异步事件串行执行"></a>一. <code>then()</code>：多个异步事件串行执行</h2><p>类似于RxSwift中<code>flatMap</code></p><h4 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h4><pre><code class="JS">cook()    .then(data =&gt; {        return eat(data);    })    .then(data =&gt; {        return wash(data);    })    .then(data =&gt; {        console.log(data);    });</code></pre><h4 id="写法二：-简化的写法"><a href="#写法二：-简化的写法" class="headerlink" title="写法二： 简化的写法"></a>写法二： 简化的写法</h4><pre><code>// 简化的写法cook()    .then(eat)    .then(wash)    .then((data) =&gt; {        console.log(data);    })    .catch(err=&gt;{        console.log(err);    });</code></pre><h4 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h4><pre><code>// 抛出异常cook()    .then(data =&gt; {        throw new Error(&#39;米饭被打翻了！&#39;);        eat(data);    })    .then(wash)    .then((data) =&gt; {        console.log(data);    })    .catch(err =&gt; {        console.log(err);    });</code></pre><h4 id="写法三：使用async-await"><a href="#写法三：使用async-await" class="headerlink" title="写法三：使用async/await"></a>写法三：使用async/await</h4><pre><code class="js">async function flatMap() {    try {        let cookResult = await cook();        let eatResult = await eat();        let washResult = await wash();        console.log(`async await flatMap test: ${cookResult},${eatResult},${washResult}~~~~~`);    } catch (err) {        console.log(`error: ${err}`);    }}flatMap() // async await flatMap test: 鸡蛋炒饭,一块碗和一双筷子,干净的碗筷~~~~~</code></pre><h2 id="二-all-多个异步事件并行执行，全部执行完毕后再执行then回调"><a href="#二-all-多个异步事件并行执行，全部执行完毕后再执行then回调" class="headerlink" title="二. all(): 多个异步事件并行执行，全部执行完毕后再执行then回调"></a>二. <code>all()</code>: 多个异步事件并行执行，全部执行完毕后再执行then回调</h2><p>类似于RxSwift中<code>zip</code></p><h4 id="方式一：Promise"><a href="#方式一：Promise" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise    .all([cutUp(), boil()])    .then(results =&gt; {        console.log(results);    });</code></pre><h4 id="方式二：使用async-await"><a href="#方式二：使用async-await" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="js">async function zip() {    try {        let results = await Promise.all([cutUp(), boil()]);        console.log(`async await zip test ${results}`)    } catch (err) {        console.log(`error: ${err}`);    }}zip() // async await zip test 切好的菜,烧好的水</code></pre><h2 id="三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调"><a href="#三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调" class="headerlink" title="三. race(): 多个异步事件同时执行，只要有一个执行完毕立即执行then回调"></a>三. <code>race()</code>: 多个异步事件同时执行，只要有一个执行完毕立即执行then回调</h2><h4 id="方式一：Promise-1"><a href="#方式一：Promise-1" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise    .race([cutUp(), boil()])    .then(results =&gt; {        console.log(results);    });</code></pre><h4 id="方式二：使用async-await-1"><a href="#方式二：使用async-await-1" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="JS">async function race() {    try {        let results = await Promise.race([cutUp(), boil()]);        console.log(`async await race test ${results}`)    } catch (err) {        console.log(`error: ${err}`);    }}race() //async await race test 切好的菜</code></pre><ul><li>应用：为异步操作设置超时时间</li></ul><pre><code class="JS">//请求某个图片资源function requestImg(){    var p = new Promise(function(resolve, reject){    var img = new Image();    img.onload = function(){       resolve(img);    }    img.src = &#39;xxxxxx&#39;;    });    return p;}//延时函数，用于给请求计时function timeout(){    var p = new Promise(function(resolve, reject){        setTimeout(function(){            reject(&#39;图片请求超时&#39;);        }, 5000);    });    return p;}Promise.race([requestImg(), timeout()]).then(function(results){    console.log(results);}).catch(function(reason){    console.log(reason);});</code></pre><p>参考：<a href="https://www.cnblogs.com/sweeeper/p/8442613.html" target="_blank" rel="noopener">https://www.cnblogs.com/sweeeper/p/8442613.html</a><br><a href="https://segmentfault.com/a/1190000011526612?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011526612?utm_source=tag-newest</a></p>]]></content>
       
       
       <categories>
           
-          <category> 工具 </category>
+          <category> 大前端 </category>
+          
+          <category> js </category>
           
       </categories>
       
@@ -349,39 +119,18 @@
     
     
     <entry>
-      <title>微信小程序</title>
-      <link href="/2018/05/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
-      <url>/2018/05/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</url>
+      <title>JS常用点</title>
+      <link href="/2018/05/21/JS%E5%B8%B8%E7%94%A8%E7%82%B9/"/>
+      <url>/2018/05/21/JS%E5%B8%B8%E7%94%A8%E7%82%B9/</url>
       
-        <content type="html"><![CDATA[<h1 id="升级（检查更新）"><a href="#升级（检查更新）" class="headerlink" title="升级（检查更新）"></a>升级（检查更新）</h1><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html</a></p><h1 id="使用mpvue进行小程序开发"><a href="#使用mpvue进行小程序开发" class="headerlink" title="使用mpvue进行小程序开发"></a>使用mpvue进行小程序开发</h1><h2 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h2><p><code>一斤代码</code>的简书<a href="https://www.jianshu.com/p/8f779950bfd9" target="_blank" rel="noopener">https://www.jianshu.com/p/8f779950bfd9</a></p><h2 id="在mpvue中使用Vant-Weapp组件库"><a href="#在mpvue中使用Vant-Weapp组件库" class="headerlink" title="在mpvue中使用Vant Weapp组件库"></a>在mpvue中使用Vant Weapp组件库</h2><ul><li><p>1、将下载的小程序组件的<code>dist</code>目录拷贝到工程static目录下，然后改名，比如van-weapp<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225337.png" alt=""></p></li><li><p>2、打开ES6转ES5<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225350.png" alt=""></p></li><li><p>3、在需要使用van-weapp组件的页面创建main.json文件，并进行引入<br>然后在main.json中添加如下内容</p><pre><code class="json">{  &quot;usingComponents&quot;: {      &quot;van-tab&quot;: &quot;../../../static/vant-weapp/tab/index&quot;,      &quot;van-tabs&quot;: &quot;../../../static/vant-weapp/tabs/index&quot;  }}</code></pre></li><li>4、使用自定义组件<pre><code class="Vue">  &lt;!-- 使用第三方组件 --&gt;  &lt;van-tabs v-bind:active=&quot;active&quot; @click=&quot;onChange&quot;&gt;    &lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;  &lt;/van-tabs&gt;</code></pre></li><li>注意：在vant-weapp的官方文档中的具体用法是使用wxml的语法，所以我们不能直接照搬使用<br>比如官方文档示例代码为：<pre><code>&lt;van-tabs active=&quot;{{ active }}&quot; bind:change=&quot;onChange&quot;&gt;&lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;&lt;/van-tabs&gt;</code></pre>具体参考<a href="https://www.jianshu.com/p/2adff147b8a6" target="_blank" rel="noopener">https://www.jianshu.com/p/2adff147b8a6</a></li></ul><p>其他参考：<a href="https://www.jianshu.com/p/1b3b9e17ac88" target="_blank" rel="noopener">https://www.jianshu.com/p/1b3b9e17ac88</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> 微信小程序 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>React-Native Tips</title>
-      <link href="/2018/05/21/React-Native%20Tips/"/>
-      <url>/2018/05/21/React-Native%20Tips/</url>
-      
-        <content type="html"><![CDATA[<h1 id="快速进入断点"><a href="#快速进入断点" class="headerlink" title="快速进入断点"></a>快速进入断点</h1><ol><li>模拟器开启远程调试</li><li>在浏览器上<code>cmd+option+I</code>打开调试页面</li><li>代码输入<code>dubugger</code>进入断点<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211638.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211651.png" alt=""></li></ol><h1 id="更新node"><a href="#更新node" class="headerlink" title="更新node"></a>更新node</h1><ul><li>1、更新npm<br><code>npm -v</code><br><code>npm install npm@latest -g</code></li><li>2、更新node<pre><code>sudo npm cache clean -fsudo npm install -g nsudo n stable</code></pre></li></ul><p>参考：<a href="https://www.hostingadvice.com/how-to/update-node-js-latest-version/" target="_blank" rel="noopener">https://www.hostingadvice.com/how-to/update-node-js-latest-version/</a></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><h2 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h2><h3 id="for-of：遍历数组value"><a href="#for-of：遍历数组value" class="headerlink" title="for of：遍历数组value"></a><code>for of</code>：遍历数组value</h3><blockquote><p>TIPS: for of 断点时，获取不到变量信息</p><pre><code class="javascript">const array = [    {        name: &quot;张三&quot;    }, {        name: &quot;李四&quot;    }, {        name: &quot;王五&quot;    }, {        name: &quot;小红&quot;    }];let obj = {    name: &quot;小红&quot;,    age: 19,    sex: &#39;女&#39;,}// for of：遍历数组valuefor (const item of array) {    console.log(item.name);}</code></pre></blockquote><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222714.png" alt=""></p><h3 id="for-in：遍历对象key"><a href="#for-in：遍历对象key" class="headerlink" title="for in：遍历对象key"></a><code>for in</code>：遍历对象key</h3><pre><code class="javascript">// for in：遍历对象keyfor (const key in obj) {    console.log(`${key}:${obj[key]}`);}</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222733.png" alt=""></p><h3 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h3><pre><code class="javascript">let nArray = array.map((value, index) =&gt; {    return { ...value, type: &#39;哈哈&#39; }})console.log(nArray);</code></pre><h3 id="切片：splice"><a href="#切片：splice" class="headerlink" title="切片：splice"></a>切片：<code>splice</code></h3><pre><code>- [start, end) 从下标start开始，到下标end结束，不包括end- end 大于数组长度会截取到数组结束</code></pre><pre><code>let subArray = array.splice(0, 6)console.log(subArray)</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222753.png" alt=""></p><h1 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h1><p>本质是<code>模式匹配</code></p><h2 id="数组-1"><a href="#数组-1" class="headerlink" title="数组"></a>数组</h2><ul><li><p>本质：实现了Iterator 接口的对象就可以按顺序解构赋值<br>数组的元素是按次序排列的，变量的取值由它的位置决定</p><pre><code class="javascript">let [a, [b], d] = [1, [2, 3], 4];a // 1b // 2d // 4</code></pre></li><li><p>默认值</p><pre><code class="javascript">let [x = 1, y = x] = [2];    // x=2; y=2let [foo = true] = [];foo // truelet [x = 1] = [undefined];x // 1</code></pre></li></ul><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="变量与属性同名"><a href="#变量与属性同名" class="headerlink" title="变量与属性同名"></a>变量与属性同名</h3><ul><li>字符串赋值<pre><code class="javascript">let { bar, foo, hello } = { foo: &#39;aaa&#39;, bar: &#39;bbb&#39; };foo // &quot;aaa&quot;bar // &quot;bbb&quot;hello // &quot;undefined&quot;</code></pre></li><li>对象方法赋值<pre><code class="javascript">const { log } = console;log(&#39;hello&#39;) // hello</code></pre><h3 id="变量名与属性名不同名"><a href="#变量名与属性名不同名" class="headerlink" title="变量名与属性名不同名"></a>变量名与属性名不同名</h3><pre><code class="javascript">let { foo: baz } = { foo: &#39;aaa&#39;, bar: &#39;bbb&#39; };baz // &quot;aaa&quot;</code></pre>对象的解构赋值的内部机制，是先找到同名属性，然后再赋给对应的变量。真正被赋值的是后者，而不是前者</li></ul><h3 id="嵌套对象赋值"><a href="#嵌套对象赋值" class="headerlink" title="嵌套对象赋值"></a>嵌套对象赋值</h3><ul><li>注意，对象嵌套赋值里，<code>冒号:</code>代表模式，并不是取值</li></ul><pre><code class="javascript">const node = {    loc: {      start: {        line: 1,        column: 5      }    }  };let { loc: { start }} = node;start // Object {line: 1, column: 5}loc // undefinedlet { loc, loc: { start }}start // Object {line: 1, column: 5}loc // Object {start: Object}let { loc: { start: { line }}} = node;line // 1loc // undefinedstart // undefined</code></pre><h3 id="获取对象继承的属性"><a href="#获取对象继承的属性" class="headerlink" title="获取对象继承的属性"></a>获取对象继承的属性</h3><pre><code class="javascript">const obj1 = {};const obj2 = { foo: &#39;bar&#39; };Object.setPrototypeOf(obj1, obj2);const { foo } = obj1;foo // &quot;bar&quot;</code></pre><h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><pre><code class="javascript">var {x = 3} = {};x // 3var {x = 3} = {x: undefined};x // 3</code></pre><h3 id="已声明变量的解构赋值"><a href="#已声明变量的解构赋值" class="headerlink" title="已声明变量的解构赋值"></a>已声明变量的解构赋值</h3><ul><li>错误的写法</li></ul><pre><code class="javascript">let x;{x} = {x: 1};// SyntaxError: syntax error</code></pre><ul><li>正确的写法</li></ul><pre><code class="javascript">let x;({x} = {x: 1});</code></pre><h3 id="函数参数的解构赋值"><a href="#函数参数的解构赋值" class="headerlink" title="函数参数的解构赋值"></a>函数参数的解构赋值</h3><p>函数add的参数表面上是一个数组，但在传入参数的那一刻，数组参数就被解构成变量x和y。对于函数内部的代码来说，它们能感受到的参数就是x和y。</p><pre><code class="javascript">function add([x, y]){  return x + y;}add([1, 2]); // 3</code></pre>]]></content>
       
       
       <categories>
           
           <category> 大前端 </category>
           
-          <category> React-Native </category>
+          <category> js </category>
           
       </categories>
       
@@ -429,6 +178,257 @@
     
     
     <entry>
+      <title>React-Native Tips</title>
+      <link href="/2018/05/21/React-Native%20Tips/"/>
+      <url>/2018/05/21/React-Native%20Tips/</url>
+      
+        <content type="html"><![CDATA[<h1 id="快速进入断点"><a href="#快速进入断点" class="headerlink" title="快速进入断点"></a>快速进入断点</h1><ol><li>模拟器开启远程调试</li><li>在浏览器上<code>cmd+option+I</code>打开调试页面</li><li>代码输入<code>dubugger</code>进入断点<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211638.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211651.png" alt=""></li></ol><h1 id="更新node"><a href="#更新node" class="headerlink" title="更新node"></a>更新node</h1><ul><li>1、更新npm<br><code>npm -v</code><br><code>npm install npm@latest -g</code></li><li>2、更新node<pre><code>sudo npm cache clean -fsudo npm install -g nsudo n stable</code></pre></li></ul><p>参考：<a href="https://www.hostingadvice.com/how-to/update-node-js-latest-version/" target="_blank" rel="noopener">https://www.hostingadvice.com/how-to/update-node-js-latest-version/</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大前端 </category>
+          
+          <category> React-Native </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>React-Native布局</title>
+      <link href="/2018/05/21/React-Native%20%E5%B8%83%E5%B1%80/"/>
+      <url>/2018/05/21/React-Native%20%E5%B8%83%E5%B1%80/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://facebook.github.io/react-native/docs/flexbox" target="_blank" rel="noopener">https://facebook.github.io/react-native/docs/flexbox</a><br><a href="https://yogalayout.com/playground" target="_blank" rel="noopener">https://yogalayout.com/playground</a></p><h1 id="颜色字符串"><a href="#颜色字符串" class="headerlink" title="颜色字符串"></a>颜色字符串</h1><p>backgroundColor: ‘#30576EA0’,<br>前面两位（30）表示透明度，范围是0～99</p><h1 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829215932.png" alt=""><br> 边框属性(border)用来设定一个元素的边线。</p><ul><li>边距属性(margin)是用来设置一个元素所占空间的边缘到相邻元素之间的距离。</li><li>间隙属性(padding)是用来设置元素内容到元素边界的距离。</li></ul><p><br></p><h1 id="Flexbox布局属性"><a href="#Flexbox布局属性" class="headerlink" title="Flexbox布局属性"></a>Flexbox布局属性</h1><h2 id="伸缩容器的属性"><a href="#伸缩容器的属性" class="headerlink" title="伸缩容器的属性"></a>伸缩容器的属性</h2><h3 id="主轴"><a href="#主轴" class="headerlink" title="主轴"></a>主轴</h3><ul><li><p><code>flexDirection</code>  ：决定布局的主轴，默认值是竖直轴(column)</p><ul><li><code>row</code>:（默认值）</li><li><code>row-reverse</code></li><li><code>column</code> (RN默认值)</li><li><code>column-reverse</code></li></ul></li><li><p><code>justifyContent</code> ：决定其子元素沿着主轴的排列方式</p><ul><li><code>flex-start</code>:（默认值）从主轴的起点对齐    </li><li><code>flex-end</code>: 从主轴的终点对齐    </li><li><code>center</code>:从主轴的中间位置对齐    </li><li><code>space-between</code>:平均分布在主轴线上    </li><li><code>space-around</code>:平均分布在主轴线上，两端留下一半的距离</li></ul></li></ul><ul><li><code>flexWap</code><br>伸缩容器在主轴线方向空间不足的情况下，是否换行以及该如何换行<ul><li><code>nowrap</code>（默认值）</li><li><code>wrap</code>    </li><li><code>wrap-reverse</code></li></ul></li></ul><h3 id="次轴"><a href="#次轴" class="headerlink" title="次轴"></a>次轴</h3><ul><li><p><code>alignItems</code>：决定其子元素沿着次轴的排列方式</p><ul><li><code>flex-start</code>（默认值）交叉轴起点对齐</li><li><code>flex-end</code> 交叉轴终点对齐</li><li><code>center</code> 中点对齐</li><li><code>stretch</code> 拉伸</li><li><code>baseline</code> 基线对齐<br><code>baseline</code>对齐效果：<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829221739.png" alt=""><br><code>stretch</code>效果（不设置高度时）<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829221759.png" alt=""></li></ul></li><li><p><code>align-content</code><br>用来调整伸缩项目出现换行后在交叉轴上的对齐方式</p><ul><li><code>flex-start</code></li><li><code>flex-end</code>    </li><li><code>center</code>    </li><li><code>space-between</code>    </li><li><code>space-around</code>    </li><li><code>stretch</code>（默认值）</li></ul></li></ul><h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul><li><code>display</code><ul><li><code>flex</code>    块级伸缩容器    </li><li><code>inline-flex</code>行内级伸缩容器</li><li><code>none</code>隐藏元素</li></ul></li></ul><ul><li><code>flex-flow</code><br>同时定义了伸缩容器的主轴和侧轴, 其默认值为 <ul><li><code>row</code> </li><li><code>nowrap</code></li></ul></li></ul><h2 id="伸缩项目的属性"><a href="#伸缩项目的属性" class="headerlink" title="伸缩项目的属性"></a>伸缩项目的属性</h2><ul><li><p><code>order</code><br>定义项目的排列顺序，数值越小，排列越靠前，默认值为0<br>语法为：order：整数值</p></li><li><p><code>flex-grow</code><br>定义伸缩项目的放大比例，为整数值</p><ul><li>0(默认值): 不放大</li><li>其他值: 如果存在剩余空间，那么将自动占据全部剩余空间，每个item所占据的空间大小会根据这个值自动调整</li></ul></li><li><p><code>flex-shrink</code><br>定义伸缩项目的收缩能力，默认值为1 ，其语法为：flex-shrink:整数值</p><ul><li>1(默认值)    其他值</li><li>如果不存在剩余空间，那么将自动缩小</li></ul></li><li><p><code>flex-basis</code><br>用来设置伸缩项目的基准值，剩余的空间按比率进行伸缩</p><ul><li><code>auto</code>(默认值)    </li><li><code>length</code></li></ul></li><li><p><code>flex</code><br>是flex-grow flex-shrink flex-basis这三个属性的缩写，其语法为：flex:none | flex-grow flex-shrink flex-basis，其中第二个和第三个参数为可选参数，默认值为：0 1 auto</p></li><li><p><code>alignSelf</code><br>用来设置单独的伸缩项目在交叉轴上的对齐方式，会覆盖默认的对齐方式 </p><ul><li><code>auto</code> 按照自身设置的宽高进行显示    </li><li><code>flex-start</code>    </li><li><code>flex-end</code>    </li><li><code>center</code>    </li><li><code>baseline</code>    </li><li><code>stretch</code>默认,伸缩项目在交叉轴方向占满伸缩容器，如果交叉轴为垂直方向的话，只有在不设置高度的情况下才能看到效果</li></ul></li></ul><h1 id="React-Native中的postion定位"><a href="#React-Native中的postion定位" class="headerlink" title="React Native中的postion定位"></a>React Native中的postion定位</h1><ul><li><code>relative</code> 相对定位(默认)，以元素本来的位置为基准进行偏移。</li><li><code>absolute</code> 绝对定位，以父元素的边框为基准进行偏移。<br><a href="https://blog.csdn.net/al4fun/article/details/80253364" target="_blank" rel="noopener">https://blog.csdn.net/al4fun/article/details/80253364</a></li></ul><h1 id="width-39-100-39-与width-39-auto-39"><a href="#width-39-100-39-与width-39-auto-39" class="headerlink" title="width:&#39;100%&#39;与width:&#39;auto&#39;"></a><code>width:&#39;100%&#39;与width:&#39;auto&#39;</code></h1><ul><li><code>width:auto</code> 会将元素撑开至整个父元素width，但是会减去子节点自己的margin，padding或者border的大小。</li><li><code>width:100%</code> 会强制将元素变成和父元素一样的宽，并且添加额外的空间到这个元素的width上。就是因为这个，会导致很多问题。</li></ul><p>使用width:100%永远都不是一个好主意。这个属性容易让人产生你正在定义一个元素可视大小，其实，你是在对这个元素的状态做了巨大的改变。</p><pre><code>&lt;TouchableOpacity style={[styles.comButton]}&gt;    &lt;Text        style={[        {            width: &quot;100%&quot;,            height: &quot;100%&quot;,        }]}&gt;        {item.title}    &lt;/Text&gt;&lt;/TouchableOpacity&gt;comButton: {    padding:0,    flex: 1,    alignItems: &quot;center&quot;,    justifyContent: &quot;center&quot;,    color: CommonStyle.col_gray_dark,    borderColor: CommonStyle.col_gray_dark,    borderWidth: 0.8,    borderRadius: 48,    height: 44  }</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222452.png" alt=""></p><pre><code>&lt;TouchableOpacity style={[styles.comButton]}&gt;    &lt;Text        style={[        {            width: Platform.OS === &#39;ios&#39; ? &#39;auto&#39; : &quot;100%&quot;,            height: Platform.OS === &#39;ios&#39; ? &#39;auto&#39; : &quot;100%&quot;,        }]}&gt;        {item.title}    &lt;/Text&gt;&lt;/TouchableOpacity&gt;</code></pre><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829222515.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大前端 </category>
+          
+          <category> React-Native </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>React-Native模版</title>
+      <link href="/2018/05/21/React-Native%E6%A8%A1%E7%89%88/"/>
+      <url>/2018/05/21/React-Native%E6%A8%A1%E7%89%88/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 大前端 </category>
+          
+          <category> js </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>React-Native数据传递</title>
+      <link href="/2018/05/21/React-Native%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/"/>
+      <url>/2018/05/21/React-Native%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92/</url>
+      
+        <content type="html"><![CDATA[<h1 id="通过react-navigation传递数据"><a href="#通过react-navigation传递数据" class="headerlink" title="通过react-navigation传递数据"></a>通过react-navigation传递数据</h1><h2 id="顺传"><a href="#顺传" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p><pre><code>_onItemPress = (item) =&gt; {    NavigationService.navigate(&quot;Page1&quot;, {        data: item    });};</code></pre><p>获取数据</p><pre><code>componentDidMount() {    // 或者使用 this.props.navigation.getParam(&#39;data&#39;)    let data = this.props.navigation.state.params.data;}</code></pre><h2 id="逆传"><a href="#逆传" class="headerlink" title="逆传"></a>逆传</h2><p>传递数据</p><pre><code>_callback = (message) =&gt; {    console.log(message);}_onItemPress = (item) =&gt; {    NavigationService.navigate(&quot;Page1&quot;, {        callback: this._callback    });};</code></pre><p>子组件获取回调并执行</p><pre><code>render() {    return (        &lt;View style={styles.container}&gt;            &lt;Button                title={&#39;点击测试&#39;}                onPress={() =&gt; this.props.navigation.state.params.callback(&#39;hello world&#39;) }&gt;            &lt;/Button&gt;        &lt;/View&gt;    );}</code></pre><h1 id="通过组件传递数据"><a href="#通过组件传递数据" class="headerlink" title="通过组件传递数据"></a>通过组件传递数据</h1><h2 id="顺传-1"><a href="#顺传-1" class="headerlink" title="顺传"></a>顺传</h2><p>传递数据</p><pre><code>_renderItem = ({item, index}) =&gt; {    return (&lt;View&gt;        &lt;Component1 msg={item} index={index} dataA={this.state.dataA} navigation={this.props.navigation}/&gt;    &lt;/View&gt;)};</code></pre><p>子组件获取数据</p><pre><code>export default class Component1 extends Component&lt;Props&gt; {    constructor(props) {        super(props);        this.state = {            msg: this.props.msg,            index: this.props.index,            dataA: this.props.dataA,        }    }    //父组件更新数据，子组件不刷新时使用    componentWillReceiveProps(nextProps) {        this.setState({            msg: nextProps.msg,            index: nextProps.index,            dataA: nextProps.dataA,        });    }}</code></pre><h2 id="逆传-1"><a href="#逆传-1" class="headerlink" title="逆传"></a>逆传</h2><p>组件A<br>传递callback</p><pre><code>_callback = (message) =&gt; {    console.log(message);}render() {    return (    &lt;View&gt;        &lt;ComponentB callback={this._callback}&gt;&lt;/ComponentB&gt;    &lt;/View&gt;)};</code></pre><p>组件B<br>子组件获取传递过来的callback并执行</p><pre><code>class ComponentB extends React.PureComponent {    _onPress = () =&gt; {        this.props.callback(&#39;hello world&#39;)    };    render() {        return (            &lt;View style={styles.container} &gt;                &lt;Button                    title={&quot;点击测试&quot;}                    onPress={this._onPress}                &gt;                &lt;/Button&gt;            &lt;/View&gt;        );    }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大前端 </category>
+          
+          <category> React-Native </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>RxSwift基本概念</title>
+      <link href="/2018/05/21/RxSwift%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/"/>
+      <url>/2018/05/21/RxSwift%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</url>
+      
+        <content type="html"><![CDATA[<p>[TOC]</p><h1 id="Observable"><a href="#Observable" class="headerlink" title="Observable"></a>Observable</h1><p>Observables是一个事件流的对象</p><h2 id="empty"><a href="#empty" class="headerlink" title="empty"></a>empty</h2><p>通过empty函数，可以生成一个空的流，在这个流中只会产生一个Completed信息。</p><pre><code class="Swift">let emptyStream: Observable&lt;Int&gt; = Observable.empty()_ = emptyStream.subscribe { event in    print(event)  completed}</code></pre><h2 id="never"><a href="#never" class="headerlink" title="never"></a>never</h2><p>通过never函数产生的流对象，将不会有任何的事件发生。</p><pre><code class="Swift">let neverStream: Observable&lt;Int&gt; = Observable.never()_ = neverStream.subscribe({ _ in    print(&quot;这个方法永远都不会被执行&quot;)})</code></pre><h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><p>just函数调用之后将会产生一个next事件以及一个Completed事件，其中next可以用来传递数据，最后的Completed事件发送之后将不会再有事件了。<br>简单的说：just函数可以发送一个数据。</p><pre><code class="Swift">let justStream = Observable.just(32)_ = justStream.subscribe({ event in    print(event)    /*    next(32)    completed    */})</code></pre><h2 id="of"><a href="#of" class="headerlink" title="of"></a>of</h2><p>将一个集合内的数据所有数据顺序的发送出去。</p><pre><code class="Swift">let ofStream = Observable.of(0, 1, 2)_ = ofStream.subscribe({ event in    print(event)    /*    next(0)    next(1)    next(2)    completed    */})</code></pre><h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><p>将一个集合对象（比如数组、Range等）转换成流对象，通过订阅可以获得这个集合对象的所有内容。</p><pre><code class="Swift">let streamFromArray = Observable.from([0, 1, 2])_ = streamFromArray.subscribe({ (event) in    print(event)    /*    next(0)    next(1)    next(2)    completed    */})</code></pre><h2 id="create"><a href="#create" class="headerlink" title="create"></a>create</h2><p>create 函数是通过利用闭包来生成流对象的函数</p><pre><code class="Swift">let myJust = { (singleElement: Int) -&gt; Observable &lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable in    observer.onNext(singleElement)    observer.onCompleted()    return Disposables.create()})}let singleElementStream = myJust(32)_ = singleElementStream.subscribe { (event) in    print(event)    /*    next(32)    completed    */}</code></pre><h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>通过error函数将会生成一个终止的流，这个流中只会产生一次error事件并结束掉。</p><pre><code class="Swift">let error = NSError(domain: &quot;com.RxSwiftDemo.kesen&quot;, code: -1, userInfo: nil)let errorStream: Observable&lt;Int&gt; = Observable.error(error)_ = errorStream.subscribe { (event) in    print(event)    error(Error Domain=com.RxSwiftDemo.kesen Code=-1 &quot;(null)&quot;)}</code></pre><h2 id="deffered"><a href="#deffered" class="headerlink" title="deffered"></a>deffered</h2><p>deffered函数生成的流对象，只有在添加了订阅者才会被创建。</p><pre><code class="Swift">let defferedStream = Observable.deferred { () -&gt; Observable&lt;Int&gt; inreturn Observable.create({ (observer) -&gt; Disposable in    observer.onNext(0)    observer.onNext(1)    observer.onCompleted()    return Disposables.create()})}_ = defferedStream.subscribe({ (event) in    print(event)    /*    next(0)    next(1)    completed    */})</code></pre><h1 id="Subject"><a href="#Subject" class="headerlink" title="Subject"></a>Subject</h1><p>Subject其实就是Observer，拥有Observer的所有功能，也可以认为是热的Observer。</p><h2 id="PublishSubject"><a href="#PublishSubject" class="headerlink" title="PublishSubject"></a>PublishSubject</h2><p>它仅仅会发送observer订阅之后的事件，也就是说如果sequence上有.Next 的到来，但是这个时候某个observer还没有subscribe它，这个observer就收不到这条信息，它只会收到它订阅之后发生的事件。</p><h2 id="ReplaySubject"><a href="#ReplaySubject" class="headerlink" title="ReplaySubject"></a>ReplaySubject</h2><p>它和PublishSubject不同之处在于它不会漏消息。即使observer在subscribe的时候已经有事件发生过了，它也会收到之前的事件序列。</p><h2 id="BehaviorSubject"><a href="#BehaviorSubject" class="headerlink" title="BehaviorSubject"></a>BehaviorSubject</h2><p>当有observer在订阅一个BehaviorSubject的时候，它首先将会收到Observable上最近发送一个信号（或者是默认值），接着才会收到Observable上会发送的序列。</p><h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><p>Variable是BehaviorSubject的封装，它和BehaviorSubject不同之处在于，不能向Variable发送.Complete和.Error，它会在生命周期结束被释放的时候自动发送.Complete。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+          <category> Rx &amp; RAC </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>微信小程序</title>
+      <link href="/2018/05/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+      <url>/2018/05/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</url>
+      
+        <content type="html"><![CDATA[<h1 id="升级（检查更新）"><a href="#升级（检查更新）" class="headerlink" title="升级（检查更新）"></a>升级（检查更新）</h1><p><a href="https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/base/update/wx.getUpdateManager.html</a></p><h1 id="使用mpvue进行小程序开发"><a href="#使用mpvue进行小程序开发" class="headerlink" title="使用mpvue进行小程序开发"></a>使用mpvue进行小程序开发</h1><h2 id="系列教程"><a href="#系列教程" class="headerlink" title="系列教程"></a>系列教程</h2><p><code>一斤代码</code>的简书<a href="https://www.jianshu.com/p/8f779950bfd9" target="_blank" rel="noopener">https://www.jianshu.com/p/8f779950bfd9</a></p><h2 id="在mpvue中使用Vant-Weapp组件库"><a href="#在mpvue中使用Vant-Weapp组件库" class="headerlink" title="在mpvue中使用Vant Weapp组件库"></a>在mpvue中使用Vant Weapp组件库</h2><ul><li><p>1、将下载的小程序组件的<code>dist</code>目录拷贝到工程static目录下，然后改名，比如van-weapp<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225337.png" alt=""></p></li><li><p>2、打开ES6转ES5<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829225350.png" alt=""></p></li><li><p>3、在需要使用van-weapp组件的页面创建main.json文件，并进行引入<br>然后在main.json中添加如下内容</p><pre><code class="json">{  &quot;usingComponents&quot;: {      &quot;van-tab&quot;: &quot;../../../static/vant-weapp/tab/index&quot;,      &quot;van-tabs&quot;: &quot;../../../static/vant-weapp/tabs/index&quot;  }}</code></pre></li><li>4、使用自定义组件<pre><code class="Vue">  &lt;!-- 使用第三方组件 --&gt;  &lt;van-tabs v-bind:active=&quot;active&quot; @click=&quot;onChange&quot;&gt;    &lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;    &lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;  &lt;/van-tabs&gt;</code></pre></li><li>注意：在vant-weapp的官方文档中的具体用法是使用wxml的语法，所以我们不能直接照搬使用<br>比如官方文档示例代码为：<pre><code>&lt;van-tabs active=&quot;{{ active }}&quot; bind:change=&quot;onChange&quot;&gt;&lt;van-tab title=&quot;标签 1&quot;&gt;内容 1&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 2&quot;&gt;内容 2&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 3&quot;&gt;内容 3&lt;/van-tab&gt;&lt;van-tab title=&quot;标签 4&quot;&gt;内容 4&lt;/van-tab&gt;&lt;/van-tabs&gt;</code></pre>具体参考<a href="https://www.jianshu.com/p/2adff147b8a6" target="_blank" rel="noopener">https://www.jianshu.com/p/2adff147b8a6</a></li></ul><p>其他参考：<a href="https://www.jianshu.com/p/1b3b9e17ac88" target="_blank" rel="noopener">https://www.jianshu.com/p/1b3b9e17ac88</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大前端 </category>
+          
+          <category> 微信小程序 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Swift中where的使用</title>
+      <link href="/2018/05/21/Swift%E4%B8%ADwhere%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+      <url>/2018/05/21/Swift%E4%B8%ADwhere%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<h1 id="集合遍历-forEach-中使用"><a href="#集合遍历-forEach-中使用" class="headerlink" title="集合遍历 forEach 中使用"></a>集合遍历 <code>forEach</code> 中使用</h1><pre><code class="Swift">let array = [0, 1, 2, 3, 4, 5, 6]test(&quot;集合遍历 forEach&quot;) {    //使用switch遍历    array.forEach {        switch $0 {        case let x where x &gt; 3:   //where相当于判断条件            print(x)        default:            print(&quot;默认值&quot;)        }    }}</code></pre><h1 id="集合遍历-for-in"><a href="#集合遍历-for-in" class="headerlink" title="集合遍历 for in"></a>集合遍历 <code>for in</code></h1><p> 中使用</p><pre><code class="Swift">test(&quot;集合遍历 for in&quot;) {    for value in array where value &gt; 2 {        print(value)   //输出3 4 5 6    }    for (index, value) in array.enumerated() where index &gt; 2 &amp;&amp; value &gt; 3 {        print(&quot;下标:\(index), 值：\(value)&quot;)    }}</code></pre><h1 id="在补充异常的do-catch里使用"><a href="#在补充异常的do-catch里使用" class="headerlink" title="在补充异常的do/catch里使用"></a>在补充异常的<code>do/catch</code>里使用</h1><pre><code class="Swift">enum SomeError: Error {    case error1(Int)    case error2(String)}func methodError() throws {    throw SomeError.error1(3)}test(&quot;在补充异常的do/catch里使用&quot;) {    do {        try methodError()    } catch SomeError.error1(let param) where param &gt; 2 { // 捕获异常时判断参数        print(&quot;判断参数的异常: \(param)&quot;)    } catch {        print(&quot;默认异常处理&quot;)    }}</code></pre><h1 id="协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展"><a href="#协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展" class="headerlink" title="协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展"></a>协议使用<code>where</code>情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展</h1><p>也可参考Swift面向协议编程.md</p><pre><code class="Swift">protocol SomeProtocolA {    func someProtocolMethodA()}class A: SomeProtocolA {    let a = 1       func someProtocolMethodA() {        print(a)    }}class B {    let b = 2}// 针对类 A 扩展协议// 基类A继承了SomeProtocol协议才能添加扩展// 说人话：如果类A实现了 SomeProtocol 协议，那么可以进行扩展extension SomeProtocolA where Self: A {    func showParamA() {        print(self.a)    }}// 针对类 B 扩展协议// 反例，不符合where条件extension SomeProtocolA where Self: B {    func someProtocolMethodA() {        print(&quot;someMethodProtocolA&quot;)    }}test(&quot;协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展）&quot;) {    // 换个说法， 多个类实现了同一个协议，该语法根据类名分别为这些类添加扩展， 注意是分别(以类名区分)！！！        let objA = A()    let objB = B()  // 类B没实现SomeProtocol， 所有没有协议方法    objA.showParamA()  //输出1}protocol SomeProtocolB {    func someProtocolMethodB()}// 针对协议 A 扩展协议 Bextension SomeProtocolB where Self: SomeProtocolA {    func someProtocolMethodB() {        print(&quot;SomeProtocolB&quot;)    }}class C: SomeProtocolA &amp; SomeProtocolB {    func someProtocolMethodA() {        print(#function)    }    func someProtocolMethodB() {        print(#function)    }}</code></pre><h1 id="协议使用where-情形二：只有基类同时遵守了另外一个协议才能添加扩展"><a href="#协议使用where-情形二：只有基类同时遵守了另外一个协议才能添加扩展" class="headerlink" title="协议使用where:情形二：只有基类同时遵守了另外一个协议才能添加扩展"></a>协议使用<code>where</code>:情形二：只有基类同时遵守了另外一个协议才能添加扩展</h1><pre><code class="Swift">protocol SomeProtocolB {    func someProtocolMethodB()}// 针对协议 A 扩展协议 Bextension SomeProtocolB where Self: SomeProtocolA {    func someProtocolMethodB() {        print(&quot;SomeProtocolB&quot;)    }}class C: SomeProtocolA &amp; SomeProtocolB {    func someProtocolMethodA() {        print(#function)    }    func someProtocolMethodB() {        print(#function)    }}test(&quot;协议使用where:情形二：只有基类同时遵守了另外一个协议才能添加扩展&quot;) {    let objC = C()    objC.someProtocolMethodA()}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Swift要点</title>
+      <link href="/2018/05/21/Swift%E8%A6%81%E7%82%B9/"/>
+      <url>/2018/05/21/Swift%E8%A6%81%E7%82%B9/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Swift中的Array与Dictionary为struct类型"><a href="#Swift中的Array与Dictionary为struct类型" class="headerlink" title="Swift中的Array与Dictionary为struct类型"></a>Swift中的Array与Dictionary为struct类型</h1><p>在 Swift 中所有的基本类型，包括 Array 和 Dictionary 这些传统意义上会是 class 的东西，统统都是 struct 类型，并不能由 AnyObject 来表示，于是 Apple 提出了一个更为特殊的 Any，除了class 以外，它还可以表示包括 struct 和 enum 在内的所有类型。<br><a href="http://swifter.tips/any-anyobject/" target="_blank" rel="noopener">http://swifter.tips/any-anyobject/</a></p><h1 id="Swift中的-self"><a href="#Swift中的-self" class="headerlink" title="Swift中的.self"></a>Swift中的<code>.self</code></h1><ul><li>2 在 Swift 中，<code>.self</code> 可以用在类型后面取得类型本身，也可以用在某个实例后面取得这个实例本身。<br>前一种方法可以用来获得一个表示该类型的值，这在某些时候会很有用；而后者因为拿到的实例本身<br><a href="http://swifter.tips/self-anyclass/" target="_blank" rel="noopener">http://swifter.tips/self-anyclass/</a></li></ul><h1 id="Swift中类转字符串"><a href="#Swift中类转字符串" class="headerlink" title="Swift中类转字符串"></a>Swift中类转字符串</h1><pre><code class="Swift">NSStringFromClass(UserProfileCell.self)// &quot;WechatMoments.UserProfileCell&quot;String(describing: UserProfileCell.self)// &quot;UserProfileCell&quot;String(describing: type(of: UserProfileCell.self))// &quot;UserProfileCell.Type&quot;String(describing: type(of: self))// &quot;UserProfileSectionController&quot;</code></pre><h1 id="NSObject-AnyObject-Any"><a href="#NSObject-AnyObject-Any" class="headerlink" title="NSObject, AnyObject, Any"></a><code>NSObject</code>, <code>AnyObject</code>, <code>Any</code></h1><ul><li><p><code>NSObject</code>：是OC中的基类</p></li><li><p><code>AnyObject</code>： 包含了<code>NSObject</code>以及Swift中定义的类的对象</p></li><li><p><code>Any</code>：所有的类型，包括了AnyObject，以及闭包类型</p></li></ul><p>所以在范围上：Any &gt; AnyObject &gt; NSObject</p><h1 id="is运算符"><a href="#is运算符" class="headerlink" title="is运算符"></a><code>is</code>运算符</h1><p>is 用于运行时判断具体类型，类似于isKindOfClass</p><h1 id="Swift包管理工具"><a href="#Swift包管理工具" class="headerlink" title="Swift包管理工具"></a>Swift包管理工具</h1><p><a href="https://swift.org/package-manager/#example-usage" target="_blank" rel="noopener">https://swift.org/package-manager/#example-usage</a></p><p>|命令|描述|</p><p>|:-|:-|</p><p>|<code>swift package init --type executable</code>|创建可执行的包|</p><p>|<code>swift package init --type library</code>|创建库|</p><p>| <code>swift package update</code> | 更新一个包的依赖 |</p><p>| <code>swift package generate-xcodeproj</code> | 为包生成 Xcode 项目 |</p><p>| <code>swift build</code> | 编译库或可执行文件 |</p><p>| <code>swift test</code> | 运行测试 |</p><h1 id="swift-中-static-与-class-关键字"><a href="#swift-中-static-与-class-关键字" class="headerlink" title="swift 中 static 与 class 关键字"></a>swift 中 <code>static</code> 与 <code>class</code> 关键字</h1><h2 id="在类中"><a href="#在类中" class="headerlink" title="在类中"></a>在类中</h2><h3 id="static方法-与-class方法"><a href="#static方法-与-class方法" class="headerlink" title="static方法 与 class方法"></a><code>static方法</code> 与 <code>class方法</code></h3><ul><li><p><code>class 方法</code> 即 OC 中的类方法</p></li><li><p><code>static 方法</code> 类方法，同时不允许子类重载</p></li></ul><h3 id="static变量-与-class变量"><a href="#static变量-与-class变量" class="headerlink" title="static变量 与 class变量"></a><code>static变量</code> 与 <code>class变量</code></h3><ul><li><p><code>class 变量</code> swift当前版本暂不支持</p></li><li><p><code>static 变量</code> 类变量</p></li></ul><h1 id="Swift性能优化分析"><a href="#Swift性能优化分析" class="headerlink" title="Swift性能优化分析"></a>Swift性能优化分析</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830000526.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830000534.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Swift高阶函数</title>
+      <link href="/2018/05/21/Swift%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/"/>
+      <url>/2018/05/21/Swift%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E5%87%BD%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Swift高阶函数"><a href="#Swift高阶函数" class="headerlink" title="Swift高阶函数"></a>Swift高阶函数</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h2><p>对数组中的每个元素执行一次block中的操作</p><p>例如，获取数组中对象的某个属性，返回一个新的数组</p><pre><code>// 获取字典中所有 value 返回一个数组，然后获取数组中对象的name字段，返回一个数组let huxingMapDeviceNames:[String : DeviceModal] = Array(huxingMapDevices.values).map {$0.name}</code></pre><h2 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a><code>flatMap</code></h2><ul><li>flatMap 与 map 不同之处是</li></ul><ol><li>flatMap返回后的数组中不存在 nil 同时它会把Optional解包;</li><li>flatMap 还能把数组中存有数组的数组 一同打开变成一个新的数组 ;</li><li>flatMap也能把两个不同的数组合并成一个数组 这个合并的数组元素个数是前面两个数组元素个数的乘积</li></ol><p>例如上面的例子中返回的数组每个元素类型是 option(string)</p><p>而如果使用 flatmap 那么就是 string</p><h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a><code>Filter</code></h2><p>filter 可以取出数组中符合条件的元素 重新组成一个新的数组, 可以帮我们把数组中不需要的值都去掉</p><pre><code>let numbers = [1,2,3,4,5,6]let evens = numbers.filter { $0 % 2 == 0 }// [2, 4, 6]</code></pre><h2 id="Reduce"><a href="#Reduce" class="headerlink" title="Reduce"></a><code>Reduce</code></h2><p>用于把所有元素的值合并成一个新的值</p><h3 id="比如我们要获得一个数组中所有元素的和"><a href="#比如我们要获得一个数组中所有元素的和" class="headerlink" title="比如我们要获得一个数组中所有元素的和"></a>比如我们要获得一个数组中所有元素的和</h3><pre><code>let numbers = [1,2,3,4,5]// reduce 函数第一个参数是返回值的初始化值let sum = numbers.reduce(0) { $0 + $1 }</code></pre><blockquote><p> 这里我写下完整的格式</p></blockquote><pre><code>let sum1 = numbers.reduce(0) { total, num in    // 这里写不写return在Playground都循环5次 但上面用最洁简的方法显示循环6次。。。 What The Fuck 这是什么鬼！！！    return total + num}// 15</code></pre><h3 id="合并数组中的字符串"><a href="#合并数组中的字符串" class="headerlink" title="合并数组中的字符串"></a>合并数组中的字符串</h3><pre><code>let numbers = [1,5,1,8,8,8,8,8,8,8,8]// reduce 函数第一个参数是返回值的初始化值let tel = numbers.reduce(&quot;&quot;) { &quot;\($0)&quot; + &quot;\($1)&quot; }// 15188888888</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Swift要点</title>
+      <link href="/2018/05/21/Swift%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B/"/>
+      <url>/2018/05/21/Swift%E9%9D%A2%E5%90%91%E5%8D%8F%E8%AE%AE%E7%BC%96%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="扩展协议"><a href="#扩展协议" class="headerlink" title="扩展协议"></a>扩展协议</h1><ul><li>为协议方法增加默认实现</li><li>为协议增加方法，可以扩展系统中的协议</li><li>为协议增加计算属性</li></ul><pre><code class="Swift">protocol Recordable: CustomStringConvertible {    var wins: Int {get}    var losses: Int {get}    func winningPercent() -&gt; Double}// 扩展 Record 协议extension Recordable {    // 增加协议默认实现    var description: String {        return &quot;Wins: \(wins), Losses: \(losses)&quot;    }    // 增加计算属性    var gamePlayed: Int {        return wins + losses    }    // 增加方法    func winningPercent() -&gt; Double {        return Double(wins) / Double(gamePlayed)    }}</code></pre><h1 id="针对某个类扩展协议"><a href="#针对某个类扩展协议" class="headerlink" title="针对某个类扩展协议"></a>针对某个类扩展协议</h1><pre><code class="Swift">protocol SomeProtocolA {    func someProtocolMethodA()}class A: SomeProtocolA {    let a = 1        func someProtocolMethodA() {        print(a)    }}class B {    let b = 2}// 针对类 A 扩展协议// 基类A继承了SomeProtocol协议才能添加扩展// 说人话：如果类A实现了 SomeProtocol 协议，那么可以进行扩展extension SomeProtocolA where Self: A {    func showParamA() {        print(self.a)    }}// 针对类 B 扩展协议// 反例，不符合where条件extension SomeProtocolA where Self: B {    func someProtocolMethodA() {        print(&quot;someMethodProtocolA&quot;)    }}test(&quot;协议使用where情形一：针对某个类扩展协议（只有基类实现了当前协议才能添加扩展）&quot;) {    // 换个说法， 多个类实现了同一个协议，该语法根据类名分别为这些类添加扩展， 注意是分别(以类名区分)！！！    let objA = A()    let objB = B()  // 类B没实现SomeProtocol， 所有没有协议方法    objA.showParamA()  //输出1}protocol SomeProtocolB {    func someProtocolMethodB()}// 针对协议 A 扩展协议 Bextension SomeProtocolB where Self: SomeProtocolA {    func someProtocolMethodB() {        print(&quot;SomeProtocolB&quot;)    }}class C: SomeProtocolA &amp; SomeProtocolB {    func someProtocolMethodA() {        print(#function)    }      func someProtocolMethodB() {        print(#function)    }}</code></pre><h1 id="同时满足多个协议才进行扩展"><a href="#同时满足多个协议才进行扩展" class="headerlink" title="同时满足多个协议才进行扩展"></a>同时满足多个协议才进行扩展</h1><p>只有当类实现了Tieable协议才会进行扩展，换个说法：只有当某个类同时实现了这两个协议，才会有下列扩展的效果。</p><pre><code class="Swift">protocol Tieable {    var ties: Int {get set}}// 同时扩展Record协议和Tieable协议（同时遵守了两个协议）extension Recordable where Self: Tieable {    var gamePlayed: Int {        return wins + losses + ties    }    // 有平局的情况下，需要计算ties    func winningPercent() -&gt; Double {        return Double(wins) / Double(gamePlayed)    }}</code></pre><h1 id="覆盖协议中的默认实现"><a href="#覆盖协议中的默认实现" class="headerlink" title="覆盖协议中的默认实现"></a>覆盖协议中的默认实现</h1><pre><code class="Swift">// 棒球struct BaseballRecord: Recordable {    var wins: Int    var losses: Int      // 覆盖协议中的默认实现    let gamePlayed: Int = 162}</code></pre><h1 id="协议聚合"><a href="#协议聚合" class="headerlink" title="协议聚合"></a>协议聚合</h1><p>表示某个对象要满足多个协议，使用 <code>&amp;</code>连接多个协议</p><pre><code class="Swift">protocol Prizable {    func isPrizable() -&gt; Bool}// one要满足多个协议func award(one: Prizable &amp; CustomStringConvertible) {    if one.isPrizable() {        print(one)        print(&quot;Congratulation&quot;)    }}</code></pre><h1 id="为泛型参数增加协议约束"><a href="#为泛型参数增加协议约束" class="headerlink" title="为泛型参数增加协议约束"></a>为泛型参数增加协议约束</h1><pre><code class="Swift">// 单个协议func top&lt;T: Recordable&gt;(seq: [T]) -&gt; T? {    return seq.first}// 多个协议func top&lt;T: Recordable &amp; Prizable&gt;(seq: [T]) -&gt; T? {    return seq.first}</code></pre><h1 id="可选协议"><a href="#可选协议" class="headerlink" title="可选协议"></a>可选协议</h1><ul><li>需要标志位@objc，使得它兼容Objective-C代码，因为Swift要使用Objective-C的运行时来检查类所遵守的可选方法是否存在。</li><li>拥有可选方法的协议只能被类遵守，结构体和枚举是不可以遵守该协议的。</li></ul><pre><code class="Swift">@objc protocol Animal {    @objc optional func fly()}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Swift </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>iOS自定义对象归档</title>
+      <link href="/2018/05/21/iOS%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1%E5%BD%92%E6%A1%A3/"/>
+      <url>/2018/05/21/iOS%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1%E5%BD%92%E6%A1%A3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="自定义对象数据归档"><a href="#自定义对象数据归档" class="headerlink" title="自定义对象数据归档"></a>自定义对象数据归档</h1><ul><li>如果想将一个自定义对象保存到文件中必须实现NSCoding协议</li></ul><h2 id="NJPerson类如下"><a href="#NJPerson类如下" class="headerlink" title="NJPerson类如下"></a><code>NJPerson</code>类如下</h2><pre><code class="Objective-C">@interface NJPerson : NSObject &lt;NSCoding&gt;@property (nonatomic, copy) NSString *name;@property (nonatomic, assign) int age;@property (nonatomic, assign) double height;@end#import &quot;NJPerson.h&quot;@implementation NJPerson- (void)encodeWithCoder:(NSCoder *)encoder {    NSLog(@&quot;NJPerson encodeWithCoder&quot;);    [encoder encodeObject:self.name forKey:@&quot;name&quot;];    [encoder encodeInteger:self.age forKey:@&quot;age&quot;];    [encoder encodeFloat:self.height forKey:@&quot;heigth&quot;];}- (id)initWithCoder:(NSCoder *)decoder {    NSLog(@&quot;NJPerson initWithCoder&quot;);    if (self = [super init]) {        self.name = [decoder decodeObjectForKey:@&quot;name&quot;];        self.age = [decoder decodeIntegerForKey:@&quot;age&quot;];        self.height = [decoder decodeFloatForKey:@&quot;heigth&quot;];    }    return self;}@end</code></pre><h2 id="NJPerson-类有一个子类-NJStudent"><a href="#NJPerson-类有一个子类-NJStudent" class="headerlink" title="NJPerson 类有一个子类 NJStudent"></a><code>NJPerson</code> 类有一个子类 <code>NJStudent</code></h2><pre><code class="Objective-C">@interface NJStudent : NJPerson@property (nonatomic, assign) float weight;@end#import &quot;NJStudent.h&quot;@implementation NJStudent- (void)encodeWithCoder:(NSCoder *)aCoder {    [super encodeWithCoder:aCoder];    [aCoder encodeFloat:self.weight forKey:@&quot;weight&quot;];}- (id)initWithCoder:(NSCoder *)aDecoder {    if (self = [super initWithCoder:aDecoder]) {        self.weight = [aDecoder decodeFloatForKey:@&quot;weight&quot;];    }    return self;}@end</code></pre><h2 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h2><pre><code class="Objective-C">NJStudent *stu = [[NJStudent alloc] init];stu.name = @&quot;lnj&quot;;stu.age = 28;stu.height = 1.8;stu.weight = 60;[NSKeyedArchiver archiveRootObject:stu toFile:path];</code></pre><h2 id="解档"><a href="#解档" class="headerlink" title="解档"></a>解档</h2><pre><code class="Objective-C">NJStudent *stu = [NSKeyedUnarchiver unarchiveObjectWithFile:path];</code></pre><h1 id="归档自定义对象的数组"><a href="#归档自定义对象的数组" class="headerlink" title="归档自定义对象的数组"></a>归档自定义对象的数组</h1><ol><li><p>自定义的对象要实现NSCoding协议</p></li><li><p>要先将数组归档为NSData，然后写到文件中</p></li></ol><pre><code class="Swift">class DeviceModal: NSObject, NSCoding {    public var id: String?    public var name: String?    public var frame: CGRect = CGRect.zero    public var huxingMapImage: UIImage?    func encode(with aCoder: NSCoder) {        aCoder.encode(id, forKey: &quot;id&quot;)        aCoder.encode(name, forKey: &quot;name&quot;)        aCoder.encode(frame, forKey: &quot;frame&quot;)        aCoder.encode(huxingMapImage, forKey: &quot;huxingMapImage&quot;)    }    required init?(coder aDecoder: NSCoder) {        super.init()        id = aDecoder.decodeObject(forKey: &quot;id&quot;) as? String        name = aDecoder.decodeObject(forKey: &quot;name&quot;) as? String        frame = aDecoder.decodeCGRect(forKey: &quot;frame&quot;)        huxingMapImage = aDecoder.decodeObject(forKey: &quot;huxingMapImage&quot;) as? UIImage    }    init(id:String, name: String, frame: CGRect, image: UIImage?) {        self.id = id        self.name = name        self.frame = frame        self.huxingMapImage = image    }}</code></pre><pre><code class="Swift">class PersistentTool: NSObject {    private var filePath: URL {        let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]        let filePath = URL(fileURLWithPath: documentPath).appendingPathComponent(&quot;AddedDevices.info&quot;)        return filePath    }    public func saveArray(array: Array&lt;Any&gt;) {        let data = NSKeyedArchiver.archivedData(withRootObject: array)        try? data.write(to: filePath, options: .atomicWrite)    }    public func readArrayData() -&gt; Array&lt;Any&gt;? {        do {            let data = try Data(contentsOf: filePath)            let array = NSKeyedUnarchiver.unarchiveObject(with: data) as? Array&lt;Any&gt;            return array        } catch {            print(error)            return nil        }    }}</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> iOS </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>JS原型链与prototype</title>
       <link href="/2018/05/21/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8Eprototype/"/>
       <url>/2018/05/21/JS%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8Eprototype/</url>
@@ -441,6 +441,27 @@
           <category> 大前端 </category>
           
           <category> js </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>TextInput</title>
+      <link href="/2018/05/21/TextInput/"/>
+      <url>/2018/05/21/TextInput/</url>
+      
+        <content type="html"><![CDATA[<h1 id="通用属性-Android-amp-iOS"><a href="#通用属性-Android-amp-iOS" class="headerlink" title="通用属性(Android &amp; iOS)"></a>通用属性(Android &amp; iOS)</h1><ul><li>(1)支持View的相关属性</li><li><p>(2)<code>autoCapitalize</code>:控制输入的字符进行切换成大写(参数:’none’,’sentences’,’words’,’characters’)<br><code>none</code>: 不自动切换任何字符大写<br><code>sentences</code>: 默认每个句子的首字母大写<br><code>words</code>:每个单词的首字母变成大写<br><code>characters</code>:每个字母全部变成大写</p></li><li><p>(3)<code>autoCorrect(bool)</code>:设置瓶邪自动修正功能,默认开启(true)</p></li><li><p>(4)<code>autoFocus(bool)</code>:设置是否默认获取到焦点,默认为关闭(false).需要comonentDidMount方法调用之后才会获取焦点(componentDidMount是React组件被渲染之后React主动回调的方法)</p></li><li><p>(5)<code>defaultValue(string)</code>:给文本框输入一个默认初始值.</p></li><li><p>(6)<code>editable(bool)</code>:设置文本框是否可以编辑,默认为true,可以进行编辑</p></li><li><p>(7)<code>keyboardType</code>:<br>键盘类型(可选参数:”default”, ‘email-address’, ‘numeric’, ‘phone-pad’, “ascii-capable”, ‘numbers-and-punctuation’, ‘url’, ‘number-pad’, ‘name-phone-pad’, ‘decimal-pad’, ‘twitter’, ‘web-search’) 该用来选择默认弹出键盘的类型例如我们甚至numeric就是弹出数字键盘。鉴于平台的原因如下的值是所有平台都可以进行通用的</p></li><li><p>(8)<code>maxLength(number)</code>:可以限制文本输入框最大的输入字符长度</p></li><li><p>(9)<code>multiline (bool)</code> : 设置可以输入多行文字，默认为false(表示无论文本输入多少，都是单行显示)</p></li><li>(10)<code>onBlur (function)</code>: 监听方法，文本框失去焦点回调方法</li><li>(11)<code>onChange (function)</code>: 监听方法,文本框内容发生改变回调方法</li><li>(12)<code>onChangeText (function)</code>:监听方法，文本框内容发生改变回调方法，该方法会进行传递文本内容</li><li>(13)<code>onEndEditing (function)</code>:监听方法，当文本结束文本输入回调方法</li><li>(14)<code>onFocus (function)</code> :监听方法 文本框获取到焦点回调方法</li><li>(15)<code>onLayout (function)</code>:监听方法 组价布局发生变化的时候调用，调用方法参数为 {x,y,width,height}</li><li>(16)<code>onSubmitEditing (function)</code>:监听方法，当编辑提交的时候回调方法。不过如果multiline={true}的时候，该属性就不生效</li><li>(17)<code>placeholder (string</code>) :当文本输入框还没有任何输入的时候，默认显示信息，当有输入的时候该值会被清除</li><li>(18)<code>placeholderText Color (string)</code>: 设置默认信息颜色(placeholer)</li><li>(19)<code>secureTextEntry (bool)</code>: 设置是否为密码安全输入框 ，默认为false</li><li>(20)<code>style</code> 风格属性 可以参考Text组件风格</li><li>(21)<code>value ( string )</code>:输入框中的内容值</li><li>(22)<code>returnKeyType</code>:决定“确定”按钮显示的内容。<br>done<br>go<br>next<br>search<br>send</li></ul><h1 id="Android-平台属性"><a href="#Android-平台属性" class="headerlink" title="Android 平台属性"></a>Android 平台属性</h1><ul><li>(22)<code>numberOfLines (number)</code>:设置文本输入框行数，该需要首先设置multiline为true,设置TextInput为多行文本。</li><li>(23)<code>textAlign</code> 设置文本横向布局方式 可选参数(‘start’, ‘center’, ‘end’)</li><li>(24)<code>textAlignVertical</code>: 设置文本垂直方向布局方式 可选参数(‘top’, ‘center’, ‘bottom’)</li><li>(25)<code>underlineColorAndroid</code>: 设置文本输入框下划线的颜色</li></ul><h1 id="长按出现菜单键为英文，如何改为中文"><a href="#长按出现菜单键为英文，如何改为中文" class="headerlink" title="长按出现菜单键为英文，如何改为中文"></a>长按出现菜单键为英文，如何改为中文</h1><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210921.png" alt=""><br>在Xcode中，TARGETS—你的项目名—info，选择Localization native development region，选择China，这样文字都会变成中文啦，包括时间选择器等也会变成中文。<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829210959.png" alt=""></p><h1 id="键盘处理"><a href="#键盘处理" class="headerlink" title="键盘处理"></a>键盘处理</h1><p><a href="https://facebook.github.io/react-native/docs/inputaccessoryview#docsNav" target="_blank" rel="noopener">参考</a><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190829211043.png" alt=""></p><pre><code class="javascript">    const inputAccessoryViewID = &quot;inputAccessoryViewID&quot;;    _renderLeaveWordInput() {         return &lt;View style={{height: 60}}&gt;                &lt;TextInput style={{                    fontSize: 13,                    textAlignVertical: 'top',                    autoCapitalize: 'none',                    autoCorrect: false                 }}                   multiline={true}                   maxLength={50}                   onChangeText={this._onInputCommentsChange}                   value={this.state.comments}                   inputAccessoryViewID={inputAccessoryViewID}                   ref={&#39;LeaveWordTextInput&#39;}                   placeholder={&#39;请输入留言&#39;}/&gt;                &lt;InputAccessoryView nativeID={inputAccessoryViewID}&gt;                    &lt;View style={{flexDirection:'row-reverse'}}&gt;                        &lt;Button onPress={() =&gt; {this.refs.LeaveWordTextInput.blur();}}                                title=&quot;完成&quot;                                color=&quot;red&quot;                        /&gt;                    &lt;/View&gt;                &lt;/InputAccessoryView&gt;            &lt;/View&gt;    }</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 大前端 </category>
+          
+          <category> React-Native </category>
           
       </categories>
       
@@ -471,37 +492,16 @@
     
     
     <entry>
-      <title>JS中的Promise, async, await</title>
-      <link href="/2018/05/21/JS%E4%B8%AD%E7%9A%84Promise,%20async,%20await/"/>
-      <url>/2018/05/21/JS%E4%B8%AD%E7%9A%84Promise,%20async,%20await/</url>
+      <title>fastlane</title>
+      <link href="/2018/05/21/fastlane/"/>
+      <url>/2018/05/21/fastlane/</url>
       
-        <content type="html"><![CDATA[<h2 id="准备代码"><a href="#准备代码" class="headerlink" title="准备代码"></a>准备代码</h2><pre><code class="JS">//做饭function cook() {    console.log(&#39;开始做饭。&#39;);    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;鸡蛋炒饭&#39;);            // reject(&#39;烧焦的米饭&#39;);        }, 1000);    });    return p;}//吃饭function eat(data) {    console.log(&#39;开始吃饭：&#39; + data);    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;一块碗和一双筷子&#39;);        }, 2000);    });    return p;}function wash(data) {    console.log(&#39;开始洗碗：&#39; + data);    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;干净的碗筷&#39;);        }, 2000);    });    return p;}</code></pre><pre><code class="JS">//切菜function cutUp() {    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;切好的菜&#39;);        }, 1000);    });    return p;}//烧水function boil() {    var p = new Promise(function (resolve, reject) { //做一些异步操作        setTimeout(function () {            resolve(&#39;烧好的水&#39;);        }, 2000);    });    return p;}</code></pre><h2 id="async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"><a href="#async-await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题" class="headerlink" title="async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题"></a>async/await：解决Promise只是减少了嵌套，并不能完全消除嵌套的问题</h2><h4 id="async"><a href="#async" class="headerlink" title="async"></a>async</h4><ul><li>当调用一个 async 函数时，会返回一个 Promise 对象</li><li>当这个 async 函数返回一个值时，Promise 的 resolve 方法会负责传递这个值；</li><li>当 async 函数抛出异常时，Promise 的 reject 方法也会传递这个异常值。<ul><li>当async 函数没有返回值，它会返回 Promise.resolve()。</li></ul></li></ul><h4 id="await"><a href="#await" class="headerlink" title="await"></a>await</h4><ul><li>await 表达式会暂停当前 async function 的执行，等待 Promise 处理完成。</li><li>await后面调用的函数需要返回一个promise</li><li><p>await 必须出现在 async 函数内部，不能单独使用。</p></li><li><p>若 Promise 正常处理(fulfilled)，其回调的resolve函数参数作为 await 表达式的值，继续执行async function。</p></li><li>若 Promise 处理异常(rejected)，await 表达式会把 Promise 的异常原因抛出。</li><li>若 await 操作符后的表达式的值不是一个 Promise，则返回该值本身。</li></ul><h2 id="一-then-：多个异步事件串行执行"><a href="#一-then-：多个异步事件串行执行" class="headerlink" title="一. then()：多个异步事件串行执行"></a>一. <code>then()</code>：多个异步事件串行执行</h2><p>类似于RxSwift中<code>flatMap</code></p><h4 id="写法一"><a href="#写法一" class="headerlink" title="写法一"></a>写法一</h4><pre><code class="JS">cook()    .then(data =&gt; {        return eat(data);    })    .then(data =&gt; {        return wash(data);    })    .then(data =&gt; {        console.log(data);    });</code></pre><h4 id="写法二：-简化的写法"><a href="#写法二：-简化的写法" class="headerlink" title="写法二： 简化的写法"></a>写法二： 简化的写法</h4><pre><code>// 简化的写法cook()    .then(eat)    .then(wash)    .then((data) =&gt; {        console.log(data);    })    .catch(err=&gt;{        console.log(err);    });</code></pre><h4 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a>抛出异常</h4><pre><code>// 抛出异常cook()    .then(data =&gt; {        throw new Error(&#39;米饭被打翻了！&#39;);        eat(data);    })    .then(wash)    .then((data) =&gt; {        console.log(data);    })    .catch(err =&gt; {        console.log(err);    });</code></pre><h4 id="写法三：使用async-await"><a href="#写法三：使用async-await" class="headerlink" title="写法三：使用async/await"></a>写法三：使用async/await</h4><pre><code class="js">async function flatMap() {    try {        let cookResult = await cook();        let eatResult = await eat();        let washResult = await wash();        console.log(`async await flatMap test: ${cookResult},${eatResult},${washResult}~~~~~`);    } catch (err) {        console.log(`error: ${err}`);    }}flatMap() // async await flatMap test: 鸡蛋炒饭,一块碗和一双筷子,干净的碗筷~~~~~</code></pre><h2 id="二-all-多个异步事件并行执行，全部执行完毕后再执行then回调"><a href="#二-all-多个异步事件并行执行，全部执行完毕后再执行then回调" class="headerlink" title="二. all(): 多个异步事件并行执行，全部执行完毕后再执行then回调"></a>二. <code>all()</code>: 多个异步事件并行执行，全部执行完毕后再执行then回调</h2><p>类似于RxSwift中<code>zip</code></p><h4 id="方式一：Promise"><a href="#方式一：Promise" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise    .all([cutUp(), boil()])    .then(results =&gt; {        console.log(results);    });</code></pre><h4 id="方式二：使用async-await"><a href="#方式二：使用async-await" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="js">async function zip() {    try {        let results = await Promise.all([cutUp(), boil()]);        console.log(`async await zip test ${results}`)    } catch (err) {        console.log(`error: ${err}`);    }}zip() // async await zip test 切好的菜,烧好的水</code></pre><h2 id="三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调"><a href="#三-race-多个异步事件同时执行，只要有一个执行完毕立即执行then回调" class="headerlink" title="三. race(): 多个异步事件同时执行，只要有一个执行完毕立即执行then回调"></a>三. <code>race()</code>: 多个异步事件同时执行，只要有一个执行完毕立即执行then回调</h2><h4 id="方式一：Promise-1"><a href="#方式一：Promise-1" class="headerlink" title="方式一：Promise"></a>方式一：Promise</h4><pre><code class="JS">Promise    .race([cutUp(), boil()])    .then(results =&gt; {        console.log(results);    });</code></pre><h4 id="方式二：使用async-await-1"><a href="#方式二：使用async-await-1" class="headerlink" title="方式二：使用async await"></a>方式二：使用async await</h4><pre><code class="JS">async function race() {    try {        let results = await Promise.race([cutUp(), boil()]);        console.log(`async await race test ${results}`)    } catch (err) {        console.log(`error: ${err}`);    }}race() //async await race test 切好的菜</code></pre><ul><li>应用：为异步操作设置超时时间</li></ul><pre><code class="JS">//请求某个图片资源function requestImg(){    var p = new Promise(function(resolve, reject){    var img = new Image();    img.onload = function(){       resolve(img);    }    img.src = &#39;xxxxxx&#39;;    });    return p;}//延时函数，用于给请求计时function timeout(){    var p = new Promise(function(resolve, reject){        setTimeout(function(){            reject(&#39;图片请求超时&#39;);        }, 5000);    });    return p;}Promise.race([requestImg(), timeout()]).then(function(results){    console.log(results);}).catch(function(reason){    console.log(reason);});</code></pre><p>参考：<a href="https://www.cnblogs.com/sweeeper/p/8442613.html" target="_blank" rel="noopener">https://www.cnblogs.com/sweeeper/p/8442613.html</a><br><a href="https://segmentfault.com/a/1190000011526612?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011526612?utm_source=tag-newest</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 大前端 </category>
-          
-          <category> js </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>iOS自定义对象归档</title>
-      <link href="/2018/05/21/iOS%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1%E5%BD%92%E6%A1%A3/"/>
-      <url>/2018/05/21/iOS%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E8%B1%A1%E5%BD%92%E6%A1%A3/</url>
-      
-        <content type="html"><![CDATA[<h1 id="自定义对象数据归档"><a href="#自定义对象数据归档" class="headerlink" title="自定义对象数据归档"></a>自定义对象数据归档</h1><ul><li>如果想将一个自定义对象保存到文件中必须实现NSCoding协议</li></ul><h2 id="NJPerson类如下"><a href="#NJPerson类如下" class="headerlink" title="NJPerson类如下"></a><code>NJPerson</code>类如下</h2><pre><code class="Objective-C">@interface NJPerson : NSObject &lt;NSCoding&gt;@property (nonatomic, copy) NSString *name;@property (nonatomic, assign) int age;@property (nonatomic, assign) double height;@end#import &quot;NJPerson.h&quot;@implementation NJPerson- (void)encodeWithCoder:(NSCoder *)encoder {    NSLog(@&quot;NJPerson encodeWithCoder&quot;);    [encoder encodeObject:self.name forKey:@&quot;name&quot;];    [encoder encodeInteger:self.age forKey:@&quot;age&quot;];    [encoder encodeFloat:self.height forKey:@&quot;heigth&quot;];}- (id)initWithCoder:(NSCoder *)decoder {    NSLog(@&quot;NJPerson initWithCoder&quot;);    if (self = [super init]) {        self.name = [decoder decodeObjectForKey:@&quot;name&quot;];        self.age = [decoder decodeIntegerForKey:@&quot;age&quot;];        self.height = [decoder decodeFloatForKey:@&quot;heigth&quot;];    }    return self;}@end</code></pre><h2 id="NJPerson-类有一个子类-NJStudent"><a href="#NJPerson-类有一个子类-NJStudent" class="headerlink" title="NJPerson 类有一个子类 NJStudent"></a><code>NJPerson</code> 类有一个子类 <code>NJStudent</code></h2><pre><code class="Objective-C">@interface NJStudent : NJPerson@property (nonatomic, assign) float weight;@end#import &quot;NJStudent.h&quot;@implementation NJStudent- (void)encodeWithCoder:(NSCoder *)aCoder {    [super encodeWithCoder:aCoder];    [aCoder encodeFloat:self.weight forKey:@&quot;weight&quot;];}- (id)initWithCoder:(NSCoder *)aDecoder {    if (self = [super initWithCoder:aDecoder]) {        self.weight = [aDecoder decodeFloatForKey:@&quot;weight&quot;];    }    return self;}@end</code></pre><h2 id="归档"><a href="#归档" class="headerlink" title="归档"></a>归档</h2><pre><code class="Objective-C">NJStudent *stu = [[NJStudent alloc] init];stu.name = @&quot;lnj&quot;;stu.age = 28;stu.height = 1.8;stu.weight = 60;[NSKeyedArchiver archiveRootObject:stu toFile:path];</code></pre><h2 id="解档"><a href="#解档" class="headerlink" title="解档"></a>解档</h2><pre><code class="Objective-C">NJStudent *stu = [NSKeyedUnarchiver unarchiveObjectWithFile:path];</code></pre><h1 id="归档自定义对象的数组"><a href="#归档自定义对象的数组" class="headerlink" title="归档自定义对象的数组"></a>归档自定义对象的数组</h1><ol><li><p>自定义的对象要实现NSCoding协议</p></li><li><p>要先将数组归档为NSData，然后写到文件中</p></li></ol><pre><code class="Swift">class DeviceModal: NSObject, NSCoding {    public var id: String?    public var name: String?    public var frame: CGRect = CGRect.zero    public var huxingMapImage: UIImage?    func encode(with aCoder: NSCoder) {        aCoder.encode(id, forKey: &quot;id&quot;)        aCoder.encode(name, forKey: &quot;name&quot;)        aCoder.encode(frame, forKey: &quot;frame&quot;)        aCoder.encode(huxingMapImage, forKey: &quot;huxingMapImage&quot;)    }    required init?(coder aDecoder: NSCoder) {        super.init()        id = aDecoder.decodeObject(forKey: &quot;id&quot;) as? String        name = aDecoder.decodeObject(forKey: &quot;name&quot;) as? String        frame = aDecoder.decodeCGRect(forKey: &quot;frame&quot;)        huxingMapImage = aDecoder.decodeObject(forKey: &quot;huxingMapImage&quot;) as? UIImage    }    init(id:String, name: String, frame: CGRect, image: UIImage?) {        self.id = id        self.name = name        self.frame = frame        self.huxingMapImage = image    }}</code></pre><pre><code class="Swift">class PersistentTool: NSObject {    private var filePath: URL {        let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]        let filePath = URL(fileURLWithPath: documentPath).appendingPathComponent(&quot;AddedDevices.info&quot;)        return filePath    }    public func saveArray(array: Array&lt;Any&gt;) {        let data = NSKeyedArchiver.archivedData(withRootObject: array)        try? data.write(to: filePath, options: .atomicWrite)    }    public func readArrayData() -&gt; Array&lt;Any&gt;? {        do {            let data = try Data(contentsOf: filePath)            let array = NSKeyedUnarchiver.unarchiveObject(with: data) as? Array&lt;Any&gt;            return array        } catch {            print(error)            return nil        }    }}</code></pre>]]></content>
+        <content type="html"><![CDATA[<p>[TOC]</p><h1 id="官方文档（推荐）"><a href="#官方文档（推荐）" class="headerlink" title="官方文档（推荐）"></a>官方文档（推荐）</h1><p><a href="https://docs.fastlane.tools/getting-started/ios/setup/" target="_blank" rel="noopener">https://docs.fastlane.tools/getting-started/ios/setup/</a></p><h1 id="Mac上ruby管理工具-RVM"><a href="#Mac上ruby管理工具-RVM" class="headerlink" title="Mac上ruby管理工具 RVM"></a>Mac上ruby管理工具 <code>RVM</code></h1><p>因为rvm可以让你拥有多个版本的Ruby，并且可以在多个版本之间自由切换。</p><h2 id="安装rvm"><a href="#安装rvm" class="headerlink" title="安装rvm"></a>安装rvm</h2><pre><code>$ curl -L get.rvm.io | bash -s stable$ source ~/.rvm/scripts/rvm</code></pre><p>等待终端加载完毕,后输入：</p><pre><code>rvm -v</code></pre><p>如果能显示版本好则安装成功了。</p><h2 id="相关命令"><a href="#相关命令" class="headerlink" title="相关命令"></a>相关命令</h2><p>|描述|命令|</p><p>|:-|:-|</p><p>| 列出ruby可安装的版本信息 | <code>rvm list known</code> |</p><p>| 更新RVM | <code>rvm get stable</code> |</p><p>| 查看当前ruby版本 | rvm -v |</p><p>| 安装一个ruby版本 | <code>rvm install 2.3.3</code> |</p><p>| 设置为默认版本 | <code>rvm use 2.3.3 --default</code> |</p><p>| 使用某个版本 | <code>rvm use 2.3.3</code> |</p><p>| 查看已安装的ruby | <code>rvm list</code> |</p><p>| 卸载一个已安装ruby版本 | <code>rvm remove 2.3.3</code> |</p><p>| 查看已有的源 | <code>gem source -l</code> |</p><p><br></p><p><br></p><hr><p><br></p><h1 id="gem-常用命令"><a href="#gem-常用命令" class="headerlink" title="gem 常用命令"></a>gem 常用命令</h1><p>官网<a href="https://gems.ruby-china.com/" target="_blank" rel="noopener">https://gems.ruby-china.com/</a></p><p>|描述|命令|</p><p>|:-|:-|</p><p>| 更新 gem | <code>sudo gem update --system</code>  |</p><p>| 从Gem源安装gem包  |  <code>gem install [gemname]</code> |</p><p>| 更新所有已安装的gem包 |<code>gem update</code> |</p><p>| 更新指定的gem包 | <code>gem update [gemname]</code>|</p><p>| 删除指定的gem包，注意此命令将删除所有已安装的版本| <code>gem uninstall [gemname]</code>|</p><p>| 查看本机已安装的所有gem包 | <code>gem list [--local]</code> |</p><p>| 查看镜像 | <code>gem sources -l</code> |</p><p>| 修改镜像 |gem sources –add <a href="https://gems.ruby-china.org/" target="_blank" rel="noopener">https://gems.ruby-china.org/</a> –remove <a href="https://rubygems.org/，可以进入这两个网址查看详细信息" target="_blank" rel="noopener">https://rubygems.org/，可以进入这两个网址查看详细信息</a> |</p><h1 id="fastlane"><a href="#fastlane" class="headerlink" title="fastlane"></a>fastlane</h1><p>官网<a href="https://fastlane.tools/" target="_blank" rel="noopener">https://fastlane.tools/</a></p><p>github: <a href="https://github.com/fastlane/fastlane/tree/master/snapshot" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/snapshot</a></p><p>|命令|描述|</p><p>|:-|:-|</p><p>| <code>sudo gem install fastlane -NV</code> | 安装/更新 fastlane |</p><p> | <code>fastlane init</code>| 进入工程目录，初始化 fastlane 配置 |</p><p>| <code>fastlane update_fastlane</code> | 更新fastlane各种插件等 |</p><p>| <code>fastlane actions</code> |      列出所有可用fastlane活动 | </p><p>| <code>fastlane action [action_name]</code> |    显示一个更详细的活动描述| </p><p> | <code>fastlane lanes</code>   |     列出所有可用lanes (有描述) | </p><p> | <code>fastlane list</code>  |     列出所有可用lanes (没有描述)  | </p><p> | <code>fastlane new_action</code> |    在fastlane创建一个活动(集成) | </p><p> | <code>fastlane search_plugins</code> |  查看所有插件 | </p><p> | <code>fastlane add_plugin firim</code> |  安装插件 firim | </p><h1 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a>TODO:</h1><p>由于<code>xcodebuild -showBuildSettings -project ./RiciBellSDKDemo.xcodeproj</code> 命令卡死，导致无法继续，暂时没有找到解决办法，可能是因为使用了Xcode9 beta 版的Bug导致，后期再继续</p><p>收藏一篇博客<a href="http://www.jianshu.com/p/228354881eab" target="_blank" rel="noopener">http://www.jianshu.com/p/228354881eab</a></p><h2 id="gym"><a href="#gym" class="headerlink" title="gym"></a>gym</h2><p> 类似于<code>shenzhen</code></p><p><a href="https://github.com/fastlane/fastlane/tree/master/gym#export-options" target="_blank" rel="noopener">https://github.com/fastlane/fastlane/tree/master/gym#export-options</a></p><p>|命令|描述|</p><p>|:-|:-|</p><p>| <code>gym init</code> | 创建Gymfile文件 |</p><h2 id="fastlane-的工具链"><a href="#fastlane-的工具链" class="headerlink" title="fastlane 的工具链"></a>fastlane 的工具链</h2><p>在 fastlane 这个大家庭中，包含了下列工具：</p><ul><li>produce 创建可用于 iTunes Connect 和 Apple Developer Portal 的 iOS app。</li><li>cert 自动创建和维护 iOS 代码签名证书。</li><li>sigh 创建、更新、下载和修复 provisioning profiles。</li><li>snapshot 自动将 App 屏幕截图本地化到每种设备上。</li><li>frameit 将屏幕截图适配到适当的设备屏幕大小。</li><li>gym 创建和打包 iOS app。</li><li>deliver 上传屏幕截图、元数据和 App 到 App 商店。<h1 id="安装-fir"><a href="#安装-fir" class="headerlink" title="安装 fir"></a>安装 fir</h1></li></ul><p>1、安装</p><p>|描述|命令|</p><p>|:-|:-|</p><p>| 安装 fir-cli | <code>gem install fir-cli</code> |</p><p>2、获取token登陆</p><p>获取 fir 账号的 token，当使用 fir login 登录了之后, 后续命令都不需要加上 -T 参数, 会默认使用当前用户的 token 进行相关操作</p><p>|描述|命令|</p><p>|:-|:-|</p><p>| 登陆 fir-cli | <code>fir login XXX_YOUR_API_TOKEN_XXX</code> |</p><p>3、编译打包 ipa 文件</p><p>|描述|命令| 参数说明|</p><p>|:-|:-|:- |</p><p>| 编译打包 ipa 文件 | <code>schema=&quot;testFir&quot; fir build_ipa ~/Developer/$schema -o ~/Developer/build -w -C Release -S &quot;$schema&quot;</code> | -w 是 –workspace 的简写，表示编译 *.xcworkspace, 没有带这个参数则编译 xcodeproj 文件。<br> -C Release, 以 Release 方式打包，若 Debug 则是打调试包。 <br> -S: 编译用 CocoaPods 做依赖管理的 .ipa 包|</p><p>4、上传 ipa</p><p>|描述|命令| 参数说明|</p><p>|:-|:-|:- |</p><p>| 上传 ipa | <code>fir publish -c &quot;first version log&quot; ${schema}*.ipa</code> | -c 后带 log。默认的包名是 schema-版本号-build－build 号，如 testFir-2.5.3-build-576.ipa。 |</p><h1 id="使用-fastlane进行持续集成"><a href="#使用-fastlane进行持续集成" class="headerlink" title="使用 fastlane进行持续集成"></a>使用 fastlane进行持续集成</h1><h1 id="报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory"><a href="#报错：You-don-39-t-have-write-permissions-for-the-usr-bin-directory" class="headerlink" title="报错：You don&#39;t have write permissions for the /usr/bin directory."></a>报错：<code>You don&#39;t have write permissions for the /usr/bin directory.</code></h1><p><code>sudo gem install fastlane -n /usr/local/bin</code></p>]]></content>
       
       
       <categories>
           
-          <category> iOS </category>
+          <category> 工具 </category>
           
       </categories>
       
@@ -576,31 +576,6 @@
           
       </categories>
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Swift踩坑记</title>
-      <link href="/2017/05/21/Swift%E8%B8%A9%E5%9D%91%E8%AE%B0/"/>
-      <url>/2017/05/21/Swift%E8%B8%A9%E5%9D%91%E8%AE%B0/</url>
-      
-        <content type="html"><![CDATA[<h1 id="一、更新Swift4后MJExtension-JSON转对象失效"><a href="#一、更新Swift4后MJExtension-JSON转对象失效" class="headerlink" title="一、更新Swift4后MJExtension JSON转对象失效"></a>一、更新Swift4后MJExtension JSON转对象失效</h1><p>解决：</p><ol><li>引入<code>@objcMembers</code>关键字</li><li>MJExtention 停留在3.0.13版本，不要更新</li><li>有问题的模型，使用OC重写</li><li>使用Swift4自带的 JSON 转对象</li></ol><h1 id="二、iOS8下，使用XIB自定义的控件连线到代码中返回位空（不清楚OC有没有这个问题，Swift是一定有的）"><a href="#二、iOS8下，使用XIB自定义的控件连线到代码中返回位空（不清楚OC有没有这个问题，Swift是一定有的）" class="headerlink" title="二、iOS8下，使用XIB自定义的控件连线到代码中返回位空（不清楚OC有没有这个问题，Swift是一定有的）"></a>二、iOS8下，使用XIB自定义的控件连线到代码中返回位空（不清楚OC有没有这个问题，Swift是一定有的）</h1><p>解决：TODO</p><h1 id="三、IBDesiable-给-Xib-控件添加可在-Xib-中使用的属性导致-Xib-无法显示，运行一定崩溃"><a href="#三、IBDesiable-给-Xib-控件添加可在-Xib-中使用的属性导致-Xib-无法显示，运行一定崩溃" class="headerlink" title="三、IBDesiable 给 Xib 控件添加可在 Xib 中使用的属性导致 Xib 无法显示，运行一定崩溃"></a>三、IBDesiable 给 Xib 控件添加可在 Xib 中使用的属性导致 Xib 无法显示，运行一定崩溃</h1><p>解决：弃用</p><h1 id="四、iOS11下导航栏如何透明"><a href="#四、iOS11下导航栏如何透明" class="headerlink" title="四、iOS11下导航栏如何透明"></a>四、iOS11下导航栏如何透明</h1><p>解决：使用第三方库<code>WRNavigationBar</code></p><h1 id="如何使导航栏变为透明"><a href="#如何使导航栏变为透明" class="headerlink" title="如何使导航栏变为透明"></a>如何使导航栏变为透明</h1><p>试了很多办法，没卵用<br>最后发现<code>第三方库WRNavigationBar</code>可以实现，而且效果很不错<br><a href="https://github.com/wangrui460/WRNavigationBar" target="_blank" rel="noopener">https://github.com/wangrui460/WRNavigationBar</a></p><h1 id="导航栏透明的坑"><a href="#导航栏透明的坑" class="headerlink" title="导航栏透明的坑"></a>导航栏透明的坑</h1><p>方式一：按照WRNavigationBar的方法设置为透明<br>方式二：使用代理</p><pre><code>// 设置代理self.navigationController?.delegate = self// 隐藏导航栏extension New2HomeViewController: UINavigationControllerDelegate {    // 将要显示控制器    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {        // 判断要显示的控制器是否是自己        let isShow = viewController is New2HomeViewController        navigationController.setNavigationBarHidden(isShow, animated: true)    }}</code></pre><h1 id="IBOutlet-连线返回的对象为空"><a href="#IBOutlet-连线返回的对象为空" class="headerlink" title="IBOutlet 连线返回的对象为空"></a>IBOutlet 连线返回的对象为空</h1><p>情景：直接创建xib文件，FileOwener设置控制器<br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830002052.png" alt=""></p><p>将Swift连线到控制器中，<code>viewWillAppear和</code>viewDidAppear`中返回nil</p><p>试过将IBOutlet 的 weak 去掉进行强引用，并没有卵用</p><h2 id="彻底的解决方式：建立与xib对应的自定义View类"><a href="#彻底的解决方式：建立与xib对应的自定义View类" class="headerlink" title="彻底的解决方式：建立与xib对应的自定义View类"></a>彻底的解决方式：建立与xib对应的自定义View类</h2><h2 id="第一步、设置-xib-文件的-FileOwner-为自定义的View"><a href="#第一步、设置-xib-文件的-FileOwner-为自定义的View" class="headerlink" title="第一步、设置 xib 文件的 FileOwner 为自定义的View"></a>第一步、设置 xib 文件的 FileOwner 为自定义的View</h2><p><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830002106.png" alt=""><br><img src="https://raw.githubusercontent.com/action456789/Image/master/20190830002117.png" alt=""></p><h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>在自定义View中添加如下代码</p><pre><code>class ConvenentDeviceHeader1: UIView {    @IBOutlet weak var smartSortSwitch: UISwitch!    override init(frame: CGRect) {        super.init(frame: frame)        self.commomInit()    }    required init?(coder aDecoder: NSCoder) {        super.init(coder: aDecoder)        self.commomInit()    }    func commomInit() {        let view = Bundle.main.loadNibNamed(&quot;ConvenientDeviceHeader1&quot;, owner: self, options: nil)?.first as! UIView        self.addSubview(view)        view.frame = self.bounds    }}</code></pre>]]></content>
-      
-      
-      <categories>
-          
-          <category> iOS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Swift </tag>
-            
-        </tags>
       
     </entry>
     
